@@ -5,4 +5,4 @@ There is a local solution and a AWS Solution. To test the local solution, go to 
 
 In the documentation you can find the purposed workflow, the model and the solution implemented.  
 
-The AWS Solution has not been tested due to some limitations in my personal account. 
+In the cloud solution, I purposed using AWS Services. There is a template of the purposed stack and a SageMaker notebook, this one has not been tested due to limitations in my personal account, anyway, its parameters are setted up in the same way that the local solution. 
