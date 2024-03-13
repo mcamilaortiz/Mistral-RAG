@@ -1,0 +1,31 @@
+<h1>AWS::SageMaker::NotebookInstance InstanceMetadataServiceConfiguration<a name="aws-properties-sagemaker-notebookinstance-instancemetadataserviceconfiguration"></a></h1>
+
+<p>Information on the IMDS configuration of the notebook instance</p>
+
+<h2>Syntax<a name="aws-properties-sagemaker-notebookinstance-instancemetadataserviceconfiguration-syntax"></a></h2>
+
+<p>To declare this entity in your AWS CloudFormation template, use the following syntax:</p>
+
+<h3>JSON<a name="aws-properties-sagemaker-notebookinstance-instancemetadataserviceconfiguration-syntax.json"></a></h3>
+
+<p><code>
+{
+  "[MinimumInstanceMetadataServiceVersion](#cfn-sagemaker-notebookinstance-instancemetadataserviceconfiguration-minimuminstancemetadataserviceversion)" : String
+}
+</code></p>
+
+<h3>YAML<a name="aws-properties-sagemaker-notebookinstance-instancemetadataserviceconfiguration-syntax.yaml"></a></h3>
+
+<p><code>
+  [MinimumInstanceMetadataServiceVersion](#cfn-sagemaker-notebookinstance-instancemetadataserviceconfiguration-minimuminstancemetadataserviceversion): String
+</code></p>
+
+<h2>Properties<a name="aws-properties-sagemaker-notebookinstance-instancemetadataserviceconfiguration-properties"></a></h2>
+
+<p><code>MinimumInstanceMetadataServiceVersion</code>  <a name="cfn-sagemaker-notebookinstance-instancemetadataserviceconfiguration-minimuminstancemetadataserviceversion"></a>
+Indicates the minimum IMDS version that the notebook instance supports. When passed as part of <code>CreateNotebookInstance</code>, if no value is selected, then it defaults to IMDSv1. This means that both IMDSv1 and IMDSv2 are supported. If passed as part of <code>UpdateNotebookInstance</code>, there is no default.<br />
+<em>Required</em>: Yes<br />
+<em>Type</em>: String<br />
+<em>Maximum</em>: <code>1</code><br />
+<em>Pattern</em>: <code>1|2</code><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt">No interruption</a></p>

@@ -1,0 +1,98 @@
+<h1>AWS::SageMaker::Workteam<a name="aws-resource-sagemaker-workteam"></a></h1>
+
+<p>Creates a new work team for labeling your data. A work team is defined by one or more Amazon Cognito user pools. You must first create the user pools before you can create a work team.</p>
+
+<p>You cannot create more than 25 work teams in an account and region.</p>
+
+<h2>Syntax<a name="aws-resource-sagemaker-workteam-syntax"></a></h2>
+
+<p>To declare this entity in your AWS CloudFormation template, use the following syntax:</p>
+
+<h3>JSON<a name="aws-resource-sagemaker-workteam-syntax.json"></a></h3>
+
+<p><code>
+{
+  "Type" : "AWS::SageMaker::Workteam",
+  "Properties" : {
+      "[Description](#cfn-sagemaker-workteam-description)" : String,
+      "[MemberDefinitions](#cfn-sagemaker-workteam-memberdefinitions)" : [ MemberDefinition, ... ],
+      "[NotificationConfiguration](#cfn-sagemaker-workteam-notificationconfiguration)" : NotificationConfiguration,
+      "[Tags](#cfn-sagemaker-workteam-tags)" : [ [Tag](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-resource-tags.html), ... ],
+      "[WorkforceName](#cfn-sagemaker-workteam-workforcename)" : String,
+      "[WorkteamName](#cfn-sagemaker-workteam-workteamname)" : String
+    }
+}
+</code></p>
+
+<h3>YAML<a name="aws-resource-sagemaker-workteam-syntax.yaml"></a></h3>
+
+<p><code>
+Type: AWS::SageMaker::Workteam
+Properties: 
+  [Description](#cfn-sagemaker-workteam-description): String
+  [MemberDefinitions](#cfn-sagemaker-workteam-memberdefinitions): 
+    - MemberDefinition
+  [NotificationConfiguration](#cfn-sagemaker-workteam-notificationconfiguration): 
+    NotificationConfiguration
+  [Tags](#cfn-sagemaker-workteam-tags): 
+    - [Tag](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-resource-tags.html)
+  [WorkforceName](#cfn-sagemaker-workteam-workforcename): String
+  [WorkteamName](#cfn-sagemaker-workteam-workteamname): String
+</code></p>
+
+<h2>Properties<a name="aws-resource-sagemaker-workteam-properties"></a></h2>
+
+<p><code>Description</code>  <a name="cfn-sagemaker-workteam-description"></a>
+A description of the work team.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: String<br />
+<em>Minimum</em>: <code>1</code><br />
+<em>Maximum</em>: <code>200</code><br />
+<em>Pattern</em>: <code>.+</code><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt">No interruption</a></p>
+
+<p><code>MemberDefinitions</code>  <a name="cfn-sagemaker-workteam-memberdefinitions"></a>
+A list of <code>MemberDefinition</code> objects that contains objects that identify the workers that make up the work team.<br />
+Workforces can be created using Amazon Cognito or your own OIDC Identity Provider (IdP). For private workforces created using Amazon Cognito use <code>CognitoMemberDefinition</code>. For workforces created using your own OIDC identity provider (IdP) use <code>OidcMemberDefinition</code>.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: List of <a href="aws-properties-sagemaker-workteam-memberdefinition.md">MemberDefinition</a><br />
+<em>Maximum</em>: <code>10</code><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt">No interruption</a></p>
+
+<p><code>NotificationConfiguration</code>  <a name="cfn-sagemaker-workteam-notificationconfiguration"></a>
+Configures SNS notifications of available or expiring work items for work teams.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: <a href="aws-properties-sagemaker-workteam-notificationconfiguration.md">NotificationConfiguration</a><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt">No interruption</a></p>
+
+<p><code>Tags</code>  <a name="cfn-sagemaker-workteam-tags"></a>
+An array of key-value pairs.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: List of <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-resource-tags.html">Tag</a><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt">No interruption</a></p>
+
+<p><code>WorkforceName</code>  <a name="cfn-sagemaker-workteam-workforcename"></a>
+Property description not available.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: String<br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement">Replacement</a></p>
+
+<p><code>WorkteamName</code>  <a name="cfn-sagemaker-workteam-workteamname"></a>
+The name of the work team.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: String<br />
+<em>Minimum</em>: <code>1</code><br />
+<em>Maximum</em>: <code>63</code><br />
+<em>Pattern</em>: <code>^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,62}</code><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement">Replacement</a></p>
+
+<h2>Return values<a name="aws-resource-sagemaker-workteam-return-values"></a></h2>
+
+<h3>Ref<a name="aws-resource-sagemaker-workteam-return-values-ref"></a></h3>
+
+<h3>Fn::GetAtt<a name="aws-resource-sagemaker-workteam-return-values-fn--getatt"></a></h3>
+
+<h4><a name="aws-resource-sagemaker-workteam-return-values-fn--getatt-fn--getatt"></a></h4>
+
+<p><code>WorkteamName</code>  <a name="WorkteamName-fn::getatt"></a>
+The name of the work team.</p>

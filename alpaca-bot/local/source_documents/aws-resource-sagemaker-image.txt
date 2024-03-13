@@ -1,0 +1,98 @@
+<h1>AWS::SageMaker::Image<a name="aws-resource-sagemaker-image"></a></h1>
+
+<p>Creates a custom SageMaker image. A SageMaker image is a set of image versions. Each image version represents a container image stored in Amazon Elastic Container Registry (ECR). For more information, see <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/studio-byoi.html">Bring your own SageMaker image</a>.</p>
+
+<h2>Syntax<a name="aws-resource-sagemaker-image-syntax"></a></h2>
+
+<p>To declare this entity in your AWS CloudFormation template, use the following syntax:</p>
+
+<h3>JSON<a name="aws-resource-sagemaker-image-syntax.json"></a></h3>
+
+<p><code>
+{
+  "Type" : "AWS::SageMaker::Image",
+  "Properties" : {
+      "[ImageDescription](#cfn-sagemaker-image-imagedescription)" : String,
+      "[ImageDisplayName](#cfn-sagemaker-image-imagedisplayname)" : String,
+      "[ImageName](#cfn-sagemaker-image-imagename)" : String,
+      "[ImageRoleArn](#cfn-sagemaker-image-imagerolearn)" : String,
+      "[Tags](#cfn-sagemaker-image-tags)" : [ [Tag](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-resource-tags.html), ... ]
+    }
+}
+</code></p>
+
+<h3>YAML<a name="aws-resource-sagemaker-image-syntax.yaml"></a></h3>
+
+<p><code>
+Type: AWS::SageMaker::Image
+Properties: 
+  [ImageDescription](#cfn-sagemaker-image-imagedescription): String
+  [ImageDisplayName](#cfn-sagemaker-image-imagedisplayname): String
+  [ImageName](#cfn-sagemaker-image-imagename): String
+  [ImageRoleArn](#cfn-sagemaker-image-imagerolearn): String
+  [Tags](#cfn-sagemaker-image-tags): 
+    - [Tag](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-resource-tags.html)
+</code></p>
+
+<h2>Properties<a name="aws-resource-sagemaker-image-properties"></a></h2>
+
+<p><code>ImageDescription</code>  <a name="cfn-sagemaker-image-imagedescription"></a>
+The description of the image.<br />
+<em>Length Constraints</em>: Minimum length of 1. Maximum length of 512.<br />
+<em>Pattern</em>: <code>.*</code><br />
+<em>Required</em>: No<br />
+<em>Type</em>: String<br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt">No interruption</a></p>
+
+<p><code>ImageDisplayName</code>  <a name="cfn-sagemaker-image-imagedisplayname"></a>
+The display name of the image.<br />
+<em>Length Constraints</em>: Minimum length of 1. Maximum length of 128.<br />
+<em>Pattern</em>: <code>^\S(.*\S)?$</code><br />
+<em>Required</em>: No<br />
+<em>Type</em>: String<br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt">No interruption</a></p>
+
+<p><code>ImageName</code>  <a name="cfn-sagemaker-image-imagename"></a>
+The name of the Image. Must be unique by region in your account.<br />
+<em>Length Constraints</em>: Minimum length of 1. Maximum length of 63.<br />
+<em>Pattern</em>: <code>^[a-zA-Z0-9]([-.]?[a-zA-Z0-9]){0,62}$</code><br />
+<em>Required</em>: Yes<br />
+<em>Type</em>: String<br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement">Replacement</a></p>
+
+<p><code>ImageRoleArn</code>  <a name="cfn-sagemaker-image-imagerolearn"></a>
+The Amazon Resource Name (ARN) of an IAM role that enables Amazon SageMaker to perform tasks on your behalf.<br />
+<em>Length Constraints</em>: Minimum length of 20. Maximum length of 2048.<br />
+<em>Pattern</em>: <code>^arn:aws[a-z\-]*:iam::\d{12}:role/?[a-zA-Z_0-9+=,.@\-_/]+$</code><br />
+<em>Required</em>: Yes<br />
+<em>Type</em>: String<br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt">No interruption</a></p>
+
+<p><code>Tags</code>  <a name="cfn-sagemaker-image-tags"></a>
+A list of key-value pairs to apply to this resource.<br />
+<em>Array Members</em>: Minimum number of 0 items. Maximum number of 50 items.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: List of <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-resource-tags.html">Tag</a><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt">No interruption</a></p>
+
+<h2>Return values<a name="aws-resource-sagemaker-image-return-values"></a></h2>
+
+<h3>Ref<a name="aws-resource-sagemaker-image-return-values-ref"></a></h3>
+
+<p>When you pass the logical ID of this resource to the intrinsic <code>Ref</code> function, <code>Ref</code> returns the ImageArn.</p>
+
+<p>For more information about using the <code>Ref</code> function, see <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference-ref.html">Ref</a>.</p>
+
+<h3>Fn::GetAtt<a name="aws-resource-sagemaker-image-return-values-fn--getatt"></a></h3>
+
+<p>The <code>Fn::GetAtt</code> intrinsic function returns a value for a specified attribute of this type. The following are the available attributes and sample return values.</p>
+
+<p>For more information about using the <code>Fn::GetAtt</code> intrinsic function, see <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference-getatt.html">Fn::GetAtt</a>.</p>
+
+<h4><a name="aws-resource-sagemaker-image-return-values-fn--getatt-fn--getatt"></a></h4>
+
+<p><code>ImageArn</code>  <a name="ImageArn-fn::getatt"></a>
+The Amazon Resource Name (ARN) of the image.<br />
+<em>Type</em>: String<br />
+<em>Length Constraints</em>: Maximum length of 256.<br />
+<em>Pattern</em>: <code>^arn:aws(-[\w]+)*:sagemaker:.+:[0-9]{12}:image/[a-z0-9]([-.]?[a-z0-9])*$</code></p>

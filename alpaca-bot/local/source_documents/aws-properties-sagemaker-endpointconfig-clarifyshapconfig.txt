@@ -1,0 +1,63 @@
+<h1>AWS::SageMaker::EndpointConfig ClarifyShapConfig<a name="aws-properties-sagemaker-endpointconfig-clarifyshapconfig"></a></h1>
+
+<p><a name="aws-properties-sagemaker-endpointconfig-clarifyshapconfig-description"></a>The <code>ClarifyShapConfig</code> property type specifies Property description not available. for an <a href="aws-resource-sagemaker-endpointconfig.md">AWS::SageMaker::EndpointConfig</a>.</p>
+
+<h2>Syntax<a name="aws-properties-sagemaker-endpointconfig-clarifyshapconfig-syntax"></a></h2>
+
+<p>To declare this entity in your AWS CloudFormation template, use the following syntax:</p>
+
+<h3>JSON<a name="aws-properties-sagemaker-endpointconfig-clarifyshapconfig-syntax.json"></a></h3>
+
+<p><code>
+{
+  "[NumberOfSamples](#cfn-sagemaker-endpointconfig-clarifyshapconfig-numberofsamples)" : Integer,
+  "[Seed](#cfn-sagemaker-endpointconfig-clarifyshapconfig-seed)" : Integer,
+  "[ShapBaselineConfig](#cfn-sagemaker-endpointconfig-clarifyshapconfig-shapbaselineconfig)" : ClarifyShapBaselineConfig,
+  "[TextConfig](#cfn-sagemaker-endpointconfig-clarifyshapconfig-textconfig)" : ClarifyTextConfig,
+  "[UseLogit](#cfn-sagemaker-endpointconfig-clarifyshapconfig-uselogit)" : Boolean
+}
+</code></p>
+
+<h3>YAML<a name="aws-properties-sagemaker-endpointconfig-clarifyshapconfig-syntax.yaml"></a></h3>
+
+<p><code>
+  [NumberOfSamples](#cfn-sagemaker-endpointconfig-clarifyshapconfig-numberofsamples): Integer
+  [Seed](#cfn-sagemaker-endpointconfig-clarifyshapconfig-seed): Integer
+  [ShapBaselineConfig](#cfn-sagemaker-endpointconfig-clarifyshapconfig-shapbaselineconfig): 
+    ClarifyShapBaselineConfig
+  [TextConfig](#cfn-sagemaker-endpointconfig-clarifyshapconfig-textconfig): 
+    ClarifyTextConfig
+  [UseLogit](#cfn-sagemaker-endpointconfig-clarifyshapconfig-uselogit): Boolean
+</code></p>
+
+<h2>Properties<a name="aws-properties-sagemaker-endpointconfig-clarifyshapconfig-properties"></a></h2>
+
+<p><code>NumberOfSamples</code>  <a name="cfn-sagemaker-endpointconfig-clarifyshapconfig-numberofsamples"></a>
+Property description not available.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: Integer<br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement">Replacement</a></p>
+
+<p><code>Seed</code>  <a name="cfn-sagemaker-endpointconfig-clarifyshapconfig-seed"></a>
+Property description not available.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: Integer<br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement">Replacement</a></p>
+
+<p><code>ShapBaselineConfig</code>  <a name="cfn-sagemaker-endpointconfig-clarifyshapconfig-shapbaselineconfig"></a>
+Property description not available.<br />
+<em>Required</em>: Yes<br />
+<em>Type</em>: <a href="aws-properties-sagemaker-endpointconfig-clarifyshapbaselineconfig.md">ClarifyShapBaselineConfig</a><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement">Replacement</a></p>
+
+<p><code>TextConfig</code>  <a name="cfn-sagemaker-endpointconfig-clarifyshapconfig-textconfig"></a>
+Property description not available.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: <a href="aws-properties-sagemaker-endpointconfig-clarifytextconfig.md">ClarifyTextConfig</a><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement">Replacement</a></p>
+
+<p><code>UseLogit</code>  <a name="cfn-sagemaker-endpointconfig-clarifyshapconfig-uselogit"></a>
+Property description not available.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: Boolean<br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement">Replacement</a></p>

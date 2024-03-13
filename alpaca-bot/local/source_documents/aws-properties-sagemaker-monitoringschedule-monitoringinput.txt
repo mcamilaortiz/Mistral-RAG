@@ -1,0 +1,39 @@
+<h1>AWS::SageMaker::MonitoringSchedule MonitoringInput<a name="aws-properties-sagemaker-monitoringschedule-monitoringinput"></a></h1>
+
+<p>The inputs for a monitoring job.</p>
+
+<h2>Syntax<a name="aws-properties-sagemaker-monitoringschedule-monitoringinput-syntax"></a></h2>
+
+<p>To declare this entity in your AWS CloudFormation template, use the following syntax:</p>
+
+<h3>JSON<a name="aws-properties-sagemaker-monitoringschedule-monitoringinput-syntax.json"></a></h3>
+
+<p><code>
+{
+  "[BatchTransformInput](#cfn-sagemaker-monitoringschedule-monitoringinput-batchtransforminput)" : BatchTransformInput,
+  "[EndpointInput](#cfn-sagemaker-monitoringschedule-monitoringinput-endpointinput)" : EndpointInput
+}
+</code></p>
+
+<h3>YAML<a name="aws-properties-sagemaker-monitoringschedule-monitoringinput-syntax.yaml"></a></h3>
+
+<p><code>
+  [BatchTransformInput](#cfn-sagemaker-monitoringschedule-monitoringinput-batchtransforminput): 
+    BatchTransformInput
+  [EndpointInput](#cfn-sagemaker-monitoringschedule-monitoringinput-endpointinput): 
+    EndpointInput
+</code></p>
+
+<h2>Properties<a name="aws-properties-sagemaker-monitoringschedule-monitoringinput-properties"></a></h2>
+
+<p><code>BatchTransformInput</code>  <a name="cfn-sagemaker-monitoringschedule-monitoringinput-batchtransforminput"></a>
+Property description not available.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: <a href="aws-properties-sagemaker-monitoringschedule-batchtransforminput.md">BatchTransformInput</a><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt">No interruption</a></p>
+
+<p><code>EndpointInput</code>  <a name="cfn-sagemaker-monitoringschedule-monitoringinput-endpointinput"></a>
+The endpoint for a monitoring job.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: <a href="aws-properties-sagemaker-monitoringschedule-endpointinput.md">EndpointInput</a><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt">No interruption</a></p>

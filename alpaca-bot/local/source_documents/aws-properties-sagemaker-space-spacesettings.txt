@@ -1,0 +1,39 @@
+<h1>AWS::SageMaker::Space SpaceSettings<a name="aws-properties-sagemaker-space-spacesettings"></a></h1>
+
+<p>A collection of space settings.</p>
+
+<h2>Syntax<a name="aws-properties-sagemaker-space-spacesettings-syntax"></a></h2>
+
+<p>To declare this entity in your AWS CloudFormation template, use the following syntax:</p>
+
+<h3>JSON<a name="aws-properties-sagemaker-space-spacesettings-syntax.json"></a></h3>
+
+<p><code>
+{
+  "[JupyterServerAppSettings](#cfn-sagemaker-space-spacesettings-jupyterserverappsettings)" : JupyterServerAppSettings,
+  "[KernelGatewayAppSettings](#cfn-sagemaker-space-spacesettings-kernelgatewayappsettings)" : KernelGatewayAppSettings
+}
+</code></p>
+
+<h3>YAML<a name="aws-properties-sagemaker-space-spacesettings-syntax.yaml"></a></h3>
+
+<p><code>
+  [JupyterServerAppSettings](#cfn-sagemaker-space-spacesettings-jupyterserverappsettings): 
+    JupyterServerAppSettings
+  [KernelGatewayAppSettings](#cfn-sagemaker-space-spacesettings-kernelgatewayappsettings): 
+    KernelGatewayAppSettings
+</code></p>
+
+<h2>Properties<a name="aws-properties-sagemaker-space-spacesettings-properties"></a></h2>
+
+<p><code>JupyterServerAppSettings</code>  <a name="cfn-sagemaker-space-spacesettings-jupyterserverappsettings"></a>
+The JupyterServer app settings.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: <a href="aws-properties-sagemaker-space-jupyterserverappsettings.md">JupyterServerAppSettings</a><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt">No interruption</a></p>
+
+<p><code>KernelGatewayAppSettings</code>  <a name="cfn-sagemaker-space-spacesettings-kernelgatewayappsettings"></a>
+The KernelGateway app settings.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: <a href="aws-properties-sagemaker-space-kernelgatewayappsettings.md">KernelGatewayAppSettings</a><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt">No interruption</a></p>

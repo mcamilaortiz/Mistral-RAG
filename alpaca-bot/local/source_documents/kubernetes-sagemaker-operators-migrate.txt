@@ -1,0 +1,146 @@
+<h1>Migrate resources to the latest Operators<a name="kubernetes-sagemaker-operators-migrate"></a></h1>
+
+<p>We are stopping the development and technical support of <a href="https://github.com/aws/amazon-sagemaker-operator-for-k8s/tree/master">SageMaker Operators for Kubernetes</a> in its original version. If you are currently using version <code>v1.2.2</code> or below of the original version of SageMaker Operators for Kubernetes, we recommend migrating your resources to the latest version of the SageMaker Operators for Kubernetes, the <a href="https://github.com/aws-controllers-k8s/sagemaker-controller">ACK service controller for Amazon SageMaker</a> based on <a href="https://aws-controllers-k8s.github.io/community/">AWS Controllers for Kubernetes</a>.</p>
+
+<p>For answers to frequently asked questions regarding the end of support of the original version of SageMaker Operators for Kubernetes, see <a href="kubernetes-sagemaker-operators-eos-announcement.md">Announcing the End of Support of the Original Version of SageMaker Operator for Kubernetes</a>.</p>
+
+<p>Use the following steps to migrate your resources and use ACK to train, tune, and deploy machine learning models with Amazon SageMaker.</p>
+
+<p><strong>Note</strong><br />
+The latest SageMaker Operators for Kubernetes are not backwards compatible.</p>
+
+<p><strong>Topics</strong>
++ <a href="#migrate-resources-to-new-operators-prerequisites">Prerequisites</a>
++ <a href="#migrate-resources-to-new-operators-steps">Adopt resources</a>
++ <a href="#migrate-resources-to-new-operators-cleanup">Clean up old resources</a>
++ <a href="#migrate-resources-to-new-operators-tutorials">Use the new SageMaker Operators for Kubernetes</a></p>
+
+<h2>Prerequisites<a name="migrate-resources-to-new-operators-prerequisites"></a></h2>
+
+<p>To successfully migrate resources to the latest SageMaker Operators for Kubernetes, you must:</p>
+
+<ol>
+<li><p>Install the latest SageMaker Operators for Kubernetes. See <a href="https://aws-controllers-k8s.github.io/community/docs/tutorials/sagemaker-example/#setup">Setup</a> in <em>Machine Learning with the ACK SageMaker Controller</em> for step-by-step instructions.</p></li>
+<li><p>If you are using <a href="#migrate-resources-to-new-operators-hap">HostingAutoscalingPolicy resources</a>, install the new Application Auto Scaling Operator. See <a href="https://aws-controllers-k8s.github.io/community/docs/tutorials/autoscaling-example/#setup">Setup</a> in <em>Scale SageMaker Workloads with Application Auto Scaling</em> for step-by-step instructions. This step is optional if you are not using HostingAutoScalingPolicy resources.</p></li>
+</ol>
+
+<p>If permissions are configured correctly, then the ACK SageMaker service controller can determine the specification and status of the AWS resource and reconcile the resource as if the ACK controller originally created it. </p>
+
+<h2>Adopt resources<a name="migrate-resources-to-new-operators-steps"></a></h2>
+
+<p>The new SageMaker Operators for Kubernetes provide the ability to adopt resources that were not originally created by the ACK service controller. For more information, see <a href="https://aws-controllers-k8s.github.io/community/docs/user-docs/adopted-resource/">Adopt Existing AWS Resources</a> in the ACK documentation.</p>
+
+<p>The following steps show how the new SageMaker Operators for Kubernetes can adopt an existing SageMaker endpoint. Save the following sample to a file named <code>adopt-endpoint-sample.yaml</code>. </p>
+
+<p><code>
+apiVersion: services.k8s.aws/v1alpha1
+kind: AdoptedResource
+metadata:
+  name: adopt-endpoint-sample
+spec:  
+  aws:
+    # resource to adopt, not created by ACK
+    nameOrID: xgboost-endpoint
+  kubernetes:
+    group: sagemaker.services.k8s.aws
+    kind: Endpoint
+    metadata:
+      # target K8s CR name
+      name: xgboost-endpoint
+</code></p>
+
+<p>Submit the custom resource (CR) using <code>kubectl apply</code>:</p>
+
+<p><code>
+kubectl apply -f adopt-endpoint-sample.yaml
+</code></p>
+
+<p>Use <code>kubectl describe</code> to check the status conditions of your adopted resource.</p>
+
+<p><code>
+kubectl describe adoptedresource adopt-endpoint-sample
+</code></p>
+
+<p>Verify that the <code>ACK.Adopted</code> condition is <code>True</code>. The output should look similar to the following example:</p>
+
+<h2>```</h2>
+
+<p>kind: AdoptedResource
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: '{"apiVersion":"services.k8s.aws/v1alpha1","kind":"AdoptedResource","metadata":{"annotations":{},"name":"xgboost-endpoint","namespace":"default"},"spec":{"aws":{"nameOrID":"xgboost-endpoint"},"kubernetes":{"group":"sagemaker.services.k8s.aws","kind":"Endpoint","metadata":{"name":"xgboost-endpoint"}}}}'
+  creationTimestamp: '2021-04-27T02:49:14Z'
+  finalizers:
+  - finalizers.services.k8s.aws/AdoptedResource
+  generation: 1
+  name: adopt-endpoint-sample
+  namespace: default
+  resourceVersion: '12669876'
+  selfLink: "/apis/services.k8s.aws/v1alpha1/namespaces/default/adoptedresources/adopt-endpoint-sample"
+  uid: 35f8fa92-29dd-4040-9d0d-0b07bbd7ca0b
+spec:
+  aws:
+    nameOrID: xgboost-endpoint
+  kubernetes:
+    group: sagemaker.services.k8s.aws
+    kind: Endpoint
+    metadata:
+      name: xgboost-endpoint
+status:
+  conditions:
+  - status: 'True'
+    type: ACK.Adopted
+```</p>
+
+<p>Check that your resource exists in your cluster:</p>
+
+<p><code>
+kubectl describe endpoints.sagemaker xgboost-endpoint
+</code></p>
+
+<h3>HostingAutoscalingPolicy resources<a name="migrate-resources-to-new-operators-hap"></a></h3>
+
+<p>The HostingAutoscalingPolicy (HAP) resource consists of multiple Application Auto Scaling resources: <code>ScalableTarget</code> and <code>ScalingPolicy</code>. When adopting a HAP resource with ACK, you need to first install the <a href="https://github.com/aws-controllers-k8s/applicationautoscaling-controller">Application Auto Scaling controller</a>. To adopt HAP resources, you need to adopt both <code>ScalableTarget</code> and <code>ScalingPolicy</code> resources. You can find the resource indentifier for these resources in the status of the HostingAutoscalingPolicy resource (<code>status.ResourceIDList</code>).</p>
+
+<h3>HostingDeployment resources<a name="migrate-resources-to-new-operators-hosting-deployment"></a></h3>
+
+<p>The HostingDeployment resource consists of multiple SageMaker resources: <code>Endpoint</code>, <code>EndpointConfig</code>, and each <code>Model</code>. If you adopt a SageMaker endpoint in ACK, you need to adopt the <code>Endpoint</code>, <code>EndpointConfig</code>, and each <code>Model</code> separately. The <code>Endpoint</code>, <code>EndpointConfig</code>, and <code>Model</code> names can be found in status of the HostingDeployment resource (<code>status.endpointName</code>, <code>status.endpointConfigName</code>, and <code>status.modelNames</code>).</p>
+
+<p>For a list of all supported SageMaker resources, refer to the <a href="https://aws-controllers-k8s.github.io/community/reference/">ACK API Reference</a>.</p>
+
+<h2>Clean up old resources<a name="migrate-resources-to-new-operators-cleanup"></a></h2>
+
+<p>After the new SageMaker Operators for Kubernetes adopt your resources, you can uninstall old operators and clean up old resources.</p>
+
+<h3>Step 1: Uninstall the old operator<a name="migrate-resources-to-new-operators-uninstall"></a></h3>
+
+<p>To uninstall the old operator, see <a href="kubernetes-sagemaker-operators-end-of-support.md#delete-operators">Delete operators</a>.</p>
+
+<p><strong>Warning</strong><br />
+Uninstall the old operator before deleting any old resources.</p>
+
+<h3>Step 2: Remove finalizers and delete old resources<a name="migrate-resources-to-new-operators-delete-resources"></a></h3>
+
+<p><strong>Warning</strong><br />
+Before deleting old resources, be sure that you have uninstalled the old operator.</p>
+
+<p>After uninstalling the old operator, you must explicitly remove the finalizers to delete old operator resources. The following sample script shows how to delete all training jobs managed by the old operator in a given namespace. You can use a similar pattern to delete additional resources once they are adopted by the new operator.</p>
+
+<p><strong>Note</strong><br />
+You must use full resource names to get resources. For example, use <code>kubectl get trainingjobs.sagemaker.aws.amazon.com</code> instead of <code>kubectl get trainingjob</code>.</p>
+
+<p>```
+namespace=sagemaker<em>namespace
+training</em>jobs=$(kubectl get trainingjobs.sagemaker.aws.amazon.com -n $namespace -ojson | jq -r '.items | .[] | .metadata.name')</p>
+
+<p>for job in $training_jobs
+do
+    echo "Deleting $job resource in $namespace namespace"
+    kubectl patch trainingjobs.sagemaker.aws.amazon.com $job -n $namespace -p '{"metadata":{"finalizers":null}}' --type=merge
+    kubectl delete trainingjobs.sagemaker.aws.amazon.com $job -n $namespace
+done
+```</p>
+
+<h2>Use the new SageMaker Operators for Kubernetes<a name="migrate-resources-to-new-operators-tutorials"></a></h2>
+
+<p>For in-depth guides on using the new SageMaker Operators for Kubernetes, see <a href="kubernetes-sagemaker-operators-ack.md#kubernetes-sagemaker-operators-ack-use">Use SageMaker Operators for Kubernetes</a></p>

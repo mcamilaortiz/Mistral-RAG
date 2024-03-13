@@ -1,0 +1,102 @@
+<h1>AWS::SageMaker::ModelQualityJobDefinition BatchTransformInput<a name="aws-properties-sagemaker-modelqualityjobdefinition-batchtransforminput"></a></h1>
+
+<p><a name="aws-properties-sagemaker-modelqualityjobdefinition-batchtransforminput-description"></a>The <code>BatchTransformInput</code> property type specifies Property description not available. for an <a href="aws-resource-sagemaker-modelqualityjobdefinition.md">AWS::SageMaker::ModelQualityJobDefinition</a>.</p>
+
+<h2>Syntax<a name="aws-properties-sagemaker-modelqualityjobdefinition-batchtransforminput-syntax"></a></h2>
+
+<p>To declare this entity in your AWS CloudFormation template, use the following syntax:</p>
+
+<h3>JSON<a name="aws-properties-sagemaker-modelqualityjobdefinition-batchtransforminput-syntax.json"></a></h3>
+
+<p><code>
+{
+  "[DataCapturedDestinationS3Uri](#cfn-sagemaker-modelqualityjobdefinition-batchtransforminput-datacaptureddestinations3uri)" : String,
+  "[DatasetFormat](#cfn-sagemaker-modelqualityjobdefinition-batchtransforminput-datasetformat)" : DatasetFormat,
+  "[EndTimeOffset](#cfn-sagemaker-modelqualityjobdefinition-batchtransforminput-endtimeoffset)" : String,
+  "[InferenceAttribute](#cfn-sagemaker-modelqualityjobdefinition-batchtransforminput-inferenceattribute)" : String,
+  "[LocalPath](#cfn-sagemaker-modelqualityjobdefinition-batchtransforminput-localpath)" : String,
+  "[ProbabilityAttribute](#cfn-sagemaker-modelqualityjobdefinition-batchtransforminput-probabilityattribute)" : String,
+  "[ProbabilityThresholdAttribute](#cfn-sagemaker-modelqualityjobdefinition-batchtransforminput-probabilitythresholdattribute)" : Double,
+  "[S3DataDistributionType](#cfn-sagemaker-modelqualityjobdefinition-batchtransforminput-s3datadistributiontype)" : String,
+  "[S3InputMode](#cfn-sagemaker-modelqualityjobdefinition-batchtransforminput-s3inputmode)" : String,
+  "[StartTimeOffset](#cfn-sagemaker-modelqualityjobdefinition-batchtransforminput-starttimeoffset)" : String
+}
+</code></p>
+
+<h3>YAML<a name="aws-properties-sagemaker-modelqualityjobdefinition-batchtransforminput-syntax.yaml"></a></h3>
+
+<p><code>
+  [DataCapturedDestinationS3Uri](#cfn-sagemaker-modelqualityjobdefinition-batchtransforminput-datacaptureddestinations3uri): String
+  [DatasetFormat](#cfn-sagemaker-modelqualityjobdefinition-batchtransforminput-datasetformat): 
+    DatasetFormat
+  [EndTimeOffset](#cfn-sagemaker-modelqualityjobdefinition-batchtransforminput-endtimeoffset): String
+  [InferenceAttribute](#cfn-sagemaker-modelqualityjobdefinition-batchtransforminput-inferenceattribute): String
+  [LocalPath](#cfn-sagemaker-modelqualityjobdefinition-batchtransforminput-localpath): String
+  [ProbabilityAttribute](#cfn-sagemaker-modelqualityjobdefinition-batchtransforminput-probabilityattribute): String
+  [ProbabilityThresholdAttribute](#cfn-sagemaker-modelqualityjobdefinition-batchtransforminput-probabilitythresholdattribute): Double
+  [S3DataDistributionType](#cfn-sagemaker-modelqualityjobdefinition-batchtransforminput-s3datadistributiontype): String
+  [S3InputMode](#cfn-sagemaker-modelqualityjobdefinition-batchtransforminput-s3inputmode): String
+  [StartTimeOffset](#cfn-sagemaker-modelqualityjobdefinition-batchtransforminput-starttimeoffset): String
+</code></p>
+
+<h2>Properties<a name="aws-properties-sagemaker-modelqualityjobdefinition-batchtransforminput-properties"></a></h2>
+
+<p><code>DataCapturedDestinationS3Uri</code>  <a name="cfn-sagemaker-modelqualityjobdefinition-batchtransforminput-datacaptureddestinations3uri"></a>
+Property description not available.<br />
+<em>Required</em>: Yes<br />
+<em>Type</em>: String<br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement">Replacement</a></p>
+
+<p><code>DatasetFormat</code>  <a name="cfn-sagemaker-modelqualityjobdefinition-batchtransforminput-datasetformat"></a>
+Property description not available.<br />
+<em>Required</em>: Yes<br />
+<em>Type</em>: <a href="aws-properties-sagemaker-modelqualityjobdefinition-datasetformat.md">DatasetFormat</a><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement">Replacement</a></p>
+
+<p><code>EndTimeOffset</code>  <a name="cfn-sagemaker-modelqualityjobdefinition-batchtransforminput-endtimeoffset"></a>
+Property description not available.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: String<br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement">Replacement</a></p>
+
+<p><code>InferenceAttribute</code>  <a name="cfn-sagemaker-modelqualityjobdefinition-batchtransforminput-inferenceattribute"></a>
+Property description not available.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: String<br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement">Replacement</a></p>
+
+<p><code>LocalPath</code>  <a name="cfn-sagemaker-modelqualityjobdefinition-batchtransforminput-localpath"></a>
+Property description not available.<br />
+<em>Required</em>: Yes<br />
+<em>Type</em>: String<br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement">Replacement</a></p>
+
+<p><code>ProbabilityAttribute</code>  <a name="cfn-sagemaker-modelqualityjobdefinition-batchtransforminput-probabilityattribute"></a>
+Property description not available.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: String<br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement">Replacement</a></p>
+
+<p><code>ProbabilityThresholdAttribute</code>  <a name="cfn-sagemaker-modelqualityjobdefinition-batchtransforminput-probabilitythresholdattribute"></a>
+Property description not available.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: Double<br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement">Replacement</a></p>
+
+<p><code>S3DataDistributionType</code>  <a name="cfn-sagemaker-modelqualityjobdefinition-batchtransforminput-s3datadistributiontype"></a>
+Property description not available.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: String<br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement">Replacement</a></p>
+
+<p><code>S3InputMode</code>  <a name="cfn-sagemaker-modelqualityjobdefinition-batchtransforminput-s3inputmode"></a>
+Property description not available.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: String<br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement">Replacement</a></p>
+
+<p><code>StartTimeOffset</code>  <a name="cfn-sagemaker-modelqualityjobdefinition-batchtransforminput-starttimeoffset"></a>
+Property description not available.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: String<br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement">Replacement</a></p>

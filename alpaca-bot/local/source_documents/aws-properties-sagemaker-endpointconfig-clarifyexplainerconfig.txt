@@ -1,0 +1,47 @@
+<h1>AWS::SageMaker::EndpointConfig ClarifyExplainerConfig<a name="aws-properties-sagemaker-endpointconfig-clarifyexplainerconfig"></a></h1>
+
+<p><a name="aws-properties-sagemaker-endpointconfig-clarifyexplainerconfig-description"></a>The <code>ClarifyExplainerConfig</code> property type specifies Property description not available. for an <a href="aws-resource-sagemaker-endpointconfig.md">AWS::SageMaker::EndpointConfig</a>.</p>
+
+<h2>Syntax<a name="aws-properties-sagemaker-endpointconfig-clarifyexplainerconfig-syntax"></a></h2>
+
+<p>To declare this entity in your AWS CloudFormation template, use the following syntax:</p>
+
+<h3>JSON<a name="aws-properties-sagemaker-endpointconfig-clarifyexplainerconfig-syntax.json"></a></h3>
+
+<p><code>
+{
+  "[EnableExplanations](#cfn-sagemaker-endpointconfig-clarifyexplainerconfig-enableexplanations)" : String,
+  "[InferenceConfig](#cfn-sagemaker-endpointconfig-clarifyexplainerconfig-inferenceconfig)" : ClarifyInferenceConfig,
+  "[ShapConfig](#cfn-sagemaker-endpointconfig-clarifyexplainerconfig-shapconfig)" : ClarifyShapConfig
+}
+</code></p>
+
+<h3>YAML<a name="aws-properties-sagemaker-endpointconfig-clarifyexplainerconfig-syntax.yaml"></a></h3>
+
+<p><code>
+  [EnableExplanations](#cfn-sagemaker-endpointconfig-clarifyexplainerconfig-enableexplanations): String
+  [InferenceConfig](#cfn-sagemaker-endpointconfig-clarifyexplainerconfig-inferenceconfig): 
+    ClarifyInferenceConfig
+  [ShapConfig](#cfn-sagemaker-endpointconfig-clarifyexplainerconfig-shapconfig): 
+    ClarifyShapConfig
+</code></p>
+
+<h2>Properties<a name="aws-properties-sagemaker-endpointconfig-clarifyexplainerconfig-properties"></a></h2>
+
+<p><code>EnableExplanations</code>  <a name="cfn-sagemaker-endpointconfig-clarifyexplainerconfig-enableexplanations"></a>
+Property description not available.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: String<br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement">Replacement</a></p>
+
+<p><code>InferenceConfig</code>  <a name="cfn-sagemaker-endpointconfig-clarifyexplainerconfig-inferenceconfig"></a>
+Property description not available.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: <a href="aws-properties-sagemaker-endpointconfig-clarifyinferenceconfig.md">ClarifyInferenceConfig</a><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement">Replacement</a></p>
+
+<p><code>ShapConfig</code>  <a name="cfn-sagemaker-endpointconfig-clarifyexplainerconfig-shapconfig"></a>
+Property description not available.<br />
+<em>Required</em>: Yes<br />
+<em>Type</em>: <a href="aws-properties-sagemaker-endpointconfig-clarifyshapconfig.md">ClarifyShapConfig</a><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement">Replacement</a></p>

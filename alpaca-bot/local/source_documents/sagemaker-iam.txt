@@ -1,0 +1,439 @@
+<h1>Amazon SageMaker<a name="sagemaker-iam"></a></h1>
+
+<p>These example templates show how AWS Step Functions generates IAM policies based on the resources in your state machine definition. For more information, see:
++ <a href="service-integration-iam-templates.md">IAM Policies for integrated services</a>
++ <a href="connect-to-resource.md">Service Integration Patterns</a></p>
+
+<p><strong>Note</strong><br />
+For these examples, <code>[[roleArn]]</code> refers to the Amazon Resource Name (ARN) of the IAM role that SageMaker uses to access model artifacts and docker images for deployment on ML compute instances, or for batch transform jobs. For more information, see <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/sagemaker-roles.html">Amazon SageMaker Roles</a>.</p>
+
+<p><strong>Topics</strong>
++ <a href="#sagemaker-iam-createtrainingjob"><code>CreateTrainingJob</code></a>
++ <a href="#sagemaker-iam-createtransformjob"><code>CreateTransformJob</code></a></p>
+
+<h2><code>CreateTrainingJob</code><a name="sagemaker-iam-createtrainingjob"></a></h2>
+
+<p><em>Static resources</em></p>
+
+<hr />
+
+<h4>[ Run a Job (.sync) ]</h4>
+
+<p><code>
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": [
+        "sagemaker:CreateTrainingJob",
+        "sagemaker:DescribeTrainingJob",
+        "sagemaker:StopTrainingJob"
+      ],
+      "Resource": [
+        "arn:aws:sagemaker:[[region]]:[[accountId]]:training-job/[[trainingJobName]]*"
+      ]
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "sagemaker:ListTags"
+      ],
+      "Resource": [
+        "*"
+      ]
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "iam:PassRole"
+      ],
+      "Resource": [
+        "[[roleArn]]"
+      ],
+      "Condition": {
+        "StringEquals": {
+          "iam:PassedToService": "sagemaker.amazonaws.com"
+        }
+      }
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "events:PutTargets",
+        "events:PutRule",
+        "events:DescribeRule"
+      ],
+      "Resource": [
+        "arn:aws:events:[[region]]:[[accountId]]:rule/StepFunctionsGetEventsForSageMakerTrainingJobsRule"
+      ]
+    }
+  ]
+}
+</code></p>
+
+<hr />
+
+<h4>[ Request Response and Callback (.waitForTaskToken) ]</h4>
+
+<p><code>
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": [
+        "sagemaker:CreateTrainingJob"
+      ],
+      "Resource": [
+        "arn:aws:sagemaker:[[region]]:[[accountId]]:training-job/[[trainingJobName]]*"
+      ]
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "sagemaker:ListTags"
+      ],
+      "Resource": [
+        "*"
+      ]
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "iam:PassRole"
+      ],
+      "Resource": [
+        "[[roleArn]]"
+      ],
+      "Condition": {
+        "StringEquals": {
+          "iam:PassedToService": "sagemaker.amazonaws.com"
+        }
+      }
+    }
+  ]
+}
+</code></p>
+
+<hr />
+
+<p><em>Dynamic resources</em></p>
+
+<hr />
+
+<h4>[ .sync or .waitForTaskToken ]</h4>
+
+<p><code>
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": [
+        "sagemaker:CreateTrainingJob",
+        "sagemaker:DescribeTrainingJob",
+        "sagemaker:StopTrainingJob"
+      ],
+      "Resource": [
+        "arn:aws:sagemaker:[[region]]:[[accountId]]:training-job/*"
+      ]
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "sagemaker:ListTags"
+      ],
+      "Resource": [
+        "*"
+      ]
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "iam:PassRole"
+      ],
+      "Resource": [
+        "[[roleArn]]"
+      ],
+      "Condition": {
+        "StringEquals": {
+          "iam:PassedToService": "sagemaker.amazonaws.com"
+        }
+      }
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "events:PutTargets",
+        "events:PutRule",
+        "events:DescribeRule"
+      ],
+      "Resource": [
+        "arn:aws:events:[[region]]:[[accountId]]:rule/StepFunctionsGetEventsForSageMakerTrainingJobsRule"
+      ]
+    }
+  ]
+}
+</code></p>
+
+<hr />
+
+<h4>[ Request Response and Callback (.waitForTaskToken) ]</h4>
+
+<p><code>
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": [
+        "sagemaker:CreateTrainingJob"
+      ],
+      "Resource": [
+        "arn:aws:sagemaker:[[region]]:[[accountId]]:training-job/*"
+      ]
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "sagemaker:ListTags"
+      ],
+      "Resource": [
+        "*"
+      ]
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "iam:PassRole"
+      ],
+      "Resource": [
+        "[[roleArn]]"
+      ],
+      "Condition": {
+        "StringEquals": {
+          "iam:PassedToService": "sagemaker.amazonaws.com"
+        }
+      }
+    }
+  ]
+}
+</code></p>
+
+<hr />
+
+<h2><code>CreateTransformJob</code><a name="sagemaker-iam-createtransformjob"></a></h2>
+
+<p><strong>Note</strong><br />
+AWS Step Functions will not automatically create a policy for <code>CreateTransformJob</code> when you create a state machine that integrates with SageMaker. You must attach an inline policy to the created role based on one of the following IAM examples.</p>
+
+<p><em>Static resources</em></p>
+
+<hr />
+
+<h4>[ Run a Job (.sync) ]</h4>
+
+<p><code>
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": [
+        "sagemaker:CreateTransformJob",
+        "sagemaker:DescribeTransformJob",
+        "sagemaker:StopTransformJob"
+      ],
+      "Resource": [
+        "arn:aws:sagemaker:[[region]]:[[accountId]]:transform-job/[[transformJobName]]*"
+      ]
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "sagemaker:ListTags"
+      ],
+      "Resource": [
+        "*"
+      ]
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "iam:PassRole"
+      ],
+      "Resource": [
+        "[[roleArn]]"
+      ],
+      "Condition": {
+        "StringEquals": {
+          "iam:PassedToService": "sagemaker.amazonaws.com"
+        }
+      }
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "events:PutTargets",
+        "events:PutRule",
+        "events:DescribeRule"
+      ],
+      "Resource": [
+        "arn:aws:events:[[region]]:[[accountId]]:rule/StepFunctionsGetEventsForSageMakerTransformJobsRule"
+      ]
+    }
+  ]
+}
+</code></p>
+
+<hr />
+
+<h4>[ Request Response and Callback (.waitForTaskToken) ]</h4>
+
+<p><code>
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": [
+        "sagemaker:CreateTransformJob"
+      ],
+      "Resource": [
+        "arn:aws:sagemaker:[[region]]:[[accountId]]:transform-job/[[transformJobName]]*"
+      ]
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "sagemaker:ListTags"
+      ],
+      "Resource": [
+        "*"
+      ]
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "iam:PassRole"
+      ],
+      "Resource": [
+        "[[roleArn]]"
+      ],
+      "Condition": {
+        "StringEquals": {
+          "iam:PassedToService": "sagemaker.amazonaws.com"
+        }
+      }
+    }
+  ]
+}
+</code></p>
+
+<hr />
+
+<p><em>Dynamic resources</em></p>
+
+<hr />
+
+<h4>[ Run a Job (.sync) ]</h4>
+
+<p><code>
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": [
+        "sagemaker:CreateTransformJob",
+        "sagemaker:DescribeTransformJob",
+        "sagemaker:StopTransformJob"
+      ],
+      "Resource": [
+        "arn:aws:sagemaker:[[region]]:[[accountId]]:transform-job/*"
+      ]
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "sagemaker:ListTags"
+      ],
+      "Resource": [
+        "*"
+      ]
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "iam:PassRole"
+      ],
+      "Resource": [
+        "[[roleArn]]"
+      ],
+      "Condition": {
+        "StringEquals": {
+          "iam:PassedToService": "sagemaker.amazonaws.com"
+        }
+      }
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "events:PutTargets",
+        "events:PutRule",
+        "events:DescribeRule"
+      ],
+      "Resource": [
+        "arn:aws:events:[[region]]:[[accountId]]:rule/StepFunctionsGetEventsForSageMakerTransformJobsRule"
+      ]
+    }
+  ]
+}
+</code></p>
+
+<hr />
+
+<h4>[ Request Response and Callback (.waitForTaskToken) ]</h4>
+
+<p><code>
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": [
+        "sagemaker:CreateTransformJob"
+      ],
+      "Resource": [
+        "arn:aws:sagemaker:[[region]]:[[accountId]]:transform-job/*"
+      ]
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "sagemaker:ListTags"
+      ],
+      "Resource": [
+        "*"
+      ]
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "iam:PassRole"
+      ],
+      "Resource": [
+        "[[roleArn]]"
+      ],
+      "Condition": {
+        "StringEquals": {
+          "iam:PassedToService": "sagemaker.amazonaws.com"
+        }
+      }
+    }
+  ]
+}
+</code></p>
+
+<hr />

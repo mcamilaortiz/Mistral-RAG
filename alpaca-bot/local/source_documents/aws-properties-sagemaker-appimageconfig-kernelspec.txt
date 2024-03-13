@@ -1,0 +1,39 @@
+<h1>AWS::SageMaker::AppImageConfig KernelSpec<a name="aws-properties-sagemaker-appimageconfig-kernelspec"></a></h1>
+
+<p>The specification of a Jupyter kernel.</p>
+
+<h2>Syntax<a name="aws-properties-sagemaker-appimageconfig-kernelspec-syntax"></a></h2>
+
+<p>To declare this entity in your AWS CloudFormation template, use the following syntax:</p>
+
+<h3>JSON<a name="aws-properties-sagemaker-appimageconfig-kernelspec-syntax.json"></a></h3>
+
+<p><code>
+{
+  "[DisplayName](#cfn-sagemaker-appimageconfig-kernelspec-displayname)" : String,
+  "[Name](#cfn-sagemaker-appimageconfig-kernelspec-name)" : String
+}
+</code></p>
+
+<h3>YAML<a name="aws-properties-sagemaker-appimageconfig-kernelspec-syntax.yaml"></a></h3>
+
+<p><code>
+  [DisplayName](#cfn-sagemaker-appimageconfig-kernelspec-displayname): String
+  [Name](#cfn-sagemaker-appimageconfig-kernelspec-name): String
+</code></p>
+
+<h2>Properties<a name="aws-properties-sagemaker-appimageconfig-kernelspec-properties"></a></h2>
+
+<p><code>DisplayName</code>  <a name="cfn-sagemaker-appimageconfig-kernelspec-displayname"></a>
+The display name of the kernel.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: String<br />
+<em>Maximum</em>: <code>1024</code><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt">No interruption</a></p>
+
+<p><code>Name</code>  <a name="cfn-sagemaker-appimageconfig-kernelspec-name"></a>
+The name of the Jupyter kernel in the image. This value is case sensitive.<br />
+<em>Required</em>: Yes<br />
+<em>Type</em>: String<br />
+<em>Maximum</em>: <code>1024</code><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt">No interruption</a></p>

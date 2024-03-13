@@ -1,0 +1,54 @@
+<h1>AWS::SageMaker::FeatureGroup DataCatalogConfig<a name="aws-properties-sagemaker-featuregroup-datacatalogconfig"></a></h1>
+
+<p>The meta data of the Glue table which serves as data catalog for the <code>OfflineStore</code>. </p>
+
+<h2>Syntax<a name="aws-properties-sagemaker-featuregroup-datacatalogconfig-syntax"></a></h2>
+
+<p>To declare this entity in your AWS CloudFormation template, use the following syntax:</p>
+
+<h3>JSON<a name="aws-properties-sagemaker-featuregroup-datacatalogconfig-syntax.json"></a></h3>
+
+<p><code>
+{
+  "[Catalog](#cfn-sagemaker-featuregroup-datacatalogconfig-catalog)" : String,
+  "[Database](#cfn-sagemaker-featuregroup-datacatalogconfig-database)" : String,
+  "[TableName](#cfn-sagemaker-featuregroup-datacatalogconfig-tablename)" : String
+}
+</code></p>
+
+<h3>YAML<a name="aws-properties-sagemaker-featuregroup-datacatalogconfig-syntax.yaml"></a></h3>
+
+<p><code>
+  [Catalog](#cfn-sagemaker-featuregroup-datacatalogconfig-catalog): String
+  [Database](#cfn-sagemaker-featuregroup-datacatalogconfig-database): String
+  [TableName](#cfn-sagemaker-featuregroup-datacatalogconfig-tablename): String
+</code></p>
+
+<h2>Properties<a name="aws-properties-sagemaker-featuregroup-datacatalogconfig-properties"></a></h2>
+
+<p><code>Catalog</code>  <a name="cfn-sagemaker-featuregroup-datacatalogconfig-catalog"></a>
+The name of the Glue table catalog.<br />
+<em>Required</em>: Yes<br />
+<em>Type</em>: String<br />
+<em>Minimum</em>: <code>1</code><br />
+<em>Maximum</em>: <code>255</code><br />
+<em>Pattern</em>: <code>[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*</code><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement">Replacement</a></p>
+
+<p><code>Database</code>  <a name="cfn-sagemaker-featuregroup-datacatalogconfig-database"></a>
+The name of the Glue table database.<br />
+<em>Required</em>: Yes<br />
+<em>Type</em>: String<br />
+<em>Minimum</em>: <code>1</code><br />
+<em>Maximum</em>: <code>255</code><br />
+<em>Pattern</em>: <code>[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*</code><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement">Replacement</a></p>
+
+<p><code>TableName</code>  <a name="cfn-sagemaker-featuregroup-datacatalogconfig-tablename"></a>
+The name of the Glue table.<br />
+<em>Required</em>: Yes<br />
+<em>Type</em>: String<br />
+<em>Minimum</em>: <code>1</code><br />
+<em>Maximum</em>: <code>255</code><br />
+<em>Pattern</em>: <code>[\u0020-\uD7FF\uE000-\uFFFD\uD800\uDC00-\uDBFF\uDFFF\t]*</code><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement">Replacement</a></p>

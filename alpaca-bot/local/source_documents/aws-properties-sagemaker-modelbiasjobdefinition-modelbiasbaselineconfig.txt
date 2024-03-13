@@ -1,0 +1,41 @@
+<h1>AWS::SageMaker::ModelBiasJobDefinition ModelBiasBaselineConfig<a name="aws-properties-sagemaker-modelbiasjobdefinition-modelbiasbaselineconfig"></a></h1>
+
+<p>The configuration for a baseline model bias job.</p>
+
+<h2>Syntax<a name="aws-properties-sagemaker-modelbiasjobdefinition-modelbiasbaselineconfig-syntax"></a></h2>
+
+<p>To declare this entity in your AWS CloudFormation template, use the following syntax:</p>
+
+<h3>JSON<a name="aws-properties-sagemaker-modelbiasjobdefinition-modelbiasbaselineconfig-syntax.json"></a></h3>
+
+<p><code>
+{
+  "[BaseliningJobName](#cfn-sagemaker-modelbiasjobdefinition-modelbiasbaselineconfig-baseliningjobname)" : String,
+  "[ConstraintsResource](#cfn-sagemaker-modelbiasjobdefinition-modelbiasbaselineconfig-constraintsresource)" : ConstraintsResource
+}
+</code></p>
+
+<h3>YAML<a name="aws-properties-sagemaker-modelbiasjobdefinition-modelbiasbaselineconfig-syntax.yaml"></a></h3>
+
+<p><code>
+  [BaseliningJobName](#cfn-sagemaker-modelbiasjobdefinition-modelbiasbaselineconfig-baseliningjobname): String
+  [ConstraintsResource](#cfn-sagemaker-modelbiasjobdefinition-modelbiasbaselineconfig-constraintsresource): 
+    ConstraintsResource
+</code></p>
+
+<h2>Properties<a name="aws-properties-sagemaker-modelbiasjobdefinition-modelbiasbaselineconfig-properties"></a></h2>
+
+<p><code>BaseliningJobName</code>  <a name="cfn-sagemaker-modelbiasjobdefinition-modelbiasbaselineconfig-baseliningjobname"></a>
+The name of the baseline model bias job.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: String<br />
+<em>Minimum</em>: <code>1</code><br />
+<em>Maximum</em>: <code>63</code><br />
+<em>Pattern</em>: <code>^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,62}</code><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement">Replacement</a></p>
+
+<p><code>ConstraintsResource</code>  <a name="cfn-sagemaker-modelbiasjobdefinition-modelbiasbaselineconfig-constraintsresource"></a>
+The constraints resource for a monitoring job.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: <a href="aws-properties-sagemaker-modelbiasjobdefinition-constraintsresource.md">ConstraintsResource</a><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement">Replacement</a></p>

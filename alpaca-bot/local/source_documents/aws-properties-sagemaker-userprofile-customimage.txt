@@ -1,0 +1,51 @@
+<h1>AWS::SageMaker::UserProfile CustomImage<a name="aws-properties-sagemaker-userprofile-customimage"></a></h1>
+
+<p>A custom SageMaker image. For more information, see <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/studio-byoi.html">Bring your own SageMaker image</a>.</p>
+
+<h2>Syntax<a name="aws-properties-sagemaker-userprofile-customimage-syntax"></a></h2>
+
+<p>To declare this entity in your AWS CloudFormation template, use the following syntax:</p>
+
+<h3>JSON<a name="aws-properties-sagemaker-userprofile-customimage-syntax.json"></a></h3>
+
+<p><code>
+{
+  "[AppImageConfigName](#cfn-sagemaker-userprofile-customimage-appimageconfigname)" : String,
+  "[ImageName](#cfn-sagemaker-userprofile-customimage-imagename)" : String,
+  "[ImageVersionNumber](#cfn-sagemaker-userprofile-customimage-imageversionnumber)" : Integer
+}
+</code></p>
+
+<h3>YAML<a name="aws-properties-sagemaker-userprofile-customimage-syntax.yaml"></a></h3>
+
+<p><code>
+  [AppImageConfigName](#cfn-sagemaker-userprofile-customimage-appimageconfigname): String
+  [ImageName](#cfn-sagemaker-userprofile-customimage-imagename): String
+  [ImageVersionNumber](#cfn-sagemaker-userprofile-customimage-imageversionnumber): Integer
+</code></p>
+
+<h2>Properties<a name="aws-properties-sagemaker-userprofile-customimage-properties"></a></h2>
+
+<p><code>AppImageConfigName</code>  <a name="cfn-sagemaker-userprofile-customimage-appimageconfigname"></a>
+The name of the AppImageConfig.<br />
+<em>Required</em>: Yes<br />
+<em>Type</em>: String<br />
+<em>Maximum</em>: <code>63</code><br />
+<em>Pattern</em>: <code>^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,62}</code><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt">No interruption</a></p>
+
+<p><code>ImageName</code>  <a name="cfn-sagemaker-userprofile-customimage-imagename"></a>
+The name of the CustomImage. Must be unique to your account.<br />
+<em>Required</em>: Yes<br />
+<em>Type</em>: String<br />
+<em>Minimum</em>: <code>1</code><br />
+<em>Maximum</em>: <code>63</code><br />
+<em>Pattern</em>: <code>^[a-zA-Z0-9]([-.]?[a-zA-Z0-9]){0,62}$</code><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt">No interruption</a></p>
+
+<p><code>ImageVersionNumber</code>  <a name="cfn-sagemaker-userprofile-customimage-imageversionnumber"></a>
+The version number of the CustomImage.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: Integer<br />
+<em>Minimum</em>: <code>0</code><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt">No interruption</a></p>

@@ -1,0 +1,193 @@
+<h1>AWS::SageMaker::InferenceExperiment<a name="aws-resource-sagemaker-inferenceexperiment"></a></h1>
+
+<p>Creates an inference experiment using the configurations specified in the request. </p>
+
+<p>Use this API to setup and schedule an experiment to compare model variants on a Amazon SageMaker inference endpoint. For more information about inference experiments, see <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/shadow-tests.html">Shadow tests</a>. </p>
+
+<p>Amazon SageMaker begins your experiment at the scheduled time and routes traffic to your endpoint's model variants based on your specified configuration. </p>
+
+<p>While the experiment is in progress or after it has concluded, you can view metrics that compare your model variants. For more information, see <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/shadow-tests-view-monitor-edit.html">View, monitor, and edit shadow tests</a>. </p>
+
+<h2>Syntax<a name="aws-resource-sagemaker-inferenceexperiment-syntax"></a></h2>
+
+<p>To declare this entity in your AWS CloudFormation template, use the following syntax:</p>
+
+<h3>JSON<a name="aws-resource-sagemaker-inferenceexperiment-syntax.json"></a></h3>
+
+<p><code>
+{
+  "Type" : "AWS::SageMaker::InferenceExperiment",
+  "Properties" : {
+      "[DataStorageConfig](#cfn-sagemaker-inferenceexperiment-datastorageconfig)" : DataStorageConfig,
+      "[Description](#cfn-sagemaker-inferenceexperiment-description)" : String,
+      "[DesiredState](#cfn-sagemaker-inferenceexperiment-desiredstate)" : String,
+      "[EndpointName](#cfn-sagemaker-inferenceexperiment-endpointname)" : String,
+      "[KmsKey](#cfn-sagemaker-inferenceexperiment-kmskey)" : String,
+      "[ModelVariants](#cfn-sagemaker-inferenceexperiment-modelvariants)" : [ ModelVariantConfig, ... ],
+      "[Name](#cfn-sagemaker-inferenceexperiment-name)" : String,
+      "[RoleArn](#cfn-sagemaker-inferenceexperiment-rolearn)" : String,
+      "[Schedule](#cfn-sagemaker-inferenceexperiment-schedule)" : InferenceExperimentSchedule,
+      "[ShadowModeConfig](#cfn-sagemaker-inferenceexperiment-shadowmodeconfig)" : ShadowModeConfig,
+      "[StatusReason](#cfn-sagemaker-inferenceexperiment-statusreason)" : String,
+      "[Tags](#cfn-sagemaker-inferenceexperiment-tags)" : [ [Tag](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-resource-tags.html), ... ],
+      "[Type](#cfn-sagemaker-inferenceexperiment-type)" : String
+    }
+}
+</code></p>
+
+<h3>YAML<a name="aws-resource-sagemaker-inferenceexperiment-syntax.yaml"></a></h3>
+
+<p><code>
+Type: AWS::SageMaker::InferenceExperiment
+Properties: 
+  [DataStorageConfig](#cfn-sagemaker-inferenceexperiment-datastorageconfig): 
+    DataStorageConfig
+  [Description](#cfn-sagemaker-inferenceexperiment-description): String
+  [DesiredState](#cfn-sagemaker-inferenceexperiment-desiredstate): String
+  [EndpointName](#cfn-sagemaker-inferenceexperiment-endpointname): String
+  [KmsKey](#cfn-sagemaker-inferenceexperiment-kmskey): String
+  [ModelVariants](#cfn-sagemaker-inferenceexperiment-modelvariants): 
+    - ModelVariantConfig
+  [Name](#cfn-sagemaker-inferenceexperiment-name): String
+  [RoleArn](#cfn-sagemaker-inferenceexperiment-rolearn): String
+  [Schedule](#cfn-sagemaker-inferenceexperiment-schedule): 
+    InferenceExperimentSchedule
+  [ShadowModeConfig](#cfn-sagemaker-inferenceexperiment-shadowmodeconfig): 
+    ShadowModeConfig
+  [StatusReason](#cfn-sagemaker-inferenceexperiment-statusreason): String
+  [Tags](#cfn-sagemaker-inferenceexperiment-tags): 
+    - [Tag](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-resource-tags.html)
+  [Type](#cfn-sagemaker-inferenceexperiment-type): String
+</code></p>
+
+<h2>Properties<a name="aws-resource-sagemaker-inferenceexperiment-properties"></a></h2>
+
+<p><code>DataStorageConfig</code>  <a name="cfn-sagemaker-inferenceexperiment-datastorageconfig"></a>
+The Amazon S3 location and configuration for storing inference request and response data.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: <a href="aws-properties-sagemaker-inferenceexperiment-datastorageconfig.md">DataStorageConfig</a><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt">No interruption</a></p>
+
+<p><code>Description</code>  <a name="cfn-sagemaker-inferenceexperiment-description"></a>
+The description of the inference experiment.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: String<br />
+<em>Maximum</em>: <code>1024</code><br />
+<em>Pattern</em>: <code>.*</code><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt">No interruption</a></p>
+
+<p><code>DesiredState</code>  <a name="cfn-sagemaker-inferenceexperiment-desiredstate"></a>
+ The desired state of the experiment after stopping. The possible states are the following:<br />
++  <code>Completed</code>: The experiment completed successfully
++  <code>Cancelled</code>: The experiment was canceled
+<em>Required</em>: No<br />
+<em>Type</em>: String<br />
+<em>Allowed values</em>: <code>Cancelled | Completed</code><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt">No interruption</a></p>
+
+<p><code>EndpointName</code>  <a name="cfn-sagemaker-inferenceexperiment-endpointname"></a>
+The name of the endpoint.<br />
+<em>Required</em>: Yes<br />
+<em>Type</em>: String<br />
+<em>Maximum</em>: <code>63</code><br />
+<em>Pattern</em>: <code>^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,62}</code><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement">Replacement</a></p>
+
+<p><code>KmsKey</code>  <a name="cfn-sagemaker-inferenceexperiment-kmskey"></a>
+ The AWS Key Management Service key that Amazon SageMaker uses to encrypt captured data at rest using Amazon S3 server-side encryption.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: String<br />
+<em>Maximum</em>: <code>2048</code><br />
+<em>Pattern</em>: <code>.*</code><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement">Replacement</a></p>
+
+<p><code>ModelVariants</code>  <a name="cfn-sagemaker-inferenceexperiment-modelvariants"></a>
+ An array of <code>ModelVariantConfigSummary</code> objects. There is one for each variant in the inference experiment. Each <code>ModelVariantConfigSummary</code> object in the array describes the infrastructure configuration for deploying the corresponding variant.<br />
+<em>Required</em>: Yes<br />
+<em>Type</em>: List of <a href="aws-properties-sagemaker-inferenceexperiment-modelvariantconfig.md">ModelVariantConfig</a><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt">No interruption</a></p>
+
+<p><code>Name</code>  <a name="cfn-sagemaker-inferenceexperiment-name"></a>
+The name of the inference experiment.<br />
+<em>Required</em>: Yes<br />
+<em>Type</em>: String<br />
+<em>Minimum</em>: <code>1</code><br />
+<em>Maximum</em>: <code>120</code><br />
+<em>Pattern</em>: <code>^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,119}</code><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement">Replacement</a></p>
+
+<p><code>RoleArn</code>  <a name="cfn-sagemaker-inferenceexperiment-rolearn"></a>
+ The ARN of the IAM role that Amazon SageMaker can assume to access model artifacts and container images, and manage Amazon SageMaker Inference endpoints for model deployment.<br />
+<em>Required</em>: Yes<br />
+<em>Type</em>: String<br />
+<em>Minimum</em>: <code>20</code><br />
+<em>Maximum</em>: <code>2048</code><br />
+<em>Pattern</em>: <code>^arn:aws[a-z\-]*:iam::\d{12}:role/?[a-zA-Z_0-9+=,.@\-_/]+$</code><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement">Replacement</a></p>
+
+<p><code>Schedule</code>  <a name="cfn-sagemaker-inferenceexperiment-schedule"></a>
+The duration for which the inference experiment ran or will run.<br />
+The maximum duration that you can set for an inference experiment is 30 days.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: <a href="aws-properties-sagemaker-inferenceexperiment-inferenceexperimentschedule.md">InferenceExperimentSchedule</a><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt">No interruption</a></p>
+
+<p><code>ShadowModeConfig</code>  <a name="cfn-sagemaker-inferenceexperiment-shadowmodeconfig"></a>
+ The configuration of <code>ShadowMode</code> inference experiment type, which shows the production variant that takes all the inference requests, and the shadow variant to which Amazon SageMaker replicates a percentage of the inference requests. For the shadow variant it also shows the percentage of requests that Amazon SageMaker replicates.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: <a href="aws-properties-sagemaker-inferenceexperiment-shadowmodeconfig.md">ShadowModeConfig</a><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt">No interruption</a></p>
+
+<p><code>StatusReason</code>  <a name="cfn-sagemaker-inferenceexperiment-statusreason"></a>
+The error message for the inference experiment status result.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: String<br />
+<em>Maximum</em>: <code>1024</code><br />
+<em>Pattern</em>: <code>.*</code><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt">No interruption</a></p>
+
+<p><code>Tags</code>  <a name="cfn-sagemaker-inferenceexperiment-tags"></a>
+An array of key-value pairs to apply to this resource.<br />
+For more information, see <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-resource-tags.html">Tag</a>.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: List of <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-resource-tags.html">Tag</a><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt">No interruption</a></p>
+
+<p><code>Type</code>  <a name="cfn-sagemaker-inferenceexperiment-type"></a>
+The type of the inference experiment.<br />
+<em>Required</em>: Yes<br />
+<em>Type</em>: String<br />
+<em>Allowed values</em>: <code>ShadowMode</code><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement">Replacement</a></p>
+
+<h2>Return values<a name="aws-resource-sagemaker-inferenceexperiment-return-values"></a></h2>
+
+<h3>Ref<a name="aws-resource-sagemaker-inferenceexperiment-return-values-ref"></a></h3>
+
+<h3>Fn::GetAtt<a name="aws-resource-sagemaker-inferenceexperiment-return-values-fn--getatt"></a></h3>
+
+<h4><a name="aws-resource-sagemaker-inferenceexperiment-return-values-fn--getatt-fn--getatt"></a></h4>
+
+<p><code>Arn</code>  <a name="Arn-fn::getatt"></a>
+Property description not available.</p>
+
+<p><code>CreationTime</code>  <a name="CreationTime-fn::getatt"></a>
+Property description not available.</p>
+
+<p><code>EndpointMetadata</code>  <a name="EndpointMetadata-fn::getatt"></a>
+Property description not available.</p>
+
+<p><code>EndpointMetadata.EndpointConfigName</code>  <a name="EndpointMetadata.EndpointConfigName-fn::getatt"></a>
+Property description not available.</p>
+
+<p><code>EndpointMetadata.EndpointName</code>  <a name="EndpointMetadata.EndpointName-fn::getatt"></a>
+Property description not available.</p>
+
+<p><code>EndpointMetadata.EndpointStatus</code>  <a name="EndpointMetadata.EndpointStatus-fn::getatt"></a>
+Property description not available.</p>
+
+<p><code>LastModifiedTime</code>  <a name="LastModifiedTime-fn::getatt"></a>
+Property description not available.</p>
+
+<p><code>Status</code>  <a name="Status-fn::getatt"></a>
+Property description not available.</p>

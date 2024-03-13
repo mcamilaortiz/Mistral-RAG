@@ -1,0 +1,23 @@
+<h1>Import Your SageMaker Trained Model<a name="deeplens-import-from-sagemaker"></a></h1>
+
+<p>To use your SageMaker trained model for your computer vision application, you must import it into AWS DeepLens.</p>
+
+<p><strong>To import your SageMaker trained model into AWS DeepLens</strong></p>
+
+<ol>
+<li><p>Open the AWS DeepLens console at <a href="https://console.aws.amazon.com/deeplens/">https://console.aws.amazon.com/deeplens/</a>.</p></li>
+<li><p>From the navigation pane, choose <strong>Models</strong> then choose <strong>Import model</strong>.</p></li>
+<li><p>For <strong>Import source</strong> choose <strong>SageMaker trained model</strong>.</p></li>
+<li><p>In the <strong>Model settings</strong> area:</p>
+
+<ol>
+<li><p>From the list of completed jobs, choose the <strong>SageMaker training job ID</strong> for the model you want to import. </p>
+
+<p>The ID of the job must begin with <code>deeplens-</code>, unless you've customized the <strong>AWSDeepLensServiceRolePolicy</strong> (used for registering the device) to extend the policy to allow AWS DeepLens to access SageMaker's training jobs not starting with <code>deeplens*</code>. </p>
+
+<p>If you do not find the job you're looking for in the list, go to the SageMaker console and check the status of the jobs to verify that it has successfully completed. </p></li>
+<li><p>For the <strong>Model name</strong>, type the name you want for the model. Model names can contain alphanumeric characters and hypens, and be no longer than 100 characters.</p></li>
+<li><p>For the <strong>Description</strong> you can optionally type in a description for your model.</p></li>
+<li><p>Choose <strong>Import model</strong>.</p></li>
+</ol></li>
+</ol>

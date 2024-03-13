@@ -1,0 +1,41 @@
+<h1>AWS::SageMaker::Endpoint CapacitySize<a name="aws-properties-sagemaker-endpoint-capacitysize"></a></h1>
+
+<p>Specifies the endpoint capacity to activate for production.</p>
+
+<h2>Syntax<a name="aws-properties-sagemaker-endpoint-capacitysize-syntax"></a></h2>
+
+<p>To declare this entity in your AWS CloudFormation template, use the following syntax:</p>
+
+<h3>JSON<a name="aws-properties-sagemaker-endpoint-capacitysize-syntax.json"></a></h3>
+
+<p><code>
+{
+  "[Type](#cfn-sagemaker-endpoint-capacitysize-type)" : String,
+  "[Value](#cfn-sagemaker-endpoint-capacitysize-value)" : Integer
+}
+</code></p>
+
+<h3>YAML<a name="aws-properties-sagemaker-endpoint-capacitysize-syntax.yaml"></a></h3>
+
+<p><code>
+  [Type](#cfn-sagemaker-endpoint-capacitysize-type): String
+  [Value](#cfn-sagemaker-endpoint-capacitysize-value): Integer
+</code></p>
+
+<h2>Properties<a name="aws-properties-sagemaker-endpoint-capacitysize-properties"></a></h2>
+
+<p><code>Type</code>  <a name="cfn-sagemaker-endpoint-capacitysize-type"></a>
+Specifies the endpoint capacity type.<br />
++  <code>INSTANCE_COUNT</code>: The endpoint activates based on the number of instances.
++  <code>CAPACITY_PERCENT</code>: The endpoint activates based on the specified percentage of capacity.
+<em>Required</em>: Yes<br />
+<em>Type</em>: String<br />
+<em>Allowed values</em>: <code>CAPACITY_PERCENT | INSTANCE_COUNT</code><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt">No interruption</a></p>
+
+<p><code>Value</code>  <a name="cfn-sagemaker-endpoint-capacitysize-value"></a>
+Defines the capacity size, either as a number of instances or a capacity percentage.<br />
+<em>Required</em>: Yes<br />
+<em>Type</em>: Integer<br />
+<em>Minimum</em>: <code>1</code><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt">No interruption</a></p>

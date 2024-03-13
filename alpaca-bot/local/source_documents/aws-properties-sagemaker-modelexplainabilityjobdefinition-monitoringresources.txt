@@ -1,0 +1,30 @@
+<h1>AWS::SageMaker::ModelExplainabilityJobDefinition MonitoringResources<a name="aws-properties-sagemaker-modelexplainabilityjobdefinition-monitoringresources"></a></h1>
+
+<p>Identifies the resources to deploy for a monitoring job.</p>
+
+<h2>Syntax<a name="aws-properties-sagemaker-modelexplainabilityjobdefinition-monitoringresources-syntax"></a></h2>
+
+<p>To declare this entity in your AWS CloudFormation template, use the following syntax:</p>
+
+<h3>JSON<a name="aws-properties-sagemaker-modelexplainabilityjobdefinition-monitoringresources-syntax.json"></a></h3>
+
+<p><code>
+{
+  "[ClusterConfig](#cfn-sagemaker-modelexplainabilityjobdefinition-monitoringresources-clusterconfig)" : ClusterConfig
+}
+</code></p>
+
+<h3>YAML<a name="aws-properties-sagemaker-modelexplainabilityjobdefinition-monitoringresources-syntax.yaml"></a></h3>
+
+<p><code>
+  [ClusterConfig](#cfn-sagemaker-modelexplainabilityjobdefinition-monitoringresources-clusterconfig): 
+    ClusterConfig
+</code></p>
+
+<h2>Properties<a name="aws-properties-sagemaker-modelexplainabilityjobdefinition-monitoringresources-properties"></a></h2>
+
+<p><code>ClusterConfig</code>  <a name="cfn-sagemaker-modelexplainabilityjobdefinition-monitoringresources-clusterconfig"></a>
+The configuration for the cluster resources used to run the processing job.<br />
+<em>Required</em>: Yes<br />
+<em>Type</em>: <a href="aws-properties-sagemaker-modelexplainabilityjobdefinition-clusterconfig.md">ClusterConfig</a><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement">Replacement</a></p>

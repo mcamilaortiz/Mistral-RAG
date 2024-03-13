@@ -1,0 +1,50 @@
+<h1>AWS::SageMaker::InferenceExperiment EndpointMetadata<a name="aws-properties-sagemaker-inferenceexperiment-endpointmetadata"></a></h1>
+
+<p>The metadata of the endpoint.</p>
+
+<h2>Syntax<a name="aws-properties-sagemaker-inferenceexperiment-endpointmetadata-syntax"></a></h2>
+
+<p>To declare this entity in your AWS CloudFormation template, use the following syntax:</p>
+
+<h3>JSON<a name="aws-properties-sagemaker-inferenceexperiment-endpointmetadata-syntax.json"></a></h3>
+
+<p><code>
+{
+  "[EndpointConfigName](#cfn-sagemaker-inferenceexperiment-endpointmetadata-endpointconfigname)" : String,
+  "[EndpointName](#cfn-sagemaker-inferenceexperiment-endpointmetadata-endpointname)" : String,
+  "[EndpointStatus](#cfn-sagemaker-inferenceexperiment-endpointmetadata-endpointstatus)" : String
+}
+</code></p>
+
+<h3>YAML<a name="aws-properties-sagemaker-inferenceexperiment-endpointmetadata-syntax.yaml"></a></h3>
+
+<p><code>
+  [EndpointConfigName](#cfn-sagemaker-inferenceexperiment-endpointmetadata-endpointconfigname): String
+  [EndpointName](#cfn-sagemaker-inferenceexperiment-endpointmetadata-endpointname): String
+  [EndpointStatus](#cfn-sagemaker-inferenceexperiment-endpointmetadata-endpointstatus): String
+</code></p>
+
+<h2>Properties<a name="aws-properties-sagemaker-inferenceexperiment-endpointmetadata-properties"></a></h2>
+
+<p><code>EndpointConfigName</code>  <a name="cfn-sagemaker-inferenceexperiment-endpointmetadata-endpointconfigname"></a>
+The name of the endpoint configuration.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: String<br />
+<em>Maximum</em>: <code>63</code><br />
+<em>Pattern</em>: <code>^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,62}</code><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt">No interruption</a></p>
+
+<p><code>EndpointName</code>  <a name="cfn-sagemaker-inferenceexperiment-endpointmetadata-endpointname"></a>
+The name of the endpoint.<br />
+<em>Required</em>: Yes<br />
+<em>Type</em>: String<br />
+<em>Maximum</em>: <code>63</code><br />
+<em>Pattern</em>: <code>^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,62}</code><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt">No interruption</a></p>
+
+<p><code>EndpointStatus</code>  <a name="cfn-sagemaker-inferenceexperiment-endpointmetadata-endpointstatus"></a>
+ The status of the endpoint. For possible values of the status of an endpoint, see <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-inferenceexperiment-endpointmetadata.html#cfn-sagemaker-inferenceexperiment-endpointmetadata-endpointstatus">https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-inferenceexperiment-endpointmetadata.html#cfn-sagemaker-inferenceexperiment-endpointmetadata-endpointstatus</a>.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: String<br />
+<em>Allowed values</em>: <code>Creating | Deleting | Failed | InService | OutOfService | RollingBack | SystemUpdating | Updating</code><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt">No interruption</a></p>

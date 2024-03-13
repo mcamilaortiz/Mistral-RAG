@@ -1,0 +1,22 @@
+<h1>Delete an MLOps Project using Amazon SageMaker Studio<a name="sagemaker-projects-delete"></a></h1>
+
+<p>This procedure demonstrates how to delete an MLOps project using Amazon SageMaker Studio.</p>
+
+<p><strong>Prerequisites</strong></p>
+
+<p><strong>Note</strong><br />
+You can only delete projects in Studio that you have created. This condition is part of the service catalog permission <code>servicecatalog:TerminateProvisionedProduct</code> in the <code>AmazonSageMakerFullAccess</code> policy. If needed, you can update this policy to remove this condition.
++ An IAM account or IAM Identity Center to sign in to Studio. For information, see <a href="gs-studio-onboard.md">Onboard to Amazon SageMaker Domain</a>.
++ Basic familiarity with the Studio user interface. For information, see <a href="studio-ui.md">Amazon SageMaker Studio UI Overview</a>.</p>
+
+<p><strong>To delete a project in Amazon SageMaker Studio</strong></p>
+
+<ol>
+<li><p>Sign in to Studio. For more information, see <a href="gs-studio-onboard.md">Onboard to Amazon SageMaker Domain</a>.</p></li>
+<li><p>In the Studio sidebar, choose the <strong>Home</strong> icon ( <img src="http://docs.aws.amazon.com/sagemaker/latest/dg/images/studio/icons/house.png" alt="[Image NOT FOUND]" />).</p></li>
+<li><p>Select <strong>Deployments</strong> from the menu, and then select <strong>Projects</strong>.</p></li>
+<li><p>Select the target project from the dropdown list. If you don’t see your project, type the project name and apply the filter to find your project.</p></li>
+<li><p>Once you've found your project, select the project name to view details.</p></li>
+<li><p>Choose <strong>Delete</strong> from the <strong>Actions</strong> menu.</p></li>
+<li><p>Confirm your choice by choosing <strong>Delete</strong> from the <strong>Delete Project</strong> window.</p></li>
+</ol>

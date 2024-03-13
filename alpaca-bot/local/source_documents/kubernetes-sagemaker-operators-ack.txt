@@ -1,0 +1,30 @@
+<h1>Latest SageMaker Operators for Kubernetes<a name="kubernetes-sagemaker-operators-ack"></a></h1>
+
+<p>This section is based on the latest version of SageMaker Operators for Kubernetes using AWS Controllers for Kubernetes (ACK).</p>
+
+<p><strong>Important</strong><br />
+If you are currently using <a href="https://github.com/aws/amazon-sagemaker-operator-for-k8s">version <code>v1.2.2</code> or below of the original SageMaker Operators for Kubernetes</a>, we recommend migrating your resources to the latest SageMaker Operators for Kubernetes, the <a href="https://github.com/aws-controllers-k8s/sagemaker-controller">ACK service controller for Amazon SageMaker</a> based on <a href="https://aws-controllers-k8s.github.io/community/ ">AWS Controllers for Kubernetes (ACK)</a>.<br />
+For information about the migration steps, see <a href="kubernetes-sagemaker-operators-migrate.md">Migrate resources to the latest Operators</a>. For answers to frequently asked questions regarding the end of support of the original version of SageMaker Operators for Kubernetes, see <a href="kubernetes-sagemaker-operators-eos-announcement.md">Announcing the End of Support of the Original Version of SageMaker Operator for Kubernetes</a></p>
+
+<p><a href="https://github.com/aws-controllers-k8s/sagemaker-controller">The latest version of SageMaker Operators for Kubernetes</a> is based on <a href="https://aws-controllers-k8s.github.io/community/ ">AWS Controllers for Kubernetes (ACK)</a>, a framework for building Kubernetes custom controllers where each controller communicates with an AWS service API. These controllers allow Kubernetes users to provision AWS resources like databases or message queues using the Kubernetes API.</p>
+
+<p>Use the following steps to install and use ACK to train, tune, and deploy machine learning models with Amazon SageMaker.</p>
+
+<p><strong>Topics</strong>
++ <a href="#kubernetes-sagemaker-operators-ack-install">Install SageMaker Operators for Kubernetes</a>
++ <a href="#kubernetes-sagemaker-operators-ack-use">Use SageMaker Operators for Kubernetes</a>
++ <a href="#kubernetes-sagemaker-operators-ack-reference">Reference</a></p>
+
+<h2>Install SageMaker Operators for Kubernetes<a name="kubernetes-sagemaker-operators-ack-install"></a></h2>
+
+<p>To set up the latest available version of SageMaker Operators for Kubernetes, see the <em>Setup</em> section in <a href="https://aws-controllers-k8s.github.io/community/docs/tutorials/sagemaker-example/#setup"> Machine Learning with the ACK SageMaker Controller</a>.</p>
+
+<h2>Use SageMaker Operators for Kubernetes<a name="kubernetes-sagemaker-operators-ack-use"></a></h2>
+
+<p>For a tutorial on how to train a machine learning model with the ACK service controller for Amazon SageMaker using Amazon EKS, see <a href="https://aws-controllers-k8s.github.io/community/docs/tutorials/sagemaker-example/">Machine Learning with the ACK SageMaker Controller</a>.</p>
+
+<p>For an autoscaling example, see <a href="https://aws-controllers-k8s.github.io/community/docs/tutorials/autoscaling-example/"> Scale SageMaker Workloads with Application Auto Scaling</a></p>
+
+<h2>Reference<a name="kubernetes-sagemaker-operators-ack-reference"></a></h2>
+
+<p>See also the <a href="https://github.com/aws-controllers-k8s/sagemaker-controller">ACK service controller for Amazon SageMaker GitHub repository</a> or read <a href="https://aws-controllers-k8s.github.io/community/docs/community/overview/">AWS Controllers for Kubernetes Documentation</a>. </p>

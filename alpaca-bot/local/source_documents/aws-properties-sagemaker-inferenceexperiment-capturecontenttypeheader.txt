@@ -1,0 +1,41 @@
+<h1>AWS::SageMaker::InferenceExperiment CaptureContentTypeHeader<a name="aws-properties-sagemaker-inferenceexperiment-capturecontenttypeheader"></a></h1>
+
+<p>Configuration specifying how to treat different headers. If no headers are specified SageMaker will by default base64 encode when capturing the data.</p>
+
+<h2>Syntax<a name="aws-properties-sagemaker-inferenceexperiment-capturecontenttypeheader-syntax"></a></h2>
+
+<p>To declare this entity in your AWS CloudFormation template, use the following syntax:</p>
+
+<h3>JSON<a name="aws-properties-sagemaker-inferenceexperiment-capturecontenttypeheader-syntax.json"></a></h3>
+
+<p><code>
+{
+  "[CsvContentTypes](#cfn-sagemaker-inferenceexperiment-capturecontenttypeheader-csvcontenttypes)" : [ String, ... ],
+  "[JsonContentTypes](#cfn-sagemaker-inferenceexperiment-capturecontenttypeheader-jsoncontenttypes)" : [ String, ... ]
+}
+</code></p>
+
+<h3>YAML<a name="aws-properties-sagemaker-inferenceexperiment-capturecontenttypeheader-syntax.yaml"></a></h3>
+
+<p><code>
+  [CsvContentTypes](#cfn-sagemaker-inferenceexperiment-capturecontenttypeheader-csvcontenttypes): 
+    - String
+  [JsonContentTypes](#cfn-sagemaker-inferenceexperiment-capturecontenttypeheader-jsoncontenttypes): 
+    - String
+</code></p>
+
+<h2>Properties<a name="aws-properties-sagemaker-inferenceexperiment-capturecontenttypeheader-properties"></a></h2>
+
+<p><code>CsvContentTypes</code>  <a name="cfn-sagemaker-inferenceexperiment-capturecontenttypeheader-csvcontenttypes"></a>
+The list of all content type headers that SageMaker will treat as CSV and capture accordingly.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: List of String<br />
+<em>Maximum</em>: <code>10</code><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt">No interruption</a></p>
+
+<p><code>JsonContentTypes</code>  <a name="cfn-sagemaker-inferenceexperiment-capturecontenttypeheader-jsoncontenttypes"></a>
+The list of all content type headers that SageMaker will treat as JSON and capture accordingly.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: List of String<br />
+<em>Maximum</em>: <code>10</code><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt">No interruption</a></p>

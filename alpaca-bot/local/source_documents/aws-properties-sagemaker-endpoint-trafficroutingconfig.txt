@@ -1,0 +1,61 @@
+<h1>AWS::SageMaker::Endpoint TrafficRoutingConfig<a name="aws-properties-sagemaker-endpoint-trafficroutingconfig"></a></h1>
+
+<p>Defines the traffic routing strategy during an endpoint deployment to shift traffic from the old fleet to the new fleet.</p>
+
+<h2>Syntax<a name="aws-properties-sagemaker-endpoint-trafficroutingconfig-syntax"></a></h2>
+
+<p>To declare this entity in your AWS CloudFormation template, use the following syntax:</p>
+
+<h3>JSON<a name="aws-properties-sagemaker-endpoint-trafficroutingconfig-syntax.json"></a></h3>
+
+<p><code>
+{
+  "[CanarySize](#cfn-sagemaker-endpoint-trafficroutingconfig-canarysize)" : CapacitySize,
+  "[LinearStepSize](#cfn-sagemaker-endpoint-trafficroutingconfig-linearstepsize)" : CapacitySize,
+  "[Type](#cfn-sagemaker-endpoint-trafficroutingconfig-type)" : String,
+  "[WaitIntervalInSeconds](#cfn-sagemaker-endpoint-trafficroutingconfig-waitintervalinseconds)" : Integer
+}
+</code></p>
+
+<h3>YAML<a name="aws-properties-sagemaker-endpoint-trafficroutingconfig-syntax.yaml"></a></h3>
+
+<p><code>
+  [CanarySize](#cfn-sagemaker-endpoint-trafficroutingconfig-canarysize): 
+    CapacitySize
+  [LinearStepSize](#cfn-sagemaker-endpoint-trafficroutingconfig-linearstepsize): 
+    CapacitySize
+  [Type](#cfn-sagemaker-endpoint-trafficroutingconfig-type): String
+  [WaitIntervalInSeconds](#cfn-sagemaker-endpoint-trafficroutingconfig-waitintervalinseconds): Integer
+</code></p>
+
+<h2>Properties<a name="aws-properties-sagemaker-endpoint-trafficroutingconfig-properties"></a></h2>
+
+<p><code>CanarySize</code>  <a name="cfn-sagemaker-endpoint-trafficroutingconfig-canarysize"></a>
+Batch size for the first step to turn on traffic on the new endpoint fleet. <code>Value</code> must be less than or equal to 50% of the variant's total instance count.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: <a href="aws-properties-sagemaker-endpoint-capacitysize.md">CapacitySize</a><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt">No interruption</a></p>
+
+<p><code>LinearStepSize</code>  <a name="cfn-sagemaker-endpoint-trafficroutingconfig-linearstepsize"></a>
+Batch size for each step to turn on traffic on the new endpoint fleet. <code>Value</code> must be 10-50% of the variant's total instance count.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: <a href="aws-properties-sagemaker-endpoint-capacitysize.md">CapacitySize</a><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt">No interruption</a></p>
+
+<p><code>Type</code>  <a name="cfn-sagemaker-endpoint-trafficroutingconfig-type"></a>
+Traffic routing strategy type.<br />
++  <code>ALL_AT_ONCE</code>: Endpoint traffic shifts to the new fleet in a single step. 
++  <code>CANARY</code>: Endpoint traffic shifts to the new fleet in two steps. The first step is the canary, which is a small portion of the traffic. The second step is the remainder of the traffic. 
++  <code>LINEAR</code>: Endpoint traffic shifts to the new fleet in n steps of a configurable size. 
+<em>Required</em>: Yes<br />
+<em>Type</em>: String<br />
+<em>Allowed values</em>: <code>ALL_AT_ONCE | CANARY | LINEAR</code><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt">No interruption</a></p>
+
+<p><code>WaitIntervalInSeconds</code>  <a name="cfn-sagemaker-endpoint-trafficroutingconfig-waitintervalinseconds"></a>
+The waiting time (in seconds) between incremental steps to turn on traffic on the new endpoint fleet.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: Integer<br />
+<em>Minimum</em>: <code>0</code><br />
+<em>Maximum</em>: <code>3600</code><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt">No interruption</a></p>

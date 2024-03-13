@@ -1,0 +1,41 @@
+<h1>AWS::SageMaker::FeatureGroup FeatureDefinition<a name="aws-properties-sagemaker-featuregroup-featuredefinition"></a></h1>
+
+<p>A list of features. You must include <code>FeatureName</code> and <code>FeatureType</code>. Valid feature <code>FeatureType</code>s are <code>Integral</code>, <code>Fractional</code> and <code>String</code>. </p>
+
+<h2>Syntax<a name="aws-properties-sagemaker-featuregroup-featuredefinition-syntax"></a></h2>
+
+<p>To declare this entity in your AWS CloudFormation template, use the following syntax:</p>
+
+<h3>JSON<a name="aws-properties-sagemaker-featuregroup-featuredefinition-syntax.json"></a></h3>
+
+<p><code>
+{
+  "[FeatureName](#cfn-sagemaker-featuregroup-featuredefinition-featurename)" : String,
+  "[FeatureType](#cfn-sagemaker-featuregroup-featuredefinition-featuretype)" : String
+}
+</code></p>
+
+<h3>YAML<a name="aws-properties-sagemaker-featuregroup-featuredefinition-syntax.yaml"></a></h3>
+
+<p><code>
+  [FeatureName](#cfn-sagemaker-featuregroup-featuredefinition-featurename): String
+  [FeatureType](#cfn-sagemaker-featuregroup-featuredefinition-featuretype): String
+</code></p>
+
+<h2>Properties<a name="aws-properties-sagemaker-featuregroup-featuredefinition-properties"></a></h2>
+
+<p><code>FeatureName</code>  <a name="cfn-sagemaker-featuregroup-featuredefinition-featurename"></a>
+The name of a feature. The type must be a string. <code>FeatureName</code> cannot be any of the following: <code>is_deleted</code>, <code>write_time</code>, <code>api_invocation_time</code>.<br />
+<em>Required</em>: Yes<br />
+<em>Type</em>: String<br />
+<em>Minimum</em>: <code>1</code><br />
+<em>Maximum</em>: <code>64</code><br />
+<em>Pattern</em>: <code>^[a-zA-Z0-9]([-_]*[a-zA-Z0-9]){0,63}</code><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt">No interruption</a></p>
+
+<p><code>FeatureType</code>  <a name="cfn-sagemaker-featuregroup-featuredefinition-featuretype"></a>
+The value type of a feature. Valid values are Integral, Fractional, or String.<br />
+<em>Required</em>: Yes<br />
+<em>Type</em>: String<br />
+<em>Allowed values</em>: <code>Fractional | Integral | String</code><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt">No interruption</a></p>

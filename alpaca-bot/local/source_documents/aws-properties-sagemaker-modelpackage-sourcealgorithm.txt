@@ -1,0 +1,43 @@
+<h1>AWS::SageMaker::ModelPackage SourceAlgorithm<a name="aws-properties-sagemaker-modelpackage-sourcealgorithm"></a></h1>
+
+<p>Specifies an algorithm that was used to create the model package. The algorithm must be either an algorithm resource in your SageMaker account or an algorithm in AWS Marketplace that you are subscribed to.</p>
+
+<h2>Syntax<a name="aws-properties-sagemaker-modelpackage-sourcealgorithm-syntax"></a></h2>
+
+<p>To declare this entity in your AWS CloudFormation template, use the following syntax:</p>
+
+<h3>JSON<a name="aws-properties-sagemaker-modelpackage-sourcealgorithm-syntax.json"></a></h3>
+
+<p><code>
+{
+  "[AlgorithmName](#cfn-sagemaker-modelpackage-sourcealgorithm-algorithmname)" : String,
+  "[ModelDataUrl](#cfn-sagemaker-modelpackage-sourcealgorithm-modeldataurl)" : String
+}
+</code></p>
+
+<h3>YAML<a name="aws-properties-sagemaker-modelpackage-sourcealgorithm-syntax.yaml"></a></h3>
+
+<p><code>
+  [AlgorithmName](#cfn-sagemaker-modelpackage-sourcealgorithm-algorithmname): String
+  [ModelDataUrl](#cfn-sagemaker-modelpackage-sourcealgorithm-modeldataurl): String
+</code></p>
+
+<h2>Properties<a name="aws-properties-sagemaker-modelpackage-sourcealgorithm-properties"></a></h2>
+
+<p><code>AlgorithmName</code>  <a name="cfn-sagemaker-modelpackage-sourcealgorithm-algorithmname"></a>
+The name of an algorithm that was used to create the model package. The algorithm must be either an algorithm resource in your SageMaker account or an algorithm in AWS Marketplace that you are subscribed to.<br />
+<em>Required</em>: Yes<br />
+<em>Type</em>: String<br />
+<em>Minimum</em>: <code>1</code><br />
+<em>Maximum</em>: <code>170</code><br />
+<em>Pattern</em>: <code>(arn:aws[a-z\-]*:sagemaker:[a-z0-9\-]*:[0-9]{12}:[a-z\-]*\/)?([a-zA-Z0-9]([a-zA-Z0-9-]){0,62})(?&lt;!-)$</code><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement">Replacement</a></p>
+
+<p><code>ModelDataUrl</code>  <a name="cfn-sagemaker-modelpackage-sourcealgorithm-modeldataurl"></a>
+The Amazon S3 path where the model artifacts, which result from model training, are stored. This path must point to a single <code>gzip</code> compressed tar archive (<code>.tar.gz</code> suffix).<br />
+The model artifacts must be in an S3 bucket that is in the same region as the algorithm.
+<em>Required</em>: No<br />
+<em>Type</em>: String<br />
+<em>Maximum</em>: <code>1024</code><br />
+<em>Pattern</em>: <code>^(https|s3)://([^/]+)/?(.*)$</code><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement">Replacement</a></p>

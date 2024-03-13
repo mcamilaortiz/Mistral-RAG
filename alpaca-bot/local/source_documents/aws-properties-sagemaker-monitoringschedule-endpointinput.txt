@@ -1,0 +1,59 @@
+<h1>AWS::SageMaker::MonitoringSchedule EndpointInput<a name="aws-properties-sagemaker-monitoringschedule-endpointinput"></a></h1>
+
+<p>Input object for the endpoint</p>
+
+<h2>Syntax<a name="aws-properties-sagemaker-monitoringschedule-endpointinput-syntax"></a></h2>
+
+<p>To declare this entity in your AWS CloudFormation template, use the following syntax:</p>
+
+<h3>JSON<a name="aws-properties-sagemaker-monitoringschedule-endpointinput-syntax.json"></a></h3>
+
+<p><code>
+{
+  "[EndpointName](#cfn-sagemaker-monitoringschedule-endpointinput-endpointname)" : String,
+  "[LocalPath](#cfn-sagemaker-monitoringschedule-endpointinput-localpath)" : String,
+  "[S3DataDistributionType](#cfn-sagemaker-monitoringschedule-endpointinput-s3datadistributiontype)" : String,
+  "[S3InputMode](#cfn-sagemaker-monitoringschedule-endpointinput-s3inputmode)" : String
+}
+</code></p>
+
+<h3>YAML<a name="aws-properties-sagemaker-monitoringschedule-endpointinput-syntax.yaml"></a></h3>
+
+<p><code>
+  [EndpointName](#cfn-sagemaker-monitoringschedule-endpointinput-endpointname): String
+  [LocalPath](#cfn-sagemaker-monitoringschedule-endpointinput-localpath): String
+  [S3DataDistributionType](#cfn-sagemaker-monitoringschedule-endpointinput-s3datadistributiontype): String
+  [S3InputMode](#cfn-sagemaker-monitoringschedule-endpointinput-s3inputmode): String
+</code></p>
+
+<h2>Properties<a name="aws-properties-sagemaker-monitoringschedule-endpointinput-properties"></a></h2>
+
+<p><code>EndpointName</code>  <a name="cfn-sagemaker-monitoringschedule-endpointinput-endpointname"></a>
+An endpoint in customer's account which has enabled <code>DataCaptureConfig</code> enabled.<br />
+<em>Required</em>: Yes<br />
+<em>Type</em>: String<br />
+<em>Maximum</em>: <code>63</code><br />
+<em>Pattern</em>: <code>^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,62}</code><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt">No interruption</a></p>
+
+<p><code>LocalPath</code>  <a name="cfn-sagemaker-monitoringschedule-endpointinput-localpath"></a>
+Path to the filesystem where the endpoint data is available to the container.<br />
+<em>Required</em>: Yes<br />
+<em>Type</em>: String<br />
+<em>Maximum</em>: <code>256</code><br />
+<em>Pattern</em>: <code>.*</code><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt">No interruption</a></p>
+
+<p><code>S3DataDistributionType</code>  <a name="cfn-sagemaker-monitoringschedule-endpointinput-s3datadistributiontype"></a>
+Whether input data distributed in Amazon S3 is fully replicated or sharded by an S3 key. Defaults to <code>FullyReplicated</code><br />
+<em>Required</em>: No<br />
+<em>Type</em>: String<br />
+<em>Allowed values</em>: <code>FullyReplicated | ShardedByS3Key</code><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt">No interruption</a></p>
+
+<p><code>S3InputMode</code>  <a name="cfn-sagemaker-monitoringschedule-endpointinput-s3inputmode"></a>
+Whether the <code>Pipe</code> or <code>File</code> is used as the input mode for transferring data for the monitoring job. <code>Pipe</code> mode is recommended for large datasets. <code>File</code> mode is useful for small files that fit in memory. Defaults to <code>File</code>.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: String<br />
+<em>Allowed values</em>: <code>File | Pipe</code><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt">No interruption</a></p>

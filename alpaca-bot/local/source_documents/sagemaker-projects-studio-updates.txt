@@ -1,0 +1,56 @@
+<h1>SageMaker Studio Permissions Required to Use Projects<a name="sagemaker-projects-studio-updates"></a></h1>
+
+<p>Users can view SageMaker provided project templates and create projects with those templates when you grant <strong>Projects</strong> permissions for users. You can grant these permissions when you onboard or update Amazon SageMaker Studio. There are two permissions to grant.</p>
+
+<ol>
+<li><p>Grant <strong>Projects</strong> permissions for the Studio administrator to permit the Studio administrator to view the SageMaker-provided templates in the Service Catalog console. The administrator can see what other Studio users create if you grant them permission to use SageMaker projects. The administrator can also view the AWS CloudFormation template that the SageMaker-provided project templates define in the Service Catalog console. For information about using the Service Catalog console, see <a href="https://docs.aws.amazon.com/servicecatalog/latest/adminguide/introduction.html">What Is Service Catalog</a> in the <em>Service Catalog User Guide</em>.</p></li>
+<li><p>Allow Studio users who are configured to use the same execution role as the domain to create projects. This grants Studio users permission to use the SageMaker-provided project templates to create a project from within Studio.</p></li>
+</ol>
+
+<p><strong>Important</strong><br />
+Do not manually create your roles. Always create roles through <strong>Studio Settings</strong> using the steps described in the following procedure.</p>
+
+<p>For users who use any role other than the domain's execution role to view and use SageMaker-provided project templates, you need to grant <strong>Projects</strong> permissions to the individual user profiles.</p>
+
+<p>The following procedures show how to grant <strong>Projects</strong> permissions after you onboard to Studio. For more information about onboarding to Studio, see <a href="gs-studio-onboard.md">Onboard to Amazon SageMaker Domain</a>.</p>
+
+<p><strong>To grant <em>*Projects</strong> permissions for the administrator and domain execution role users</em>*</p>
+
+<ol>
+<li><p>Open the <a href="https://console.aws.amazon.com/sagemaker/">SageMaker console</a>.</p></li>
+<li><p>Choose <strong>Control Panel</strong>.</p></li>
+<li><p>If you choose <strong>Quick setup</strong> to set up your SageMaker Domain, you have permissions to use project templates by default.</p></li>
+<li><p>If you choose <strong>Standard setup</strong> to set up your SageMaker Domain, make sure you turn on the following options when you configure Studio settings:</p>
+
+<ul>
+<li><strong>Enable Amazon SageMaker project templates and Amazon SageMaker JumpStart for this account</strong></li>
+<li><strong>Enable Amazon SageMaker project templates and Amazon SageMaker JumpStart for Studio users</strong></li>
+<li><strong>Create the roles which are needed to use the latest updated AWS Service catalog of products for Projects and JumpStart</strong></li>
+</ul></li>
+<li><p>To confirm that your SageMaker Domain has active project template permissions:</p>
+
+<ol>
+<li><p>Open the <a href="https://console.aws.amazon.com/sagemaker/">SageMaker console</a>.</p></li>
+<li><p>Choose <strong>Control Panel</strong>.</p></li>
+<li><p>Choose the <strong>Settings</strong> icon in the upper-right corner of the <strong>Domain</strong> card.</p></li>
+<li><p>Choose <strong>Studio Settings</strong> in the left side panel.</p></li>
+<li><p>Under <strong>Projects and JumpStart</strong>, make sure the following options are turned on:</p>
+
+<ul>
+<li><strong>Enable Amazon SageMaker project templates and Amazon SageMaker JumpStart for this account</strong></li>
+<li><strong>Enable Amazon SageMaker project templates and Amazon SageMaker JumpStart for Studio users</strong></li>
+<li><strong>Create the roles which are needed to use the latest updated AWS Service catalog of products for Projects and JumpStart</strong></li>
+</ul></li>
+</ol></li>
+<li><p>To view a list of your roles:</p>
+
+<ol>
+<li><p>Open the <a href="https://console.aws.amazon.com/sagemaker/">SageMaker console</a>.</p></li>
+<li><p>Choose <strong>Control Panel</strong>.</p>
+
+<p>A list of your roles appears in the <code>Apps</code> card under <code>Projects</code>.
+<strong>Important</strong><br />
+As of July 25, we require additional roles to use project templates. Here is the complete list of roles you should see under <code>Projects</code>:<br />
+<code>AmazonSageMakerServiceCatalogProductsLaunchRole</code> <code>AmazonSageMakerServiceCatalogProductsUseRole</code> <code>AmazonSageMakerServiceCatalogProductsApiGatewayRole</code> <code>AmazonSageMakerServiceCatalogProductsCloudformationRole</code> <code>AmazonSageMakerServiceCatalogProductsCodeBuildRole</code> <code>AmazonSageMakerServiceCatalogProductsCodePipelineRole</code> <code>AmazonSageMakerServiceCatalogProductsEventsRole</code> <code>AmazonSageMakerServiceCatalogProductsFirehoseRole</code> <code>AmazonSageMakerServiceCatalogProductsGlueRole</code> <code>AmazonSageMakerServiceCatalogProductsLambdaRole</code> <code>AmazonSageMakerServiceCatalogProductsExecutionRole</code></p></li>
+</ol></li>
+</ol>

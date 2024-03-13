@@ -1,0 +1,40 @@
+<h1>AWS::SageMaker::AppImageConfig KernelGatewayImageConfig<a name="aws-properties-sagemaker-appimageconfig-kernelgatewayimageconfig"></a></h1>
+
+<p>The configuration for the file system and kernels in a SageMaker image running as a KernelGateway app.</p>
+
+<h2>Syntax<a name="aws-properties-sagemaker-appimageconfig-kernelgatewayimageconfig-syntax"></a></h2>
+
+<p>To declare this entity in your AWS CloudFormation template, use the following syntax:</p>
+
+<h3>JSON<a name="aws-properties-sagemaker-appimageconfig-kernelgatewayimageconfig-syntax.json"></a></h3>
+
+<p><code>
+{
+  "[FileSystemConfig](#cfn-sagemaker-appimageconfig-kernelgatewayimageconfig-filesystemconfig)" : FileSystemConfig,
+  "[KernelSpecs](#cfn-sagemaker-appimageconfig-kernelgatewayimageconfig-kernelspecs)" : [ KernelSpec, ... ]
+}
+</code></p>
+
+<h3>YAML<a name="aws-properties-sagemaker-appimageconfig-kernelgatewayimageconfig-syntax.yaml"></a></h3>
+
+<p><code>
+  [FileSystemConfig](#cfn-sagemaker-appimageconfig-kernelgatewayimageconfig-filesystemconfig): 
+    FileSystemConfig
+  [KernelSpecs](#cfn-sagemaker-appimageconfig-kernelgatewayimageconfig-kernelspecs): 
+    - KernelSpec
+</code></p>
+
+<h2>Properties<a name="aws-properties-sagemaker-appimageconfig-kernelgatewayimageconfig-properties"></a></h2>
+
+<p><code>FileSystemConfig</code>  <a name="cfn-sagemaker-appimageconfig-kernelgatewayimageconfig-filesystemconfig"></a>
+The Amazon Elastic File System (EFS) storage configuration for a SageMaker image.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: <a href="aws-properties-sagemaker-appimageconfig-filesystemconfig.md">FileSystemConfig</a><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt">No interruption</a></p>
+
+<p><code>KernelSpecs</code>  <a name="cfn-sagemaker-appimageconfig-kernelgatewayimageconfig-kernelspecs"></a>
+The specification of the Jupyter kernels in the image.<br />
+<em>Required</em>: Yes<br />
+<em>Type</em>: List of <a href="aws-properties-sagemaker-appimageconfig-kernelspec.md">KernelSpec</a><br />
+<em>Maximum</em>: <code>1</code><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt">No interruption</a></p>

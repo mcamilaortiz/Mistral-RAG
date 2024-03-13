@@ -1,0 +1,45 @@
+<h1>AWS::SageMaker::FeatureGroup OnlineStoreSecurityConfig<a name="aws-properties-sagemaker-featuregroup-onlinestoresecurityconfig"></a></h1>
+
+<p>The security configuration for <code>OnlineStore</code>.</p>
+
+<h2>Syntax<a name="aws-properties-sagemaker-featuregroup-onlinestoresecurityconfig-syntax"></a></h2>
+
+<p>To declare this entity in your AWS CloudFormation template, use the following syntax:</p>
+
+<h3>JSON<a name="aws-properties-sagemaker-featuregroup-onlinestoresecurityconfig-syntax.json"></a></h3>
+
+<p><code>
+{
+  "[KmsKeyId](#cfn-sagemaker-featuregroup-onlinestoresecurityconfig-kmskeyid)" : String
+}
+</code></p>
+
+<h3>YAML<a name="aws-properties-sagemaker-featuregroup-onlinestoresecurityconfig-syntax.yaml"></a></h3>
+
+<p><code>
+  [KmsKeyId](#cfn-sagemaker-featuregroup-onlinestoresecurityconfig-kmskeyid): String
+</code></p>
+
+<h2>Properties<a name="aws-properties-sagemaker-featuregroup-onlinestoresecurityconfig-properties"></a></h2>
+
+<p><code>KmsKeyId</code>  <a name="cfn-sagemaker-featuregroup-onlinestoresecurityconfig-kmskeyid"></a>
+The AWS Key Management Service (KMS) key ARN that SageMaker Feature Store uses to encrypt the Amazon S3 objects at rest using Amazon S3 server-side encryption.<br />
+The caller (either user or IAM role) of <code>CreateFeatureGroup</code> must have below permissions to the <code>OnlineStore</code> <code>KmsKeyId</code>:<br />
++  <code>"kms:Encrypt"</code> 
++  <code>"kms:Decrypt"</code> 
++  <code>"kms:DescribeKey"</code> 
++  <code>"kms:CreateGrant"</code> 
++  <code>"kms:RetireGrant"</code> 
++  <code>"kms:ReEncryptFrom"</code> 
++  <code>"kms:ReEncryptTo"</code> 
++  <code>"kms:GenerateDataKey"</code> 
++  <code>"kms:ListAliases"</code> 
++  <code>"kms:ListGrants"</code> 
++  <code>"kms:RevokeGrant"</code> 
+The caller (either user or IAM role) to all DataPlane operations (<code>PutRecord</code>, <code>GetRecord</code>, <code>DeleteRecord</code>) must have the following permissions to the <code>KmsKeyId</code>:<br />
++  <code>"kms:Decrypt"</code> 
+<em>Required</em>: No<br />
+<em>Type</em>: String<br />
+<em>Maximum</em>: <code>2048</code><br />
+<em>Pattern</em>: <code>.*</code><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement">Replacement</a></p>

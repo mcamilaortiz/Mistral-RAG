@@ -1,0 +1,41 @@
+<h1>Amazon SageMaker and Application Auto Scaling<a name="services-that-can-integrate-sagemaker"></a></h1>
+
+<p>You can scale SageMaker endpoint variants using target tracking scaling policies, step scaling policies, and scheduled scaling. </p>
+
+<p>Use the following information to help you integrate SageMaker with Application Auto Scaling. </p>
+
+<p>If you are just getting started with scaling SageMaker endpoint variants, you can view sample configurations and details about using SageMaker with Application Auto Scaling in the following documentation:
++ <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/endpoint-auto-scaling.html">Automatically scale Amazon SageMaker models</a> in the <em>Amazon SageMaker Developer Guide</em></p>
+
+<h2>Service-linked role created for SageMaker<a name="integrate-service-linked-role-sagemaker"></a></h2>
+
+<p>The following <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/using-service-linked-roles.html">service-linked role</a> is automatically created in your AWS account when registering SageMaker resources as scalable targets with Application Auto Scaling. This role allows Application Auto Scaling to perform supported operations within your account. For more information, see <a href="application-auto-scaling-service-linked-roles.md">Service-linked roles for Application Auto Scaling</a>.
++ <code>AWSServiceRoleForApplicationAutoScaling_SageMakerEndpoint</code></p>
+
+<h2>Service principal used by the service-linked role<a name="integrate-service-principal-sagemaker"></a></h2>
+
+<p>The service-linked role in the previous section can be assumed only by the service principal authorized by the trust relationships defined for the role. The service-linked role used by Application Auto Scaling grants access to the following service principal: 
++ <code>sagemaker.application-autoscaling.amazonaws.com</code></p>
+
+<h2>Registering SageMaker endpoint variants as scalable targets with Application Auto Scaling<a name="integrate-register-sagemaker"></a></h2>
+
+<p>Application Auto Scaling requires a scalable target before you can create scaling policies or scheduled actions for a SageMaker model (variant). A scalable target is a resource that Application Auto Scaling can scale out and scale in. Scalable targets are uniquely identified by the combination of resource ID, scalable dimension, and namespace. </p>
+
+<p>If you configure auto scaling using the SageMaker console, then SageMaker automatically registers a scalable target for you. </p>
+
+<p>If you want to configure auto scaling using the AWS CLI or one of the AWS SDKs, you can use the following options:
++ AWS CLI: </p>
+
+<p>Call the <a href="https://docs.aws.amazon.com/cli/latest/reference/application-autoscaling/register-scalable-target.html">register-scalable-target</a> command for an SageMaker endpoint variant. The following example registers the desired EC2 instance count for a product variant called <code>my-variant</code>, running on the <code>my-endpoint</code> endpoint, with a minimum capacity of one instance and a maximum capacity of eight instances.</p>
+
+<p><code>
+  aws application-autoscaling register-scalable-target \
+    --service-namespace sagemaker \
+    --scalable-dimension sagemaker:variant:DesiredInstanceCount \
+    --resource-id endpoint/my-endpoint/variant/my-variant \
+    --min-capacity 1 \
+    --max-capacity 8
+</code>
++ AWS SDK: </p>
+
+<p>Call the <a href="https://docs.aws.amazon.com/autoscaling/application/APIReference/API_RegisterScalableTarget.html">RegisterScalableTarget</a> operation and provide <code>ResourceId</code>, <code>ScalableDimension</code>, <code>ServiceNamespace</code>, <code>MinCapacity</code>, and <code>MaxCapacity</code> as parameters. </p>

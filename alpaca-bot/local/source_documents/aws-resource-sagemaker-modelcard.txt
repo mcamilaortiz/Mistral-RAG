@@ -1,0 +1,139 @@
+<h1>AWS::SageMaker::ModelCard<a name="aws-resource-sagemaker-modelcard"></a></h1>
+
+<p>Creates an Amazon SageMaker Model Card.</p>
+
+<p>For information about how to use model cards, see <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/model-cards.html">Amazon SageMaker Model Card</a>.</p>
+
+<h2>Syntax<a name="aws-resource-sagemaker-modelcard-syntax"></a></h2>
+
+<p>To declare this entity in your AWS CloudFormation template, use the following syntax:</p>
+
+<h3>JSON<a name="aws-resource-sagemaker-modelcard-syntax.json"></a></h3>
+
+<p><code>
+{
+  "Type" : "AWS::SageMaker::ModelCard",
+  "Properties" : {
+      "[Content](#cfn-sagemaker-modelcard-content)" : Content,
+      "[CreatedBy](#cfn-sagemaker-modelcard-createdby)" : UserContext,
+      "[LastModifiedBy](#cfn-sagemaker-modelcard-lastmodifiedby)" : UserContext,
+      "[ModelCardName](#cfn-sagemaker-modelcard-modelcardname)" : String,
+      "[ModelCardStatus](#cfn-sagemaker-modelcard-modelcardstatus)" : String,
+      "[SecurityConfig](#cfn-sagemaker-modelcard-securityconfig)" : SecurityConfig,
+      "[Tags](#cfn-sagemaker-modelcard-tags)" : [ [Tag](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-resource-tags.html), ... ]
+    }
+}
+</code></p>
+
+<h3>YAML<a name="aws-resource-sagemaker-modelcard-syntax.yaml"></a></h3>
+
+<p><code>
+Type: AWS::SageMaker::ModelCard
+Properties: 
+  [Content](#cfn-sagemaker-modelcard-content): 
+    Content
+  [CreatedBy](#cfn-sagemaker-modelcard-createdby): 
+    UserContext
+  [LastModifiedBy](#cfn-sagemaker-modelcard-lastmodifiedby): 
+    UserContext
+  [ModelCardName](#cfn-sagemaker-modelcard-modelcardname): String
+  [ModelCardStatus](#cfn-sagemaker-modelcard-modelcardstatus): String
+  [SecurityConfig](#cfn-sagemaker-modelcard-securityconfig): 
+    SecurityConfig
+  [Tags](#cfn-sagemaker-modelcard-tags): 
+    - [Tag](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-resource-tags.html)
+</code></p>
+
+<h2>Properties<a name="aws-resource-sagemaker-modelcard-properties"></a></h2>
+
+<p><code>Content</code>  <a name="cfn-sagemaker-modelcard-content"></a>
+The content of the model card. Content uses the <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/model-cards.html#model-cards-json-schema">model card JSON schema</a>.<br />
+<em>Required</em>: Yes<br />
+<em>Type</em>: <a href="aws-properties-sagemaker-modelcard-content.md">Content</a><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt">No interruption</a></p>
+
+<p><code>CreatedBy</code>  <a name="cfn-sagemaker-modelcard-createdby"></a>
+Information about the user who created or modified one or more of the following:<br />
++ Experiment
++ Trial
++ Trial component
++ Lineage group
++ Project
++ Model Card
+<em>Required</em>: No<br />
+<em>Type</em>: <a href="aws-properties-sagemaker-modelcard-usercontext.md">UserContext</a><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt">No interruption</a></p>
+
+<p><code>LastModifiedBy</code>  <a name="cfn-sagemaker-modelcard-lastmodifiedby"></a>
+Property description not available.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: <a href="aws-properties-sagemaker-modelcard-usercontext.md">UserContext</a><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt">No interruption</a></p>
+
+<p><code>ModelCardName</code>  <a name="cfn-sagemaker-modelcard-modelcardname"></a>
+The unique name of the model card.<br />
+<em>Required</em>: Yes<br />
+<em>Type</em>: String<br />
+<em>Minimum</em>: <code>1</code><br />
+<em>Maximum</em>: <code>63</code><br />
+<em>Pattern</em>: <code>^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,62}$</code><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement">Replacement</a></p>
+
+<p><code>ModelCardStatus</code>  <a name="cfn-sagemaker-modelcard-modelcardstatus"></a>
+The approval status of the model card within your organization. Different organizations might have different criteria for model card review and approval.<br />
++  <code>Draft</code>: The model card is a work in progress.
++  <code>PendingReview</code>: The model card is pending review.
++  <code>Approved</code>: The model card is approved.
++  <code>Archived</code>: The model card is archived. No more updates should be made to the model card, but it can still be exported.
+<em>Required</em>: Yes<br />
+<em>Type</em>: String<br />
+<em>Allowed values</em>: <code>Approved | Archived | Draft | PendingReview</code><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt">No interruption</a></p>
+
+<p><code>SecurityConfig</code>  <a name="cfn-sagemaker-modelcard-securityconfig"></a>
+The security configuration used to protect model card data.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: <a href="aws-properties-sagemaker-modelcard-securityconfig.md">SecurityConfig</a><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement">Replacement</a></p>
+
+<p><code>Tags</code>  <a name="cfn-sagemaker-modelcard-tags"></a>
+Key-value pairs used to manage metadata for the model card.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: List of <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-resource-tags.html">Tag</a><br />
+<em>Maximum</em>: <code>50</code><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt">No interruption</a></p>
+
+<h2>Return values<a name="aws-resource-sagemaker-modelcard-return-values"></a></h2>
+
+<h3>Ref<a name="aws-resource-sagemaker-modelcard-return-values-ref"></a></h3>
+
+<p>When you pass the logical ID of this resource to the intrinsic <code>Ref</code> function, <code>Ref</code> returns the model card name.</p>
+
+<p>For more information about using the Ref function, see <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference-ref.html">Ref</a>.</p>
+
+<h3>Fn::GetAtt<a name="aws-resource-sagemaker-modelcard-return-values-fn--getatt"></a></h3>
+
+<p><code>Fn::GetAtt</code> returns a value for a specified attribute of this type. The following are the available attributes and sample return values. For more information about using the Fn::GetAtt intrinsic function, see <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference-getatt.html">Fn::GetAtt</a>. </p>
+
+<h4><a name="aws-resource-sagemaker-modelcard-return-values-fn--getatt-fn--getatt"></a></h4>
+
+<p><code>CreatedBy.DomainId</code>  <a name="CreatedBy.DomainId-fn::getatt"></a>
+Property description not available.</p>
+
+<p><code>CreatedBy.UserProfileArn</code>  <a name="CreatedBy.UserProfileArn-fn::getatt"></a>
+Property description not available.</p>
+
+<p><code>CreationTime</code>  <a name="CreationTime-fn::getatt"></a>
+Property description not available.</p>
+
+<p><code>LastModifiedBy.DomainId</code>  <a name="LastModifiedBy.DomainId-fn::getatt"></a>
+Property description not available.</p>
+
+<p><code>LastModifiedBy.UserProfileArn</code>  <a name="LastModifiedBy.UserProfileArn-fn::getatt"></a>
+Property description not available.</p>
+
+<p><code>ModelCardArn</code>  <a name="ModelCardArn-fn::getatt"></a>
+The Amazon Resource Number (ARN) of the model card. For example, <code>arn:aws:sagemaker:us-west-2:012345678901:modelcard/examplemodelcard</code>.</p>
+
+<p><code>ModelCardProcessingStatus</code>  <a name="ModelCardProcessingStatus-fn::getatt"></a>
+Property description not available.</p>

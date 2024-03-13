@@ -1,0 +1,64 @@
+<h1>AWS::SageMaker::Device<a name="aws-resource-sagemaker-device"></a></h1>
+
+<p>The <code>AWS::SageMaker::Device</code> resource is an Amazon SageMaker resource type that allows you to register your Devices against an existing SageMaker Edge Manager DeviceFleet. Each device must be listed individually in the CFN specification.</p>
+
+<h2>Syntax<a name="aws-resource-sagemaker-device-syntax"></a></h2>
+
+<p>To declare this entity in your AWS CloudFormation template, use the following syntax:</p>
+
+<h3>JSON<a name="aws-resource-sagemaker-device-syntax.json"></a></h3>
+
+<p><code>
+{
+  "Type" : "AWS::SageMaker::Device",
+  "Properties" : {
+      "[Device](#cfn-sagemaker-device-device)" : Device,
+      "[DeviceFleetName](#cfn-sagemaker-device-devicefleetname)" : String,
+      "[Tags](#cfn-sagemaker-device-tags)" : [ [Tag](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-resource-tags.html), ... ]
+    }
+}
+</code></p>
+
+<h3>YAML<a name="aws-resource-sagemaker-device-syntax.yaml"></a></h3>
+
+<p><code>
+Type: AWS::SageMaker::Device
+Properties: 
+  [Device](#cfn-sagemaker-device-device): 
+    Device
+  [DeviceFleetName](#cfn-sagemaker-device-devicefleetname): String
+  [Tags](#cfn-sagemaker-device-tags): 
+    - [Tag](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-resource-tags.html)
+</code></p>
+
+<h2>Properties<a name="aws-resource-sagemaker-device-properties"></a></h2>
+
+<p><code>Device</code>  <a name="cfn-sagemaker-device-device"></a>
+Edge device you want to create.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: <a href="aws-properties-sagemaker-device-device.md">Device</a><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt">No interruption</a></p>
+
+<p><code>DeviceFleetName</code>  <a name="cfn-sagemaker-device-devicefleetname"></a>
+The name of the fleet the device belongs to.<br />
+<em>Required</em>: Yes<br />
+<em>Type</em>: String<br />
+<em>Minimum</em>: <code>1</code><br />
+<em>Maximum</em>: <code>63</code><br />
+<em>Pattern</em>: <code>^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,62}$</code><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt">No interruption</a></p>
+
+<p><code>Tags</code>  <a name="cfn-sagemaker-device-tags"></a>
+An array of key-value pairs that contain metadata to help you categorize and organize your devices. Each tag consists of a key and a value, both of which you define.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: List of <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-resource-tags.html">Tag</a><br />
+<em>Maximum</em>: <code>50</code><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt">No interruption</a></p>
+
+<h2>Return values<a name="aws-resource-sagemaker-device-return-values"></a></h2>
+
+<h3>Ref<a name="aws-resource-sagemaker-device-return-values-ref"></a></h3>
+
+<p>When you pass the logical ID of this resource to the intrinsic <code>Ref</code> function, <code>Ref</code> returns the DeviceFleetName.</p>
+
+<p>For more information about using the <code>Ref</code> function, see <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference-ref.html">Ref</a>.</p>

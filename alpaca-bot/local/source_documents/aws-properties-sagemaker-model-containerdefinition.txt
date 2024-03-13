@@ -1,0 +1,111 @@
+<h1>AWS::SageMaker::Model ContainerDefinition<a name="aws-properties-sagemaker-model-containerdefinition"></a></h1>
+
+<p>Describes the container, as part of model definition.</p>
+
+<h2>Syntax<a name="aws-properties-sagemaker-model-containerdefinition-syntax"></a></h2>
+
+<p>To declare this entity in your AWS CloudFormation template, use the following syntax:</p>
+
+<h3>JSON<a name="aws-properties-sagemaker-model-containerdefinition-syntax.json"></a></h3>
+
+<p><code>
+{
+  "[ContainerHostname](#cfn-sagemaker-model-containerdefinition-containerhostname)" : String,
+  "[Environment](#cfn-sagemaker-model-containerdefinition-environment)" : Json,
+  "[Image](#cfn-sagemaker-model-containerdefinition-image)" : String,
+  "[ImageConfig](#cfn-sagemaker-model-containerdefinition-imageconfig)" : ImageConfig,
+  "[InferenceSpecificationName](#cfn-sagemaker-model-containerdefinition-inferencespecificationname)" : String,
+  "[Mode](#cfn-sagemaker-model-containerdefinition-mode)" : String,
+  "[ModelDataUrl](#cfn-sagemaker-model-containerdefinition-modeldataurl)" : String,
+  "[ModelPackageName](#cfn-sagemaker-model-containerdefinition-modelpackagename)" : String,
+  "[MultiModelConfig](#cfn-sagemaker-model-containerdefinition-multimodelconfig)" : MultiModelConfig
+}
+</code></p>
+
+<h3>YAML<a name="aws-properties-sagemaker-model-containerdefinition-syntax.yaml"></a></h3>
+
+<p><code>
+  [ContainerHostname](#cfn-sagemaker-model-containerdefinition-containerhostname): String
+  [Environment](#cfn-sagemaker-model-containerdefinition-environment): Json
+  [Image](#cfn-sagemaker-model-containerdefinition-image): String
+  [ImageConfig](#cfn-sagemaker-model-containerdefinition-imageconfig): 
+    ImageConfig
+  [InferenceSpecificationName](#cfn-sagemaker-model-containerdefinition-inferencespecificationname): String
+  [Mode](#cfn-sagemaker-model-containerdefinition-mode): String
+  [ModelDataUrl](#cfn-sagemaker-model-containerdefinition-modeldataurl): String
+  [ModelPackageName](#cfn-sagemaker-model-containerdefinition-modelpackagename): String
+  [MultiModelConfig](#cfn-sagemaker-model-containerdefinition-multimodelconfig): 
+    MultiModelConfig
+</code></p>
+
+<h2>Properties<a name="aws-properties-sagemaker-model-containerdefinition-properties"></a></h2>
+
+<p><code>ContainerHostname</code>  <a name="cfn-sagemaker-model-containerdefinition-containerhostname"></a>
+This parameter is ignored for models that contain only a <code>PrimaryContainer</code>.<br />
+When a <code>ContainerDefinition</code> is part of an inference pipeline, the value of the parameter uniquely identifies the container for the purposes of logging and metrics. For information, see <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/inference-pipeline-logs-metrics.html">Use Logs and Metrics to Monitor an Inference Pipeline</a>. If you don't specify a value for this parameter for a <code>ContainerDefinition</code> that is part of an inference pipeline, a unique name is automatically assigned based on the position of the <code>ContainerDefinition</code> in the pipeline. If you specify a value for the <code>ContainerHostName</code> for any <code>ContainerDefinition</code> that is part of an inference pipeline, you must specify a value for the <code>ContainerHostName</code> parameter of every <code>ContainerDefinition</code> in that pipeline.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: String<br />
+<em>Maximum</em>: <code>63</code><br />
+<em>Pattern</em>: <code>^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,62}</code><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement">Replacement</a></p>
+
+<p><code>Environment</code>  <a name="cfn-sagemaker-model-containerdefinition-environment"></a>
+The environment variables to set in the Docker container. Each key and value in the <code>Environment</code> string to string map can have length of up to 1024. We support up to 16 entries in the map.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: Json<br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement">Replacement</a></p>
+
+<p><code>Image</code>  <a name="cfn-sagemaker-model-containerdefinition-image"></a>
+The path where inference code is stored. This can be either in Amazon EC2 Container Registry or in a Docker registry that is accessible from the same VPC that you configure for your endpoint. If you are using your own custom algorithm instead of an algorithm provided by SageMaker, the inference code must meet SageMaker requirements. SageMaker supports both <code>registry/repository[:tag]</code> and <code>registry/repository[@digest]</code> image path formats. For more information, see <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/your-algorithms.html">Using Your Own Algorithms with Amazon SageMaker</a>.<br />
+The model artifacts in an Amazon S3 bucket and the Docker image for inference container in Amazon EC2 Container Registry must be in the same region as the model or endpoint you are creating.
+<em>Required</em>: No<br />
+<em>Type</em>: String<br />
+<em>Maximum</em>: <code>255</code><br />
+<em>Pattern</em>: <code>[\S]+</code><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement">Replacement</a></p>
+
+<p><code>ImageConfig</code>  <a name="cfn-sagemaker-model-containerdefinition-imageconfig"></a>
+Specifies whether the model container is in Amazon ECR or a private Docker registry accessible from your Amazon Virtual Private Cloud (VPC). For information about storing containers in a private Docker registry, see <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/your-algorithms-containers-inference-private.html">Use a Private Docker Registry for Real-Time Inference Containers</a>.<br />
+The model artifacts in an Amazon S3 bucket and the Docker image for inference container in Amazon EC2 Container Registry must be in the same region as the model or endpoint you are creating.
+<em>Required</em>: No<br />
+<em>Type</em>: <a href="aws-properties-sagemaker-model-containerdefinition-imageconfig.md">ImageConfig</a><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement">Replacement</a></p>
+
+<p><code>InferenceSpecificationName</code>  <a name="cfn-sagemaker-model-containerdefinition-inferencespecificationname"></a>
+The inference specification name in the model package version.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: String<br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement">Replacement</a></p>
+
+<p><code>Mode</code>  <a name="cfn-sagemaker-model-containerdefinition-mode"></a>
+Whether the container hosts a single model or multiple models.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: String<br />
+<em>Allowed values</em>: <code>MultiModel | SingleModel</code><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement">Replacement</a></p>
+
+<p><code>ModelDataUrl</code>  <a name="cfn-sagemaker-model-containerdefinition-modeldataurl"></a>
+The S3 path where the model artifacts, which result from model training, are stored. This path must point to a single gzip compressed tar archive (.tar.gz suffix). The S3 path is required for SageMaker built-in algorithms, but not if you use your own algorithms. For more information on built-in algorithms, see <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/sagemaker-algo-docker-registry-paths.html">Common Parameters</a>.<br />
+The model artifacts must be in an S3 bucket that is in the same region as the model or endpoint you are creating.
+If you provide a value for this parameter, SageMaker uses AWS Security Token Service to download model artifacts from the S3 path you provide. AWS STS is activated in your AWS account by default. If you previously deactivated AWS STS for a region, you need to reactivate AWS STS for that region. For more information, see <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_enable-regions.html">Activating and Deactivating AWS STS in an AWS Region</a> in the * AWS Identity and Access Management User Guide<em>.<br />
+If you use a built-in algorithm to create a model, SageMaker requires that you provide a S3 path to the model artifacts in <code>ModelDataUrl</code>.
+*Required</em>: No<br />
+<em>Type</em>: String<br />
+<em>Maximum</em>: <code>1024</code><br />
+<em>Pattern</em>: <code>^(https|s3)://([^/]+)/?(.*)$</code><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement">Replacement</a></p>
+
+<p><code>ModelPackageName</code>  <a name="cfn-sagemaker-model-containerdefinition-modelpackagename"></a>
+The name or Amazon Resource Name (ARN) of the model package to use to create the model.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: String<br />
+<em>Minimum</em>: <code>1</code><br />
+<em>Maximum</em>: <code>176</code><br />
+<em>Pattern</em>: <code>(arn:aws[a-z\-]*:sagemaker:[a-z0-9\-]*:[0-9]{12}:[a-z\-]*\/)?([a-zA-Z0-9]([a-zA-Z0-9-]){0,62})(?&lt;!-)(\/[0-9]{1,5})?$</code><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement">Replacement</a></p>
+
+<p><code>MultiModelConfig</code>  <a name="cfn-sagemaker-model-containerdefinition-multimodelconfig"></a>
+Specifies additional configuration for multi-model endpoints.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: <a href="aws-properties-sagemaker-model-containerdefinition-multimodelconfig.md">MultiModelConfig</a><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement">Replacement</a></p>

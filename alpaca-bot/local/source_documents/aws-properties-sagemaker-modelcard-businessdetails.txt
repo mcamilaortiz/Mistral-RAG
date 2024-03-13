@@ -1,0 +1,45 @@
+<h1>AWS::SageMaker::ModelCard BusinessDetails<a name="aws-properties-sagemaker-modelcard-businessdetails"></a></h1>
+
+<p>Information about how the model supports business goals.</p>
+
+<h2>Syntax<a name="aws-properties-sagemaker-modelcard-businessdetails-syntax"></a></h2>
+
+<p>To declare this entity in your AWS CloudFormation template, use the following syntax:</p>
+
+<h3>JSON<a name="aws-properties-sagemaker-modelcard-businessdetails-syntax.json"></a></h3>
+
+<p><code>
+{
+  "[BusinessProblem](#cfn-sagemaker-modelcard-businessdetails-businessproblem)" : String,
+  "[BusinessStakeholders](#cfn-sagemaker-modelcard-businessdetails-businessstakeholders)" : String,
+  "[LineOfBusiness](#cfn-sagemaker-modelcard-businessdetails-lineofbusiness)" : String
+}
+</code></p>
+
+<h3>YAML<a name="aws-properties-sagemaker-modelcard-businessdetails-syntax.yaml"></a></h3>
+
+<p><code>
+  [BusinessProblem](#cfn-sagemaker-modelcard-businessdetails-businessproblem): String
+  [BusinessStakeholders](#cfn-sagemaker-modelcard-businessdetails-businessstakeholders): String
+  [LineOfBusiness](#cfn-sagemaker-modelcard-businessdetails-lineofbusiness): String
+</code></p>
+
+<h2>Properties<a name="aws-properties-sagemaker-modelcard-businessdetails-properties"></a></h2>
+
+<p><code>BusinessProblem</code>  <a name="cfn-sagemaker-modelcard-businessdetails-businessproblem"></a>
+The specific business problem that the model is trying to solve.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: String<br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt">No interruption</a></p>
+
+<p><code>BusinessStakeholders</code>  <a name="cfn-sagemaker-modelcard-businessdetails-businessstakeholders"></a>
+The relevant stakeholders for the model.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: String<br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt">No interruption</a></p>
+
+<p><code>LineOfBusiness</code>  <a name="cfn-sagemaker-modelcard-businessdetails-lineofbusiness"></a>
+The broader business need that the model is serving.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: String<br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt">No interruption</a></p>

@@ -1,0 +1,32 @@
+<h1>AWS::SageMaker::NotebookInstanceLifecycleConfig NotebookInstanceLifecycleHook<a name="aws-properties-sagemaker-notebookinstancelifecycleconfig-notebookinstancelifecyclehook"></a></h1>
+
+<p>Specifies the notebook instance lifecycle configuration script. Each lifecycle configuration script has a limit of 16384 characters.</p>
+
+<h2>Syntax<a name="aws-properties-sagemaker-notebookinstancelifecycleconfig-notebookinstancelifecyclehook-syntax"></a></h2>
+
+<p>To declare this entity in your AWS CloudFormation template, use the following syntax:</p>
+
+<h3>JSON<a name="aws-properties-sagemaker-notebookinstancelifecycleconfig-notebookinstancelifecyclehook-syntax.json"></a></h3>
+
+<p><code>
+{
+  "[Content](#cfn-sagemaker-notebookinstancelifecycleconfig-notebookinstancelifecyclehook-content)" : String
+}
+</code></p>
+
+<h3>YAML<a name="aws-properties-sagemaker-notebookinstancelifecycleconfig-notebookinstancelifecyclehook-syntax.yaml"></a></h3>
+
+<p><code>
+  [Content](#cfn-sagemaker-notebookinstancelifecycleconfig-notebookinstancelifecyclehook-content): String
+</code></p>
+
+<h2>Properties<a name="aws-properties-sagemaker-notebookinstancelifecycleconfig-notebookinstancelifecyclehook-properties"></a></h2>
+
+<p><code>Content</code>  <a name="cfn-sagemaker-notebookinstancelifecycleconfig-notebookinstancelifecyclehook-content"></a>
+A base64-encoded string that contains a shell script for a notebook instance lifecycle configuration.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: String<br />
+<em>Minimum</em>: <code>1</code><br />
+<em>Maximum</em>: <code>16384</code><br />
+<em>Pattern</em>: <code>[\S\s]+</code><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt">No interruption</a></p>

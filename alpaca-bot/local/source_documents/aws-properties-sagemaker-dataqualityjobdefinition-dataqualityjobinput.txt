@@ -1,0 +1,39 @@
+<h1>AWS::SageMaker::DataQualityJobDefinition DataQualityJobInput<a name="aws-properties-sagemaker-dataqualityjobdefinition-dataqualityjobinput"></a></h1>
+
+<p>The input for the data quality monitoring job. Currently endpoints are supported for input.</p>
+
+<h2>Syntax<a name="aws-properties-sagemaker-dataqualityjobdefinition-dataqualityjobinput-syntax"></a></h2>
+
+<p>To declare this entity in your AWS CloudFormation template, use the following syntax:</p>
+
+<h3>JSON<a name="aws-properties-sagemaker-dataqualityjobdefinition-dataqualityjobinput-syntax.json"></a></h3>
+
+<p><code>
+{
+  "[BatchTransformInput](#cfn-sagemaker-dataqualityjobdefinition-dataqualityjobinput-batchtransforminput)" : BatchTransformInput,
+  "[EndpointInput](#cfn-sagemaker-dataqualityjobdefinition-dataqualityjobinput-endpointinput)" : EndpointInput
+}
+</code></p>
+
+<h3>YAML<a name="aws-properties-sagemaker-dataqualityjobdefinition-dataqualityjobinput-syntax.yaml"></a></h3>
+
+<p><code>
+  [BatchTransformInput](#cfn-sagemaker-dataqualityjobdefinition-dataqualityjobinput-batchtransforminput): 
+    BatchTransformInput
+  [EndpointInput](#cfn-sagemaker-dataqualityjobdefinition-dataqualityjobinput-endpointinput): 
+    EndpointInput
+</code></p>
+
+<h2>Properties<a name="aws-properties-sagemaker-dataqualityjobdefinition-dataqualityjobinput-properties"></a></h2>
+
+<p><code>BatchTransformInput</code>  <a name="cfn-sagemaker-dataqualityjobdefinition-dataqualityjobinput-batchtransforminput"></a>
+Property description not available.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: <a href="aws-properties-sagemaker-dataqualityjobdefinition-batchtransforminput.md">BatchTransformInput</a><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement">Replacement</a></p>
+
+<p><code>EndpointInput</code>  <a name="cfn-sagemaker-dataqualityjobdefinition-dataqualityjobinput-endpointinput"></a>
+Input object for the endpoint<br />
+<em>Required</em>: No<br />
+<em>Type</em>: <a href="aws-properties-sagemaker-dataqualityjobdefinition-endpointinput.md">EndpointInput</a><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement">Replacement</a></p>

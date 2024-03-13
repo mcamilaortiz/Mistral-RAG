@@ -1,0 +1,53 @@
+<h1>AWS::SageMaker::CodeRepository GitConfig<a name="aws-properties-sagemaker-coderepository-gitconfig"></a></h1>
+
+<p>Specifies configuration details for a Git repository in your AWS account.</p>
+
+<h2>Syntax<a name="aws-properties-sagemaker-coderepository-gitconfig-syntax"></a></h2>
+
+<p>To declare this entity in your AWS CloudFormation template, use the following syntax:</p>
+
+<h3>JSON<a name="aws-properties-sagemaker-coderepository-gitconfig-syntax.json"></a></h3>
+
+<p><code>
+{
+  "[Branch](#cfn-sagemaker-coderepository-gitconfig-branch)" : String,
+  "[RepositoryUrl](#cfn-sagemaker-coderepository-gitconfig-repositoryurl)" : String,
+  "[SecretArn](#cfn-sagemaker-coderepository-gitconfig-secretarn)" : String
+}
+</code></p>
+
+<h3>YAML<a name="aws-properties-sagemaker-coderepository-gitconfig-syntax.yaml"></a></h3>
+
+<p><code>
+  [Branch](#cfn-sagemaker-coderepository-gitconfig-branch): String
+  [RepositoryUrl](#cfn-sagemaker-coderepository-gitconfig-repositoryurl): String
+  [SecretArn](#cfn-sagemaker-coderepository-gitconfig-secretarn): String
+</code></p>
+
+<h2>Properties<a name="aws-properties-sagemaker-coderepository-gitconfig-properties"></a></h2>
+
+<p><code>Branch</code>  <a name="cfn-sagemaker-coderepository-gitconfig-branch"></a>
+The default branch for the Git repository.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: String<br />
+<em>Minimum</em>: <code>1</code><br />
+<em>Maximum</em>: <code>1024</code><br />
+<em>Pattern</em>: <code>[^ ~^:?*\[]+</code><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement">Replacement</a></p>
+
+<p><code>RepositoryUrl</code>  <a name="cfn-sagemaker-coderepository-gitconfig-repositoryurl"></a>
+The URL where the Git repository is located.<br />
+<em>Required</em>: Yes<br />
+<em>Type</em>: String<br />
+<em>Pattern</em>: <code>^https://([^/]+)/?(.*)$</code><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement">Replacement</a></p>
+
+<p><code>SecretArn</code>  <a name="cfn-sagemaker-coderepository-gitconfig-secretarn"></a>
+The Amazon Resource Name (ARN) of the AWS Secrets Manager secret that contains the credentials used to access the git repository. The secret must have a staging label of <code>AWSCURRENT</code> and must be in the following format:<br />
+ <code>{"username": UserName, "password": Password}</code><br />
+<em>Required</em>: No<br />
+<em>Type</em>: String<br />
+<em>Minimum</em>: <code>1</code><br />
+<em>Maximum</em>: <code>2048</code><br />
+<em>Pattern</em>: <code>arn:aws[a-z\-]*:secretsmanager:[a-z0-9\-]*:[0-9]{12}:secret:.*</code><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt">No interruption</a></p>

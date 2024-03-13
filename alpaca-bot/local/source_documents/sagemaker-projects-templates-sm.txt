@@ -1,0 +1,183 @@
+<h1>Use SageMaker-Provided Project Templates<a name="sagemaker-projects-templates-sm"></a></h1>
+
+<p>Amazon SageMaker provides project templates that create the infrastructure you need to create an MLOps solution for continuous integration and continuous deployment (CI/CD) of ML models. Use these templates to process data, extract features, train and test models, register the models in the SageMaker model registry, and deploy the models for inference. You can customize the seed code and the configuration files to suit your requirements.</p>
+
+<p><strong>Important</strong><br />
+As of July 25, 2022, we require additional roles to use project templates. For a complete list of required roles and instructions on how to create them, see <a href="sagemaker-projects-studio-updates.md">SageMaker Studio Permissions Required to Use Projects</a>. If you do not have the new roles, you will get the error message <strong>CodePipeline is not authorized to perform AssumeRole on role arn:aws:iam::xxx:role/service-role/AmazonSageMakerServiceCatalogProductsCodePipelineRole</strong> when you try to create a new project and cannot proceed.</p>
+
+<p>SageMaker project templates offer you the following choice of code repositories, workflow automation tools, and pipeline stages:
++ <strong>Code repository</strong>: AWS CodeCommit or third-party Git repositories such as GitHub and Bitbucket
++ <strong>CI/CD workflow automation</strong>: AWS CodePipeline or Jenkins
++ <strong>Pipeline stages</strong>: Model building and training, model deployment, or both</p>
+
+<p>The following discussion provides an overview of each template you can choose when you create your SageMaker project. You can also view the available templates in Studio by following <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/sagemaker-projects-walkthrough.html#sagemaker-proejcts-walkthrough-create"> Step 1: Create the Project</a> of the <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/sagemaker-projects-walkthrough.html">Project walkthrough</a>.</p>
+
+<p>For step-by-step instructions on how to create a real project, you can follow one of the project walkthroughs:
++ If you want to use the template <a href="#sagemaker-projects-templates-code-commit">MLOps template for model building, training, and deployment</a>, see <a href="sagemaker-projects-walkthrough.md">SageMaker MLOps Project Walkthrough</a>.
++ If you want to use the template <a href="#sagemaker-projects-templates-git-code-pipeline">MLOps template for model building, training, and deployment with third-party Git repositories using CodePipeline</a>, see <a href="sagemaker-projects-walkthrough-3rdgit.md">SageMaker MLOps Project Walkthrough Using Third-party Git Repos</a>.
++ If you want to use the template <a href="#sagemaker-projects-templates-git-jenkins">MLOps template for model building, training, and deployment with third-party Git repositories using Jenkins</a>, see <a href="http://aws.amazon.com/blogs/machine-learning/create-amazon-sagemaker-projects-using-third-party-source-control-and-jenkins/">Create Amazon SageMaker projects using third-party source control and Jenkins</a>.</p>
+
+<p><strong>Topics</strong>
++ <a href="#sagemaker-projects-templates-code-commit">MLOps template for model building, training, and deployment</a>
++ <a href="#sagemaker-projects-templates-model-building-training-deployment-model-monitor">MLOps template for model building, training, deployment, and Amazon SageMaker Model Monitor</a>
++ <a href="#sagemaker-projects-templates-image-building-model-building-deployment">MLOps template for image building, model building, and model deployment</a>
++ <a href="#sagemaker-projects-templates-git-code-pipeline">MLOps template for model building, training, and deployment with third-party Git repositories using CodePipeline</a>
++ <a href="#sagemaker-projects-templates-git-jenkins">MLOps template for model building, training, and deployment with third-party Git repositories using Jenkins</a>
++ <a href="#sagemaker-projects-templates-update">Update SageMaker Projects to Use Third-Party Git Repositories</a></p>
+
+<h2>MLOps template for model building, training, and deployment<a name="sagemaker-projects-templates-code-commit"></a></h2>
+
+<p>This template is a combination of the following two templates, each of which can be used independently, and contains all of the resources provided in those templates.
++ <strong>Code repository</strong>: AWS CodeCommit
++ <strong>CI/CD workflow automation</strong>: AWS CodePipeline</p>
+
+<p><strong>MLOps template for model building and training</strong><br />
+Use this template when you want an MLOps solution to process data, extract features, train and test models, and register the models in the SageMaker model registry.<br />
+This template provides the following resources:<br />
++ An AWS CodeCommit repository that contains sample code that creates an Amazon SageMaker Model Building Pipelines pipeline in Python code and shows how to create and update the SageMaker pipeline. This repository also has a Python Jupyter Notebook that you can open and run in Studio.
++ An AWS CodePipeline pipeline that has source and build steps. The source step points to the CodeCommit repository. The build step gets the code from that repository, creates and updates the SageMaker pipeline, starts a pipeline execution, and waits for the pipeline execution to complete.
++ An Amazon S3 bucket to store artifacts, including CodePipeline and CodeBuild artifacts, and any artifacts generated from the SageMaker pipeline runs.
+The following diagram illustrates the workflow and AWS resources used by this template to help you build and train your models.  </p>
+
+<p><img src="http://docs.aws.amazon.com/sagemaker/latest/dg/images/template_build.jpg" alt="[Image NOT FOUND]" /></p>
+
+<p><strong>MLOps template for model deployment</strong><br />
+Use this template to automate the deployment of models in the SageMaker model registry to SageMaker endpoints for real-time inference. This template recognizes changes in the model registry. When a new model version is registered and approved, it automatically initiates a deployment.<br />
+The template provisions a CodeCommit repository with configuration files to specify the model deployment steps, AWS CloudFormation templates to define endpoints as infrastructure, and seed code for testing the endpoint.<br />
+This template provides the following resources:<br />
++ An AWS CodeCommit repository that contains sample code that deploys models to endpoints in staging and production environments.
++ An AWS CodePipeline pipeline that has source, build, deploy-to-staging, and deploy-to-production steps. The source step points to the CodeCommit repository, and the build step gets the code from that repository and generates CloudFormation stacks to deploy. The deploy-to-staging and deploy-to-production steps deploy the CloudFormation stacks to their respective environments. There is a manual approval step between the staging and production build steps, so that a MLOps engineer must approve the model before it is deployed to production.</p>
+
+<p>There is also a programmatic approval step with placeholder tests in the example code in the CodeCommit repository. You can add additional tests to replace the placeholders tests.
++ An Amazon S3 bucket to store artifacts, including CodePipeline and CodeBuild artifacts, and any artifacts generated from the SageMaker pipeline runs.
++ A CloudWatch event to initiate the pipeline when a model package version is approved or rejected.
+The following diagram illustrates the workflow and AWS resources used by this template to help you deploy your models.  </p>
+
+<p><img src="http://docs.aws.amazon.com/sagemaker/latest/dg/images/template_deploy.jpg" alt="[Image NOT FOUND]" /></p>
+
+<p>As previously mentioned, see <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/sagemaker-projects-walkthrough.html">Project Walkthrough</a> for a demonstration that uses this template to create a real project.</p>
+
+<h2>MLOps template for model building, training, deployment, and Amazon SageMaker Model Monitor<a name="sagemaker-projects-templates-model-building-training-deployment-model-monitor"></a></h2>
+
+<p>This template is an extension of the MLOps template for model building, training, and deployment. It includes both the model building, training, and deployment components of the template, and an additional Amazon SageMaker Model Monitor template that provides the following types of monitoring: 
++ <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/model-monitor-data-quality.html">Data Quality</a> – Monitor drift in data quality.
++ <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/model-monitor-model-quality.html">Model Quality</a> – Monitor drift in model quality metrics, such as accuracy.
++ <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/clarify-model-monitor-bias-drift.html"> Bias Drift for Models in Production</a> – Monitor bias in a model's predictions.
++ <strong>Code repository</strong>: AWS CodeCommit
++ <strong>CI/CD workflow automation</strong>: AWS CodePipeline</p>
+
+<h3>MLOps template for Amazon SageMaker Model Monitor<a name="sagemaker-projects-template-model-monitor"></a></h3>
+
+<p>You can use this template for an MLOps solution to deploy one or more of the Amazon SageMaker data quality, model quality, model bias, and model explainability monitors to monitor a deployed model on a SageMaker inference endpoint. </p>
+
+<p>This template provides the following resources:
++ An AWS CodeCommit repository that contains sample Python code that gets the <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/model-monitor-create-baseline.html">baselines</a> used by the monitors from the SageMaker Model Registry, and updates the template’s parameters for the staging and production environments. It also contains a AWS CloudFormation template to create the Amazon SageMaker Model Monitors.
++ An AWS CodePipeline pipeline that has source, build, and deploy steps. The source step points to the CodePipeline repository. The build step gets the code from that repository, gets the baseline from the Model Registry, and updates template parameters for the staging and production environments. The deploy steps deploy the configured monitors into the staging and production environments. The manual approval step, within the <code>DeployStaging</code> stage, requires you to verify that the production SageMaker endpoint is <code>InService</code> before approving and moving to the <code>DeployProd</code> stage.
++ The template uses the same S3 bucket created by the MLOps template for model building, training, and deployment to store the monitors' outputs. 
++ Two Amazon EventBridge events rules initiate the Amazon SageMaker Model Monitor AWS CodePipeline every time the staging SageMaker endpoint is updated, or a code change is committed to the CodePipeline repository. </p>
+
+<h2>MLOps template for image building, model building, and model deployment<a name="sagemaker-projects-templates-image-building-model-building-deployment"></a></h2>
+
+<p>This template is an extension of the <a href="#sagemaker-projects-templates-code-commit">MLOps template for model building, training, and deployment</a>. It includes both the model building, training, and deployment components of that template and the following options:
++ Include processing image–building pipeline
++ Include training image–building pipeline
++ Include inference image–building pipeline</p>
+
+<p>For each of the components selected during project creation, the following are created by using the template:
++ An Amazon ECR repository
++ <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateImage.html">A SageMaker Image</a>
++ A CodeCommit repository containing a Dockerfile that you can customize
++ A CodePipeline that is initiated by changes to the CodePipeline repository
++ A CodeBuild project that builds a Docker image and registers it in the Amazon ECR repository
++ An EventBridge rule that initiates the CodePipeline on a schedule</p>
+
+<p>When the CodePipeline is initiated, it builds a new Docker container and registers it with an Amazon ECR repository. When a new container is registered with the Amazon ECR repository, a new <code>ImageVersion</code> is added to the SageMaker image. This initiates the model building pipeline, which in turn initiates the deployment pipeline.</p>
+
+<p>The newly created image is used in the model building, training, and deployment portions of the workflow where applicable.</p>
+
+<h2>MLOps template for model building, training, and deployment with third-party Git repositories using CodePipeline<a name="sagemaker-projects-templates-git-code-pipeline"></a></h2>
+
+<ul>
+<li><strong>Code repository</strong>: Third-party Git. Establish the AWS CodeStar connection from your AWS account to your GitHub user or organization. Add a tag with the key <code>sagemaker</code> and value <code>true</code> to this AWS CodeStar connection.</li>
+<li><strong>CI/CD workflow automation</strong>: AWS CodePipeline</li>
+</ul>
+
+<p>This template provides the following resources:
++ Associations with one or more customer-specified Git repositories.
++ An AWS CodePipeline pipeline that has source, build, deploy-to-staging, and deploy-to-production steps. The source step points to the third-party Git repository and the build step gets the code from that repository and generates CloudFormation stacks to deploy. The deploy-to-staging and deploy-to-production steps deploy the CloudFormation stacks to their respective environments. There is a manual approval step between the staging and production build steps, so that a MLOps engineer must approve the model before it is deployed to production.
++ An AWS CodeBuild project to populate the Git repositories with the seed code information. This requires an AWS CodeStar connection from your AWS account to your account on the Git repository host.
++ An Amazon S3 bucket to store artifacts, including CodePipeline and CodeBuild artifacts, and any artifacts generated from the SageMaker pipeline runs.</p>
+
+<p>As previously mentioned, see <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/sagemaker-projects-walkthrough-3rdgit.html">Project Walkthrough Using Third-party Git Repos</a> for a demonstration that uses this template to create a real project.</p>
+
+<h2>MLOps template for model building, training, and deployment with third-party Git repositories using Jenkins<a name="sagemaker-projects-templates-git-jenkins"></a></h2>
+
+<ul>
+<li><strong>Code repository</strong>: Third-party Git. Establish the AWS CodeStar connection from your AWS account to your GitHub user or organization. Add a tag with the key <code>sagemaker</code> and value <code>true</code> to this AWS CodeStar connection.</li>
+<li><strong>CI/CD workflow automation</strong>: Jenkins</li>
+</ul>
+
+<p>This template provides the following resources:
++ Associations with one or more customer-specified Git repositories.
++ Seed code to generate Jenkins pipelines that have source, build, deploy-to-staging, and deploy-to-production steps. The source step points to the customer-specified Git repository. The build step gets the code from that repository and generates two CloudFormation stacks. The deploy steps deploy the CloudFormation stacks to their respective environments. There is an approval step between the staging step and the production step.
++ An AWS CodeBuild project to populate the Git repositories with the seed code information. This requires an AWS CodeStar connection from your AWS account to your account on the Git repository host.
++ An Amazon S3 bucket to store artifacts of the SageMaker project and SageMaker pipeline.</p>
+
+<p>The template creates the association between your project and the source control repositories, but you need to perform additional manual steps to establish communication between your AWS account and Jenkins. For the detailed steps, see <a href="http://aws.amazon.com/blogs/machine-learning/create-amazon-sagemaker-projects-using-third-party-source-control-and-jenkins/">Create Amazon SageMaker projects using third-party source control and Jenkins</a>.</p>
+
+<p>The instructions help you build the architecture shown in the following diagram, with GitHub as the source control repository in this example. As shown, you are attaching your Git repository to the project to check in and manage code versions. Jenkins initiates the model build pipeline when it detects changes to the model build code in the Git repository. You are also connecting the project to Jenkins to orchestrate your model deployment steps, which start when you approve the model registered in the model registry, or when Jenkins detects changes to the model deployment code.</p>
+
+<p><img src="http://docs.aws.amazon.com/sagemaker/latest/dg/images/projects/projects-templates-gitjenkins.png" alt="[Image NOT FOUND]" /></p>
+
+<p>In summary, the steps guide you through the following tasks:</p>
+
+<ol>
+<li><p>Establish the connection between your AWS and GitHub accounts.</p></li>
+<li><p>Create the Jenkins account and import needed plugins.</p></li>
+<li><p>Create the Jenkins IAM user and permissions policy.</p></li>
+<li><p>Set the AWS credentials for the Jenkins IAM user on your Jenkins server.</p></li>
+<li><p>Create an API token for communication with your Jenkins server.</p></li>
+<li><p>Use a CloudFormation template to set up an EventBridge rule to monitor the model registry for newly-approved models.</p></li>
+<li><p>Create the SageMaker project, which seeds your GitHub repositories with model build and deploy code.</p></li>
+<li><p>Create your Jenkins model build pipeline with the model build seed code.</p></li>
+<li><p>Create your Jenkins model deploy pipeline with the model deploy seed code.</p></li>
+</ol>
+
+<h2>Update SageMaker Projects to Use Third-Party Git Repositories<a name="sagemaker-projects-templates-update"></a></h2>
+
+<p>The managed policy attached to the <code>AmazonSageMakerServiceCatalogProductsUseRole</code> role was updated on July 27, 2021 for use with the third-party Git templates. Users who onboard to Amazon SageMaker Studio after this date and enable project templates use the new policy. Users who onboarded prior to this date must update the policy to use these templates. Use one of the following options to update the policy:
++ Delete role and toggle Studio settings</p>
+
+<ol>
+<li><p>In the IAM console, delete <code>AmazonSageMakerServiceCatalogProductsUseRole</code>.</p></li>
+<li><p>In the Studio control panel, choose <strong>Edit Settings</strong>.</p></li>
+<li><p>Toggle both settings and then choose <strong>Submit</strong>.</p>
+
+<ul>
+<li>In the IAM console, add the following permissions to <code>AmazonSageMakerServiceCatalogProductsUseRole</code>:</li>
+</ul>
+
+<p><code>
+{
+      "Effect": "Allow",
+      "Action": [
+          "codestar-connections:UseConnection"
+      ],
+      "Resource": "arn:aws:codestar-connections:*:*:connection/*",
+      "Condition": {
+          "StringEqualsIgnoreCase": {
+              "aws:ResourceTag/sagemaker": "true"
+          }
+      }
+  },
+  {
+      "Effect": "Allow",
+      "Action": [
+          "s3:PutObjectAcl"
+      ],
+      "Resource": [
+          "arn:aws:s3:::sagemaker-*"
+      ]
+  }
+</code></p></li>
+</ol>

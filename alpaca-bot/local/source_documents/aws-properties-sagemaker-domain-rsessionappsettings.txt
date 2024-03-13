@@ -1,0 +1,40 @@
+<h1>AWS::SageMaker::Domain RSessionAppSettings<a name="aws-properties-sagemaker-domain-rsessionappsettings"></a></h1>
+
+<p>A collection of settings that apply to an <code>RSessionGateway</code> app.</p>
+
+<h2>Syntax<a name="aws-properties-sagemaker-domain-rsessionappsettings-syntax"></a></h2>
+
+<p>To declare this entity in your AWS CloudFormation template, use the following syntax:</p>
+
+<h3>JSON<a name="aws-properties-sagemaker-domain-rsessionappsettings-syntax.json"></a></h3>
+
+<p><code>
+{
+  "[CustomImages](#cfn-sagemaker-domain-rsessionappsettings-customimages)" : [ CustomImage, ... ],
+  "[DefaultResourceSpec](#cfn-sagemaker-domain-rsessionappsettings-defaultresourcespec)" : ResourceSpec
+}
+</code></p>
+
+<h3>YAML<a name="aws-properties-sagemaker-domain-rsessionappsettings-syntax.yaml"></a></h3>
+
+<p><code>
+  [CustomImages](#cfn-sagemaker-domain-rsessionappsettings-customimages): 
+    - CustomImage
+  [DefaultResourceSpec](#cfn-sagemaker-domain-rsessionappsettings-defaultresourcespec): 
+    ResourceSpec
+</code></p>
+
+<h2>Properties<a name="aws-properties-sagemaker-domain-rsessionappsettings-properties"></a></h2>
+
+<p><code>CustomImages</code>  <a name="cfn-sagemaker-domain-rsessionappsettings-customimages"></a>
+A list of custom SageMaker images that are configured to run as a RSession app.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: List of <a href="aws-properties-sagemaker-domain-customimage.md">CustomImage</a><br />
+<em>Maximum</em>: <code>200</code><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt">No interruption</a></p>
+
+<p><code>DefaultResourceSpec</code>  <a name="cfn-sagemaker-domain-rsessionappsettings-defaultresourcespec"></a>
+Specifies the ARNs of a SageMaker image and SageMaker image version, and the instance type that the version runs on.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: <a href="aws-properties-sagemaker-domain-resourcespec.md">ResourceSpec</a><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt">No interruption</a></p>

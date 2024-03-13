@@ -1,0 +1,40 @@
+<h1>AWS::SageMaker::InferenceExperiment ShadowModelVariantConfig<a name="aws-properties-sagemaker-inferenceexperiment-shadowmodelvariantconfig"></a></h1>
+
+<p>The name and sampling percentage of a shadow variant.</p>
+
+<h2>Syntax<a name="aws-properties-sagemaker-inferenceexperiment-shadowmodelvariantconfig-syntax"></a></h2>
+
+<p>To declare this entity in your AWS CloudFormation template, use the following syntax:</p>
+
+<h3>JSON<a name="aws-properties-sagemaker-inferenceexperiment-shadowmodelvariantconfig-syntax.json"></a></h3>
+
+<p><code>
+{
+  "[SamplingPercentage](#cfn-sagemaker-inferenceexperiment-shadowmodelvariantconfig-samplingpercentage)" : Integer,
+  "[ShadowModelVariantName](#cfn-sagemaker-inferenceexperiment-shadowmodelvariantconfig-shadowmodelvariantname)" : String
+}
+</code></p>
+
+<h3>YAML<a name="aws-properties-sagemaker-inferenceexperiment-shadowmodelvariantconfig-syntax.yaml"></a></h3>
+
+<p><code>
+  [SamplingPercentage](#cfn-sagemaker-inferenceexperiment-shadowmodelvariantconfig-samplingpercentage): Integer
+  [ShadowModelVariantName](#cfn-sagemaker-inferenceexperiment-shadowmodelvariantconfig-shadowmodelvariantname): String
+</code></p>
+
+<h2>Properties<a name="aws-properties-sagemaker-inferenceexperiment-shadowmodelvariantconfig-properties"></a></h2>
+
+<p><code>SamplingPercentage</code>  <a name="cfn-sagemaker-inferenceexperiment-shadowmodelvariantconfig-samplingpercentage"></a>
+ The percentage of inference requests that Amazon SageMaker replicates from the production variant to the shadow variant.<br />
+<em>Required</em>: Yes<br />
+<em>Type</em>: Integer<br />
+<em>Maximum</em>: <code>100</code><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt">No interruption</a></p>
+
+<p><code>ShadowModelVariantName</code>  <a name="cfn-sagemaker-inferenceexperiment-shadowmodelvariantconfig-shadowmodelvariantname"></a>
+The name of the shadow variant.<br />
+<em>Required</em>: Yes<br />
+<em>Type</em>: String<br />
+<em>Maximum</em>: <code>63</code><br />
+<em>Pattern</em>: <code>^[a-zA-Z0-9]([\-a-zA-Z0-9]*[a-zA-Z0-9])?</code><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt">No interruption</a></p>

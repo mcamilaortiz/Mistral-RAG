@@ -1,0 +1,39 @@
+<h1>AWS::SageMaker::UserProfile RStudioServerProAppSettings<a name="aws-properties-sagemaker-userprofile-rstudioserverproappsettings"></a></h1>
+
+<p>A collection of settings that configure user interaction with the <code>RStudioServerPro</code> app. <code>RStudioServerProAppSettings</code> cannot be updated. The <code>RStudioServerPro</code> app must be deleted and a new one created to make any changes.</p>
+
+<h2>Syntax<a name="aws-properties-sagemaker-userprofile-rstudioserverproappsettings-syntax"></a></h2>
+
+<p>To declare this entity in your AWS CloudFormation template, use the following syntax:</p>
+
+<h3>JSON<a name="aws-properties-sagemaker-userprofile-rstudioserverproappsettings-syntax.json"></a></h3>
+
+<p><code>
+{
+  "[AccessStatus](#cfn-sagemaker-userprofile-rstudioserverproappsettings-accessstatus)" : String,
+  "[UserGroup](#cfn-sagemaker-userprofile-rstudioserverproappsettings-usergroup)" : String
+}
+</code></p>
+
+<h3>YAML<a name="aws-properties-sagemaker-userprofile-rstudioserverproappsettings-syntax.yaml"></a></h3>
+
+<p><code>
+  [AccessStatus](#cfn-sagemaker-userprofile-rstudioserverproappsettings-accessstatus): String
+  [UserGroup](#cfn-sagemaker-userprofile-rstudioserverproappsettings-usergroup): String
+</code></p>
+
+<h2>Properties<a name="aws-properties-sagemaker-userprofile-rstudioserverproappsettings-properties"></a></h2>
+
+<p><code>AccessStatus</code>  <a name="cfn-sagemaker-userprofile-rstudioserverproappsettings-accessstatus"></a>
+Indicates whether the current user has access to the <code>RStudioServerPro</code> app.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: String<br />
+<em>Allowed values</em>: <code>DISABLED | ENABLED</code><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement">Replacement</a></p>
+
+<p><code>UserGroup</code>  <a name="cfn-sagemaker-userprofile-rstudioserverproappsettings-usergroup"></a>
+The level of permissions that the user has within the <code>RStudioServerPro</code> app. This value defaults to <code>User</code>. The <code>Admin</code> value allows the user access to the RStudio Administrative Dashboard.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: String<br />
+<em>Allowed values</em>: <code>R_STUDIO_ADMIN | R_STUDIO_USER</code><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement">Replacement</a></p>

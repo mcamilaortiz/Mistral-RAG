@@ -1,0 +1,37 @@
+<h1>AWS::Scheduler::Schedule SageMakerPipelineParameter<a name="aws-properties-scheduler-schedule-sagemakerpipelineparameter"></a></h1>
+
+<p>The name and value pair of a parameter to use to start execution of a SageMaker Model Building Pipeline.</p>
+
+<h2>Syntax<a name="aws-properties-scheduler-schedule-sagemakerpipelineparameter-syntax"></a></h2>
+
+<p>To declare this entity in your AWS CloudFormation template, use the following syntax:</p>
+
+<h3>JSON<a name="aws-properties-scheduler-schedule-sagemakerpipelineparameter-syntax.json"></a></h3>
+
+<p><code>
+{
+  "[Name](#cfn-scheduler-schedule-sagemakerpipelineparameter-name)" : String,
+  "[Value](#cfn-scheduler-schedule-sagemakerpipelineparameter-value)" : String
+}
+</code></p>
+
+<h3>YAML<a name="aws-properties-scheduler-schedule-sagemakerpipelineparameter-syntax.yaml"></a></h3>
+
+<p><code>
+  [Name](#cfn-scheduler-schedule-sagemakerpipelineparameter-name): String
+  [Value](#cfn-scheduler-schedule-sagemakerpipelineparameter-value): String
+</code></p>
+
+<h2>Properties<a name="aws-properties-scheduler-schedule-sagemakerpipelineparameter-properties"></a></h2>
+
+<p><code>Name</code>  <a name="cfn-scheduler-schedule-sagemakerpipelineparameter-name"></a>
+Name of parameter to start execution of a SageMaker Model Building Pipeline.<br />
+<em>Required</em>: Yes<br />
+<em>Type</em>: String<br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt">No interruption</a></p>
+
+<p><code>Value</code>  <a name="cfn-scheduler-schedule-sagemakerpipelineparameter-value"></a>
+Value of parameter to start execution of a SageMaker Model Building Pipeline.<br />
+<em>Required</em>: Yes<br />
+<em>Type</em>: String<br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt">No interruption</a></p>

@@ -1,0 +1,33 @@
+<h1>SageMaker Operators for Kubernetes<a name="kubernetes-sagemaker-operators"></a></h1>
+
+<p>SageMaker Operators for Kubernetes make it easier for developers and data scientists using Kubernetes to train, tune, and deploy machine learning (ML) models in SageMaker. You can install these SageMaker Operators on your Kubernetes cluster in Amazon Elastic Kubernetes Service (Amazon EKS) to create SageMaker jobs natively using the Kubernetes API and command-line Kubernetes tools such as <code>kubectl</code>. This guide shows how to set up and use the operators to run model training, hyperparameter tuning, or inference (real-time and batch) on SageMaker from a Kubernetes cluster. The procedures and guidelines in this chapter assume that you are familiar with Kubernetes and its basic commands.</p>
+
+<p><strong>Important</strong><br />
+We are stopping the development and technical support of <a href="https://github.com/aws/amazon-sagemaker-operator-for-k8s/tree/master">SageMaker Operators for Kubernetes</a> in its original version. If you are currently using version <code>v1.2.2</code> or below of the original version of SageMaker Operators for Kubernetes, we recommend migrating your resources to the latest SageMaker Operators for Kubernetes, the <a href="https://github.com/aws-controllers-k8s/sagemaker-controller">ACK service controller for Amazon SageMaker</a> based on <a href="https://aws-controllers-k8s.github.io/community/ ">AWS Controllers for Kubernetes (ACK)</a>.<br />
+For information about the migration steps, see <a href="kubernetes-sagemaker-operators-migrate.md">Migrate resources to the latest Operators</a>.<br />
+For answers to frequently asked questions regarding the end of support of the original version of SageMaker Operators for Kubernetes, see <a href="kubernetes-sagemaker-operators-eos-announcement.md">Announcing the End of Support of the Original Version of SageMaker Operator for Kubernetes</a></p>
+
+<p><strong>Note</strong><br />
+There is no additional charge to use these operators. You do incur charges for any SageMaker resources that you use through these operators.</p>
+
+<h2>What is an operator?<a name="kubernetes-sagemaker-operators-overview"></a></h2>
+
+<p>A Kubernetes operator is an application controller managing applications on behalf of a Kubernetes user. Controllers of the control plane encompass various control loops listening to a central state manager (ETCD) to regulate the state of the application they control. Examples of such applications include the <a href="https://kubernetes.io/docs/concepts/architecture/cloud-controller/">Cloud-controller-manager</a> and <code>[kube\-controller\-manager](https://kubernetes.io/docs/reference/command-line-tools-reference/kube-controller-manager/)</code>. Operators typically provide a higher-level abstraction than raw Kubernetes API, making it easier for users to deploy and manage applications. To add new capabilities to Kubernetes, developers can extend the Kubernetes API by creating a <strong>custom resource</strong> that contains their application-specific or domain-specific logic and components. Operators in Kubernetes allow users to natively invoke these custom resources and automate associated workflows.</p>
+
+<h3>How does AWS Controllers for Kubernetes (ACK) work?<a name="kubernetes-sagemaker-operators-explained"></a></h3>
+
+<p>The SageMaker Operators for Kubernetes allow you to manage jobs in SageMaker from your Kubernetes cluster. The latest version of SageMaker Operators for Kubernetes is based on AWS Controllers for Kubernetes (ACK). ACK includes a common controller runtime, a code generator, and a set of AWS service-specific controllers, one of which is the SageMaker controller.</p>
+
+<p>The following diagram illustrates how ACK works.</p>
+
+<p><img src="http://docs.aws.amazon.com/sagemaker/latest/dg/images/k8s-orchestration/sagemaker-operators-for-kubernetes-ack-controller.png" alt="[ACK based SageMaker Operator for Kubernetes explained.]" /></p>
+
+<p>In this diagram, a Kubernetes user wants to run model training on SageMaker from within the Kubernetes cluster using the Kubernetes API. The user issues a call to <code>kubectl apply</code>, passing in a file that describes a Kubernetes custom resource describing the SageMaker training job. <code>kubectl apply</code> passes this file, called a manifest, to the Kubernetes API server running in the Kubernetes controller node (Step <em>1</em> in the workflow diagram). The Kubernetes API server receives the manifest with the SageMaker training job specification and determines whether the user has permissions to create a custom resource of kind <code>sageMaker.services.k8s.aws/TrainingJob</code>, and whether the custom resource is properly formatted (Step <em>2</em>). If the user is authorized and the custom resource is valid, the Kubernetes API server writes (Step <em>3</em>) the custom resource to its etcd data store and then responds back (Step <em>4</em>) to the user that the custom resource has been created. The SageMaker controller, which is running on a Kubernetes worker node within the context of a normal Kubernetes Pod, is notified (Step <em>5</em>) that a new custom resource of kind <code>sageMaker.services.k8s.aws/TrainingJob</code> has been created. The SageMaker controller then communicates (Step <em>6</em>) with the SageMaker API, calling the SageMaker <code>CreateTrainingJob</code> API to create the training job in AWS. After communicating with the SageMaker API, the SageMaker controller calls the Kubernetes API server to update (Step <em>7</em>) the custom resource’s status with information it received from SageMaker. The SageMaker controller therefore provides the same information to the developers that they would have received using the AWS SDK.</p>
+
+<h3>Permissions overview<a name="kubernetes-sagemaker-operators-authentication"></a></h3>
+
+<p>The operators access SageMaker resources on your behalf. The IAM role that the operator assumes to interact with AWS resources differs from the credentials you use to access the Kubernetes cluster. The role also differs from the role that AWS assumes when running your machine learning jobs. </p>
+
+<p>The following image explains the various authentication layers.</p>
+
+<p><img src="http://docs.aws.amazon.com/sagemaker/latest/dg/images/k8s-orchestration/sagemaker-operators-for-kubernetes-authentication.png" alt="[SageMaker Operator for Kubernetes various authentication layers.]" /></p>

@@ -1,0 +1,50 @@
+<h1>AWS::SageMaker::Endpoint BlueGreenUpdatePolicy<a name="aws-properties-sagemaker-endpoint-bluegreenupdatepolicy"></a></h1>
+
+<p>Update policy for a blue/green deployment. If this update policy is specified, SageMaker creates a new fleet during the deployment while maintaining the old fleet. SageMaker flips traffic to the new fleet according to the specified traffic routing configuration. Only one update policy should be used in the deployment configuration. If no update policy is specified, SageMaker uses a blue/green deployment strategy with all at once traffic shifting by default.</p>
+
+<h2>Syntax<a name="aws-properties-sagemaker-endpoint-bluegreenupdatepolicy-syntax"></a></h2>
+
+<p>To declare this entity in your AWS CloudFormation template, use the following syntax:</p>
+
+<h3>JSON<a name="aws-properties-sagemaker-endpoint-bluegreenupdatepolicy-syntax.json"></a></h3>
+
+<p><code>
+{
+  "[MaximumExecutionTimeoutInSeconds](#cfn-sagemaker-endpoint-bluegreenupdatepolicy-maximumexecutiontimeoutinseconds)" : Integer,
+  "[TerminationWaitInSeconds](#cfn-sagemaker-endpoint-bluegreenupdatepolicy-terminationwaitinseconds)" : Integer,
+  "[TrafficRoutingConfiguration](#cfn-sagemaker-endpoint-bluegreenupdatepolicy-trafficroutingconfiguration)" : TrafficRoutingConfig
+}
+</code></p>
+
+<h3>YAML<a name="aws-properties-sagemaker-endpoint-bluegreenupdatepolicy-syntax.yaml"></a></h3>
+
+<p><code>
+  [MaximumExecutionTimeoutInSeconds](#cfn-sagemaker-endpoint-bluegreenupdatepolicy-maximumexecutiontimeoutinseconds): Integer
+  [TerminationWaitInSeconds](#cfn-sagemaker-endpoint-bluegreenupdatepolicy-terminationwaitinseconds): Integer
+  [TrafficRoutingConfiguration](#cfn-sagemaker-endpoint-bluegreenupdatepolicy-trafficroutingconfiguration): 
+    TrafficRoutingConfig
+</code></p>
+
+<h2>Properties<a name="aws-properties-sagemaker-endpoint-bluegreenupdatepolicy-properties"></a></h2>
+
+<p><code>MaximumExecutionTimeoutInSeconds</code>  <a name="cfn-sagemaker-endpoint-bluegreenupdatepolicy-maximumexecutiontimeoutinseconds"></a>
+Maximum execution timeout for the deployment. Note that the timeout value should be larger than the total waiting time specified in <code>TerminationWaitInSeconds</code> and <code>WaitIntervalInSeconds</code>.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: Integer<br />
+<em>Minimum</em>: <code>600</code><br />
+<em>Maximum</em>: <code>14400</code><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt">No interruption</a></p>
+
+<p><code>TerminationWaitInSeconds</code>  <a name="cfn-sagemaker-endpoint-bluegreenupdatepolicy-terminationwaitinseconds"></a>
+Additional waiting time in seconds after the completion of an endpoint deployment before terminating the old endpoint fleet. Default is 0.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: Integer<br />
+<em>Minimum</em>: <code>0</code><br />
+<em>Maximum</em>: <code>3600</code><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt">No interruption</a></p>
+
+<p><code>TrafficRoutingConfiguration</code>  <a name="cfn-sagemaker-endpoint-bluegreenupdatepolicy-trafficroutingconfiguration"></a>
+Defines the traffic routing strategy to shift traffic from the old fleet to the new fleet during an endpoint deployment.<br />
+<em>Required</em>: Yes<br />
+<em>Type</em>: <a href="aws-properties-sagemaker-endpoint-trafficroutingconfig.md">TrafficRoutingConfig</a><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt">No interruption</a></p>

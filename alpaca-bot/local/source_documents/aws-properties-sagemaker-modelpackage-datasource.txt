@@ -1,0 +1,30 @@
+<h1>AWS::SageMaker::ModelPackage DataSource<a name="aws-properties-sagemaker-modelpackage-datasource"></a></h1>
+
+<p>Describes the location of the channel data.</p>
+
+<h2>Syntax<a name="aws-properties-sagemaker-modelpackage-datasource-syntax"></a></h2>
+
+<p>To declare this entity in your AWS CloudFormation template, use the following syntax:</p>
+
+<h3>JSON<a name="aws-properties-sagemaker-modelpackage-datasource-syntax.json"></a></h3>
+
+<p><code>
+{
+  "[S3DataSource](#cfn-sagemaker-modelpackage-datasource-s3datasource)" : S3DataSource
+}
+</code></p>
+
+<h3>YAML<a name="aws-properties-sagemaker-modelpackage-datasource-syntax.yaml"></a></h3>
+
+<p><code>
+  [S3DataSource](#cfn-sagemaker-modelpackage-datasource-s3datasource): 
+    S3DataSource
+</code></p>
+
+<h2>Properties<a name="aws-properties-sagemaker-modelpackage-datasource-properties"></a></h2>
+
+<p><code>S3DataSource</code>  <a name="cfn-sagemaker-modelpackage-datasource-s3datasource"></a>
+The S3 location of the data source that is associated with a channel.<br />
+<em>Required</em>: Yes<br />
+<em>Type</em>: <a href="aws-properties-sagemaker-modelpackage-s3datasource.md">S3DataSource</a><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement">Replacement</a></p>

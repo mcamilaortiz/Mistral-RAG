@@ -1,0 +1,31 @@
+<h1>AWS::SageMaker::ModelPackage SourceAlgorithmSpecification<a name="aws-properties-sagemaker-modelpackage-sourcealgorithmspecification"></a></h1>
+
+<p>A list of algorithms that were used to create a model package.</p>
+
+<h2>Syntax<a name="aws-properties-sagemaker-modelpackage-sourcealgorithmspecification-syntax"></a></h2>
+
+<p>To declare this entity in your AWS CloudFormation template, use the following syntax:</p>
+
+<h3>JSON<a name="aws-properties-sagemaker-modelpackage-sourcealgorithmspecification-syntax.json"></a></h3>
+
+<p><code>
+{
+  "[SourceAlgorithms](#cfn-sagemaker-modelpackage-sourcealgorithmspecification-sourcealgorithms)" : [ SourceAlgorithm, ... ]
+}
+</code></p>
+
+<h3>YAML<a name="aws-properties-sagemaker-modelpackage-sourcealgorithmspecification-syntax.yaml"></a></h3>
+
+<p><code>
+  [SourceAlgorithms](#cfn-sagemaker-modelpackage-sourcealgorithmspecification-sourcealgorithms): 
+    - SourceAlgorithm
+</code></p>
+
+<h2>Properties<a name="aws-properties-sagemaker-modelpackage-sourcealgorithmspecification-properties"></a></h2>
+
+<p><code>SourceAlgorithms</code>  <a name="cfn-sagemaker-modelpackage-sourcealgorithmspecification-sourcealgorithms"></a>
+A list of the algorithms that were used to create a model package.<br />
+<em>Required</em>: Yes<br />
+<em>Type</em>: List of <a href="aws-properties-sagemaker-modelpackage-sourcealgorithm.md">SourceAlgorithm</a><br />
+<em>Maximum</em>: <code>1</code><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement">Replacement</a></p>

@@ -1,0 +1,30 @@
+<h1>AWS::SageMaker::Workteam OidcMemberDefinition<a name="aws-properties-sagemaker-workteam-oidcmemberdefinition"></a></h1>
+
+<p>A list of user groups that exist in your OIDC Identity Provider (IdP). One to ten groups can be used to create a single private work team. When you add a user group to the list of <code>Groups</code>, you can add that user group to one or more private work teams. If you add a user group to a private work team, all workers in that user group are added to the work team.</p>
+
+<h2>Syntax<a name="aws-properties-sagemaker-workteam-oidcmemberdefinition-syntax"></a></h2>
+
+<p>To declare this entity in your AWS CloudFormation template, use the following syntax:</p>
+
+<h3>JSON<a name="aws-properties-sagemaker-workteam-oidcmemberdefinition-syntax.json"></a></h3>
+
+<p><code>
+{
+  "[OidcGroups](#cfn-sagemaker-workteam-oidcmemberdefinition-oidcgroups)" : [ String, ... ]
+}
+</code></p>
+
+<h3>YAML<a name="aws-properties-sagemaker-workteam-oidcmemberdefinition-syntax.yaml"></a></h3>
+
+<p><code>
+  [OidcGroups](#cfn-sagemaker-workteam-oidcmemberdefinition-oidcgroups): 
+    - String
+</code></p>
+
+<h2>Properties<a name="aws-properties-sagemaker-workteam-oidcmemberdefinition-properties"></a></h2>
+
+<p><code>OidcGroups</code>  <a name="cfn-sagemaker-workteam-oidcmemberdefinition-oidcgroups"></a>
+Property description not available.<br />
+<em>Required</em>: Yes<br />
+<em>Type</em>: List of String<br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt">No interruption</a></p>

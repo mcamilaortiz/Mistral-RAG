@@ -1,0 +1,39 @@
+<h1>AWS::SageMaker::ModelPackage DriftCheckExplainability<a name="aws-properties-sagemaker-modelpackage-driftcheckexplainability"></a></h1>
+
+<p>Represents the drift check explainability baselines that can be used when the model monitor is set using the model package. </p>
+
+<h2>Syntax<a name="aws-properties-sagemaker-modelpackage-driftcheckexplainability-syntax"></a></h2>
+
+<p>To declare this entity in your AWS CloudFormation template, use the following syntax:</p>
+
+<h3>JSON<a name="aws-properties-sagemaker-modelpackage-driftcheckexplainability-syntax.json"></a></h3>
+
+<p><code>
+{
+  "[ConfigFile](#cfn-sagemaker-modelpackage-driftcheckexplainability-configfile)" : FileSource,
+  "[Constraints](#cfn-sagemaker-modelpackage-driftcheckexplainability-constraints)" : MetricsSource
+}
+</code></p>
+
+<h3>YAML<a name="aws-properties-sagemaker-modelpackage-driftcheckexplainability-syntax.yaml"></a></h3>
+
+<p><code>
+  [ConfigFile](#cfn-sagemaker-modelpackage-driftcheckexplainability-configfile): 
+    FileSource
+  [Constraints](#cfn-sagemaker-modelpackage-driftcheckexplainability-constraints): 
+    MetricsSource
+</code></p>
+
+<h2>Properties<a name="aws-properties-sagemaker-modelpackage-driftcheckexplainability-properties"></a></h2>
+
+<p><code>ConfigFile</code>  <a name="cfn-sagemaker-modelpackage-driftcheckexplainability-configfile"></a>
+The explainability config file for the model.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: <a href="aws-properties-sagemaker-modelpackage-filesource.md">FileSource</a><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement">Replacement</a></p>
+
+<p><code>Constraints</code>  <a name="cfn-sagemaker-modelpackage-driftcheckexplainability-constraints"></a>
+The drift check explainability constraints.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: <a href="aws-properties-sagemaker-modelpackage-metricssource.md">MetricsSource</a><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement">Replacement</a></p>

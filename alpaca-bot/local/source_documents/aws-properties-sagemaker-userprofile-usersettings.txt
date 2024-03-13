@@ -1,0 +1,83 @@
+<h1>AWS::SageMaker::UserProfile UserSettings<a name="aws-properties-sagemaker-userprofile-usersettings"></a></h1>
+
+<p>A collection of settings that apply to users of Amazon SageMaker Studio. These settings are specified when the <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateUserProfile.html">CreateUserProfile</a> API is called, and as <code>DefaultUserSettings</code> when the <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateDomain.html">CreateDomain</a> API is called.</p>
+
+<p><code>SecurityGroups</code> is aggregated when specified in both calls. For all other settings in <code>UserSettings</code>, the values specified in <code>CreateUserProfile</code> take precedence over those specified in <code>CreateDomain</code>.</p>
+
+<h2>Syntax<a name="aws-properties-sagemaker-userprofile-usersettings-syntax"></a></h2>
+
+<p>To declare this entity in your AWS CloudFormation template, use the following syntax:</p>
+
+<h3>JSON<a name="aws-properties-sagemaker-userprofile-usersettings-syntax.json"></a></h3>
+
+<p><code>
+{
+  "[ExecutionRole](#cfn-sagemaker-userprofile-usersettings-executionrole)" : String,
+  "[JupyterServerAppSettings](#cfn-sagemaker-userprofile-usersettings-jupyterserverappsettings)" : JupyterServerAppSettings,
+  "[KernelGatewayAppSettings](#cfn-sagemaker-userprofile-usersettings-kernelgatewayappsettings)" : KernelGatewayAppSettings,
+  "[RStudioServerProAppSettings](#cfn-sagemaker-userprofile-usersettings-rstudioserverproappsettings)" : RStudioServerProAppSettings,
+  "[SecurityGroups](#cfn-sagemaker-userprofile-usersettings-securitygroups)" : [ String, ... ],
+  "[SharingSettings](#cfn-sagemaker-userprofile-usersettings-sharingsettings)" : SharingSettings
+}
+</code></p>
+
+<h3>YAML<a name="aws-properties-sagemaker-userprofile-usersettings-syntax.yaml"></a></h3>
+
+<p><code>
+  [ExecutionRole](#cfn-sagemaker-userprofile-usersettings-executionrole): String
+  [JupyterServerAppSettings](#cfn-sagemaker-userprofile-usersettings-jupyterserverappsettings): 
+    JupyterServerAppSettings
+  [KernelGatewayAppSettings](#cfn-sagemaker-userprofile-usersettings-kernelgatewayappsettings): 
+    KernelGatewayAppSettings
+  [RStudioServerProAppSettings](#cfn-sagemaker-userprofile-usersettings-rstudioserverproappsettings): 
+    RStudioServerProAppSettings
+  [SecurityGroups](#cfn-sagemaker-userprofile-usersettings-securitygroups): 
+    - String
+  [SharingSettings](#cfn-sagemaker-userprofile-usersettings-sharingsettings): 
+    SharingSettings
+</code></p>
+
+<h2>Properties<a name="aws-properties-sagemaker-userprofile-usersettings-properties"></a></h2>
+
+<p><code>ExecutionRole</code>  <a name="cfn-sagemaker-userprofile-usersettings-executionrole"></a>
+The execution role for the user.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: String<br />
+<em>Minimum</em>: <code>20</code><br />
+<em>Maximum</em>: <code>2048</code><br />
+<em>Pattern</em>: <code>^arn:aws[a-z\-]*:iam::\d{12}:role/?[a-zA-Z_0-9+=,.@\-_/]+$</code><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt">No interruption</a></p>
+
+<p><code>JupyterServerAppSettings</code>  <a name="cfn-sagemaker-userprofile-usersettings-jupyterserverappsettings"></a>
+The Jupyter server's app settings.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: <a href="aws-properties-sagemaker-userprofile-jupyterserverappsettings.md">JupyterServerAppSettings</a><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt">No interruption</a></p>
+
+<p><code>KernelGatewayAppSettings</code>  <a name="cfn-sagemaker-userprofile-usersettings-kernelgatewayappsettings"></a>
+The kernel gateway app settings.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: <a href="aws-properties-sagemaker-userprofile-kernelgatewayappsettings.md">KernelGatewayAppSettings</a><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt">No interruption</a></p>
+
+<p><code>RStudioServerProAppSettings</code>  <a name="cfn-sagemaker-userprofile-usersettings-rstudioserverproappsettings"></a>
+A collection of settings that configure user interaction with the <code>RStudioServerPro</code> app.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: <a href="aws-properties-sagemaker-userprofile-rstudioserverproappsettings.md">RStudioServerProAppSettings</a><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt">No interruption</a></p>
+
+<p><code>SecurityGroups</code>  <a name="cfn-sagemaker-userprofile-usersettings-securitygroups"></a>
+The security groups for the Amazon Virtual Private Cloud (VPC) that Studio uses for communication.<br />
+Optional when the <code>CreateDomain.AppNetworkAccessType</code> parameter is set to <code>PublicInternetOnly</code>.<br />
+Required when the <code>CreateDomain.AppNetworkAccessType</code> parameter is set to <code>VpcOnly</code>.<br />
+Amazon SageMaker adds a security group to allow NFS traffic from SageMaker Studio. Therefore, the number of security groups that you can specify is one less than the maximum number shown.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: List of String<br />
+<em>Maximum</em>: <code>5</code><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt">No interruption</a></p>
+
+<p><code>SharingSettings</code>  <a name="cfn-sagemaker-userprofile-usersettings-sharingsettings"></a>
+Specifies options for sharing SageMaker Studio notebooks.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: <a href="aws-properties-sagemaker-userprofile-sharingsettings.md">SharingSettings</a><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt">No interruption</a></p>

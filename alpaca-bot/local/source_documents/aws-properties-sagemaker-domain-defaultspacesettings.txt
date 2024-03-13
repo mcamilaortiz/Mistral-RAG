@@ -1,0 +1,60 @@
+<h1>AWS::SageMaker::Domain DefaultSpaceSettings<a name="aws-properties-sagemaker-domain-defaultspacesettings"></a></h1>
+
+<p>A collection of settings that apply to spaces created in the Domain.</p>
+
+<h2>Syntax<a name="aws-properties-sagemaker-domain-defaultspacesettings-syntax"></a></h2>
+
+<p>To declare this entity in your AWS CloudFormation template, use the following syntax:</p>
+
+<h3>JSON<a name="aws-properties-sagemaker-domain-defaultspacesettings-syntax.json"></a></h3>
+
+<p><code>
+{
+  "[ExecutionRole](#cfn-sagemaker-domain-defaultspacesettings-executionrole)" : String,
+  "[JupyterServerAppSettings](#cfn-sagemaker-domain-defaultspacesettings-jupyterserverappsettings)" : JupyterServerAppSettings,
+  "[KernelGatewayAppSettings](#cfn-sagemaker-domain-defaultspacesettings-kernelgatewayappsettings)" : KernelGatewayAppSettings,
+  "[SecurityGroups](#cfn-sagemaker-domain-defaultspacesettings-securitygroups)" : [ String, ... ]
+}
+</code></p>
+
+<h3>YAML<a name="aws-properties-sagemaker-domain-defaultspacesettings-syntax.yaml"></a></h3>
+
+<p><code>
+  [ExecutionRole](#cfn-sagemaker-domain-defaultspacesettings-executionrole): String
+  [JupyterServerAppSettings](#cfn-sagemaker-domain-defaultspacesettings-jupyterserverappsettings): 
+    JupyterServerAppSettings
+  [KernelGatewayAppSettings](#cfn-sagemaker-domain-defaultspacesettings-kernelgatewayappsettings): 
+    KernelGatewayAppSettings
+  [SecurityGroups](#cfn-sagemaker-domain-defaultspacesettings-securitygroups): 
+    - String
+</code></p>
+
+<h2>Properties<a name="aws-properties-sagemaker-domain-defaultspacesettings-properties"></a></h2>
+
+<p><code>ExecutionRole</code>  <a name="cfn-sagemaker-domain-defaultspacesettings-executionrole"></a>
+The execution role for the space.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: String<br />
+<em>Minimum</em>: <code>20</code><br />
+<em>Maximum</em>: <code>2048</code><br />
+<em>Pattern</em>: <code>^arn:aws[a-z\-]*:iam::\d{12}:role/?[a-zA-Z_0-9+=,.@\-_/]+$</code><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt">No interruption</a></p>
+
+<p><code>JupyterServerAppSettings</code>  <a name="cfn-sagemaker-domain-defaultspacesettings-jupyterserverappsettings"></a>
+The JupyterServer app settings.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: <a href="aws-properties-sagemaker-domain-jupyterserverappsettings.md">JupyterServerAppSettings</a><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt">No interruption</a></p>
+
+<p><code>KernelGatewayAppSettings</code>  <a name="cfn-sagemaker-domain-defaultspacesettings-kernelgatewayappsettings"></a>
+The KernelGateway app settings.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: <a href="aws-properties-sagemaker-domain-kernelgatewayappsettings.md">KernelGatewayAppSettings</a><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt">No interruption</a></p>
+
+<p><code>SecurityGroups</code>  <a name="cfn-sagemaker-domain-defaultspacesettings-securitygroups"></a>
+The security groups for the Amazon Virtual Private Cloud that the space uses for communication.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: List of String<br />
+<em>Maximum</em>: <code>5</code><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt">No interruption</a></p>

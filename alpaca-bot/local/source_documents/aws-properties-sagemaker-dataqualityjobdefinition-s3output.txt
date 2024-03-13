@@ -1,0 +1,45 @@
+<h1>AWS::SageMaker::DataQualityJobDefinition S3Output<a name="aws-properties-sagemaker-dataqualityjobdefinition-s3output"></a></h1>
+
+<p>The Amazon S3 storage location where the results of a monitoring job are saved.</p>
+
+<h2>Syntax<a name="aws-properties-sagemaker-dataqualityjobdefinition-s3output-syntax"></a></h2>
+
+<p>To declare this entity in your AWS CloudFormation template, use the following syntax:</p>
+
+<h3>JSON<a name="aws-properties-sagemaker-dataqualityjobdefinition-s3output-syntax.json"></a></h3>
+
+<p><code>
+{
+  "[LocalPath](#cfn-sagemaker-dataqualityjobdefinition-s3output-localpath)" : String,
+  "[S3UploadMode](#cfn-sagemaker-dataqualityjobdefinition-s3output-s3uploadmode)" : String,
+  "[S3Uri](#cfn-sagemaker-dataqualityjobdefinition-s3output-s3uri)" : String
+}
+</code></p>
+
+<h3>YAML<a name="aws-properties-sagemaker-dataqualityjobdefinition-s3output-syntax.yaml"></a></h3>
+
+<p><code>
+  [LocalPath](#cfn-sagemaker-dataqualityjobdefinition-s3output-localpath): String
+  [S3UploadMode](#cfn-sagemaker-dataqualityjobdefinition-s3output-s3uploadmode): String
+  [S3Uri](#cfn-sagemaker-dataqualityjobdefinition-s3output-s3uri): String
+</code></p>
+
+<h2>Properties<a name="aws-properties-sagemaker-dataqualityjobdefinition-s3output-properties"></a></h2>
+
+<p><code>LocalPath</code>  <a name="cfn-sagemaker-dataqualityjobdefinition-s3output-localpath"></a>
+The local path to the Amazon S3 storage location where Amazon SageMaker saves the results of a monitoring job. LocalPath is an absolute path for the output data.<br />
+<em>Required</em>: Yes<br />
+<em>Type</em>: String<br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement">Replacement</a></p>
+
+<p><code>S3UploadMode</code>  <a name="cfn-sagemaker-dataqualityjobdefinition-s3output-s3uploadmode"></a>
+Whether to upload the results of the monitoring job continuously or after the job completes.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: String<br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement">Replacement</a></p>
+
+<p><code>S3Uri</code>  <a name="cfn-sagemaker-dataqualityjobdefinition-s3output-s3uri"></a>
+A URI that identifies the Amazon S3 storage location where Amazon SageMaker saves the results of a monitoring job.<br />
+<em>Required</em>: Yes<br />
+<em>Type</em>: String<br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement">Replacement</a></p>

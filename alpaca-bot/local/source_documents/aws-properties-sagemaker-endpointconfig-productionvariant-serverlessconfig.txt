@@ -1,0 +1,41 @@
+<h1>AWS::SageMaker::EndpointConfig ServerlessConfig<a name="aws-properties-sagemaker-endpointconfig-productionvariant-serverlessconfig"></a></h1>
+
+<p>Specifies the serverless configuration for an endpoint variant.</p>
+
+<h2>Syntax<a name="aws-properties-sagemaker-endpointconfig-productionvariant-serverlessconfig-syntax"></a></h2>
+
+<p>To declare this entity in your AWS CloudFormation template, use the following syntax:</p>
+
+<h3>JSON<a name="aws-properties-sagemaker-endpointconfig-productionvariant-serverlessconfig-syntax.json"></a></h3>
+
+<p><code>
+{
+  "[MaxConcurrency](#cfn-sagemaker-endpointconfig-productionvariant-serverlessconfig-maxconcurrency)" : Integer,
+  "[MemorySizeInMB](#cfn-sagemaker-endpointconfig-productionvariant-serverlessconfig-memorysizeinmb)" : Integer
+}
+</code></p>
+
+<h3>YAML<a name="aws-properties-sagemaker-endpointconfig-productionvariant-serverlessconfig-syntax.yaml"></a></h3>
+
+<p><code>
+  [MaxConcurrency](#cfn-sagemaker-endpointconfig-productionvariant-serverlessconfig-maxconcurrency): Integer
+  [MemorySizeInMB](#cfn-sagemaker-endpointconfig-productionvariant-serverlessconfig-memorysizeinmb): Integer
+</code></p>
+
+<h2>Properties<a name="aws-properties-sagemaker-endpointconfig-productionvariant-serverlessconfig-properties"></a></h2>
+
+<p><code>MaxConcurrency</code>  <a name="cfn-sagemaker-endpointconfig-productionvariant-serverlessconfig-maxconcurrency"></a>
+The maximum number of concurrent invocations your serverless endpoint can process.<br />
+<em>Required</em>: Yes<br />
+<em>Type</em>: Integer<br />
+<em>Minimum</em>: <code>1</code><br />
+<em>Maximum</em>: <code>200</code><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement">Replacement</a></p>
+
+<p><code>MemorySizeInMB</code>  <a name="cfn-sagemaker-endpointconfig-productionvariant-serverlessconfig-memorysizeinmb"></a>
+The memory size of your serverless endpoint. Valid values are in 1 GB increments: 1024 MB, 2048 MB, 3072 MB, 4096 MB, 5120 MB, or 6144 MB.<br />
+<em>Required</em>: Yes<br />
+<em>Type</em>: Integer<br />
+<em>Minimum</em>: <code>1024</code><br />
+<em>Maximum</em>: <code>6144</code><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement">Replacement</a></p>

@@ -1,0 +1,39 @@
+<h1>AWS::SageMaker::FeatureGroup OnlineStoreConfig<a name="aws-properties-sagemaker-featuregroup-onlinestoreconfig"></a></h1>
+
+<p>Use this to specify the AWS Key Management Service (KMS) Key ID, or <code>KMSKeyId</code>, for at rest data encryption. You can turn <code>OnlineStore</code> on or off by specifying the <code>EnableOnlineStore</code> flag at General Assembly; the default value is <code>False</code>.</p>
+
+<h2>Syntax<a name="aws-properties-sagemaker-featuregroup-onlinestoreconfig-syntax"></a></h2>
+
+<p>To declare this entity in your AWS CloudFormation template, use the following syntax:</p>
+
+<h3>JSON<a name="aws-properties-sagemaker-featuregroup-onlinestoreconfig-syntax.json"></a></h3>
+
+<p><code>
+{
+  "[EnableOnlineStore](#cfn-sagemaker-featuregroup-onlinestoreconfig-enableonlinestore)" : Boolean,
+  "[SecurityConfig](#cfn-sagemaker-featuregroup-onlinestoreconfig-securityconfig)" : OnlineStoreSecurityConfig
+}
+</code></p>
+
+<h3>YAML<a name="aws-properties-sagemaker-featuregroup-onlinestoreconfig-syntax.yaml"></a></h3>
+
+<p><code>
+  [EnableOnlineStore](#cfn-sagemaker-featuregroup-onlinestoreconfig-enableonlinestore): Boolean
+  [SecurityConfig](#cfn-sagemaker-featuregroup-onlinestoreconfig-securityconfig): 
+    OnlineStoreSecurityConfig
+</code></p>
+
+<h2>Properties<a name="aws-properties-sagemaker-featuregroup-onlinestoreconfig-properties"></a></h2>
+
+<p><code>EnableOnlineStore</code>  <a name="cfn-sagemaker-featuregroup-onlinestoreconfig-enableonlinestore"></a>
+Turn <code>OnlineStore</code> off by specifying <code>False</code> for the <code>EnableOnlineStore</code> flag. Turn <code>OnlineStore</code> on by specifying <code>True</code> for the <code>EnableOnlineStore</code> flag.<br />
+The default value is <code>False</code>.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: Boolean<br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement">Replacement</a></p>
+
+<p><code>SecurityConfig</code>  <a name="cfn-sagemaker-featuregroup-onlinestoreconfig-securityconfig"></a>
+Use to specify KMS Key ID (<code>KMSKeyId</code>) for at-rest encryption of your <code>OnlineStore</code>.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: <a href="aws-properties-sagemaker-featuregroup-onlinestoresecurityconfig.md">OnlineStoreSecurityConfig</a><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement">Replacement</a></p>

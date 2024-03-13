@@ -1,0 +1,72 @@
+<h1>AWS::SageMaker::ModelCard EvaluationDetail<a name="aws-properties-sagemaker-modelcard-evaluationdetail"></a></h1>
+
+<p>The evaluation details of the model.</p>
+
+<h2>Syntax<a name="aws-properties-sagemaker-modelcard-evaluationdetail-syntax"></a></h2>
+
+<p>To declare this entity in your AWS CloudFormation template, use the following syntax:</p>
+
+<h3>JSON<a name="aws-properties-sagemaker-modelcard-evaluationdetail-syntax.json"></a></h3>
+
+<p><code>
+{
+  "[Datasets](#cfn-sagemaker-modelcard-evaluationdetail-datasets)" : [ String, ... ],
+  "[EvaluationJobArn](#cfn-sagemaker-modelcard-evaluationdetail-evaluationjobarn)" : String,
+  "[EvaluationObservation](#cfn-sagemaker-modelcard-evaluationdetail-evaluationobservation)" : String,
+  "[Metadata](#cfn-sagemaker-modelcard-evaluationdetail-metadata)" : {Key : Value, ...},
+  "[MetricGroups](#cfn-sagemaker-modelcard-evaluationdetail-metricgroups)" : [ MetricGroup, ... ],
+  "[Name](#cfn-sagemaker-modelcard-evaluationdetail-name)" : String
+}
+</code></p>
+
+<h3>YAML<a name="aws-properties-sagemaker-modelcard-evaluationdetail-syntax.yaml"></a></h3>
+
+<p><code>
+  [Datasets](#cfn-sagemaker-modelcard-evaluationdetail-datasets): 
+    - String
+  [EvaluationJobArn](#cfn-sagemaker-modelcard-evaluationdetail-evaluationjobarn): String
+  [EvaluationObservation](#cfn-sagemaker-modelcard-evaluationdetail-evaluationobservation): String
+  [Metadata](#cfn-sagemaker-modelcard-evaluationdetail-metadata): 
+    Key : Value
+  [MetricGroups](#cfn-sagemaker-modelcard-evaluationdetail-metricgroups): 
+    - MetricGroup
+  [Name](#cfn-sagemaker-modelcard-evaluationdetail-name): String
+</code></p>
+
+<h2>Properties<a name="aws-properties-sagemaker-modelcard-evaluationdetail-properties"></a></h2>
+
+<p><code>Datasets</code>  <a name="cfn-sagemaker-modelcard-evaluationdetail-datasets"></a>
+The location of the datasets used to evaluate the model.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: List of String<br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt">No interruption</a></p>
+
+<p><code>EvaluationJobArn</code>  <a name="cfn-sagemaker-modelcard-evaluationdetail-evaluationjobarn"></a>
+The Amazon Resource Name (ARN) of the evaluation job.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: String<br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt">No interruption</a></p>
+
+<p><code>EvaluationObservation</code>  <a name="cfn-sagemaker-modelcard-evaluationdetail-evaluationobservation"></a>
+Any observations made during the model evaluation.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: String<br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt">No interruption</a></p>
+
+<p><code>Metadata</code>  <a name="cfn-sagemaker-modelcard-evaluationdetail-metadata"></a>
+Additional attributes associated with the evaluation results.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: Map of String<br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt">No interruption</a></p>
+
+<p><code>MetricGroups</code>  <a name="cfn-sagemaker-modelcard-evaluationdetail-metricgroups"></a>
+An evaluation Metric Group object.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: List of <a href="aws-properties-sagemaker-modelcard-metricgroup.md">MetricGroup</a><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt">No interruption</a></p>
+
+<p><code>Name</code>  <a name="cfn-sagemaker-modelcard-evaluationdetail-name"></a>
+The evaluation job name.<br />
+<em>Required</em>: Yes<br />
+<em>Type</em>: String<br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt">No interruption</a></p>

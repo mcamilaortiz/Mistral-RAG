@@ -1,0 +1,48 @@
+<h1>AWS::SageMaker::ModelPackage Bias<a name="aws-properties-sagemaker-modelpackage-bias"></a></h1>
+
+<p>Contains bias metrics for a model.</p>
+
+<h2>Syntax<a name="aws-properties-sagemaker-modelpackage-bias-syntax"></a></h2>
+
+<p>To declare this entity in your AWS CloudFormation template, use the following syntax:</p>
+
+<h3>JSON<a name="aws-properties-sagemaker-modelpackage-bias-syntax.json"></a></h3>
+
+<p><code>
+{
+  "[PostTrainingReport](#cfn-sagemaker-modelpackage-bias-posttrainingreport)" : MetricsSource,
+  "[PreTrainingReport](#cfn-sagemaker-modelpackage-bias-pretrainingreport)" : MetricsSource,
+  "[Report](#cfn-sagemaker-modelpackage-bias-report)" : MetricsSource
+}
+</code></p>
+
+<h3>YAML<a name="aws-properties-sagemaker-modelpackage-bias-syntax.yaml"></a></h3>
+
+<p><code>
+  [PostTrainingReport](#cfn-sagemaker-modelpackage-bias-posttrainingreport): 
+    MetricsSource
+  [PreTrainingReport](#cfn-sagemaker-modelpackage-bias-pretrainingreport): 
+    MetricsSource
+  [Report](#cfn-sagemaker-modelpackage-bias-report): 
+    MetricsSource
+</code></p>
+
+<h2>Properties<a name="aws-properties-sagemaker-modelpackage-bias-properties"></a></h2>
+
+<p><code>PostTrainingReport</code>  <a name="cfn-sagemaker-modelpackage-bias-posttrainingreport"></a>
+The post-training bias report for a model.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: <a href="aws-properties-sagemaker-modelpackage-metricssource.md">MetricsSource</a><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement">Replacement</a></p>
+
+<p><code>PreTrainingReport</code>  <a name="cfn-sagemaker-modelpackage-bias-pretrainingreport"></a>
+The pre-training bias report for a model.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: <a href="aws-properties-sagemaker-modelpackage-metricssource.md">MetricsSource</a><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement">Replacement</a></p>
+
+<p><code>Report</code>  <a name="cfn-sagemaker-modelpackage-bias-report"></a>
+The bias report for a model<br />
+<em>Required</em>: No<br />
+<em>Type</em>: <a href="aws-properties-sagemaker-modelpackage-metricssource.md">MetricsSource</a><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement">Replacement</a></p>

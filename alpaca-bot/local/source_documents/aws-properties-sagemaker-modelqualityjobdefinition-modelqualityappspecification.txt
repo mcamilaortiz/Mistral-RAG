@@ -1,0 +1,89 @@
+<h1>AWS::SageMaker::ModelQualityJobDefinition ModelQualityAppSpecification<a name="aws-properties-sagemaker-modelqualityjobdefinition-modelqualityappspecification"></a></h1>
+
+<p>Container image configuration object for the monitoring job.</p>
+
+<h2>Syntax<a name="aws-properties-sagemaker-modelqualityjobdefinition-modelqualityappspecification-syntax"></a></h2>
+
+<p>To declare this entity in your AWS CloudFormation template, use the following syntax:</p>
+
+<h3>JSON<a name="aws-properties-sagemaker-modelqualityjobdefinition-modelqualityappspecification-syntax.json"></a></h3>
+
+<p><code>
+{
+  "[ContainerArguments](#cfn-sagemaker-modelqualityjobdefinition-modelqualityappspecification-containerarguments)" : [ String, ... ],
+  "[ContainerEntrypoint](#cfn-sagemaker-modelqualityjobdefinition-modelqualityappspecification-containerentrypoint)" : [ String, ... ],
+  "[Environment](#cfn-sagemaker-modelqualityjobdefinition-modelqualityappspecification-environment)" : {Key : Value, ...},
+  "[ImageUri](#cfn-sagemaker-modelqualityjobdefinition-modelqualityappspecification-imageuri)" : String,
+  "[PostAnalyticsProcessorSourceUri](#cfn-sagemaker-modelqualityjobdefinition-modelqualityappspecification-postanalyticsprocessorsourceuri)" : String,
+  "[ProblemType](#cfn-sagemaker-modelqualityjobdefinition-modelqualityappspecification-problemtype)" : String,
+  "[RecordPreprocessorSourceUri](#cfn-sagemaker-modelqualityjobdefinition-modelqualityappspecification-recordpreprocessorsourceuri)" : String
+}
+</code></p>
+
+<h3>YAML<a name="aws-properties-sagemaker-modelqualityjobdefinition-modelqualityappspecification-syntax.yaml"></a></h3>
+
+<p><code>
+  [ContainerArguments](#cfn-sagemaker-modelqualityjobdefinition-modelqualityappspecification-containerarguments): 
+    - String
+  [ContainerEntrypoint](#cfn-sagemaker-modelqualityjobdefinition-modelqualityappspecification-containerentrypoint): 
+    - String
+  [Environment](#cfn-sagemaker-modelqualityjobdefinition-modelqualityappspecification-environment): 
+    Key : Value
+  [ImageUri](#cfn-sagemaker-modelqualityjobdefinition-modelqualityappspecification-imageuri): String
+  [PostAnalyticsProcessorSourceUri](#cfn-sagemaker-modelqualityjobdefinition-modelqualityappspecification-postanalyticsprocessorsourceuri): String
+  [ProblemType](#cfn-sagemaker-modelqualityjobdefinition-modelqualityappspecification-problemtype): String
+  [RecordPreprocessorSourceUri](#cfn-sagemaker-modelqualityjobdefinition-modelqualityappspecification-recordpreprocessorsourceuri): String
+</code></p>
+
+<h2>Properties<a name="aws-properties-sagemaker-modelqualityjobdefinition-modelqualityappspecification-properties"></a></h2>
+
+<p><code>ContainerArguments</code>  <a name="cfn-sagemaker-modelqualityjobdefinition-modelqualityappspecification-containerarguments"></a>
+An array of arguments for the container used to run the monitoring job.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: List of String<br />
+<em>Maximum</em>: <code>50</code><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement">Replacement</a></p>
+
+<p><code>ContainerEntrypoint</code>  <a name="cfn-sagemaker-modelqualityjobdefinition-modelqualityappspecification-containerentrypoint"></a>
+Specifies the entrypoint for a container that the monitoring job runs.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: List of String<br />
+<em>Maximum</em>: <code>100</code><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement">Replacement</a></p>
+
+<p><code>Environment</code>  <a name="cfn-sagemaker-modelqualityjobdefinition-modelqualityappspecification-environment"></a>
+Sets the environment variables in the container that the monitoring job runs.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: Map of String<br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement">Replacement</a></p>
+
+<p><code>ImageUri</code>  <a name="cfn-sagemaker-modelqualityjobdefinition-modelqualityappspecification-imageuri"></a>
+The address of the container image that the monitoring job runs.<br />
+<em>Required</em>: Yes<br />
+<em>Type</em>: String<br />
+<em>Maximum</em>: <code>255</code><br />
+<em>Pattern</em>: <code>.*</code><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement">Replacement</a></p>
+
+<p><code>PostAnalyticsProcessorSourceUri</code>  <a name="cfn-sagemaker-modelqualityjobdefinition-modelqualityappspecification-postanalyticsprocessorsourceuri"></a>
+An Amazon S3 URI to a script that is called after analysis has been performed. Applicable only for the built-in (first party) containers.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: String<br />
+<em>Maximum</em>: <code>1024</code><br />
+<em>Pattern</em>: <code>^(https|s3)://([^/]+)/?(.*)$</code><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement">Replacement</a></p>
+
+<p><code>ProblemType</code>  <a name="cfn-sagemaker-modelqualityjobdefinition-modelqualityappspecification-problemtype"></a>
+The machine learning problem type of the model that the monitoring job monitors.<br />
+<em>Required</em>: Yes<br />
+<em>Type</em>: String<br />
+<em>Allowed values</em>: <code>BinaryClassification | MulticlassClassification | Regression</code><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement">Replacement</a></p>
+
+<p><code>RecordPreprocessorSourceUri</code>  <a name="cfn-sagemaker-modelqualityjobdefinition-modelqualityappspecification-recordpreprocessorsourceuri"></a>
+An Amazon S3 URI to a script that is called per row prior to running analysis. It can base64 decode the payload and convert it into a flatted json so that the built-in container can use the converted data. Applicable only for the built-in (first party) containers.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: String<br />
+<em>Maximum</em>: <code>1024</code><br />
+<em>Pattern</em>: <code>^(https|s3)://([^/]+)/?(.*)$</code><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement">Replacement</a></p>

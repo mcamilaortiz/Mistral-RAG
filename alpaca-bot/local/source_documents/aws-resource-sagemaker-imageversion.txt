@@ -1,0 +1,82 @@
+<h1>AWS::SageMaker::ImageVersion<a name="aws-resource-sagemaker-imageversion"></a></h1>
+
+<p>Creates a version of the SageMaker image specified by <code>ImageName</code>. The version represents the Amazon Container Registry (ECR) container image specified by <code>BaseImage</code>.</p>
+
+<p><strong>Note</strong><br />
+You can use the <code>DependsOn</code> attribute to specify that the creation of a specific resource follows another. You can use it for the following use cases. For more information, see <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-attribute-dependson.html"><code>DependsOn</code> attribute</a>.<br />
+1. <code>DependsOn</code> can be used to establish a parent/child relationship between <code>ImageVersion</code> and <code>Image</code> where the <code>ImageVersion</code> <code>DependsOn</code>the <code>Image</code>.<br />
+2. <code>DependsOn</code> can be used to establish order among <code>ImageVersion</code>s within the same <code>Image</code> namespace. For example, if ImageVersionB <code>DependsOn</code> ImageVersionA and both share the same parent <code>Image</code>, then ImageVersionA is version N and ImageVersionB is N+1.</p>
+
+<h2>Syntax<a name="aws-resource-sagemaker-imageversion-syntax"></a></h2>
+
+<p>To declare this entity in your AWS CloudFormation template, use the following syntax:</p>
+
+<h3>JSON<a name="aws-resource-sagemaker-imageversion-syntax.json"></a></h3>
+
+<p><code>
+{
+  "Type" : "AWS::SageMaker::ImageVersion",
+  "Properties" : {
+      "[BaseImage](#cfn-sagemaker-imageversion-baseimage)" : String,
+      "[ImageName](#cfn-sagemaker-imageversion-imagename)" : String
+    }
+}
+</code></p>
+
+<h3>YAML<a name="aws-resource-sagemaker-imageversion-syntax.yaml"></a></h3>
+
+<p><code>
+Type: AWS::SageMaker::ImageVersion
+Properties: 
+  [BaseImage](#cfn-sagemaker-imageversion-baseimage): String
+  [ImageName](#cfn-sagemaker-imageversion-imagename): String
+</code></p>
+
+<h2>Properties<a name="aws-resource-sagemaker-imageversion-properties"></a></h2>
+
+<p><code>BaseImage</code>  <a name="cfn-sagemaker-imageversion-baseimage"></a>
+The container image that the SageMaker image version is based on.<br />
+<em>Length Constraints</em>: Minimum length of 1. Maximum length of 255.<br />
+<em>Pattern</em>: <code>.*</code><br />
+<em>Required</em>: Yes<br />
+<em>Type</em>: String<br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement">Replacement</a></p>
+
+<p><code>ImageName</code>  <a name="cfn-sagemaker-imageversion-imagename"></a>
+The name of the parent image.<br />
+<em>Length Constraints</em>: Minimum length of 1. Maximum length of 63.<br />
+<em>Pattern</em>: <code>^[a-zA-Z0-9]([-.]?[a-zA-Z0-9]){0,62}$</code><br />
+<em>Required</em>: Yes<br />
+<em>Type</em>: String<br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement">Replacement</a></p>
+
+<h2>Return values<a name="aws-resource-sagemaker-imageversion-return-values"></a></h2>
+
+<h3>Ref<a name="aws-resource-sagemaker-imageversion-return-values-ref"></a></h3>
+
+<p>When you pass the logical ID of this resource to the intrinsic <code>Ref</code> function, <code>Ref</code> returns the ImageVersionArn.</p>
+
+<p>For more information about using the <code>Ref</code> function, see <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference-ref.html">Ref</a>.</p>
+
+<h3>Fn::GetAtt<a name="aws-resource-sagemaker-imageversion-return-values-fn--getatt"></a></h3>
+
+<p>The <code>Fn::GetAtt</code> intrinsic function returns a value for a specified attribute of this type. The following are the available attributes and sample return values.</p>
+
+<p>For more information about using the <code>Fn::GetAtt</code> intrinsic function, see <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference-getatt.html">Fn::GetAtt</a>.</p>
+
+<h4><a name="aws-resource-sagemaker-imageversion-return-values-fn--getatt-fn--getatt"></a></h4>
+
+<p><code>ContainerImage</code>  <a name="ContainerImage-fn::getatt"></a>
+The URI of the container image version referenced by ImageVersion.</p>
+
+<p><code>ImageArn</code>  <a name="ImageArn-fn::getatt"></a>
+The Amazon Resource Name (ARN) of the parent Image.</p>
+
+<p><code>ImageVersionArn</code>  <a name="ImageVersionArn-fn::getatt"></a>
+The Amazon Resource Name (ARN) of the image version.<br />
+<em>Type</em>: String<br />
+<em>Length Constraints</em>: Maximum length of 256.<br />
+<em>Pattern</em>: <code>^arn:aws(-[\w]+)*:sagemaker:.+:[0-9]{12}:image-version/[a-z0-9]([-.]?[a-z0-9])*/[0-9]+$</code></p>
+
+<p><code>Version</code>  <a name="Version-fn::getatt"></a>
+The version of the image.</p>

@@ -1,0 +1,59 @@
+<h1>AWS::SageMaker::MonitoringSchedule MonitoringScheduleConfig<a name="aws-properties-sagemaker-monitoringschedule-monitoringscheduleconfig"></a></h1>
+
+<p>Configures the monitoring schedule and defines the monitoring job.</p>
+
+<h2>Syntax<a name="aws-properties-sagemaker-monitoringschedule-monitoringscheduleconfig-syntax"></a></h2>
+
+<p>To declare this entity in your AWS CloudFormation template, use the following syntax:</p>
+
+<h3>JSON<a name="aws-properties-sagemaker-monitoringschedule-monitoringscheduleconfig-syntax.json"></a></h3>
+
+<p><code>
+{
+  "[MonitoringJobDefinition](#cfn-sagemaker-monitoringschedule-monitoringscheduleconfig-monitoringjobdefinition)" : MonitoringJobDefinition,
+  "[MonitoringJobDefinitionName](#cfn-sagemaker-monitoringschedule-monitoringscheduleconfig-monitoringjobdefinitionname)" : String,
+  "[MonitoringType](#cfn-sagemaker-monitoringschedule-monitoringscheduleconfig-monitoringtype)" : String,
+  "[ScheduleConfig](#cfn-sagemaker-monitoringschedule-monitoringscheduleconfig-scheduleconfig)" : ScheduleConfig
+}
+</code></p>
+
+<h3>YAML<a name="aws-properties-sagemaker-monitoringschedule-monitoringscheduleconfig-syntax.yaml"></a></h3>
+
+<p><code>
+  [MonitoringJobDefinition](#cfn-sagemaker-monitoringschedule-monitoringscheduleconfig-monitoringjobdefinition): 
+    MonitoringJobDefinition
+  [MonitoringJobDefinitionName](#cfn-sagemaker-monitoringschedule-monitoringscheduleconfig-monitoringjobdefinitionname): String
+  [MonitoringType](#cfn-sagemaker-monitoringschedule-monitoringscheduleconfig-monitoringtype): String
+  [ScheduleConfig](#cfn-sagemaker-monitoringschedule-monitoringscheduleconfig-scheduleconfig): 
+    ScheduleConfig
+</code></p>
+
+<h2>Properties<a name="aws-properties-sagemaker-monitoringschedule-monitoringscheduleconfig-properties"></a></h2>
+
+<p><code>MonitoringJobDefinition</code>  <a name="cfn-sagemaker-monitoringschedule-monitoringscheduleconfig-monitoringjobdefinition"></a>
+Defines the monitoring job.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: <a href="aws-properties-sagemaker-monitoringschedule-monitoringjobdefinition.md">MonitoringJobDefinition</a><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt">No interruption</a></p>
+
+<p><code>MonitoringJobDefinitionName</code>  <a name="cfn-sagemaker-monitoringschedule-monitoringscheduleconfig-monitoringjobdefinitionname"></a>
+The name of the monitoring job definition to schedule.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: String<br />
+<em>Minimum</em>: <code>1</code><br />
+<em>Maximum</em>: <code>63</code><br />
+<em>Pattern</em>: <code>^[a-zA-Z0-9](-*[a-zA-Z0-9])*$</code><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt">No interruption</a></p>
+
+<p><code>MonitoringType</code>  <a name="cfn-sagemaker-monitoringschedule-monitoringscheduleconfig-monitoringtype"></a>
+The type of the monitoring job definition to schedule.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: String<br />
+<em>Allowed values</em>: <code>DataQuality | ModelBias | ModelExplainability | ModelQuality</code><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt">No interruption</a></p>
+
+<p><code>ScheduleConfig</code>  <a name="cfn-sagemaker-monitoringschedule-monitoringscheduleconfig-scheduleconfig"></a>
+Configures the monitoring schedule.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: <a href="aws-properties-sagemaker-monitoringschedule-scheduleconfig.md">ScheduleConfig</a><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt">No interruption</a></p>

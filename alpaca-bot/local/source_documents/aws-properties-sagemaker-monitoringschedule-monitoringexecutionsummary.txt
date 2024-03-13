@@ -1,0 +1,94 @@
+<h1>AWS::SageMaker::MonitoringSchedule MonitoringExecutionSummary<a name="aws-properties-sagemaker-monitoringschedule-monitoringexecutionsummary"></a></h1>
+
+<p>Summary of information about the last monitoring job to run.</p>
+
+<h2>Syntax<a name="aws-properties-sagemaker-monitoringschedule-monitoringexecutionsummary-syntax"></a></h2>
+
+<p>To declare this entity in your AWS CloudFormation template, use the following syntax:</p>
+
+<h3>JSON<a name="aws-properties-sagemaker-monitoringschedule-monitoringexecutionsummary-syntax.json"></a></h3>
+
+<p><code>
+{
+  "[CreationTime](#cfn-sagemaker-monitoringschedule-monitoringexecutionsummary-creationtime)" : String,
+  "[EndpointName](#cfn-sagemaker-monitoringschedule-monitoringexecutionsummary-endpointname)" : String,
+  "[FailureReason](#cfn-sagemaker-monitoringschedule-monitoringexecutionsummary-failurereason)" : String,
+  "[LastModifiedTime](#cfn-sagemaker-monitoringschedule-monitoringexecutionsummary-lastmodifiedtime)" : String,
+  "[MonitoringExecutionStatus](#cfn-sagemaker-monitoringschedule-monitoringexecutionsummary-monitoringexecutionstatus)" : String,
+  "[MonitoringScheduleName](#cfn-sagemaker-monitoringschedule-monitoringexecutionsummary-monitoringschedulename)" : String,
+  "[ProcessingJobArn](#cfn-sagemaker-monitoringschedule-monitoringexecutionsummary-processingjobarn)" : String,
+  "[ScheduledTime](#cfn-sagemaker-monitoringschedule-monitoringexecutionsummary-scheduledtime)" : String
+}
+</code></p>
+
+<h3>YAML<a name="aws-properties-sagemaker-monitoringschedule-monitoringexecutionsummary-syntax.yaml"></a></h3>
+
+<p><code>
+  [CreationTime](#cfn-sagemaker-monitoringschedule-monitoringexecutionsummary-creationtime): String
+  [EndpointName](#cfn-sagemaker-monitoringschedule-monitoringexecutionsummary-endpointname): String
+  [FailureReason](#cfn-sagemaker-monitoringschedule-monitoringexecutionsummary-failurereason): String
+  [LastModifiedTime](#cfn-sagemaker-monitoringschedule-monitoringexecutionsummary-lastmodifiedtime): String
+  [MonitoringExecutionStatus](#cfn-sagemaker-monitoringschedule-monitoringexecutionsummary-monitoringexecutionstatus): String
+  [MonitoringScheduleName](#cfn-sagemaker-monitoringschedule-monitoringexecutionsummary-monitoringschedulename): String
+  [ProcessingJobArn](#cfn-sagemaker-monitoringschedule-monitoringexecutionsummary-processingjobarn): String
+  [ScheduledTime](#cfn-sagemaker-monitoringschedule-monitoringexecutionsummary-scheduledtime): String
+</code></p>
+
+<h2>Properties<a name="aws-properties-sagemaker-monitoringschedule-monitoringexecutionsummary-properties"></a></h2>
+
+<p><code>CreationTime</code>  <a name="cfn-sagemaker-monitoringschedule-monitoringexecutionsummary-creationtime"></a>
+The time at which the monitoring job was created.<br />
+<em>Required</em>: Yes<br />
+<em>Type</em>: String<br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt">No interruption</a></p>
+
+<p><code>EndpointName</code>  <a name="cfn-sagemaker-monitoringschedule-monitoringexecutionsummary-endpointname"></a>
+The name of the endpoint used to run the monitoring job.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: String<br />
+<em>Maximum</em>: <code>63</code><br />
+<em>Pattern</em>: <code>^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,62}</code><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt">No interruption</a></p>
+
+<p><code>FailureReason</code>  <a name="cfn-sagemaker-monitoringschedule-monitoringexecutionsummary-failurereason"></a>
+Contains the reason a monitoring job failed, if it failed.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: String<br />
+<em>Maximum</em>: <code>1024</code><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt">No interruption</a></p>
+
+<p><code>LastModifiedTime</code>  <a name="cfn-sagemaker-monitoringschedule-monitoringexecutionsummary-lastmodifiedtime"></a>
+A timestamp that indicates the last time the monitoring job was modified.<br />
+<em>Required</em>: Yes<br />
+<em>Type</em>: String<br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt">No interruption</a></p>
+
+<p><code>MonitoringExecutionStatus</code>  <a name="cfn-sagemaker-monitoringschedule-monitoringexecutionsummary-monitoringexecutionstatus"></a>
+The status of the monitoring job.<br />
+<em>Required</em>: Yes<br />
+<em>Type</em>: String<br />
+<em>Allowed values</em>: <code>Completed | CompletedWithViolations | Failed | InProgress | Pending | Stopped | Stopping</code><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt">No interruption</a></p>
+
+<p><code>MonitoringScheduleName</code>  <a name="cfn-sagemaker-monitoringschedule-monitoringexecutionsummary-monitoringschedulename"></a>
+The name of the monitoring schedule.<br />
+<em>Required</em>: Yes<br />
+<em>Type</em>: String<br />
+<em>Minimum</em>: <code>1</code><br />
+<em>Maximum</em>: <code>63</code><br />
+<em>Pattern</em>: <code>^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,62}$</code><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt">No interruption</a></p>
+
+<p><code>ProcessingJobArn</code>  <a name="cfn-sagemaker-monitoringschedule-monitoringexecutionsummary-processingjobarn"></a>
+The Amazon Resource Name (ARN) of the monitoring job.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: String<br />
+<em>Maximum</em>: <code>256</code><br />
+<em>Pattern</em>: <code>arn:aws[a-z\-]*:sagemaker:[a-z0-9\-]*:[0-9]{12}:processing-job/.*</code><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt">No interruption</a></p>
+
+<p><code>ScheduledTime</code>  <a name="cfn-sagemaker-monitoringschedule-monitoringexecutionsummary-scheduledtime"></a>
+The time the monitoring job was scheduled.<br />
+<em>Required</em>: Yes<br />
+<em>Type</em>: String<br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt">No interruption</a></p>

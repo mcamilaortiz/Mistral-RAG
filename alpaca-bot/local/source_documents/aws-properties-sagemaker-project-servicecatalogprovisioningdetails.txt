@@ -1,0 +1,63 @@
+<h1>AWS::SageMaker::Project ServiceCatalogProvisioningDetails<a name="aws-properties-sagemaker-project-servicecatalogprovisioningdetails"></a></h1>
+
+<p>Details that you specify to provision a service catalog product. For information about service catalog, see <a href="https://docs.aws.amazon.com/servicecatalog/latest/adminguide/introduction.html">What is AWS Service Catalog</a>.</p>
+
+<h2>Syntax<a name="aws-properties-sagemaker-project-servicecatalogprovisioningdetails-syntax"></a></h2>
+
+<p>To declare this entity in your AWS CloudFormation template, use the following syntax:</p>
+
+<h3>JSON<a name="aws-properties-sagemaker-project-servicecatalogprovisioningdetails-syntax.json"></a></h3>
+
+<p><code>
+{
+  "[PathId](#cfn-sagemaker-project-servicecatalogprovisioningdetails-pathid)" : String,
+  "[ProductId](#cfn-sagemaker-project-servicecatalogprovisioningdetails-productid)" : String,
+  "[ProvisioningArtifactId](#cfn-sagemaker-project-servicecatalogprovisioningdetails-provisioningartifactid)" : String,
+  "[ProvisioningParameters](#cfn-sagemaker-project-servicecatalogprovisioningdetails-provisioningparameters)" : [ ProvisioningParameter, ... ]
+}
+</code></p>
+
+<h3>YAML<a name="aws-properties-sagemaker-project-servicecatalogprovisioningdetails-syntax.yaml"></a></h3>
+
+<p><code>
+  [PathId](#cfn-sagemaker-project-servicecatalogprovisioningdetails-pathid): String
+  [ProductId](#cfn-sagemaker-project-servicecatalogprovisioningdetails-productid): String
+  [ProvisioningArtifactId](#cfn-sagemaker-project-servicecatalogprovisioningdetails-provisioningartifactid): String
+  [ProvisioningParameters](#cfn-sagemaker-project-servicecatalogprovisioningdetails-provisioningparameters): 
+    - ProvisioningParameter
+</code></p>
+
+<h2>Properties<a name="aws-properties-sagemaker-project-servicecatalogprovisioningdetails-properties"></a></h2>
+
+<p><code>PathId</code>  <a name="cfn-sagemaker-project-servicecatalogprovisioningdetails-pathid"></a>
+The path identifier of the product. This value is optional if the product has a default path, and required if the product has more than one path.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: String<br />
+<em>Minimum</em>: <code>1</code><br />
+<em>Maximum</em>: <code>100</code><br />
+<em>Pattern</em>: <code>^[a-zA-Z0-9_\-]*</code><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement">Replacement</a></p>
+
+<p><code>ProductId</code>  <a name="cfn-sagemaker-project-servicecatalogprovisioningdetails-productid"></a>
+The ID of the product to provision.<br />
+<em>Required</em>: Yes<br />
+<em>Type</em>: String<br />
+<em>Minimum</em>: <code>1</code><br />
+<em>Maximum</em>: <code>100</code><br />
+<em>Pattern</em>: <code>^[a-zA-Z0-9_\-]*</code><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement">Replacement</a></p>
+
+<p><code>ProvisioningArtifactId</code>  <a name="cfn-sagemaker-project-servicecatalogprovisioningdetails-provisioningartifactid"></a>
+The ID of the provisioning artifact.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: String<br />
+<em>Minimum</em>: <code>1</code><br />
+<em>Maximum</em>: <code>100</code><br />
+<em>Pattern</em>: <code>^[a-zA-Z0-9_\-]*</code><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement">Replacement</a></p>
+
+<p><code>ProvisioningParameters</code>  <a name="cfn-sagemaker-project-servicecatalogprovisioningdetails-provisioningparameters"></a>
+A list of key value pairs that you specify when you provision a product.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: List of <a href="aws-properties-sagemaker-project-provisioningparameter.md">ProvisioningParameter</a><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement">Replacement</a></p>

@@ -1,0 +1,37 @@
+<h1>AWS::SageMaker::EndpointConfig AsyncInferenceNotificationConfig<a name="aws-properties-sagemaker-endpointconfig-asyncinferencenotificationconfig"></a></h1>
+
+<p>Specifies the configuration for notifications of inference results for asynchronous inference.</p>
+
+<h2>Syntax<a name="aws-properties-sagemaker-endpointconfig-asyncinferencenotificationconfig-syntax"></a></h2>
+
+<p>To declare this entity in your AWS CloudFormation template, use the following syntax:</p>
+
+<h3>JSON<a name="aws-properties-sagemaker-endpointconfig-asyncinferencenotificationconfig-syntax.json"></a></h3>
+
+<p><code>
+{
+  "[ErrorTopic](#cfn-sagemaker-endpointconfig-asyncinferencenotificationconfig-errortopic)" : String,
+  "[SuccessTopic](#cfn-sagemaker-endpointconfig-asyncinferencenotificationconfig-successtopic)" : String
+}
+</code></p>
+
+<h3>YAML<a name="aws-properties-sagemaker-endpointconfig-asyncinferencenotificationconfig-syntax.yaml"></a></h3>
+
+<p><code>
+  [ErrorTopic](#cfn-sagemaker-endpointconfig-asyncinferencenotificationconfig-errortopic): String
+  [SuccessTopic](#cfn-sagemaker-endpointconfig-asyncinferencenotificationconfig-successtopic): String
+</code></p>
+
+<h2>Properties<a name="aws-properties-sagemaker-endpointconfig-asyncinferencenotificationconfig-properties"></a></h2>
+
+<p><code>ErrorTopic</code>  <a name="cfn-sagemaker-endpointconfig-asyncinferencenotificationconfig-errortopic"></a>
+Amazon SNS topic to post a notification to when an inference fails. If no topic is provided, no notification is sent on failure.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: String<br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement">Replacement</a></p>
+
+<p><code>SuccessTopic</code>  <a name="cfn-sagemaker-endpointconfig-asyncinferencenotificationconfig-successtopic"></a>
+Amazon SNS topic to post a notification to when an inference completes successfully. If no topic is provided, no notification is sent on success.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: String<br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement">Replacement</a></p>

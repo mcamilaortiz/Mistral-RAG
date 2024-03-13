@@ -1,0 +1,47 @@
+<h1>AWS::SageMaker::ModelQualityJobDefinition DatasetFormat<a name="aws-properties-sagemaker-modelqualityjobdefinition-datasetformat"></a></h1>
+
+<p><a name="aws-properties-sagemaker-modelqualityjobdefinition-datasetformat-description"></a>The <code>DatasetFormat</code> property type specifies Property description not available. for an <a href="aws-resource-sagemaker-modelqualityjobdefinition.md">AWS::SageMaker::ModelQualityJobDefinition</a>.</p>
+
+<h2>Syntax<a name="aws-properties-sagemaker-modelqualityjobdefinition-datasetformat-syntax"></a></h2>
+
+<p>To declare this entity in your AWS CloudFormation template, use the following syntax:</p>
+
+<h3>JSON<a name="aws-properties-sagemaker-modelqualityjobdefinition-datasetformat-syntax.json"></a></h3>
+
+<p><code>
+{
+  "[Csv](#cfn-sagemaker-modelqualityjobdefinition-datasetformat-csv)" : Csv,
+  "[Json](#cfn-sagemaker-modelqualityjobdefinition-datasetformat-json)" : Json,
+  "[Parquet](#cfn-sagemaker-modelqualityjobdefinition-datasetformat-parquet)" : Boolean
+}
+</code></p>
+
+<h3>YAML<a name="aws-properties-sagemaker-modelqualityjobdefinition-datasetformat-syntax.yaml"></a></h3>
+
+<p><code>
+  [Csv](#cfn-sagemaker-modelqualityjobdefinition-datasetformat-csv): 
+    Csv
+  [Json](#cfn-sagemaker-modelqualityjobdefinition-datasetformat-json): 
+    Json
+  [Parquet](#cfn-sagemaker-modelqualityjobdefinition-datasetformat-parquet): Boolean
+</code></p>
+
+<h2>Properties<a name="aws-properties-sagemaker-modelqualityjobdefinition-datasetformat-properties"></a></h2>
+
+<p><code>Csv</code>  <a name="cfn-sagemaker-modelqualityjobdefinition-datasetformat-csv"></a>
+Property description not available.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: <a href="aws-properties-sagemaker-modelqualityjobdefinition-csv.md">Csv</a><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement">Replacement</a></p>
+
+<p><code>Json</code>  <a name="cfn-sagemaker-modelqualityjobdefinition-datasetformat-json"></a>
+Property description not available.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: <a href="aws-properties-sagemaker-modelqualityjobdefinition-json.md">Json</a><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement">Replacement</a></p>
+
+<p><code>Parquet</code>  <a name="cfn-sagemaker-modelqualityjobdefinition-datasetformat-parquet"></a>
+Property description not available.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: Boolean<br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement">Replacement</a></p>

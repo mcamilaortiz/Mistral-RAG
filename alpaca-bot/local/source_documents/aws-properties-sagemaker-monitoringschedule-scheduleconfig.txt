@@ -1,0 +1,48 @@
+<h1>AWS::SageMaker::MonitoringSchedule ScheduleConfig<a name="aws-properties-sagemaker-monitoringschedule-scheduleconfig"></a></h1>
+
+<p>Configuration details about the monitoring schedule.</p>
+
+<h2>Syntax<a name="aws-properties-sagemaker-monitoringschedule-scheduleconfig-syntax"></a></h2>
+
+<p>To declare this entity in your AWS CloudFormation template, use the following syntax:</p>
+
+<h3>JSON<a name="aws-properties-sagemaker-monitoringschedule-scheduleconfig-syntax.json"></a></h3>
+
+<p><code>
+{
+  "[ScheduleExpression](#cfn-sagemaker-monitoringschedule-scheduleconfig-scheduleexpression)" : String
+}
+</code></p>
+
+<h3>YAML<a name="aws-properties-sagemaker-monitoringschedule-scheduleconfig-syntax.yaml"></a></h3>
+
+<p><code>
+  [ScheduleExpression](#cfn-sagemaker-monitoringschedule-scheduleconfig-scheduleexpression): String
+</code></p>
+
+<h2>Properties<a name="aws-properties-sagemaker-monitoringschedule-scheduleconfig-properties"></a></h2>
+
+<p><code>ScheduleExpression</code>  <a name="cfn-sagemaker-monitoringschedule-scheduleconfig-scheduleexpression"></a>
+A cron expression that describes details about the monitoring schedule.<br />
+Currently the only supported cron expressions are:<br />
++ If you want to set the job to start every hour, please use the following:</p>
+
+<p><code>Hourly: cron(0 * ? * * *)</code> 
++ If you want to start the job daily:</p>
+
+<p><code>cron(0 [00-23] ? * * *)</code> 
+For example, the following are valid cron expressions:<br />
++ Daily at noon UTC: <code>cron(0 12 ? * * *)</code> 
++ Daily at midnight UTC: <code>cron(0 0 ? * * *)</code> 
+To support running every 6, 12 hours, the following are also supported:<br />
+ <code>cron(0 [00-23]/[01-24] ? * * *)</code><br />
+For example, the following are valid cron expressions:<br />
++ Every 12 hours, starting at 5pm UTC: <code>cron(0 17/12 ? * * *)</code> 
++ Every two hours starting at midnight: <code>cron(0 0/2 ? * * *)</code> 
++ Even though the cron expression is set to start at 5PM UTC, note that there could be a delay of 0-20 minutes from the actual requested time to run the execution. 
++ We recommend that if you would like a daily schedule, you do not provide this parameter. Amazon SageMaker will pick a time for running every day.
+<em>Required</em>: Yes<br />
+<em>Type</em>: String<br />
+<em>Minimum</em>: <code>1</code><br />
+<em>Maximum</em>: <code>256</code><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt">No interruption</a></p>

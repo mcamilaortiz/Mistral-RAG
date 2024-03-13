@@ -1,0 +1,30 @@
+<h1>AWS::SageMaker::ModelBiasJobDefinition MonitoringOutput<a name="aws-properties-sagemaker-modelbiasjobdefinition-monitoringoutput"></a></h1>
+
+<p>The output object for a monitoring job.</p>
+
+<h2>Syntax<a name="aws-properties-sagemaker-modelbiasjobdefinition-monitoringoutput-syntax"></a></h2>
+
+<p>To declare this entity in your AWS CloudFormation template, use the following syntax:</p>
+
+<h3>JSON<a name="aws-properties-sagemaker-modelbiasjobdefinition-monitoringoutput-syntax.json"></a></h3>
+
+<p><code>
+{
+  "[S3Output](#cfn-sagemaker-modelbiasjobdefinition-monitoringoutput-s3output)" : S3Output
+}
+</code></p>
+
+<h3>YAML<a name="aws-properties-sagemaker-modelbiasjobdefinition-monitoringoutput-syntax.yaml"></a></h3>
+
+<p><code>
+  [S3Output](#cfn-sagemaker-modelbiasjobdefinition-monitoringoutput-s3output): 
+    S3Output
+</code></p>
+
+<h2>Properties<a name="aws-properties-sagemaker-modelbiasjobdefinition-monitoringoutput-properties"></a></h2>
+
+<p><code>S3Output</code>  <a name="cfn-sagemaker-modelbiasjobdefinition-monitoringoutput-s3output"></a>
+The Amazon S3 storage location where the results of a monitoring job are saved.<br />
+<em>Required</em>: Yes<br />
+<em>Type</em>: <a href="aws-properties-sagemaker-modelbiasjobdefinition-s3output.md">S3Output</a><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement">Replacement</a></p>

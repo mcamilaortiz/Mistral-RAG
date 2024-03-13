@@ -1,0 +1,112 @@
+<h1>AWS::SageMaker::EndpointConfig ClarifyInferenceConfig<a name="aws-properties-sagemaker-endpointconfig-clarifyinferenceconfig"></a></h1>
+
+<p><a name="aws-properties-sagemaker-endpointconfig-clarifyinferenceconfig-description"></a>The <code>ClarifyInferenceConfig</code> property type specifies Property description not available. for an <a href="aws-resource-sagemaker-endpointconfig.md">AWS::SageMaker::EndpointConfig</a>.</p>
+
+<h2>Syntax<a name="aws-properties-sagemaker-endpointconfig-clarifyinferenceconfig-syntax"></a></h2>
+
+<p>To declare this entity in your AWS CloudFormation template, use the following syntax:</p>
+
+<h3>JSON<a name="aws-properties-sagemaker-endpointconfig-clarifyinferenceconfig-syntax.json"></a></h3>
+
+<p><code>
+{
+  "[ContentTemplate](#cfn-sagemaker-endpointconfig-clarifyinferenceconfig-contenttemplate)" : String,
+  "[FeatureHeaders](#cfn-sagemaker-endpointconfig-clarifyinferenceconfig-featureheaders)" : [ ClarifyHeader, ... ],
+  "[FeaturesAttribute](#cfn-sagemaker-endpointconfig-clarifyinferenceconfig-featuresattribute)" : String,
+  "[FeatureTypes](#cfn-sagemaker-endpointconfig-clarifyinferenceconfig-featuretypes)" : [ ClarifyFeatureType, ... ],
+  "[LabelAttribute](#cfn-sagemaker-endpointconfig-clarifyinferenceconfig-labelattribute)" : String,
+  "[LabelHeaders](#cfn-sagemaker-endpointconfig-clarifyinferenceconfig-labelheaders)" : [ ClarifyHeader, ... ],
+  "[LabelIndex](#cfn-sagemaker-endpointconfig-clarifyinferenceconfig-labelindex)" : Integer,
+  "[MaxPayloadInMB](#cfn-sagemaker-endpointconfig-clarifyinferenceconfig-maxpayloadinmb)" : Integer,
+  "[MaxRecordCount](#cfn-sagemaker-endpointconfig-clarifyinferenceconfig-maxrecordcount)" : Integer,
+  "[ProbabilityAttribute](#cfn-sagemaker-endpointconfig-clarifyinferenceconfig-probabilityattribute)" : String,
+  "[ProbabilityIndex](#cfn-sagemaker-endpointconfig-clarifyinferenceconfig-probabilityindex)" : Integer
+}
+</code></p>
+
+<h3>YAML<a name="aws-properties-sagemaker-endpointconfig-clarifyinferenceconfig-syntax.yaml"></a></h3>
+
+<p><code>
+  [ContentTemplate](#cfn-sagemaker-endpointconfig-clarifyinferenceconfig-contenttemplate): String
+  [FeatureHeaders](#cfn-sagemaker-endpointconfig-clarifyinferenceconfig-featureheaders): 
+    - ClarifyHeader
+  [FeaturesAttribute](#cfn-sagemaker-endpointconfig-clarifyinferenceconfig-featuresattribute): String
+  [FeatureTypes](#cfn-sagemaker-endpointconfig-clarifyinferenceconfig-featuretypes): 
+    - ClarifyFeatureType
+  [LabelAttribute](#cfn-sagemaker-endpointconfig-clarifyinferenceconfig-labelattribute): String
+  [LabelHeaders](#cfn-sagemaker-endpointconfig-clarifyinferenceconfig-labelheaders): 
+    - ClarifyHeader
+  [LabelIndex](#cfn-sagemaker-endpointconfig-clarifyinferenceconfig-labelindex): Integer
+  [MaxPayloadInMB](#cfn-sagemaker-endpointconfig-clarifyinferenceconfig-maxpayloadinmb): Integer
+  [MaxRecordCount](#cfn-sagemaker-endpointconfig-clarifyinferenceconfig-maxrecordcount): Integer
+  [ProbabilityAttribute](#cfn-sagemaker-endpointconfig-clarifyinferenceconfig-probabilityattribute): String
+  [ProbabilityIndex](#cfn-sagemaker-endpointconfig-clarifyinferenceconfig-probabilityindex): Integer
+</code></p>
+
+<h2>Properties<a name="aws-properties-sagemaker-endpointconfig-clarifyinferenceconfig-properties"></a></h2>
+
+<p><code>ContentTemplate</code>  <a name="cfn-sagemaker-endpointconfig-clarifyinferenceconfig-contenttemplate"></a>
+Property description not available.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: String<br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement">Replacement</a></p>
+
+<p><code>FeatureHeaders</code>  <a name="cfn-sagemaker-endpointconfig-clarifyinferenceconfig-featureheaders"></a>
+Property description not available.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: List of <a href="aws-properties-sagemaker-endpointconfig-clarifyheader.md">ClarifyHeader</a><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement">Replacement</a></p>
+
+<p><code>FeaturesAttribute</code>  <a name="cfn-sagemaker-endpointconfig-clarifyinferenceconfig-featuresattribute"></a>
+Property description not available.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: String<br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement">Replacement</a></p>
+
+<p><code>FeatureTypes</code>  <a name="cfn-sagemaker-endpointconfig-clarifyinferenceconfig-featuretypes"></a>
+Property description not available.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: List of <a href="aws-properties-sagemaker-endpointconfig-clarifyfeaturetype.md">ClarifyFeatureType</a><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement">Replacement</a></p>
+
+<p><code>LabelAttribute</code>  <a name="cfn-sagemaker-endpointconfig-clarifyinferenceconfig-labelattribute"></a>
+Property description not available.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: String<br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement">Replacement</a></p>
+
+<p><code>LabelHeaders</code>  <a name="cfn-sagemaker-endpointconfig-clarifyinferenceconfig-labelheaders"></a>
+Property description not available.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: List of <a href="aws-properties-sagemaker-endpointconfig-clarifyheader.md">ClarifyHeader</a><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement">Replacement</a></p>
+
+<p><code>LabelIndex</code>  <a name="cfn-sagemaker-endpointconfig-clarifyinferenceconfig-labelindex"></a>
+Property description not available.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: Integer<br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement">Replacement</a></p>
+
+<p><code>MaxPayloadInMB</code>  <a name="cfn-sagemaker-endpointconfig-clarifyinferenceconfig-maxpayloadinmb"></a>
+Property description not available.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: Integer<br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement">Replacement</a></p>
+
+<p><code>MaxRecordCount</code>  <a name="cfn-sagemaker-endpointconfig-clarifyinferenceconfig-maxrecordcount"></a>
+Property description not available.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: Integer<br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement">Replacement</a></p>
+
+<p><code>ProbabilityAttribute</code>  <a name="cfn-sagemaker-endpointconfig-clarifyinferenceconfig-probabilityattribute"></a>
+Property description not available.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: String<br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement">Replacement</a></p>
+
+<p><code>ProbabilityIndex</code>  <a name="cfn-sagemaker-endpointconfig-clarifyinferenceconfig-probabilityindex"></a>
+Property description not available.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: Integer<br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement">Replacement</a></p>

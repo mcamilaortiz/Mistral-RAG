@@ -1,0 +1,39 @@
+<h1>AWS::SageMaker::Endpoint DeploymentConfig<a name="aws-properties-sagemaker-endpoint-deploymentconfig"></a></h1>
+
+<p>The deployment configuration for an endpoint, which contains the desired deployment strategy and rollback configurations.</p>
+
+<h2>Syntax<a name="aws-properties-sagemaker-endpoint-deploymentconfig-syntax"></a></h2>
+
+<p>To declare this entity in your AWS CloudFormation template, use the following syntax:</p>
+
+<h3>JSON<a name="aws-properties-sagemaker-endpoint-deploymentconfig-syntax.json"></a></h3>
+
+<p><code>
+{
+  "[AutoRollbackConfiguration](#cfn-sagemaker-endpoint-deploymentconfig-autorollbackconfiguration)" : AutoRollbackConfig,
+  "[BlueGreenUpdatePolicy](#cfn-sagemaker-endpoint-deploymentconfig-bluegreenupdatepolicy)" : BlueGreenUpdatePolicy
+}
+</code></p>
+
+<h3>YAML<a name="aws-properties-sagemaker-endpoint-deploymentconfig-syntax.yaml"></a></h3>
+
+<p><code>
+  [AutoRollbackConfiguration](#cfn-sagemaker-endpoint-deploymentconfig-autorollbackconfiguration): 
+    AutoRollbackConfig
+  [BlueGreenUpdatePolicy](#cfn-sagemaker-endpoint-deploymentconfig-bluegreenupdatepolicy): 
+    BlueGreenUpdatePolicy
+</code></p>
+
+<h2>Properties<a name="aws-properties-sagemaker-endpoint-deploymentconfig-properties"></a></h2>
+
+<p><code>AutoRollbackConfiguration</code>  <a name="cfn-sagemaker-endpoint-deploymentconfig-autorollbackconfiguration"></a>
+Automatic rollback configuration for handling endpoint deployment failures and recovery.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: <a href="aws-properties-sagemaker-endpoint-autorollbackconfig.md">AutoRollbackConfig</a><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt">No interruption</a></p>
+
+<p><code>BlueGreenUpdatePolicy</code>  <a name="cfn-sagemaker-endpoint-deploymentconfig-bluegreenupdatepolicy"></a>
+Update policy for a blue/green deployment. If this update policy is specified, SageMaker creates a new fleet during the deployment while maintaining the old fleet. SageMaker flips traffic to the new fleet according to the specified traffic routing configuration. Only one update policy should be used in the deployment configuration. If no update policy is specified, SageMaker uses a blue/green deployment strategy with all at once traffic shifting by default.<br />
+<em>Required</em>: Yes<br />
+<em>Type</em>: <a href="aws-properties-sagemaker-endpoint-bluegreenupdatepolicy.md">BlueGreenUpdatePolicy</a><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt">No interruption</a></p>

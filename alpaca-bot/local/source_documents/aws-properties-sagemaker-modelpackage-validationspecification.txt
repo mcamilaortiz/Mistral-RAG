@@ -1,0 +1,42 @@
+<h1>AWS::SageMaker::ModelPackage ValidationSpecification<a name="aws-properties-sagemaker-modelpackage-validationspecification"></a></h1>
+
+<p>Specifies batch transform jobs that SageMaker runs to validate your model package.</p>
+
+<h2>Syntax<a name="aws-properties-sagemaker-modelpackage-validationspecification-syntax"></a></h2>
+
+<p>To declare this entity in your AWS CloudFormation template, use the following syntax:</p>
+
+<h3>JSON<a name="aws-properties-sagemaker-modelpackage-validationspecification-syntax.json"></a></h3>
+
+<p><code>
+{
+  "[ValidationProfiles](#cfn-sagemaker-modelpackage-validationspecification-validationprofiles)" : [ ValidationProfile, ... ],
+  "[ValidationRole](#cfn-sagemaker-modelpackage-validationspecification-validationrole)" : String
+}
+</code></p>
+
+<h3>YAML<a name="aws-properties-sagemaker-modelpackage-validationspecification-syntax.yaml"></a></h3>
+
+<p><code>
+  [ValidationProfiles](#cfn-sagemaker-modelpackage-validationspecification-validationprofiles): 
+    - ValidationProfile
+  [ValidationRole](#cfn-sagemaker-modelpackage-validationspecification-validationrole): String
+</code></p>
+
+<h2>Properties<a name="aws-properties-sagemaker-modelpackage-validationspecification-properties"></a></h2>
+
+<p><code>ValidationProfiles</code>  <a name="cfn-sagemaker-modelpackage-validationspecification-validationprofiles"></a>
+An array of <code>ModelPackageValidationProfile</code> objects, each of which specifies a batch transform job that SageMaker runs to validate your model package.<br />
+<em>Required</em>: Yes<br />
+<em>Type</em>: List of <a href="aws-properties-sagemaker-modelpackage-validationprofile.md">ValidationProfile</a><br />
+<em>Maximum</em>: <code>1</code><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement">Replacement</a></p>
+
+<p><code>ValidationRole</code>  <a name="cfn-sagemaker-modelpackage-validationspecification-validationrole"></a>
+The IAM roles to be used for the validation of the model package.<br />
+<em>Required</em>: Yes<br />
+<em>Type</em>: String<br />
+<em>Minimum</em>: <code>20</code><br />
+<em>Maximum</em>: <code>2048</code><br />
+<em>Pattern</em>: <code>^arn:aws[a-z\-]*:iam::\d{12}:role/?[a-zA-Z_0-9+=,.@\-_/]+$</code><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement">Replacement</a></p>

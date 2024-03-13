@@ -1,0 +1,38 @@
+<h1>AWS::SageMaker::ModelCard ObjectiveFunction<a name="aws-properties-sagemaker-modelcard-objectivefunction"></a></h1>
+
+<p>The function that is optimized during model training.</p>
+
+<h2>Syntax<a name="aws-properties-sagemaker-modelcard-objectivefunction-syntax"></a></h2>
+
+<p>To declare this entity in your AWS CloudFormation template, use the following syntax:</p>
+
+<h3>JSON<a name="aws-properties-sagemaker-modelcard-objectivefunction-syntax.json"></a></h3>
+
+<p><code>
+{
+  "[Function](#cfn-sagemaker-modelcard-objectivefunction-function)" : Function,
+  "[Notes](#cfn-sagemaker-modelcard-objectivefunction-notes)" : String
+}
+</code></p>
+
+<h3>YAML<a name="aws-properties-sagemaker-modelcard-objectivefunction-syntax.yaml"></a></h3>
+
+<p><code>
+  [Function](#cfn-sagemaker-modelcard-objectivefunction-function): 
+    Function
+  [Notes](#cfn-sagemaker-modelcard-objectivefunction-notes): String
+</code></p>
+
+<h2>Properties<a name="aws-properties-sagemaker-modelcard-objectivefunction-properties"></a></h2>
+
+<p><code>Function</code>  <a name="cfn-sagemaker-modelcard-objectivefunction-function"></a>
+A function object that details optimization direction, metric, and additional descriptions.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: <a href="aws-properties-sagemaker-modelcard-function.md">Function</a><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt">No interruption</a></p>
+
+<p><code>Notes</code>  <a name="cfn-sagemaker-modelcard-objectivefunction-notes"></a>
+Notes about the object function, including other considerations for possible objective functions.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: String<br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt">No interruption</a></p>

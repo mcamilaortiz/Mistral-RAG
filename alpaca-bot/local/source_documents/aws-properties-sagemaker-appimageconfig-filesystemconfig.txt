@@ -1,0 +1,51 @@
+<h1>AWS::SageMaker::AppImageConfig FileSystemConfig<a name="aws-properties-sagemaker-appimageconfig-filesystemconfig"></a></h1>
+
+<p>The Amazon Elastic File System (EFS) storage configuration for a SageMaker image.</p>
+
+<h2>Syntax<a name="aws-properties-sagemaker-appimageconfig-filesystemconfig-syntax"></a></h2>
+
+<p>To declare this entity in your AWS CloudFormation template, use the following syntax:</p>
+
+<h3>JSON<a name="aws-properties-sagemaker-appimageconfig-filesystemconfig-syntax.json"></a></h3>
+
+<p><code>
+{
+  "[DefaultGid](#cfn-sagemaker-appimageconfig-filesystemconfig-defaultgid)" : Integer,
+  "[DefaultUid](#cfn-sagemaker-appimageconfig-filesystemconfig-defaultuid)" : Integer,
+  "[MountPath](#cfn-sagemaker-appimageconfig-filesystemconfig-mountpath)" : String
+}
+</code></p>
+
+<h3>YAML<a name="aws-properties-sagemaker-appimageconfig-filesystemconfig-syntax.yaml"></a></h3>
+
+<p><code>
+  [DefaultGid](#cfn-sagemaker-appimageconfig-filesystemconfig-defaultgid): Integer
+  [DefaultUid](#cfn-sagemaker-appimageconfig-filesystemconfig-defaultuid): Integer
+  [MountPath](#cfn-sagemaker-appimageconfig-filesystemconfig-mountpath): String
+</code></p>
+
+<h2>Properties<a name="aws-properties-sagemaker-appimageconfig-filesystemconfig-properties"></a></h2>
+
+<p><code>DefaultGid</code>  <a name="cfn-sagemaker-appimageconfig-filesystemconfig-defaultgid"></a>
+The default POSIX group ID (GID). If not specified, defaults to <code>100</code>.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: Integer<br />
+<em>Minimum</em>: <code>0</code><br />
+<em>Maximum</em>: <code>65535</code><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt">No interruption</a></p>
+
+<p><code>DefaultUid</code>  <a name="cfn-sagemaker-appimageconfig-filesystemconfig-defaultuid"></a>
+The default POSIX user ID (UID). If not specified, defaults to <code>1000</code>.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: Integer<br />
+<em>Minimum</em>: <code>0</code><br />
+<em>Maximum</em>: <code>65535</code><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt">No interruption</a></p>
+
+<p><code>MountPath</code>  <a name="cfn-sagemaker-appimageconfig-filesystemconfig-mountpath"></a>
+The path within the image to mount the user's EFS home directory. The directory should be empty. If not specified, defaults to <em>/home/sagemaker-user</em>.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: String<br />
+<em>Maximum</em>: <code>1024</code><br />
+<em>Pattern</em>: <code>^\/.*</code><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt">No interruption</a></p>

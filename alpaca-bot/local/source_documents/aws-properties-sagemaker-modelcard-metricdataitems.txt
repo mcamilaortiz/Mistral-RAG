@@ -1,0 +1,77 @@
+<h1>AWS::SageMaker::ModelCard MetricDataItems<a name="aws-properties-sagemaker-modelcard-metricdataitems"></a></h1>
+
+<p>Metric data. The <code>type</code> determines the data types that you specify for <code>value</code>, <code>XAxisName</code> and <code>YAxisName</code>. For information about specifying values for metrics, see <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/model-cards.html#model-cards-json-schema">model card JSON schema</a>.</p>
+
+<h2>Syntax<a name="aws-properties-sagemaker-modelcard-metricdataitems-syntax"></a></h2>
+
+<p>To declare this entity in your AWS CloudFormation template, use the following syntax:</p>
+
+<h3>JSON<a name="aws-properties-sagemaker-modelcard-metricdataitems-syntax.json"></a></h3>
+
+<p><code>
+{
+  "[Name](#cfn-sagemaker-modelcard-metricdataitems-name)" : String,
+  "[Notes](#cfn-sagemaker-modelcard-metricdataitems-notes)" : String,
+  "[Type](#cfn-sagemaker-modelcard-metricdataitems-type)" : String,
+  "[Value](#cfn-sagemaker-modelcard-metricdataitems-value)" : Json,
+  "[XAxisName](#cfn-sagemaker-modelcard-metricdataitems-xaxisname)" : [ String, ... ],
+  "[YAxisName](#cfn-sagemaker-modelcard-metricdataitems-yaxisname)" : [ String, ... ]
+}
+</code></p>
+
+<h3>YAML<a name="aws-properties-sagemaker-modelcard-metricdataitems-syntax.yaml"></a></h3>
+
+<p><code>
+  [Name](#cfn-sagemaker-modelcard-metricdataitems-name): String
+  [Notes](#cfn-sagemaker-modelcard-metricdataitems-notes): String
+  [Type](#cfn-sagemaker-modelcard-metricdataitems-type): String
+  [Value](#cfn-sagemaker-modelcard-metricdataitems-value): Json
+  [XAxisName](#cfn-sagemaker-modelcard-metricdataitems-xaxisname): 
+    - String
+  [YAxisName](#cfn-sagemaker-modelcard-metricdataitems-yaxisname): 
+    - String
+</code></p>
+
+<h2>Properties<a name="aws-properties-sagemaker-modelcard-metricdataitems-properties"></a></h2>
+
+<p><code>Name</code>  <a name="cfn-sagemaker-modelcard-metricdataitems-name"></a>
+The names of the metrics.<br />
+<em>Required</em>: Yes<br />
+<em>Type</em>: String<br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt">No interruption</a></p>
+
+<p><code>Notes</code>  <a name="cfn-sagemaker-modelcard-metricdataitems-notes"></a>
+Any notes to add to the metric.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: String<br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt">No interruption</a></p>
+
+<p><code>Type</code>  <a name="cfn-sagemaker-modelcard-metricdataitems-type"></a>
+You must specify one of the following data types:<br />
++ Bar Chart – <code>bar_char</code>
++ Boolean – <code>boolean</code>
++ Linear Graph – <code>linear_graph</code>
++ Matrix – <code>matrix</code>
++ Number – <code>number</code>
++ String – <code>string</code>
+<em>Required</em>: Yes<br />
+<em>Type</em>: String<br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt">No interruption</a></p>
+
+<p><code>Value</code>  <a name="cfn-sagemaker-modelcard-metricdataitems-value"></a>
+The datatype of the metric. The metric's <em>value</em> must be compatible with the metric's <em>type</em>.<br />
+<em>Required</em>: Yes<br />
+<em>Type</em>: Json<br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt">No interruption</a></p>
+
+<p><code>XAxisName</code>  <a name="cfn-sagemaker-modelcard-metricdataitems-xaxisname"></a>
+The name of the x axis.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: List of String<br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt">No interruption</a></p>
+
+<p><code>YAxisName</code>  <a name="cfn-sagemaker-modelcard-metricdataitems-yaxisname"></a>
+The name of the y axis.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: List of String<br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt">No interruption</a></p>

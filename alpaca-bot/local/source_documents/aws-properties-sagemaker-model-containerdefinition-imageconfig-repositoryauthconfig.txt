@@ -1,0 +1,32 @@
+<h1>AWS::SageMaker::Model RepositoryAuthConfig<a name="aws-properties-sagemaker-model-containerdefinition-imageconfig-repositoryauthconfig"></a></h1>
+
+<p>Specifies an authentication configuration for the private docker registry where your model image is hosted. Specify a value for this property only if you specified <code>Vpc</code> as the value for the <code>RepositoryAccessMode</code> field of the <code>ImageConfig</code> object that you passed to a call to <code>CreateModel</code> and the private Docker registry where the model image is hosted requires authentication.</p>
+
+<h2>Syntax<a name="aws-properties-sagemaker-model-containerdefinition-imageconfig-repositoryauthconfig-syntax"></a></h2>
+
+<p>To declare this entity in your AWS CloudFormation template, use the following syntax:</p>
+
+<h3>JSON<a name="aws-properties-sagemaker-model-containerdefinition-imageconfig-repositoryauthconfig-syntax.json"></a></h3>
+
+<p><code>
+{
+  "[RepositoryCredentialsProviderArn](#cfn-sagemaker-model-containerdefinition-imageconfig-repositoryauthconfig-repositorycredentialsproviderarn)" : String
+}
+</code></p>
+
+<h3>YAML<a name="aws-properties-sagemaker-model-containerdefinition-imageconfig-repositoryauthconfig-syntax.yaml"></a></h3>
+
+<p><code>
+  [RepositoryCredentialsProviderArn](#cfn-sagemaker-model-containerdefinition-imageconfig-repositoryauthconfig-repositorycredentialsproviderarn): String
+</code></p>
+
+<h2>Properties<a name="aws-properties-sagemaker-model-containerdefinition-imageconfig-repositoryauthconfig-properties"></a></h2>
+
+<p><code>RepositoryCredentialsProviderArn</code>  <a name="cfn-sagemaker-model-containerdefinition-imageconfig-repositoryauthconfig-repositorycredentialsproviderarn"></a>
+The Amazon Resource Name (ARN) of an AWS Lambda function that provides credentials to authenticate to the private Docker registry where your model image is hosted. For information about how to create an AWS Lambda function, see <a href="https://docs.aws.amazon.com/lambda/latest/dg/getting-started-create-function.html">Create a Lambda function with the console</a> in the * AWS Lambda Developer Guide<em>.<br />
+*Required</em>: Yes<br />
+<em>Type</em>: String<br />
+<em>Minimum</em>: <code>1</code><br />
+<em>Maximum</em>: <code>2048</code><br />
+<em>Pattern</em>: <code>.*</code><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement">Replacement</a></p>

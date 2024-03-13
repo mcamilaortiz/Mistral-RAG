@@ -1,0 +1,217 @@
+<h1>SageMaker geospatial capabilities roles<a name="sagemaker-geospatial-roles"></a></h1>
+
+<p>As a managed service, Amazon SageMaker geospatial capabilities perform operations on your behalf on the AWS hardware that is managed by SageMaker. It can perform only operations that the user permits.</p>
+
+<p>A user can grant these permissions with an IAM role (referred to as an execution role). </p>
+
+<p>To create and use a locally available execution role, you can use the following procedures.</p>
+
+<h2>Create an execution role<a name="sagemaker-geospatial-roles-create-execution-role"></a></h2>
+
+<p>To work with SageMaker geospatial capabilities you need to setup a user role and an execution role. A user role is an AWS identity with permission policies that determine what the user can and can not do within AWS. An execution role is an IAM role that grants the service permission to access your AWS resources. An execution role consists of permissions and trust policy. The trust policy specifies which principals have the permission to assume the role.</p>
+
+<p>Use the following procedure to create an execution role with the IAM managed policy, <code>AmazonSageMakerGeospatialFullAccess</code>, attached. If your use case requires more granular permissions, use other sections of this guide to create an execution role that meets your business needs.</p>
+
+<p><strong>Important</strong><br />
+The IAM managed policy, <code>AmazonSageMakerGeospatialFullAccess</code>, used in the following procedure only grants the execution role permission to perform certain Amazon S3 actions on buckets or objects with <code>SageMaker</code>, <code>Sagemaker</code>, <code>sagemaker</code>, or <code>aws-glue</code> in the name. To learn how to add an additional policy to an execution role to grant it access to other Amazon S3 buckets and objects, see <a href="sagemaker-roles.md#sagemaker-roles-get-execution-role-s3">Add Additional Amazon S3 Permissions to a SageMaker Execution Role</a>.</p>
+
+<p><strong>To create a new role</strong></p>
+
+<ol>
+<li><p>Open the IAM console at <a href="https://console.aws.amazon.com/iam/">https://console.aws.amazon.com/iam/</a>.</p></li>
+<li><p>Select <strong>Roles</strong> and then select <strong>Create role</strong>.</p></li>
+<li><p>Select <strong>SageMaker</strong>.</p></li>
+<li><p>Select <strong>Next: Permissions</strong>.</p></li>
+<li><p>The IAM managed policy, <code>AmazonSageMakerGeospatialFullAccess</code> is automatically attached to this role. To see the permissions included in this policy, select the sideways arrow next to the policy name. Select <strong>Next: Tags</strong>.</p></li>
+<li><p>(Optional) Add tags and select <strong>Next: Review</strong>.</p></li>
+<li><p>Give the role a name in the text field under <strong>Role name</strong> and select <strong>Create role</strong>.</p></li>
+<li><p>In the <strong>Roles</strong> section of the IAM console, select the role you just created. If needed, use the text box to search for the role using the role name you entered in step 7.</p></li>
+<li><p>On the role summary page, make note of the ARN.</p></li>
+</ol>
+
+<h2>Passing Roles<a name="sagemaker-geospatial-roles-pass-role"></a></h2>
+
+<p>Actions like passing a role between services are a common function within SageMaker. You can find more details on <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/list_amazonsagemaker.html#amazonsagemaker-actions-as-permissions">Actions, Resources, and Condition Keys for SageMaker</a> in the <em>IAM User Guide</em>.</p>
+
+<p>You pass the role (<code>iam:PassRole</code>) when making these API calls: <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_geospatial_StartEarthObservationJob.html">https://docs.aws.amazon.com/sagemaker/latest/APIReference/API<em>geospatial</em>StartEarthObservationJob.html</a>, <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_geospatial_StartVectorEnrichmentJob.html">https://docs.aws.amazon.com/sagemaker/latest/APIReference/API<em>geospatial</em>StartVectorEnrichmentJob.html</a>, <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_geospatial_ExportEarthObservationJob.html">https://docs.aws.amazon.com/sagemaker/latest/APIReference/API<em>geospatial</em>ExportEarthObservationJob.html</a>, <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_geospatial_ExportVectorEnrichmentJob.html">https://docs.aws.amazon.com/sagemaker/latest/APIReference/API<em>geospatial</em>ExportVectorEnrichmentJob.html</a>.</p>
+
+<p>You attach the following trust policy to the IAM role, which grants SageMaker principal permissions to assume the role, and is the same for all of the execution roles: </p>
+
+<p><code>
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Principal": {
+                "Service": [
+                    "sagemaker-geospatial.amazonaws.com"
+                ]
+            },
+            "Action": "sts:AssumeRole"
+        }
+    ]
+}
+</code></p>
+
+<p>The permissions that you need to grant to the role may vary depending on the API that you call. The following sections explain these permissions.</p>
+
+<p><strong>Note</strong><br />
+Instead of managing permissions by crafting a permission policy, you can use the AWS managed <code>AmazonSageMakerFullAccess</code> permission policy. The permissions in this policy are fairly broad, to allow for any actions you might want to perform in SageMaker. For a listing of the policy including information about the reasons for adding many of the permissions, see <a href="security-iam-awsmanpol.md#security-iam-awsmanpol-AmazonSageMakerFullAccess">AWS managed policy: AmazonSageMakerFullAccess</a>. If you prefer to create custom policies and manage permissions to scope the permissions only to the actions you need to perform with the execution role, see the following topics.</p>
+
+<p><strong>Important</strong><br />
+If you're running into issues, see <a href="security_iam_troubleshoot.md">Troubleshooting Amazon SageMaker Identity and Access</a>.</p>
+
+<p>For more information about IAM roles, see <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html">IAM Roles</a> in the <em>IAM User Guide</em>.</p>
+
+<p><strong>Topics</strong>
++ <a href="#sagemaker-geospatial-roles-create-execution-role">Create an execution role</a>
++ <a href="#sagemaker-geospatial-roles-pass-role">Passing Roles</a>
++ <a href="#sagemaker-roles-start-eoj-perms"><code>StartEarthObservationJob</code> API: Execution Role Permissions</a>
++ <a href="#sagemaker-roles-start-vej-perms"><code>StartVectorEnrichmentJob</code> API: Execution Role Permissions</a>
++ <a href="#sagemaker-roles-export-eoj-perms"><code>ExportEarthObservationJob</code> API: Execution Role Permissions</a>
++ <a href="#sagemaker-roles-export-vej-perms"><code>ExportVectorEnrichmentJob</code> API: Execution Role Permissions</a></p>
+
+<h2><code>StartEarthObservationJob</code> API: Execution Role Permissions<a name="sagemaker-roles-start-eoj-perms"></a></h2>
+
+<p>For an execution role that you can pass in a <code>StartEarthObservationJob</code> API request, you can attach the following minimum permission policy to the role:</p>
+
+<p>```
+{
+            {
+                "Version": "2012-10-17",
+                "Statement": [
+                  {
+                      "Effect": "Allow",
+                      "Action": [
+                          "s3:AbortMultipartUpload",
+                          "s3:PutObject",
+                          "s3:GetObject",
+                          "s3:ListBucketMultipartUploads"
+                      ],
+                      "Resource": [
+                        "arn:aws:s3:::<em>SageMaker</em>",
+                        "arn:aws:s3:::<em>Sagemaker</em>",
+                        "arn:aws:s3:::<em>sagemaker</em>"
+                      ]
+                  },
+                  {
+                    "Effect": "Allow",
+                    "Action": "sagemaker-geospatial:GetEarthObservationJob",
+                    "Resource":  "arn:aws:sagemaker-geospatial:<em>:</em>:earth-observation-job/*"
+                  }
+                ]
+              }</p>
+
+<p>}
+```</p>
+
+<p>If your input Amazon S3 bucket is encrypted using server-side encryption with an AWS KMS managed key (SSE-KMS), see <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/bucket-key.html">Using Amazon S3 Bucket Keys</a> for more information.</p>
+
+<h2><code>StartVectorEnrichmentJob</code> API: Execution Role Permissions<a name="sagemaker-roles-start-vej-perms"></a></h2>
+
+<p>For an execution role that you can pass in a <code>StartVectorEnrichmentJob</code> API request, you can attach the following minimum permission policy to the role:</p>
+
+<p>```
+{
+            {
+                "Version": "2012-10-17",
+                "Statement": [
+                  {
+                      "Effect": "Allow",
+                      "Action": [
+                          "s3:AbortMultipartUpload",
+                          "s3:PutObject",
+                          "s3:GetObject",
+                          "s3:ListBucketMultipartUploads"
+                      ],
+                      "Resource": [
+                        "arn:aws:s3:::<em>SageMaker</em>",
+                        "arn:aws:s3:::<em>Sagemaker</em>",
+                        "arn:aws:s3:::<em>sagemaker</em>"
+                      ]
+                  },
+                  {
+                    "Effect": "Allow",
+                    "Action": "sagemaker-geospatial:GetVectorEnrichmentJob",
+                    "Resource":  "arn:aws:sagemaker-geospatial:<em>:</em>:vector-enrichment-job/*"
+                  }
+                ]
+              }</p>
+
+<p>}
+```</p>
+
+<p>If your input Amazon S3 bucket is encrypted using server-side encryption with an AWS KMS managed key (SSE-KMS), see <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/bucket-key.html">Using Amazon S3 Bucket Keys</a> for more information.</p>
+
+<h2><code>ExportEarthObservationJob</code> API: Execution Role Permissions<a name="sagemaker-roles-export-eoj-perms"></a></h2>
+
+<p>For an execution role that you can pass in a <code>ExportEarthObservationJob</code> API request, you can attach the following minimum permission policy to the role:</p>
+
+<p>```
+{
+            {
+                "Version": "2012-10-17",
+                "Statement": [
+                  {
+                      "Effect": "Allow",
+                      "Action": [
+                          "s3:AbortMultipartUpload",
+                          "s3:PutObject",
+                          "s3:GetObject",
+                          "s3:ListBucketMultipartUploads"
+                      ],
+                      "Resource": [
+                        "arn:aws:s3:::<em>SageMaker</em>",
+                        "arn:aws:s3:::<em>Sagemaker</em>",
+                        "arn:aws:s3:::<em>sagemaker</em>"
+                      ]
+                  },
+                  {
+                    "Effect": "Allow",
+                    "Action": "sagemaker-geospatial:GetEarthObservationJob",
+                    "Resource":  "arn:aws:sagemaker-geospatial:<em>:</em>:earth-observation-job/*"
+                  }
+                ]
+              }</p>
+
+<p>}
+```</p>
+
+<p>If your input Amazon S3 bucket is encrypted using server-side encryption with an AWS KMS managed key (SSE-KMS), see <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/bucket-key.html">Using Amazon S3 Bucket Keys</a> for more information.</p>
+
+<h2><code>ExportVectorEnrichmentJob</code> API: Execution Role Permissions<a name="sagemaker-roles-export-vej-perms"></a></h2>
+
+<p>For an execution role that you can pass in a <code>ExportVectorEnrichmentJob</code> API request, you can attach the following minimum permission policy to the role:</p>
+
+<p>```
+{
+            {
+                "Version": "2012-10-17",
+                "Statement": [
+                  {
+                      "Effect": "Allow",
+                      "Action": [
+                          "s3:AbortMultipartUpload",
+                          "s3:PutObject",
+                          "s3:GetObject",
+                          "s3:ListBucketMultipartUploads"
+                      ],
+                      "Resource": [
+                        "arn:aws:s3:::<em>SageMaker</em>",
+                        "arn:aws:s3:::<em>Sagemaker</em>",
+                        "arn:aws:s3:::<em>sagemaker</em>"
+                      ]
+                  },
+                  {
+                    "Effect": "Allow",
+                    "Action": "sagemaker-geospatial:GetVectorEnrichmentJob",
+                    "Resource":  "arn:aws:sagemaker-geospatial:<em>:</em>:vector-enrichment-job/*"
+                  }
+                ]
+              }</p>
+
+<p>}
+```</p>
+
+<p>If your input Amazon S3 bucket is encrypted using server-side encryption with an AWS KMS managed key (SSE-KMS), see <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/bucket-key.html">Using Amazon S3 Bucket Keys</a> for more information.</p>

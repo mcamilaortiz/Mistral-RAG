@@ -1,0 +1,57 @@
+<h1>AWS::SageMaker::ModelPackage ModelMetrics<a name="aws-properties-sagemaker-modelpackage-modelmetrics"></a></h1>
+
+<p>Contains metrics captured from a model.</p>
+
+<h2>Syntax<a name="aws-properties-sagemaker-modelpackage-modelmetrics-syntax"></a></h2>
+
+<p>To declare this entity in your AWS CloudFormation template, use the following syntax:</p>
+
+<h3>JSON<a name="aws-properties-sagemaker-modelpackage-modelmetrics-syntax.json"></a></h3>
+
+<p><code>
+{
+  "[Bias](#cfn-sagemaker-modelpackage-modelmetrics-bias)" : Bias,
+  "[Explainability](#cfn-sagemaker-modelpackage-modelmetrics-explainability)" : Explainability,
+  "[ModelDataQuality](#cfn-sagemaker-modelpackage-modelmetrics-modeldataquality)" : ModelDataQuality,
+  "[ModelQuality](#cfn-sagemaker-modelpackage-modelmetrics-modelquality)" : ModelQuality
+}
+</code></p>
+
+<h3>YAML<a name="aws-properties-sagemaker-modelpackage-modelmetrics-syntax.yaml"></a></h3>
+
+<p><code>
+  [Bias](#cfn-sagemaker-modelpackage-modelmetrics-bias): 
+    Bias
+  [Explainability](#cfn-sagemaker-modelpackage-modelmetrics-explainability): 
+    Explainability
+  [ModelDataQuality](#cfn-sagemaker-modelpackage-modelmetrics-modeldataquality): 
+    ModelDataQuality
+  [ModelQuality](#cfn-sagemaker-modelpackage-modelmetrics-modelquality): 
+    ModelQuality
+</code></p>
+
+<h2>Properties<a name="aws-properties-sagemaker-modelpackage-modelmetrics-properties"></a></h2>
+
+<p><code>Bias</code>  <a name="cfn-sagemaker-modelpackage-modelmetrics-bias"></a>
+Metrics that measure bais in a model.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: <a href="aws-properties-sagemaker-modelpackage-bias.md">Bias</a><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement">Replacement</a></p>
+
+<p><code>Explainability</code>  <a name="cfn-sagemaker-modelpackage-modelmetrics-explainability"></a>
+Metrics that help explain a model.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: <a href="aws-properties-sagemaker-modelpackage-explainability.md">Explainability</a><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement">Replacement</a></p>
+
+<p><code>ModelDataQuality</code>  <a name="cfn-sagemaker-modelpackage-modelmetrics-modeldataquality"></a>
+Metrics that measure the quality of the input data for a model.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: <a href="aws-properties-sagemaker-modelpackage-modeldataquality.md">ModelDataQuality</a><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement">Replacement</a></p>
+
+<p><code>ModelQuality</code>  <a name="cfn-sagemaker-modelpackage-modelmetrics-modelquality"></a>
+Metrics that measure the quality of a model.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: <a href="aws-properties-sagemaker-modelpackage-modelquality.md">ModelQuality</a><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement">Replacement</a></p>

@@ -1,0 +1,41 @@
+<h1>AWS::Events::Rule SageMakerPipelineParameter<a name="aws-properties-events-rule-sagemakerpipelineparameter"></a></h1>
+
+<p>Name/Value pair of a parameter to start execution of a SageMaker Model Building Pipeline.</p>
+
+<h2>Syntax<a name="aws-properties-events-rule-sagemakerpipelineparameter-syntax"></a></h2>
+
+<p>To declare this entity in your AWS CloudFormation template, use the following syntax:</p>
+
+<h3>JSON<a name="aws-properties-events-rule-sagemakerpipelineparameter-syntax.json"></a></h3>
+
+<p><code>
+{
+  "[Name](#cfn-events-rule-sagemakerpipelineparameter-name)" : String,
+  "[Value](#cfn-events-rule-sagemakerpipelineparameter-value)" : String
+}
+</code></p>
+
+<h3>YAML<a name="aws-properties-events-rule-sagemakerpipelineparameter-syntax.yaml"></a></h3>
+
+<p><code>
+  [Name](#cfn-events-rule-sagemakerpipelineparameter-name): String
+  [Value](#cfn-events-rule-sagemakerpipelineparameter-value): String
+</code></p>
+
+<h2>Properties<a name="aws-properties-events-rule-sagemakerpipelineparameter-properties"></a></h2>
+
+<p><code>Name</code>  <a name="cfn-events-rule-sagemakerpipelineparameter-name"></a>
+Name of parameter to start execution of a SageMaker Model Building Pipeline.<br />
+<em>Required</em>: Yes<br />
+<em>Type</em>: String<br />
+<em>Minimum</em>: <code>1</code><br />
+<em>Maximum</em>: <code>256</code><br />
+<em>Pattern</em>: <code>^[a-zA-Z0-9](-*[a-zA-Z0-9])*$</code><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt">No interruption</a></p>
+
+<p><code>Value</code>  <a name="cfn-events-rule-sagemakerpipelineparameter-value"></a>
+Value of parameter to start execution of a SageMaker Model Building Pipeline.<br />
+<em>Required</em>: Yes<br />
+<em>Type</em>: String<br />
+<em>Maximum</em>: <code>1024</code><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt">No interruption</a></p>

@@ -1,0 +1,49 @@
+<h1>AWS::SageMaker::ModelPackage ModelPackageStatusItem<a name="aws-properties-sagemaker-modelpackage-modelpackagestatusitem"></a></h1>
+
+<p>Represents the overall status of a model package.</p>
+
+<h2>Syntax<a name="aws-properties-sagemaker-modelpackage-modelpackagestatusitem-syntax"></a></h2>
+
+<p>To declare this entity in your AWS CloudFormation template, use the following syntax:</p>
+
+<h3>JSON<a name="aws-properties-sagemaker-modelpackage-modelpackagestatusitem-syntax.json"></a></h3>
+
+<p><code>
+{
+  "[FailureReason](#cfn-sagemaker-modelpackage-modelpackagestatusitem-failurereason)" : String,
+  "[Name](#cfn-sagemaker-modelpackage-modelpackagestatusitem-name)" : String,
+  "[Status](#cfn-sagemaker-modelpackage-modelpackagestatusitem-status)" : String
+}
+</code></p>
+
+<h3>YAML<a name="aws-properties-sagemaker-modelpackage-modelpackagestatusitem-syntax.yaml"></a></h3>
+
+<p><code>
+  [FailureReason](#cfn-sagemaker-modelpackage-modelpackagestatusitem-failurereason): String
+  [Name](#cfn-sagemaker-modelpackage-modelpackagestatusitem-name): String
+  [Status](#cfn-sagemaker-modelpackage-modelpackagestatusitem-status): String
+</code></p>
+
+<h2>Properties<a name="aws-properties-sagemaker-modelpackage-modelpackagestatusitem-properties"></a></h2>
+
+<p><code>FailureReason</code>  <a name="cfn-sagemaker-modelpackage-modelpackagestatusitem-failurereason"></a>
+if the overall status is <code>Failed</code>, the reason for the failure.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: String<br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt">No interruption</a></p>
+
+<p><code>Name</code>  <a name="cfn-sagemaker-modelpackage-modelpackagestatusitem-name"></a>
+The name of the model package for which the overall status is being reported.<br />
+<em>Required</em>: Yes<br />
+<em>Type</em>: String<br />
+<em>Minimum</em>: <code>1</code><br />
+<em>Maximum</em>: <code>63</code><br />
+<em>Pattern</em>: <code>^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,62}$</code><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt">No interruption</a></p>
+
+<p><code>Status</code>  <a name="cfn-sagemaker-modelpackage-modelpackagestatusitem-status"></a>
+The current status.<br />
+<em>Required</em>: Yes<br />
+<em>Type</em>: String<br />
+<em>Allowed values</em>: <code>Completed | Failed | InProgress | NotStarted</code><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt">No interruption</a></p>

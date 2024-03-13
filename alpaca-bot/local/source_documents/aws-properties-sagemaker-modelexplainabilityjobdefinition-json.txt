@@ -1,0 +1,29 @@
+<h1>AWS::SageMaker::ModelExplainabilityJobDefinition Json<a name="aws-properties-sagemaker-modelexplainabilityjobdefinition-json"></a></h1>
+
+<p><a name="aws-properties-sagemaker-modelexplainabilityjobdefinition-json-description"></a>The <code>Json</code> property type specifies Property description not available. for an <a href="aws-resource-sagemaker-modelexplainabilityjobdefinition.md">AWS::SageMaker::ModelExplainabilityJobDefinition</a>.</p>
+
+<h2>Syntax<a name="aws-properties-sagemaker-modelexplainabilityjobdefinition-json-syntax"></a></h2>
+
+<p>To declare this entity in your AWS CloudFormation template, use the following syntax:</p>
+
+<h3>JSON<a name="aws-properties-sagemaker-modelexplainabilityjobdefinition-json-syntax.json"></a></h3>
+
+<p><code>
+{
+  "[Line](#cfn-sagemaker-modelexplainabilityjobdefinition-json-line)" : Boolean
+}
+</code></p>
+
+<h3>YAML<a name="aws-properties-sagemaker-modelexplainabilityjobdefinition-json-syntax.yaml"></a></h3>
+
+<p><code>
+  [Line](#cfn-sagemaker-modelexplainabilityjobdefinition-json-line): Boolean
+</code></p>
+
+<h2>Properties<a name="aws-properties-sagemaker-modelexplainabilityjobdefinition-json-properties"></a></h2>
+
+<p><code>Line</code>  <a name="cfn-sagemaker-modelexplainabilityjobdefinition-json-line"></a>
+Property description not available.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: Boolean<br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement">Replacement</a></p>

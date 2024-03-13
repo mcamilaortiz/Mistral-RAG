@@ -1,0 +1,51 @@
+<h1>Announcing the End of Support of the Original Version of SageMaker Operator for Kubernetes<a name="kubernetes-sagemaker-operators-eos-announcement"></a></h1>
+
+<p>This page announces the end of support of <a href="https://github.com/aws/amazon-sagemaker-operator-for-k8s">SageMaker Operator for Kubernetes</a> in its original version and provides answers to frequently asked questions as well as migration information to the latest fully supported version of the SageMaker Operator for Kubernetes, the <a href="https://github.com/aws-controllers-k8s/sagemaker-controller">ACK service controller for Amazon SageMaker</a> based on <a href="https://aws-controllers-k8s.github.io/community/ ">AWS Controllers for Kubernetes (ACK)</a>. For general information on SageMaker Operator for Kubernetes, see <a href="kubernetes-sagemaker-operators-ack.md">Latest SageMaker Operators for Kubernetes</a>. </p>
+
+<h2>End of Support Frequently Asked Questions<a name="kubernetes-sagemaker-operators-eos-faq"></a></h2>
+
+<p><strong>Topics</strong>
++ <a href="#kubernetes-sagemaker-operators-eos-faq-why">Why are we ending support for SageMaker Operator for Kubernetes in its original version?</a>
++ <a href="#kubernetes-sagemaker-operators-eos-faq-more">Where can I find more information about the new SageMaker Operator for Kubernetes and ACK?</a>
++ <a href="#kubernetes-sagemaker-operators-eos-faq-definition">What does End-of-Support (EOS) mean?</a>
++ <a href="#kubernetes-sagemaker-operators-eos-faq-how">How can I migrate my workload to the new SageMaker Operator for Kubernetes for training and inference?</a>
++ <a href="#kubernetes-sagemaker-operators-eos-faq-version">Which version of ACK should I migrate to?</a>
++ <a href="#kubernetes-sagemaker-operators-eos-faq-parity">Are the initial SageMaker Operators for Kubernetes and the new Operators (ACK service controller for Amazon SageMaker) functionally equivalent?</a></p>
+
+<h3>Why are we ending support for SageMaker Operator for Kubernetes in its original version?<a name="kubernetes-sagemaker-operators-eos-faq-why"></a></h3>
+
+<p>SageMaker Operators for Kubernetes has a new fully supported version, the <a href="https://github.com/aws-controllers-k8s/sagemaker-controller">ACK service controller for Amazon SageMaker</a> based on <a href="https://aws-controllers-k8s.github.io/community/ ">AWS Controllers for Kubernetes</a> (ACK), a framework for exposing AWS services via a Kubernetes operator. We are therefore announcing the end of support (EOS) of the <a href="https://github.com/aws/amazon-sagemaker-operator-for-k8s">previous version of SageMaker Operator for Kubernetes</a> which does not use AWS ACK framework. The support will end on <strong>Feb 15, 2023</strong> along with <a href="https://docs.aws.amazon.com/eks/latest/userguide/kubernetes-versions.html#kubernetes-release-calendar">Amazon Elastic Kubernetes Service Kubernetes 1.21</a>.</p>
+
+<p>ACK is a community-driven project optimized for production, standardizing the way to expose AWS services via a Kubernetes operator. For more information, see <a href="https://aws-controllers-k8s.github.io/community/docs/community/background/">ACK history and tenets</a>.</p>
+
+<h3>Where can I find more information about the new SageMaker Operator for Kubernetes and ACK?<a name="kubernetes-sagemaker-operators-eos-faq-more"></a></h3>
+
+<ul>
+<li>For more information on the new SageMaker Operator for Kubernetes, see <a href="https://github.com/aws-controllers-k8s/sagemaker-controller">ACK service controller for Amazon SageMaker</a> GitHub Repository or read <a href="https://aws-controllers-k8s.github.io/community/docs/community/overview/">AWS Controllers for Kubernetes Documentation</a>.</li>
+<li><p>For a tutorial on how to train a machine learning model with the ACK service controller for Amazon SageMaker using Amazon EKS, see <a href="https://aws-controllers-k8s.github.io/community/docs/tutorials/sagemaker-example/">SageMaker example</a>.</p>
+
+<p>For an autoscaling example, see <a href="https://aws-controllers-k8s.github.io/community/docs/tutorials/autoscaling-example/"> Scale SageMaker Workloads with Application Auto Scaling</a></p></li>
+<li>For information on the AWS Controller for Kubernetes the new Operator is based on, see the <a href="https://aws-controllers-k8s.github.io/community/">AWS Controllers for Kubernetes</a> (ACK) documentation.</li>
+<li>For a list of supported SageMaker resources, see <a href="https://aws-controllers-k8s.github.io/community/reference/">ACK API Reference</a>.</li>
+</ul>
+
+<h3>What does End-of-Support (EOS) mean?<a name="kubernetes-sagemaker-operators-eos-faq-definition"></a></h3>
+
+<p>While users can continue to use their current operators, we are no longer developing new features, nor will we release any patches or security updates for any issues found. <code>v1.2.2</code> is the last release of <a href="https://github.com/aws/amazon-sagemaker-operator-for-k8s/tree/master">SageMaker Operator for Kubernetes</a>. Users should migrate their workloads to use the newer version of SageMaker Operator, the <a href="https://github.com/aws-controllers-k8s/sagemaker-controller">ACK service controller for Amazon SageMaker</a>.</p>
+
+<h3>How can I migrate my workload to the new SageMaker Operator for Kubernetes for training and inference?<a name="kubernetes-sagemaker-operators-eos-faq-how"></a></h3>
+
+<p>For information about migrating resources from the old to the new SageMaker Operators for Kubernetes, follow <a href="kubernetes-sagemaker-operators-migrate.md">Migrate resources to the latest Operators</a>.</p>
+
+<h3>Which version of ACK should I migrate to?<a name="kubernetes-sagemaker-operators-eos-faq-version"></a></h3>
+
+<p>Users should migrate to the <a href="https://github.com/aws-controllers-k8s/sagemaker-controller/tags">most recent released version of the ACK service controller for Amazon SageMaker</a>.</p>
+
+<h3>Are the initial SageMaker Operators for Kubernetes and the new Operators (ACK service controller for Amazon SageMaker) functionally equivalent?<a name="kubernetes-sagemaker-operators-eos-faq-parity"></a></h3>
+
+<p>Yes, they are at feature parity.</p>
+
+<p>A few highlights of the main notable differences between the two versions:
++  The Custom Resources Definitions (CRD) used by the ACK-based SageMaker Operators for Kubernetes follow the AWS API definition making it incompatible with the Custom Resources specifications from the SageMaker Operators for Kubernetes in its initial version. Refer to the <a href="https://github.com/aws-controllers-k8s/sagemaker-controller/tree/main/helm/crds">CRDs</a> in the new controller or use the migration guide to adopt the resources and use the new controller. 
++  The <code>Hosting Autoscaling</code> policy is no longer part of the new SageMaker Operators for Kubernetes and has been migrated to the <a href="https://github.com/aws-controllers-k8s/applicationautoscaling-controller">Application autoscaling</a> ACK controller. To learn about the Application autoscaling controller to configure autoscaling on SageMaker Endpoints, follow this <a href="https://aws-controllers-k8s.github.io/community/docs/tutorials/autoscaling-example/">autoscaling example</a>. 
++  The <code>HostingDeployment</code> resource was used to create Models, Endpoint Configurations and Endpoints in one CRD. The new SageMaker Operators for Kubernetes has a separate CRD for each of these resources. </p>

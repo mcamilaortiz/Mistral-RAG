@@ -1,0 +1,55 @@
+<h1>AWS::Greengrass::ResourceDefinitionVersion SageMakerMachineLearningModelResourceData<a name="aws-properties-greengrass-resourcedefinitionversion-sagemakermachinelearningmodelresourcedata"></a></h1>
+
+<p><a name="aws-properties-greengrass-resourcedefinitionversion-sagemakermachinelearningmodelresourcedata-description"></a>Settings for an Secrets Manager machine learning resource. For more information, see <a href="https://docs.aws.amazon.com/greengrass/latest/developerguide/ml-inference.html">Perform Machine Learning Inference</a> in the <em>AWS IoT Greengrass Version 1 Developer Guide</em>.</p>
+
+<p><a name="aws-properties-greengrass-resourcedefinitionversion-sagemakermachinelearningmodelresourcedata-inheritance"></a> In an AWS CloudFormation template, <code>SageMakerMachineLearningModelResourceData</code> can be used in the <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-greengrass-resourcedefinitionversion-resourcedatacontainer.html">https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-greengrass-resourcedefinitionversion-resourcedatacontainer.html</a> property type.</p>
+
+<h2>Syntax<a name="aws-properties-greengrass-resourcedefinitionversion-sagemakermachinelearningmodelresourcedata-syntax"></a></h2>
+
+<p>To declare this entity in your AWS CloudFormation template, use the following syntax:</p>
+
+<h3>JSON<a name="aws-properties-greengrass-resourcedefinitionversion-sagemakermachinelearningmodelresourcedata-syntax.json"></a></h3>
+
+<p><code>
+{
+  "[DestinationPath](#cfn-greengrass-resourcedefinitionversion-sagemakermachinelearningmodelresourcedata-destinationpath)" : String,
+  "[OwnerSetting](#cfn-greengrass-resourcedefinitionversion-sagemakermachinelearningmodelresourcedata-ownersetting)" : ResourceDownloadOwnerSetting,
+  "[SageMakerJobArn](#cfn-greengrass-resourcedefinitionversion-sagemakermachinelearningmodelresourcedata-sagemakerjobarn)" : String
+}
+</code></p>
+
+<h3>YAML<a name="aws-properties-greengrass-resourcedefinitionversion-sagemakermachinelearningmodelresourcedata-syntax.yaml"></a></h3>
+
+<p><code>
+  [DestinationPath](#cfn-greengrass-resourcedefinitionversion-sagemakermachinelearningmodelresourcedata-destinationpath): String
+  [OwnerSetting](#cfn-greengrass-resourcedefinitionversion-sagemakermachinelearningmodelresourcedata-ownersetting): 
+    ResourceDownloadOwnerSetting
+  [SageMakerJobArn](#cfn-greengrass-resourcedefinitionversion-sagemakermachinelearningmodelresourcedata-sagemakerjobarn): String
+</code></p>
+
+<h2>Properties<a name="aws-properties-greengrass-resourcedefinitionversion-sagemakermachinelearningmodelresourcedata-properties"></a></h2>
+
+<p><code>DestinationPath</code>  <a name="cfn-greengrass-resourcedefinitionversion-sagemakermachinelearningmodelresourcedata-destinationpath"></a>
+The absolute local path of the resource inside the Lambda environment.<br />
+<em>Required</em>: Yes<br />
+<em>Type</em>: String<br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement">Replacement</a></p>
+
+<p><code>OwnerSetting</code>  <a name="cfn-greengrass-resourcedefinitionversion-sagemakermachinelearningmodelresourcedata-ownersetting"></a>
+The owner setting for the downloaded machine learning resource. For more information, see <a href="https://docs.aws.amazon.com/greengrass/latest/developerguide/access-ml-resources.html">Access Machine Learning Resources from Lambda Functions</a> in the <em>AWS IoT Greengrass Version 1 Developer Guide</em>.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: <a href="aws-properties-greengrass-resourcedefinitionversion-resourcedownloadownersetting.md">ResourceDownloadOwnerSetting</a><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement">Replacement</a></p>
+
+<p><code>SageMakerJobArn</code>  <a name="cfn-greengrass-resourcedefinitionversion-sagemakermachinelearningmodelresourcedata-sagemakerjobarn"></a>
+The Amazon Resource Name (ARN) of the Amazon SageMaker training job that represents the source model.<br />
+<em>Required</em>: Yes<br />
+<em>Type</em>: String<br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement">Replacement</a></p>
+
+<h2>See also<a name="aws-properties-greengrass-resourcedefinitionversion-sagemakermachinelearningmodelresourcedata--seealso"></a></h2>
+
+<ul>
+<li><a href="https://docs.aws.amazon.com/greengrass/latest/apireference/definitions-sagemakermachinelearningmodelresourcedata.html">SageMakerMachineLearningModelResourceData</a> in the * AWS IoT Greengrass Version 1 API Reference * </li>
+<li><a href="https://docs.aws.amazon.com/greengrass/latest/developerguide/">AWS IoT Greengrass Version 1 Developer Guide</a> </li>
+</ul>

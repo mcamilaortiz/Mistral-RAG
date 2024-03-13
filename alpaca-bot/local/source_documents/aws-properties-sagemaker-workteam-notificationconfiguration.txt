@@ -1,0 +1,30 @@
+<h1>AWS::SageMaker::Workteam NotificationConfiguration<a name="aws-properties-sagemaker-workteam-notificationconfiguration"></a></h1>
+
+<p>Configures Amazon SNS notifications of available or expiring work items for work teams.</p>
+
+<h2>Syntax<a name="aws-properties-sagemaker-workteam-notificationconfiguration-syntax"></a></h2>
+
+<p>To declare this entity in your AWS CloudFormation template, use the following syntax:</p>
+
+<h3>JSON<a name="aws-properties-sagemaker-workteam-notificationconfiguration-syntax.json"></a></h3>
+
+<p><code>
+{
+  "[NotificationTopicArn](#cfn-sagemaker-workteam-notificationconfiguration-notificationtopicarn)" : String
+}
+</code></p>
+
+<h3>YAML<a name="aws-properties-sagemaker-workteam-notificationconfiguration-syntax.yaml"></a></h3>
+
+<p><code>
+  [NotificationTopicArn](#cfn-sagemaker-workteam-notificationconfiguration-notificationtopicarn): String
+</code></p>
+
+<h2>Properties<a name="aws-properties-sagemaker-workteam-notificationconfiguration-properties"></a></h2>
+
+<p><code>NotificationTopicArn</code>  <a name="cfn-sagemaker-workteam-notificationconfiguration-notificationtopicarn"></a>
+The ARN for the Amazon SNS topic to which notifications should be published.<br />
+<em>Required</em>: Yes<br />
+<em>Type</em>: String<br />
+<em>Pattern</em>: <code>arn:aws[a-z\-]*:sns:[a-z0-9\-]*:[0-9]{12}:[a-zA-Z0-9_.-]*</code><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt">No interruption</a></p>

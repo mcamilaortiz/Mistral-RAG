@@ -1,0 +1,39 @@
+<h1>AWS::SageMaker::EndpointConfig AsyncInferenceConfig<a name="aws-properties-sagemaker-endpointconfig-asyncinferenceconfig"></a></h1>
+
+<p>Specifies configuration for how an endpoint performs asynchronous inference.</p>
+
+<h2>Syntax<a name="aws-properties-sagemaker-endpointconfig-asyncinferenceconfig-syntax"></a></h2>
+
+<p>To declare this entity in your AWS CloudFormation template, use the following syntax:</p>
+
+<h3>JSON<a name="aws-properties-sagemaker-endpointconfig-asyncinferenceconfig-syntax.json"></a></h3>
+
+<p><code>
+{
+  "[ClientConfig](#cfn-sagemaker-endpointconfig-asyncinferenceconfig-clientconfig)" : AsyncInferenceClientConfig,
+  "[OutputConfig](#cfn-sagemaker-endpointconfig-asyncinferenceconfig-outputconfig)" : AsyncInferenceOutputConfig
+}
+</code></p>
+
+<h3>YAML<a name="aws-properties-sagemaker-endpointconfig-asyncinferenceconfig-syntax.yaml"></a></h3>
+
+<p><code>
+  [ClientConfig](#cfn-sagemaker-endpointconfig-asyncinferenceconfig-clientconfig): 
+    AsyncInferenceClientConfig
+  [OutputConfig](#cfn-sagemaker-endpointconfig-asyncinferenceconfig-outputconfig): 
+    AsyncInferenceOutputConfig
+</code></p>
+
+<h2>Properties<a name="aws-properties-sagemaker-endpointconfig-asyncinferenceconfig-properties"></a></h2>
+
+<p><code>ClientConfig</code>  <a name="cfn-sagemaker-endpointconfig-asyncinferenceconfig-clientconfig"></a>
+Configures the behavior of the client used by SageMaker to interact with the model container during asynchronous inference.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: <a href="aws-properties-sagemaker-endpointconfig-asyncinferenceclientconfig.md">AsyncInferenceClientConfig</a><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement">Replacement</a></p>
+
+<p><code>OutputConfig</code>  <a name="cfn-sagemaker-endpointconfig-asyncinferenceconfig-outputconfig"></a>
+Specifies the configuration for asynchronous inference invocation outputs.<br />
+<em>Required</em>: Yes<br />
+<em>Type</em>: <a href="aws-properties-sagemaker-endpointconfig-asyncinferenceoutputconfig.md">AsyncInferenceOutputConfig</a><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement">Replacement</a></p>

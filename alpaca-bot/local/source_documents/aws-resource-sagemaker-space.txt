@@ -1,0 +1,80 @@
+<h1>AWS::SageMaker::Space<a name="aws-resource-sagemaker-space"></a></h1>
+
+<p>Creates a space used for real time collaboration in a Domain.</p>
+
+<h2>Syntax<a name="aws-resource-sagemaker-space-syntax"></a></h2>
+
+<p>To declare this entity in your AWS CloudFormation template, use the following syntax:</p>
+
+<h3>JSON<a name="aws-resource-sagemaker-space-syntax.json"></a></h3>
+
+<p><code>
+{
+  "Type" : "AWS::SageMaker::Space",
+  "Properties" : {
+      "[DomainId](#cfn-sagemaker-space-domainid)" : String,
+      "[SpaceName](#cfn-sagemaker-space-spacename)" : String,
+      "[SpaceSettings](#cfn-sagemaker-space-spacesettings)" : SpaceSettings,
+      "[Tags](#cfn-sagemaker-space-tags)" : [ [Tag](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-resource-tags.html), ... ]
+    }
+}
+</code></p>
+
+<h3>YAML<a name="aws-resource-sagemaker-space-syntax.yaml"></a></h3>
+
+<p><code>
+Type: AWS::SageMaker::Space
+Properties: 
+  [DomainId](#cfn-sagemaker-space-domainid): String
+  [SpaceName](#cfn-sagemaker-space-spacename): String
+  [SpaceSettings](#cfn-sagemaker-space-spacesettings): 
+    SpaceSettings
+  [Tags](#cfn-sagemaker-space-tags): 
+    - [Tag](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-resource-tags.html)
+</code></p>
+
+<h2>Properties<a name="aws-resource-sagemaker-space-properties"></a></h2>
+
+<p><code>DomainId</code>  <a name="cfn-sagemaker-space-domainid"></a>
+The ID of the associated Domain.<br />
+<em>Required</em>: Yes<br />
+<em>Type</em>: String<br />
+<em>Maximum</em>: <code>63</code><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement">Replacement</a></p>
+
+<p><code>SpaceName</code>  <a name="cfn-sagemaker-space-spacename"></a>
+The name of the space.<br />
+<em>Required</em>: Yes<br />
+<em>Type</em>: String<br />
+<em>Maximum</em>: <code>63</code><br />
+<em>Pattern</em>: <code>^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,62}</code><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement">Replacement</a></p>
+
+<p><code>SpaceSettings</code>  <a name="cfn-sagemaker-space-spacesettings"></a>
+A collection of space settings.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: <a href="aws-properties-sagemaker-space-spacesettings.md">SpaceSettings</a><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt">No interruption</a></p>
+
+<p><code>Tags</code>  <a name="cfn-sagemaker-space-tags"></a>
+An array of key-value pairs to apply to this resource.<br />
+For more information, see <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-resource-tags.html">Tag</a>.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: List of <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-resource-tags.html">Tag</a><br />
+<em>Maximum</em>: <code>50</code><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt">No interruption</a></p>
+
+<h2>Return values<a name="aws-resource-sagemaker-space-return-values"></a></h2>
+
+<h3>Ref<a name="aws-resource-sagemaker-space-return-values-ref"></a></h3>
+
+<h3>Fn::GetAtt<a name="aws-resource-sagemaker-space-return-values-fn--getatt"></a></h3>
+
+<p>The <code>Fn::GetAtt</code> intrinsic function returns a value for a specified attribute of this type. The following are the available attributes and sample return values.</p>
+
+<p>For more information about using the <code>Fn::GetAtt</code> intrinsic function, see <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference-getatt.html">Fn::GetAtt</a>.</p>
+
+<h4><a name="aws-resource-sagemaker-space-return-values-fn--getatt-fn--getatt"></a></h4>
+
+<p><code>SpaceArn</code>  <a name="SpaceArn-fn::getatt"></a>
+The space's Amazon Resource Name (ARN).</p>

@@ -1,0 +1,3 @@
+<h1>AWS::SageMaker::EndpointConfig ClarifyHeader<a name="aws-properties-sagemaker-endpointconfig-clarifyheader"></a></h1>
+
+<p><a name="aws-properties-sagemaker-endpointconfig-clarifyheader-description"></a>The <code>ClarifyHeader</code> property type specifies Property description not available. for an <a href="aws-resource-sagemaker-endpointconfig.md">AWS::SageMaker::EndpointConfig</a>.</p>

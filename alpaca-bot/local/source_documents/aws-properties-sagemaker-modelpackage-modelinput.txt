@@ -1,0 +1,32 @@
+<h1>AWS::SageMaker::ModelPackage ModelInput<a name="aws-properties-sagemaker-modelpackage-modelinput"></a></h1>
+
+<p>Input object for the model.</p>
+
+<h2>Syntax<a name="aws-properties-sagemaker-modelpackage-modelinput-syntax"></a></h2>
+
+<p>To declare this entity in your AWS CloudFormation template, use the following syntax:</p>
+
+<h3>JSON<a name="aws-properties-sagemaker-modelpackage-modelinput-syntax.json"></a></h3>
+
+<p><code>
+{
+  "[DataInputConfig](#cfn-sagemaker-modelpackage-modelinput-datainputconfig)" : String
+}
+</code></p>
+
+<h3>YAML<a name="aws-properties-sagemaker-modelpackage-modelinput-syntax.yaml"></a></h3>
+
+<p><code>
+  [DataInputConfig](#cfn-sagemaker-modelpackage-modelinput-datainputconfig): String
+</code></p>
+
+<h2>Properties<a name="aws-properties-sagemaker-modelpackage-modelinput-properties"></a></h2>
+
+<p><code>DataInputConfig</code>  <a name="cfn-sagemaker-modelpackage-modelinput-datainputconfig"></a>
+The input configuration object for the model.<br />
+<em>Required</em>: Yes<br />
+<em>Type</em>: String<br />
+<em>Minimum</em>: <code>1</code><br />
+<em>Maximum</em>: <code>1024</code><br />
+<em>Pattern</em>: <code>[\S\s]+</code><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-some-interrupt">Some interruptions</a></p>

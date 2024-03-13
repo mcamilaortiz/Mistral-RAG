@@ -1,0 +1,53 @@
+<h1>AWS::SageMaker::Device Device<a name="aws-properties-sagemaker-device-device"></a></h1>
+
+<p>Information of a particular device.</p>
+
+<h2>Syntax<a name="aws-properties-sagemaker-device-device-syntax"></a></h2>
+
+<p>To declare this entity in your AWS CloudFormation template, use the following syntax:</p>
+
+<h3>JSON<a name="aws-properties-sagemaker-device-device-syntax.json"></a></h3>
+
+<p><code>
+{
+  "[Description](#cfn-sagemaker-device-device-description)" : String,
+  "[DeviceName](#cfn-sagemaker-device-device-devicename)" : String,
+  "[IotThingName](#cfn-sagemaker-device-device-iotthingname)" : String
+}
+</code></p>
+
+<h3>YAML<a name="aws-properties-sagemaker-device-device-syntax.yaml"></a></h3>
+
+<p><code>
+  [Description](#cfn-sagemaker-device-device-description): String
+  [DeviceName](#cfn-sagemaker-device-device-devicename): String
+  [IotThingName](#cfn-sagemaker-device-device-iotthingname): String
+</code></p>
+
+<h2>Properties<a name="aws-properties-sagemaker-device-device-properties"></a></h2>
+
+<p><code>Description</code>  <a name="cfn-sagemaker-device-device-description"></a>
+Description of the device.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: String<br />
+<em>Minimum</em>: <code>1</code><br />
+<em>Maximum</em>: <code>40</code><br />
+<em>Pattern</em>: <code>[\S\s]+</code><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt">No interruption</a></p>
+
+<p><code>DeviceName</code>  <a name="cfn-sagemaker-device-device-devicename"></a>
+The name of the device.<br />
+<em>Required</em>: Yes<br />
+<em>Type</em>: String<br />
+<em>Minimum</em>: <code>1</code><br />
+<em>Maximum</em>: <code>63</code><br />
+<em>Pattern</em>: <code>^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,62}$</code><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement">Replacement</a></p>
+
+<p><code>IotThingName</code>  <a name="cfn-sagemaker-device-device-iotthingname"></a>
+AWS Internet of Things (IoT) object name.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: String<br />
+<em>Maximum</em>: <code>128</code><br />
+<em>Pattern</em>: <code>[a-zA-Z0-9:_-]+</code><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt">No interruption</a></p>

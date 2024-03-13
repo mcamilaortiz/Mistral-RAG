@@ -1,0 +1,1430 @@
+<h1>Use Amazon SageMaker Jobs<a name="kubernetes-sagemaker-jobs"></a></h1>
+
+<p>This section is based on the original version of <a href="https://github.com/aws/amazon-sagemaker-operator-for-k8s">SageMaker Operators for Kubernetes</a>.</p>
+
+<p><strong>Important</strong><br />
+We are stopping the development and technical support of <a href="https://github.com/aws/amazon-sagemaker-operator-for-k8s/tree/master">SageMaker Operators for Kubernetes</a> in its original version. If you are currently using version <code>v1.2.2</code> or below of the original version of SageMaker Operators for Kubernetes, we recommend migrating your resources to the latest SageMaker Operators for Kubernetes, the <a href="https://github.com/aws-controllers-k8s/sagemaker-controller">ACK service controller for Amazon SageMaker</a> based on <a href="https://aws-controllers-k8s.github.io/community/ ">AWS Controllers for Kubernetes (ACK)</a>.<br />
+For information about the migration steps, see <a href="kubernetes-sagemaker-operators-migrate.md">Migrate resources to the latest Operators</a>. For answers to frequently asked questions regarding the end of support of the original version of SageMaker Operators for Kubernetes, see <a href="kubernetes-sagemaker-operators-eos-announcement.md">Announcing the End of Support of the Original Version of SageMaker Operator for Kubernetes</a></p>
+
+<p>To run an Amazon SageMaker job using the Operators for Kubernetes, you can either apply a YAML file or use the supplied Helm Charts. </p>
+
+<p>All sample operator jobs in the following tutorials use sample data taken from a public MNIST dataset. In order to run these samples, download the dataset into your Amazon S3 bucket. You can find the dataset in <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/ex1-preprocess-data-pull-data.html">Download the MNIST Dataset.</a> </p>
+
+<p><strong>Topics</strong>
++ <a href="#trainingjob-operator">TrainingJob operator</a>
++ <a href="#hyperparametertuningjobs-operator">HyperParameterTuningJob operator</a>
++ <a href="#batchtransformjobs-operator">BatchTransformJob operator</a>
++ <a href="#hosting-deployment-operator">HostingDeployment operator</a>
++ <a href="#kubernetes-processing-job-operator">ProcessingJob operator</a>
++ <a href="#kubernetes-hap-operator">HostingAutoscalingPolicy (HAP) Operator</a></p>
+
+<h2>TrainingJob operator<a name="trainingjob-operator"></a></h2>
+
+<p>Training job operators reconcile your specified training job spec to SageMaker by launching it for you in SageMaker. You can learn more about SageMaker training jobs in the SageMaker <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/API_CreateTrainingJob.html">CreateTrainingJob API documentation</a>. </p>
+
+<p><strong>Topics</strong>
++ <a href="#create-a-trainingjob-using-a-simple-yaml-file">Create a TrainingJob Using a YAML File</a>
++ <a href="#create-a-trainingjob-using-a-helm-chart">Create a TrainingJob Using a Helm Chart</a>
++ <a href="#list-training-jobs">List TrainingJobs</a>
++ <a href="#describe-a-training-job">Describe a TrainingJob</a>
++ <a href="#view-logs-from-training-jobs">View Logs from TrainingJobs</a>
++ <a href="#delete-training-jobs">Delete TrainingJobs</a></p>
+
+<h3>Create a TrainingJob Using a YAML File<a name="create-a-trainingjob-using-a-simple-yaml-file"></a></h3>
+
+<ol>
+<li><p>Download the sample YAML file for training using the following command: </p>
+
+<p><code>
+wget https://raw.githubusercontent.com/aws/amazon-sagemaker-operator-for-k8s/master/samples/xgboost-mnist-trainingjob.yaml
+</code></p></li>
+<li><p>Edit the <code>xgboost-mnist-trainingjob.yaml</code> file to replace the <code>roleArn</code> parameter with your <code>&lt;sagemaker-execution-role&gt;</code>, and <code>outputPath</code> with your Amazon S3 bucket that the SageMaker execution role has write access to. The <code>roleArn</code> must have permissions so that SageMaker can access Amazon S3, Amazon CloudWatch, and other services on your behalf. For more information on creating an SageMaker ExecutionRole, see <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/sagemaker-roles.html#sagemaker-roles-createtrainingjob-perms">SageMaker Roles</a>. Apply the YAML file using the following command: </p>
+
+<p><code>
+kubectl apply -f xgboost-mnist-trainingjob.yaml
+</code></p></li>
+</ol>
+
+<h3>Create a TrainingJob Using a Helm Chart<a name="create-a-trainingjob-using-a-helm-chart"></a></h3>
+
+<p>You can use Helm Charts to run TrainingJobs. </p>
+
+<ol>
+<li><p>Clone the GitHub repository to get the source using the following command: </p>
+
+<p><code>
+git clone https://github.com/aws/amazon-sagemaker-operator-for-k8s.git
+</code></p></li>
+<li><p>Navigate to the <code>amazon-sagemaker-operator-for-k8s/hack/charts/training-jobs/</code> folder and edit the <code>values.yaml</code> file to replace values like <code>rolearn</code> and <code>outputpath</code> with values that correspond to your account. The RoleARN must have permissions so that SageMaker can access Amazon S3, Amazon CloudWatch, and other services on your behalf. For more information on creating an SageMaker ExecutionRole, see <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/sagemaker-roles.html#sagemaker-roles-createtrainingjob-perms">SageMaker Roles</a>. </p></li>
+</ol>
+
+<h4>Create the TrainingJob<a name="create-the-training-job"></a></h4>
+
+<p>With the roles and Amazon S3 buckets replaced with appropriate values in <code>values.yaml</code>, you can create a training job using the following command: </p>
+
+<p><code>
+helm install . --generate-name
+</code></p>
+
+<p>Your output should look like the following: </p>
+
+<p><code>
+NAME: chart-12345678
+LAST DEPLOYED: Wed Nov 20 23:35:49 2019
+NAMESPACE: default
+STATUS: deployed
+REVISION: 1
+TEST SUITE: None
+NOTES:
+Thanks for installing the sagemaker-k8s-trainingjob.
+</code></p>
+
+<h4>Verify Your Training Helm Chart<a name="verify-your-training-helm-chart"></a></h4>
+
+<p>To verify that the Helm Chart was created successfully, run: </p>
+
+<p><code>
+helm ls
+</code></p>
+
+<p>Your output should look like the following: </p>
+
+<p><code>
+NAME                    NAMESPACE       REVISION        UPDATED                                 STATUS          CHART                           APP VERSION
+chart-12345678        default         1               2019-11-20 23:35:49.9136092 +0000 UTC   deployed        sagemaker-k8s-trainingjob-0.1.0
+rolebased-12345678    default         1               2019-11-20 23:14:59.6777082 +0000 UTC   deployed        sagemaker-k8s-operator-0.1.0
+</code></p>
+
+<p><code>helm install</code> creates a <code>TrainingJob</code> Kubernetes resource. The operator launches the actual training job in SageMaker and updates the <code>TrainingJob</code> Kubernetes resource to reflect the status of the job in SageMaker. You incur charges for SageMaker resources used during the duration of your job. You do not incur any charges once your job completes or stops. </p>
+
+<p><strong>Note</strong>: SageMaker does not allow you to update a running training job. You cannot edit any parameter and re-apply the file/config. Either change the metadata name or delete the existing job and create a new one. Similar to existing training job operators like TFJob in Kubeflow, <code>update</code> is not supported. </p>
+
+<h3>List TrainingJobs<a name="list-training-jobs"></a></h3>
+
+<p>Use the following command to list all jobs created using the Kubernetes operator: </p>
+
+<p><code>
+kubectl get TrainingJob
+</code></p>
+
+<p>The output listing all jobs should look like the following: </p>
+
+<p><code>
+kubectl get trainingjobs
+NAME                        STATUS       SECONDARY-STATUS   CREATION-TIME          SAGEMAKER-JOB-NAME
+xgboost-mnist-from-for-s3   InProgress   Starting           2019-11-20T23:42:35Z   xgboost-mnist-from-for-s3-examplef11eab94e0ed4671d5a8f
+</code></p>
+
+<p>A training job continues to be listed after the job has completed or failed. You can remove a <code>TrainingJob</code> job from the list by following the Delete a Training Job steps. Jobs that have completed or stopped do not incur any charges for SageMaker resources. </p>
+
+<h4>TrainingJob Status Values<a name="training-job-status-values"></a></h4>
+
+<p>The <code>STATUS</code> field can be one of the following values: 
++ <code>Completed</code> 
++ <code>InProgress</code> 
++ <code>Failed</code> 
++ <code>Stopped</code> 
++ <code>Stopping</code> </p>
+
+<p>These statuses come directly from the SageMaker official <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/API_DescribeTrainingJob.html#SageMaker-DescribeTrainingJob-response-TrainingJobStatus">API documentation</a>. </p>
+
+<p>In addition to the official SageMaker status, it is possible for <code>STATUS</code> to be <code>SynchronizingK8sJobWithSageMaker</code>. This means that the operator has not yet processed the job. </p>
+
+<h4>Secondary Status Values<a name="secondary-status-values"></a></h4>
+
+<p>The secondary statuses come directly from the SageMaker official <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/API_DescribeTrainingJob.html#SageMaker-DescribeTrainingJob-response-SecondaryStatus">API documentation</a>. They contain more granular information about the status of the job. </p>
+
+<h3>Describe a TrainingJob<a name="describe-a-training-job"></a></h3>
+
+<p>You can get more details about the training job by using the <code>describe</code> <code>kubectl</code> command. This is typically used for debugging a problem or checking the parameters of a training job. To get information about your training job, use the following command: </p>
+
+<p><code>
+kubectl describe trainingjob xgboost-mnist-from-for-s3
+</code></p>
+
+<p>The output for your training job should look like the following: </p>
+
+<p><code>
+Name:         xgboost-mnist-from-for-s3
+Namespace:    default
+Labels:       &lt;none&gt;
+Annotations:  &lt;none&gt;
+API Version:  sagemaker.aws.amazon.com/v1
+Kind:         TrainingJob
+Metadata:
+  Creation Timestamp:  2019-11-20T23:42:35Z
+  Finalizers:
+    sagemaker-operator-finalizer
+  Generation:        2
+  Resource Version:  23119
+  Self Link:         /apis/sagemaker.aws.amazon.com/v1/namespaces/default/trainingjobs/xgboost-mnist-from-for-s3
+  UID:               6d7uiui-0bef-11ea-b94e-0ed467example
+Spec:
+  Algorithm Specification:
+    Training Image:       8256416981234.dkr.ecr.us-east-2.amazonaws.com/xgboost:1
+    Training Input Mode:  File
+  Hyper Parameters:
+    Name:   eta
+    Value:  0.2
+    Name:   gamma
+    Value:  4
+    Name:   max_depth
+    Value:  5
+    Name:   min_child_weight
+    Value:  6
+    Name:   num_class
+    Value:  10
+    Name:   num_round
+    Value:  10
+    Name:   objective
+    Value:  multi:softmax
+    Name:   silent
+    Value:  0
+  Input Data Config:
+    Channel Name:      train
+    Compression Type:  None
+    Content Type:      text/csv
+    Data Source:
+      S 3 Data Source:
+        S 3 Data Distribution Type:  FullyReplicated
+        S 3 Data Type:               S3Prefix
+        S 3 Uri:                     https://s3-us-east-2.amazonaws.com/my-bucket/sagemaker/xgboost-mnist/train/
+    Channel Name:                    validation
+    Compression Type:                None
+    Content Type:                    text/csv
+    Data Source:
+      S 3 Data Source:
+        S 3 Data Distribution Type:  FullyReplicated
+        S 3 Data Type:               S3Prefix
+        S 3 Uri:                     https://s3-us-east-2.amazonaws.com/my-bucket/sagemaker/xgboost-mnist/validation/
+  Output Data Config:
+    S 3 Output Path:  s3://my-bucket/sagemaker/xgboost-mnist/xgboost/
+  Region:             us-east-2
+  Resource Config:
+    Instance Count:     1
+    Instance Type:      ml.m4.xlarge
+    Volume Size In GB:  5
+  Role Arn:             arn:aws:iam::12345678910:role/service-role/AmazonSageMaker-ExecutionRole
+  Stopping Condition:
+    Max Runtime In Seconds:  86400
+  Training Job Name:         xgboost-mnist-from-for-s3-6d7fa0af0bef11eab94e0example
+Status:
+  Cloud Watch Log URL:           https://us-east-2.console.aws.amazon.com/cloudwatch/home?region=us-east-2#logStream:group=/aws/sagemaker/TrainingJobs;prefix=&lt;example&gt;;streamFilter=typeLogStreamPrefix
+  Last Check Time:               2019-11-20T23:44:29Z
+  Sage Maker Training Job Name:  xgboost-mnist-from-for-s3-6d7fa0af0bef11eab94eexample
+  Secondary Status:              Downloading
+  Training Job Status:           InProgress
+Events:                          &lt;none&gt;
+</code></p>
+
+<h3>View Logs from TrainingJobs<a name="view-logs-from-training-jobs"></a></h3>
+
+<p>Use the following command to see the logs from the <code>kmeans-mnist</code> training job: </p>
+
+<p><code>
+kubectl smlogs trainingjob xgboost-mnist-from-for-s3
+</code></p>
+
+<p>Your output should look similar to the following. The logs from instances are ordered chronologically. </p>
+
+<p><code>
+"xgboost-mnist-from-for-s3" has SageMaker TrainingJobName "xgboost-mnist-from-for-s3-123456789" in region "us-east-2", status "InProgress" and secondary status "Starting"
+xgboost-mnist-from-for-s3-6d7fa0af0bef11eab94e0ed46example/algo-1-1574293123 2019-11-20 23:45:24.7 +0000 UTC Arguments: train
+xgboost-mnist-from-for-s3-6d7fa0af0bef11eab94e0ed46example/algo-1-1574293123 2019-11-20 23:45:24.7 +0000 UTC [2019-11-20:23:45:22:INFO] Running standalone xgboost training.
+xgboost-mnist-from-for-s3-6d7fa0af0bef11eab94e0ed46example/algo-1-1574293123 2019-11-20 23:45:24.7 +0000 UTC [2019-11-20:23:45:22:INFO] File size need to be processed in the node: 1122.95mb. Available memory size in the node: 8586.0mb
+xgboost-mnist-from-for-s3-6d7fa0af0bef11eab94e0ed46example/algo-1-1574293123 2019-11-20 23:45:24.7 +0000 UTC [2019-11-20:23:45:22:INFO] Determined delimiter of CSV input is ','
+xgboost-mnist-from-for-s3-6d7fa0af0bef11eab94e0ed46example/algo-1-1574293123 2019-11-20 23:45:24.7 +0000 UTC [23:45:22] S3DistributionType set as FullyReplicated
+</code></p>
+
+<h3>Delete TrainingJobs<a name="delete-training-jobs"></a></h3>
+
+<p>Use the following command to stop a training job on Amazon SageMaker: </p>
+
+<p><code>
+kubectl delete trainingjob xgboost-mnist-from-for-s3
+</code></p>
+
+<p>This command removes the SageMaker training job from Kubernetes. This command returns the following output: </p>
+
+<p><code>
+trainingjob.sagemaker.aws.amazon.com "xgboost-mnist-from-for-s3" deleted
+</code></p>
+
+<p>If the job is still in progress on SageMaker, the job stops. You do not incur any charges for SageMaker resources after your job stops or completes. </p>
+
+<p><strong>Note</strong>: SageMaker does not delete training jobs. Stopped jobs continue to show on the SageMaker console. The <code>delete</code> command takes about 2 minutes to clean up the resources from SageMaker. </p>
+
+<h2>HyperParameterTuningJob operator<a name="hyperparametertuningjobs-operator"></a></h2>
+
+<p>Hyperparameter tuning job operators reconcile your specified hyperparameter tuning job spec to SageMaker by launching it in SageMaker. You can learn more about SageMaker hyperparameter tuning jobs in the SageMaker <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/API_CreateHyperParameterTuningJob.html">CreateHyperParameterTuningJob API documentation</a>. </p>
+
+<p><strong>Topics</strong>
++ <a href="#create-a-hyperparametertuningjob-using-a-simple-yaml-file">Create a HyperparameterTuningJob Using a YAML File</a>
++ <a href="#create-a-hyperparametertuningjob-using-a-helm-chart">Create a HyperparameterTuningJob using a Helm Chart</a>
++ <a href="#list-hyperparameter-tuning-jobs">List HyperparameterTuningJobs</a>
++ <a href="#describe-a-hyperparameter-tuning-job">Describe a HyperparameterTuningJob</a>
++ <a href="#view-logs-from-hyperparametertuning-jobs">View Logs from HyperparameterTuningJobs</a>
++ <a href="#delete-hyperparametertuning-jobs">Delete a HyperparameterTuningJob</a></p>
+
+<h3>Create a HyperparameterTuningJob Using a YAML File<a name="create-a-hyperparametertuningjob-using-a-simple-yaml-file"></a></h3>
+
+<ol>
+<li><p>Download the sample YAML file for the hyperparameter tuning job using the following command: </p>
+
+<p><code>
+wget https://raw.githubusercontent.com/aws/amazon-sagemaker-operator-for-k8s/master/samples/xgboost-mnist-hpo.yaml
+</code></p></li>
+<li><p>Edit the <code>xgboost-mnist-hpo.yaml</code> file to replace the <code>roleArn</code> parameter with your <code>sagemaker-execution-role</code>. For the hyperparameter tuning job to succeed, you must also change the <code>s3InputPath</code> and <code>s3OutputPath</code> to values that correspond to your account. Apply the updates YAML file using the following command: </p>
+
+<p><code>
+kubectl apply -f xgboost-mnist-hpo.yaml
+</code></p></li>
+</ol>
+
+<h3>Create a HyperparameterTuningJob using a Helm Chart<a name="create-a-hyperparametertuningjob-using-a-helm-chart"></a></h3>
+
+<p>You can use Helm Charts to run hyperparameter tuning jobs. </p>
+
+<ol>
+<li><p>Clone the GitHub repository to get the source using the following command: </p>
+
+<p><code>
+git clone https://github.com/aws/amazon-sagemaker-operator-for-k8s.git
+</code></p></li>
+<li><p>Navigate to the <code>amazon-sagemaker-operator-for-k8s/hack/charts/hyperparameter-tuning-jobs/</code> folder. </p></li>
+<li><p>Edit the <code>values.yaml</code> file to replace the <code>roleArn</code> parameter with your <code>sagemaker-execution-role</code>. For the hyperparameter tuning job to succeed, you must also change the <code>s3InputPath</code> and <code>s3OutputPath</code> to values that correspond to your account. </p></li>
+</ol>
+
+<h4>Create the HyperparameterTuningJob<a name="create-the-hpo-job"></a></h4>
+
+<p>With the roles and Amazon S3 paths replaced with appropriate values in <code>values.yaml</code>, you can create a hyperparameter tuning job using the following command: </p>
+
+<p><code>
+helm install . --generate-name
+</code></p>
+
+<p>Your output should look similar to the following: </p>
+
+<p><code>
+NAME: chart-1574292948
+LAST DEPLOYED: Wed Nov 20 23:35:49 2019
+NAMESPACE: default
+STATUS: deployed
+REVISION: 1
+TEST SUITE: None
+NOTES:
+Thanks for installing the sagemaker-k8s-hyperparametertuningjob.
+</code></p>
+
+<h4>Verify Chart Installation<a name="verify-chart-installation"></a></h4>
+
+<p>To verify that the Helm Chart was created successfully, run the following command: </p>
+
+<p><code>
+helm ls
+</code></p>
+
+<p>Your output should look like the following: </p>
+
+<p><code>
+NAME                    NAMESPACE       REVISION        UPDATED
+chart-1474292948        default         1               2019-11-20 23:35:49.9136092 +0000 UTC   deployed        sagemaker-k8s-hyperparametertuningjob-0.1.0                               STATUS          CHART                           APP VERSION
+chart-1574292948        default         1               2019-11-20 23:35:49.9136092 +0000 UTC   deployed        sagemaker-k8s-trainingjob-0.1.0
+rolebased-1574291698    default         1               2019-11-20 23:14:59.6777082 +0000 UTC   deployed        sagemaker-k8s-operator-0.1.0
+</code></p>
+
+<p><code>helm install</code> creates a <code>HyperParameterTuningJob</code> Kubernetes resource. The operator launches the actual hyperparameter optimization job in SageMaker and updates the <code>HyperParameterTuningJob</code> Kubernetes resource to reflect the status of the job in SageMaker. You incur charges for SageMaker resources used during the duration of your job. You do not incur any charges once your job completes or stops. </p>
+
+<p><strong>Note</strong>: SageMaker does not allow you to update a running hyperparameter tuning job. You cannot edit any parameter and re-apply the file/config. You must either change the metadata name or delete the existing job and create a new one. Similar to existing training job operators like TFJob in Kubeflow, <code>update</code> is not supported. </p>
+
+<h3>List HyperparameterTuningJobs<a name="list-hyperparameter-tuning-jobs"></a></h3>
+
+<p>Use the following command to list all jobs created using the Kubernetes operator: </p>
+
+<p><code>
+kubectl get hyperparametertuningjob
+</code></p>
+
+<p>Your output should look like the following: </p>
+
+<p><code>
+NAME         STATUS      CREATION-TIME          COMPLETED   INPROGRESS   ERRORS   STOPPED   BEST-TRAINING-JOB                               SAGEMAKER-JOB-NAME
+xgboost-mnist-hpo   Completed   2019-10-17T01:15:52Z   10          0            0        0         xgboostha92f5e3cf07b11e9bf6c06d6-009-4c7a123   xgboostha92f5e3cf07b11e9bf6c123
+</code></p>
+
+<p>A hyperparameter tuning job continues to be listed after the job has completed or failed. You can remove a <code>hyperparametertuningjob</code> from the list by following the steps in Delete a Hyperparameter Tuning Job. Jobs that have completed or stopped do not incur any charges for SageMaker resources. </p>
+
+<h4>Hyperparameter Tuning Job Status Values<a name="hyperparameter-tuning-job-status-values"></a></h4>
+
+<p>The <code>STATUS</code> field can be one of the following values: 
++ <code>Completed</code> 
++ <code>InProgress</code> 
++ <code>Failed</code> 
++ <code>Stopped</code> 
++ <code>Stopping</code> </p>
+
+<p>These statuses come directly from the SageMaker official <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/API_DescribeHyperParameterTuningJob.html#SageMaker-DescribeHyperParameterTuningJob-response-HyperParameterTuningJobStatus">API documentation</a>. </p>
+
+<p>In addition to the official SageMaker status, it is possible for <code>STATUS</code> to be <code>SynchronizingK8sJobWithSageMaker</code>. This means that the operator has not yet processed the job. </p>
+
+<h4>Status Counters<a name="status-counters"></a></h4>
+
+<p>The output has several counters, like <code>COMPLETED</code> and <code>INPROGRESS</code>. These represent how many training jobs have completed and are in progress, respectively. For more information about how these are determined, see <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/API_TrainingJobStatusCounters.html">TrainingJobStatusCounters</a> in the SageMaker API documentation. </p>
+
+<h4>Best TrainingJob<a name="best-training-job"></a></h4>
+
+<p>This column contains the name of the <code>TrainingJob</code> that best optimized the selected metric. </p>
+
+<p>To see a summary of the tuned hyperparameters, run: </p>
+
+<p><code>
+kubectl describe hyperparametertuningjob xgboost-mnist-hpo
+</code></p>
+
+<p>To see detailed information about the <code>TrainingJob</code>, run: </p>
+
+<p><code>
+kubectl describe trainingjobs &lt;job name&gt;
+</code></p>
+
+<h4>Spawned TrainingJobs<a name="spawned-training-jobs"></a></h4>
+
+<p>You can also track all 10 training jobs in Kubernetes launched by <code>HyperparameterTuningJob</code> by running the following command: </p>
+
+<p><code>
+kubectl get trainingjobs
+</code></p>
+
+<h3>Describe a HyperparameterTuningJob<a name="describe-a-hyperparameter-tuning-job"></a></h3>
+
+<p>You can obtain debugging details using the <code>describe</code> <code>kubectl</code> command.</p>
+
+<p><code>
+kubectl describe hyperparametertuningjob xgboost-mnist-hpo
+</code></p>
+
+<p>In addition to information about the tuning job, the SageMaker Operator for Kubernetes also exposes the <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/automatic-model-tuning-monitor.html#automatic-model-tuning-best-training-job">best training job</a> found by the hyperparameter tuning job in the <code>describe</code> output as follows: </p>
+
+<p><code>
+Name:         xgboost-mnist-hpo
+Namespace:    default
+Labels:       &lt;none&gt;
+Annotations:  kubectl.kubernetes.io/last-applied-configuration:
+                {"apiVersion":"sagemaker.aws.amazon.com/v1","kind":"HyperparameterTuningJob","metadata":{"annotations":{},"name":"xgboost-mnist-hpo","namespace":...
+API Version:  sagemaker.aws.amazon.com/v1
+Kind:         HyperparameterTuningJob
+Metadata:
+  Creation Timestamp:  2019-10-17T01:15:52Z
+  Finalizers:
+    sagemaker-operator-finalizer
+  Generation:        2
+  Resource Version:  8167
+  Self Link:         /apis/sagemaker.aws.amazon.com/v1/namespaces/default/hyperparametertuningjobs/xgboost-mnist-hpo
+  UID:               a92f5e3c-f07b-11e9-bf6c-06d6f303uidu
+Spec:
+  Hyper Parameter Tuning Job Config:
+    Hyper Parameter Tuning Job Objective:
+      Metric Name:  validation:error
+      Type:         Minimize
+    Parameter Ranges:
+      Integer Parameter Ranges:
+        Max Value:     20
+        Min Value:     10
+        Name:          num_round
+        Scaling Type:  Linear
+    Resource Limits:
+      Max Number Of Training Jobs:     10
+      Max Parallel Training Jobs:      10
+    Strategy:                          Bayesian
+    Training Job Early Stopping Type:  Off
+  Hyper Parameter Tuning Job Name:     xgboostha92f5e3cf07b11e9bf6c06d6
+  Region:                              us-east-2
+  Training Job Definition:
+    Algorithm Specification:
+      Training Image:       12345678910.dkr.ecr.us-east-2.amazonaws.com/xgboost:1
+      Training Input Mode:  File
+    Input Data Config:
+      Channel Name:  train
+      Content Type:  text/csv
+      Data Source:
+        s3DataSource:
+          s3DataDistributionType:  FullyReplicated
+          s3DataType:              S3Prefix
+          s3Uri:                   https://s3-us-east-2.amazonaws.com/my-bucket/sagemaker/xgboost-mnist/train/
+      Channel Name:                validation
+      Content Type:                text/csv
+      Data Source:
+        s3DataSource:
+          s3DataDistributionType:  FullyReplicated
+          s3DataType:              S3Prefix
+          s3Uri:                   https://s3-us-east-2.amazonaws.com/my-bucket/sagemaker/xgboost-mnist/validation/
+    Output Data Config:
+      s3OutputPath:  https://s3-us-east-2.amazonaws.com/my-bucket/sagemaker/xgboost-mnist/xgboost
+    Resource Config:
+      Instance Count:     1
+      Instance Type:      ml.m4.xlarge
+      Volume Size In GB:  5
+    Role Arn:             arn:aws:iam::123456789012:role/service-role/AmazonSageMaker-ExecutionRole
+    Static Hyper Parameters:
+      Name:   base_score
+      Value:  0.5
+      Name:   booster
+      Value:  gbtree
+      Name:   csv_weights
+      Value:  0
+      Name:   dsplit
+      Value:  row
+      Name:   grow_policy
+      Value:  depthwise
+      Name:   lambda_bias
+      Value:  0.0
+      Name:   max_bin
+      Value:  256
+      Name:   max_leaves
+      Value:  0
+      Name:   normalize_type
+      Value:  tree
+      Name:   objective
+      Value:  reg:linear
+      Name:   one_drop
+      Value:  0
+      Name:   prob_buffer_row
+      Value:  1.0
+      Name:   process_type
+      Value:  default
+      Name:   rate_drop
+      Value:  0.0
+      Name:   refresh_leaf
+      Value:  1
+      Name:   sample_type
+      Value:  uniform
+      Name:   scale_pos_weight
+      Value:  1.0
+      Name:   silent
+      Value:  0
+      Name:   sketch_eps
+      Value:  0.03
+      Name:   skip_drop
+      Value:  0.0
+      Name:   tree_method
+      Value:  auto
+      Name:   tweedie_variance_power
+      Value:  1.5
+    Stopping Condition:
+      Max Runtime In Seconds:  86400
+Status:
+  Best Training Job:
+    Creation Time:  2019-10-17T01:16:14Z
+    Final Hyper Parameter Tuning Job Objective Metric:
+      Metric Name:        validation:error
+      Value:
+    Objective Status:     Succeeded
+    Training End Time:    2019-10-17T01:20:24Z
+    Training Job Arn:     arn:aws:sagemaker:us-east-2:123456789012:training-job/xgboostha92f5e3cf07b11e9bf6c06d6-009-4sample
+    Training Job Name:    xgboostha92f5e3cf07b11e9bf6c06d6-009-4c7a3059
+    Training Job Status:  Completed
+    Training Start Time:  2019-10-17T01:18:35Z
+    Tuned Hyper Parameters:
+      Name:                                    num_round
+      Value:                                   18
+  Hyper Parameter Tuning Job Status:           Completed
+  Last Check Time:                             2019-10-17T01:21:01Z
+  Sage Maker Hyper Parameter Tuning Job Name:  xgboostha92f5e3cf07b11e9bf6c06d6
+  Training Job Status Counters:
+    Completed:            10
+    In Progress:          0
+    Non Retryable Error:  0
+    Retryable Error:      0
+    Stopped:              0
+    Total Error:          0
+Events:                   &lt;none&gt;
+</code></p>
+
+<h3>View Logs from HyperparameterTuningJobs<a name="view-logs-from-hyperparametertuning-jobs"></a></h3>
+
+<p>Hyperparameter tuning jobs do not have logs, but all training jobs launched by them do have logs. These logs can be accessed as if they were a normal training job. For more information, see View Logs from Training Jobs. </p>
+
+<h3>Delete a HyperparameterTuningJob<a name="delete-hyperparametertuning-jobs"></a></h3>
+
+<p>Use the following command to stop a hyperparameter job in SageMaker. </p>
+
+<p><code>
+kubectl delete hyperparametertuningjob xgboost-mnist-hpo
+</code></p>
+
+<p>This command removes the hyperparameter tuning job and associated training jobs from your Kubernetes cluster and stops them in SageMaker. Jobs that have stopped or completed do not incur any charges for SageMaker resources. SageMaker does not delete hyperparameter tuning jobs. Stopped jobs continue to show on the SageMaker Console. </p>
+
+<p>Your output should look like the following: </p>
+
+<p><code>
+hyperparametertuningjob.sagemaker.aws.amazon.com "xgboost-mnist-hpo" deleted
+</code></p>
+
+<p><strong>Note</strong>: The delete command takes about 2 minutes to clean up the resources from SageMaker. </p>
+
+<h2>BatchTransformJob operator<a name="batchtransformjobs-operator"></a></h2>
+
+<p>Batch transform job operators reconcile your specified batch transform job spec to SageMaker by launching it in SageMaker. You can learn more about SageMaker batch transform job in the SageMaker <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/API_CreateTransformJob.html">CreateTransformJob API documentation</a>. </p>
+
+<p><strong>Topics</strong>
++ <a href="#create-a-batchtransformjob-using-a-simple-yaml-file">Create a BatchTransformJob Using a YAML File</a>
++ <a href="#create-a-batchtransformjob-using-a-helm-chart">Create a BatchTransformJob Using a Helm Chart</a>
++ <a href="#list-batch-transform-jobs">List BatchTransformJobs</a>
++ <a href="#describe-a-batch-transform-job">Describe a BatchTransformJob</a>
++ <a href="#view-logs-from-batch-transform-jobs">View Logs from BatchTransformJobs</a>
++ <a href="#delete-a-batch-transform-job">Delete a BatchTransformJob</a></p>
+
+<h3>Create a BatchTransformJob Using a YAML File<a name="create-a-batchtransformjob-using-a-simple-yaml-file"></a></h3>
+
+<ol>
+<li><p>Download the sample YAML file for the batch transform job using the following command: </p>
+
+<p><code>
+wget https://raw.githubusercontent.com/aws/amazon-sagemaker-operator-for-k8s/master/samples/xgboost-mnist-batchtransform.yaml
+</code></p></li>
+<li><p>Edit the file <code>xgboost-mnist-batchtransform.yaml</code> to change necessary parameters to replace the <code>inputdataconfig</code> with your input data and <code>s3OutputPath</code> with your Amazon S3 buckets that the SageMaker execution role has write access to. </p></li>
+<li><p>Apply the YAML file using the following command: </p>
+
+<p><code>
+kubectl apply -f xgboost-mnist-batchtransform.yaml
+</code></p></li>
+</ol>
+
+<h3>Create a BatchTransformJob Using a Helm Chart<a name="create-a-batchtransformjob-using-a-helm-chart"></a></h3>
+
+<p>You can use Helm Charts to run batch transform jobs. </p>
+
+<h4>Get the Helm installer directory<a name="get-the-helm-installer-directory"></a></h4>
+
+<p>Clone the GitHub repository to get the source using the following command: </p>
+
+<p><code>
+git clone https://github.com/aws/amazon-sagemaker-operator-for-k8s.git
+</code></p>
+
+<h4>Configure the Helm Chart<a name="configure-the-helm-chart"></a></h4>
+
+<p>Navigate to the <code>amazon-sagemaker-operator-for-k8s/hack/charts/batch-transform-jobs/</code> folder. </p>
+
+<p>Edit the <code>values.yaml</code> file to replace the <code>inputdataconfig</code> with your input data and outputPath with your S3 buckets to which the SageMaker execution role has write access. </p>
+
+<h4>Create a BatchTransformJob<a name="create-a-batch-transform-job"></a></h4>
+
+<ol>
+<li><p>Use the following command to create a batch transform job: </p>
+
+<p><code>
+helm install . --generate-name
+</code></p>
+
+<p>Your output should look like the following: </p>
+
+<p><code>
+NAME: chart-1574292948
+LAST DEPLOYED: Wed Nov 20 23:35:49 2019
+NAMESPACE: default
+STATUS: deployed
+REVISION: 1
+TEST SUITE: None
+NOTES:
+Thanks for installing the sagemaker-k8s-batch-transform-job.
+</code></p></li>
+<li><p>To verify that the Helm Chart was created successfully, run the following command: </p>
+
+<p><code>
+helm ls
+NAME                    NAMESPACE       REVISION        UPDATED                                 STATUS          CHART                           APP VERSION
+chart-1474292948        default         1               2019-11-20 23:35:49.9136092 +0000 UTC   deployed        sagemaker-k8s-batchtransformjob-0.1.0
+chart-1474292948        default         1               2019-11-20 23:35:49.9136092 +0000 UTC   deployed        sagemaker-k8s-hyperparametertuningjob-0.1.0
+chart-1574292948        default         1               2019-11-20 23:35:49.9136092 +0000 UTC   deployed        sagemaker-k8s-trainingjob-0.1.0
+rolebased-1574291698    default         1               2019-11-20 23:14:59.6777082 +0000 UTC   deployed        sagemaker-k8s-operator-0.1.0
+</code></p>
+
+<p>This command creates a <code>BatchTransformJob</code> Kubernetes resource. The operator launches the actual transform job in SageMaker and updates the <code>BatchTransformJob</code> Kubernetes resource to reflect the status of the job in SageMaker. You incur charges for SageMaker resources used during the duration of your job. You do not incur any charges once your job completes or stops. </p></li>
+</ol>
+
+<p><strong>Note</strong>: SageMaker does not allow you to update a running batch transform job. You cannot edit any parameter and re-apply the file/config. You must either change the metadata name or delete the existing job and create a new one. Similar to existing training job operators like TFJob in Kubeflow, <code>update</code> is not supported. </p>
+
+<h3>List BatchTransformJobs<a name="list-batch-transform-jobs"></a></h3>
+
+<p>Use the following command to list all jobs created using the Kubernetes operator: </p>
+
+<p><code>
+kubectl get batchtransformjob
+</code></p>
+
+<p>Your output should look like the following: </p>
+
+<p><code>
+NAME                                STATUS      CREATION-TIME          SAGEMAKER-JOB-NAME
+xgboost-mnist-batch-transform       Completed   2019-11-18T03:44:00Z   xgboost-mnist-a88fb19809b511eaac440aa8axgboost
+</code></p>
+
+<p>A batch transform job will continue to be listed after the job has completed or failed. You can remove a <code>hyperparametertuningjob</code> from the list by following the Delete a Batch Transform Job steps. Jobs that have completed or stopped do not incur any charges for SageMaker resources. </p>
+
+<h4>Batch Transform Status Values<a name="batch-transform-status-values"></a></h4>
+
+<p>The <code>STATUS</code> field can be one of the following values: 
++ <code>Completed</code> 
++ <code>InProgress</code> 
++ <code>Failed</code> 
++ <code>Stopped</code> 
++ <code>Stopping</code> </p>
+
+<p>These statuses come directly from the SageMaker official <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/API_DescribeHyperParameterTuningJob.html#SageMaker-DescribeHyperParameterTuningJob-response-HyperParameterTuningJobStatus">API documentation</a>. </p>
+
+<p>In addition to the official SageMaker status, it is possible for <code>STATUS</code> to be <code>SynchronizingK8sJobWithSageMaker</code>. This means that the operator has not yet processed the job.</p>
+
+<h3>Describe a BatchTransformJob<a name="describe-a-batch-transform-job"></a></h3>
+
+<p>You can obtain debugging details using the <code>describe</code> <code>kubectl</code> command.</p>
+
+<p><code>
+kubectl describe batchtransformjob xgboost-mnist-batch-transform
+</code></p>
+
+<p>Your output should look like the following: </p>
+
+<p><code>
+Name:         xgboost-mnist-batch-transform
+Namespace:    default
+Labels:       &lt;none&gt;
+Annotations:  kubectl.kubernetes.io/last-applied-configuration:
+                {"apiVersion":"sagemaker.aws.amazon.com/v1","kind":"BatchTransformJob","metadata":{"annotations":{},"name":"xgboost-mnist","namespace"...
+API Version:  sagemaker.aws.amazon.com/v1
+Kind:         BatchTransformJob
+Metadata:
+  Creation Timestamp:  2019-11-18T03:44:00Z
+  Finalizers:
+    sagemaker-operator-finalizer
+  Generation:        2
+  Resource Version:  21990924
+  Self Link:         /apis/sagemaker.aws.amazon.com/v1/namespaces/default/batchtransformjobs/xgboost-mnist
+  UID:               a88fb198-09b5-11ea-ac44-0aa8a9UIDNUM
+Spec:
+  Model Name:  TrainingJob-20190814SMJOb-IKEB
+  Region:      us-east-1
+  Transform Input:
+    Content Type:  text/csv
+    Data Source:
+      S 3 Data Source:
+        S 3 Data Type:  S3Prefix
+        S 3 Uri:        s3://my-bucket/mnist_kmeans_example/input
+  Transform Job Name:   xgboost-mnist-a88fb19809b511eaac440aa8a9SMJOB
+  Transform Output:
+    S 3 Output Path:  s3://my-bucket/mnist_kmeans_example/output
+  Transform Resources:
+    Instance Count:  1
+    Instance Type:   ml.m4.xlarge
+Status:
+  Last Check Time:                2019-11-19T22:50:40Z
+  Sage Maker Transform Job Name:  xgboost-mnist-a88fb19809b511eaac440aaSMJOB
+  Transform Job Status:           Completed
+Events:                           &lt;none&gt;
+</code></p>
+
+<h3>View Logs from BatchTransformJobs<a name="view-logs-from-batch-transform-jobs"></a></h3>
+
+<p>Use the following command to see the logs from the <code>xgboost-mnist</code> batch transform job: </p>
+
+<p><code>
+kubectl smlogs batchtransformjob xgboost-mnist-batch-transform
+</code></p>
+
+<h3>Delete a BatchTransformJob<a name="delete-a-batch-transform-job"></a></h3>
+
+<p>Use the following command to stop a batch transform job in SageMaker. </p>
+
+<p><code>
+kubectl delete batchTransformJob xgboost-mnist-batch-transform
+</code></p>
+
+<p>Your output should look like the following: </p>
+
+<p><code>
+batchtransformjob.sagemaker.aws.amazon.com "xgboost-mnist" deleted
+</code></p>
+
+<p>This command removes the batch transform job from your Kubernetes cluster, as well as stops them in SageMaker. Jobs that have stopped or completed do not incur any charges for SageMaker resources. Delete takes about 2 minutes to clean up the resources from SageMaker. </p>
+
+<p><strong>Note</strong>: SageMaker does not delete batch transform jobs. Stopped jobs continue to show on the SageMaker console. </p>
+
+<h2>HostingDeployment operator<a name="hosting-deployment-operator"></a></h2>
+
+<p>HostingDeployment operators support creating and deleting an endpoint, as well as updating an existing endpoint, for real-time inference. The hosting deployment operator reconciles your specified hosting deployment job spec to SageMaker by creating models, endpoint-configs and endpoints in SageMaker. You can learn more about SageMaker inference in the SageMaker <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/API_CreateEndpoint.html">CreateEndpoint API documentation</a>. </p>
+
+<p><strong>Topics</strong>
++ <a href="#configure-a-hostingdeployment-resource">Configure a HostingDeployment Resource</a>
++ <a href="#create-a-hostingdeployment">Create a HostingDeployment</a>
++ <a href="#list-hostingdeployments">List HostingDeployments</a>
++ <a href="#describe-a-hostingdeployment">Describe a HostingDeployment</a>
++ <a href="#invoking-the-endpoint">Invoking the Endpoint</a>
++ <a href="#update-hostingdeployment">Update HostingDeployment</a>
++ <a href="#delete-the-hostingdeployment">Delete the HostingDeployment</a></p>
+
+<h3>Configure a HostingDeployment Resource<a name="configure-a-hostingdeployment-resource"></a></h3>
+
+<p>Download the sample YAML file for the hosting deployment job using the following command: </p>
+
+<p><code>
+wget https://raw.githubusercontent.com/aws/amazon-sagemaker-operator-for-k8s/master/samples/xgboost-mnist-hostingdeployment.yaml
+</code></p>
+
+<p>The <code>xgboost-mnist-hostingdeployment.yaml</code> file has the following components that can be edited as required: 
++ <em>ProductionVariants</em>. A production variant is a set of instances serving a single model. SageMaker load-balances between all production variants according to set weights. 
++ <em>Models</em>. A model is the containers and execution role ARN necessary to serve a model. It requires at least a single container. 
++ <em>Containers</em>. A container specifies the dataset and serving image. If you are using your own custom algorithm instead of an algorithm provided by SageMaker, the inference code must meet SageMaker requirements. For more information, see <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/your-algorithms.html">Using Your Own Algorithms with SageMaker</a>. </p>
+
+<h3>Create a HostingDeployment<a name="create-a-hostingdeployment"></a></h3>
+
+<p>To create a HostingDeployment, use <code>kubectl</code> to apply the file <code>hosting.yaml</code> with the following command: </p>
+
+<p><code>
+kubectl apply -f hosting.yaml
+</code></p>
+
+<p>SageMaker creates an endpoint with the specified configuration. You incur charges for SageMaker resources used during the lifetime of your endpoint. You do not incur any charges once your endpoint is deleted. </p>
+
+<p>The creation process takes approximately 10 minutes. </p>
+
+<h3>List HostingDeployments<a name="list-hostingdeployments"></a></h3>
+
+<p>To verify that the HostingDeployment was created, use the following command: </p>
+
+<p><code>
+kubectl get hostingdeployments
+</code></p>
+
+<p>Your output should look like the following: </p>
+
+<p><code>
+NAME           STATUS     SAGEMAKER-ENDPOINT-NAME
+host-xgboost   Creating   host-xgboost-def0e83e0d5f11eaaa450aSMLOGS
+</code></p>
+
+<h4>HostingDeployment Status Values<a name="hostingdeployment-status-values"></a></h4>
+
+<p>The status field can be one of several values: 
++ <code>SynchronizingK8sJobWithSageMaker</code>: The operator is preparing to create the endpoint. 
++ <code>ReconcilingEndpoint</code>: The operator is creating, updating, or deleting endpoint resources. If the HostingDeployment remains in this state, use <code>kubectl describe</code> to see the reason in the <code>Additional</code> field. 
++ <code>OutOfService</code>: Endpoint is not available to take incoming requests. 
++ <code>Creating</code>: <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/API_CreateEndpoint.html">CreateEndpoint</a> is executing. 
++ <code>Updating</code>: <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/API_UpdateEndpoint.html">UpdateEndpoint</a> or <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/API_UpdateEndpointWeightsAndCapacities.html">UpdateEndpointWeightsAndCapacities</a> is executing. 
++ <code>SystemUpdating</code>: Endpoint is undergoing maintenance and cannot be updated or deleted or re-scaled until it has completed. This maintenance operation does not change any customer-specified values such as VPC config, KMS encryption, model, instance type, or instance count. 
++ <code>RollingBack</code>: Endpoint fails to scale up or down or change its variant weight and is in the process of rolling back to its previous configuration. Once the rollback completes, endpoint returns to an <code>InService</code> status. This transitional status only applies to an endpoint that has autoscaling enabled and is undergoing variant weight or capacity changes as part of an <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/API_UpdateEndpointWeightsAndCapacities.html">UpdateEndpointWeightsAndCapacities</a> call or when the <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/API_UpdateEndpointWeightsAndCapacities.html">UpdateEndpointWeightsAndCapacities</a> operation is called explicitly. 
++ <code>InService</code>: Endpoint is available to process incoming requests. 
++ <code>Deleting</code>: <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/API_DeleteEndpoint.html">DeleteEndpoint</a> is executing. 
++ <code>Failed</code>: Endpoint could not be created, updated, or re-scaled. Use <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/API_DescribeEndpoint.html#SageMaker-DescribeEndpoint-response-FailureReason">DescribeEndpoint:FailureReason</a> for information about the failure. <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/API_DeleteEndpoint.html">DeleteEndpoint</a> is the only operation that can be performed on a failed endpoint. </p>
+
+<h3>Describe a HostingDeployment<a name="describe-a-hostingdeployment"></a></h3>
+
+<p>You can obtain debugging details using the <code>describe</code> <code>kubectl</code> command.</p>
+
+<p><code>
+kubectl describe hostingdeployment
+</code></p>
+
+<p>Your output should look like the following: </p>
+
+<p><code>
+Name:         host-xgboost
+Namespace:    default
+Labels:       &lt;none&gt;
+Annotations:  kubectl.kubernetes.io/last-applied-configuration:
+                {"apiVersion":"sagemaker.aws.amazon.com/v1","kind":"HostingDeployment","metadata":{"annotations":{},"name":"host-xgboost","namespace":"def..."
+API Version:  sagemaker.aws.amazon.com/v1
+Kind:         HostingDeployment
+Metadata:
+  Creation Timestamp:  2019-11-22T19:40:00Z
+  Finalizers:
+    sagemaker-operator-finalizer
+  Generation:        1
+  Resource Version:  4258134
+  Self Link:         /apis/sagemaker.aws.amazon.com/v1/namespaces/default/hostingdeployments/host-xgboost
+  UID:               def0e83e-0d5f-11ea-aa45-0a3507uiduid
+Spec:
+  Containers:
+    Container Hostname:  xgboost
+    Image:               123456789012.dkr.ecr.us-east-2.amazonaws.com/xgboost:latest
+    Model Data URL:      s3://my-bucket/inference/xgboost-mnist/model.tar.gz
+  Models:
+    Containers:
+      xgboost
+    Execution Role Arn:  arn:aws:iam::123456789012:role/service-role/AmazonSageMaker-ExecutionRole
+    Name:                xgboost-model
+    Primary Container:   xgboost
+  Production Variants:
+    Initial Instance Count:  1
+    Instance Type:           ml.c5.large
+    Model Name:              xgboost-model
+    Variant Name:            all-traffic
+  Region:                    us-east-2
+Status:
+  Creation Time:         2019-11-22T19:40:04Z
+  Endpoint Arn:          arn:aws:sagemaker:us-east-2:123456789012:endpoint/host-xgboost-def0e83e0d5f11eaaaexample
+  Endpoint Config Name:  host-xgboost-1-def0e83e0d5f11e-e08f6c510d5f11eaaa450aexample
+  Endpoint Name:         host-xgboost-def0e83e0d5f11eaaa450a350733ba06
+  Endpoint Status:       Creating
+  Endpoint URL:          https://runtime.sagemaker.us-east-2.amazonaws.com/endpoints/host-xgboost-def0e83e0d5f11eaaaexample/invocations
+  Last Check Time:       2019-11-22T19:43:57Z
+  Last Modified Time:    2019-11-22T19:40:04Z
+  Model Names:
+    Name:   xgboost-model
+    Value:  xgboost-model-1-def0e83e0d5f11-df5cc9fd0d5f11eaaa450aexample
+Events:     &lt;none&gt;
+</code></p>
+
+<p>The status field provides more information using the following fields: 
++ <code>Additional</code>: Additional information about the status of the hosting deployment. This field is optional and only gets populated in case of error. 
++ <code>Creation Time</code>: When the endpoint was created in SageMaker. 
++ <code>Endpoint ARN</code>: The SageMaker endpoint ARN. 
++ <code>Endpoint Config Name</code>: The SageMaker name of the endpoint configuration. 
++ <code>Endpoint Name</code>: The SageMaker name of the endpoint. 
++ <code>Endpoint Status</code>: The status of the endpoint. 
++ <code>Endpoint URL</code>: The HTTPS URL that can be used to access the endpoint. For more information, see <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/deploy-model.html">Deploy a Model on SageMaker Hosting Services</a>. 
++ <code>FailureReason</code>: If a create, update, or delete command fails, the cause is shown here. 
++ <code>Last Check Time</code>: The last time the operator checked the status of the endpoint. 
++ <code>Last Modified Time</code>: The last time the endpoint was modified. 
++ <code>Model Names</code>: A key-value pair of HostingDeployment model names to SageMaker model names. </p>
+
+<h3>Invoking the Endpoint<a name="invoking-the-endpoint"></a></h3>
+
+<p>Once the endpoint status is <code>InService</code>, you can invoke the endpoint in two ways: using the AWS CLI, which does authentication and URL request signing, or using an HTTP client like cURL. If you use your own client, you need to do AWS v4 URL signing and authentication on your own. </p>
+
+<p>To invoke the endpoint using the AWS CLI, run the following command. Make sure to replace the Region and endpoint-name with your endpoint's Region and SageMaker endpoint name. This information can be obtained from the output of <code>kubectl describe</code>. </p>
+
+<p>```</p>
+
+<h1>Invoke the endpoint with mock input data.</h1>
+
+<p>aws sagemaker-runtime invoke-endpoint \
+  --region us-east-2 \
+  --endpoint-name <endpoint name> \
+  --body $(seq 784 | xargs echo | sed 's/ /,/g') \</p>
+
+<blockquote>
+  <p>(cat) \
+    --content-type text/csv &gt; /dev/null
+  ```</p>
+</blockquote>
+
+<p>For example, if your Region is <code>us-east-2</code> and your endpoint config name is <code>host-xgboost-f56b6b280d7511ea824b129926example</code>, then the following command would invoke the endpoint: </p>
+
+<p>```
+aws sagemaker-runtime invoke-endpoint \
+  --region us-east-2 \
+  --endpoint-name host-xgboost-f56b6b280d7511ea824b1299example \
+  --body $(seq 784 | xargs echo | sed 's/ /,/g') \</p>
+
+<blockquote>
+  <p>(cat) \
+    --content-type text/csv &gt; /dev/null
+  4.95847082138
+  ```</p>
+</blockquote>
+
+<p>Here, <code>4.95847082138</code> is the prediction from the model for the mock data. </p>
+
+<h3>Update HostingDeployment<a name="update-hostingdeployment"></a></h3>
+
+<ol>
+<li><p>Once a HostingDeployment has a status of <code>InService</code>, it can be updated. It might take about 10 minutes for HostingDeployment to be in service. To verify that the status is <code>InService</code>, use the following command: </p>
+
+<p><code>
+kubectl get hostingdeployments
+</code></p></li>
+<li><p>The HostingDeployment can be updated before the status is <code>InService</code>. The operator waits until the SageMaker endpoint is <code>InService</code> before applying the update. </p>
+
+<p>To apply an update, modify the <code>hosting.yaml</code> file. For example, change the <code>initialInstanceCount</code> field from 1 to 2 as follows: </p>
+
+<p><code>
+apiVersion: sagemaker.aws.amazon.com/v1
+kind: HostingDeployment
+metadata:
+  name: host-xgboost
+spec:
+    region: us-east-2
+    productionVariants:
+        - variantName: all-traffic
+          modelName: xgboost-model
+          initialInstanceCount: 2
+          instanceType: ml.c5.large
+    models:
+        - name: xgboost-model
+          executionRoleArn: arn:aws:iam::123456789012:role/service-role/AmazonSageMaker-ExecutionRole
+          primaryContainer: xgboost
+          containers:
+            - xgboost
+    containers:
+        - containerHostname: xgboost
+          modelDataUrl: s3://my-bucket/inference/xgboost-mnist/model.tar.gz
+          image: 123456789012.dkr.ecr.us-east-2.amazonaws.com/xgboost:latest
+</code></p></li>
+<li><p>Save the file, then use <code>kubectl</code> to apply your update as follows. You should see the status change from <code>InService</code> to <code>ReconcilingEndpoint</code>, then <code>Updating</code>. </p>
+
+<p>```
+$ kubectl apply -f hosting.yaml
+hostingdeployment.sagemaker.aws.amazon.com/host-xgboost configured</p>
+
+<p>$ kubectl get hostingdeployments
+NAME           STATUS                SAGEMAKER-ENDPOINT-NAME
+host-xgboost   ReconcilingEndpoint   host-xgboost-def0e83e0d5f11eaaa450a350abcdef</p>
+
+<p>$ kubectl get hostingdeployments
+NAME           STATUS     SAGEMAKER-ENDPOINT-NAME
+host-xgboost   Updating   host-xgboost-def0e83e0d5f11eaaa450a3507abcdef
+```</p></li>
+</ol>
+
+<p>SageMaker deploys a new set of instances with your models, switches traffic to use the new instances, and drains the old instances. As soon as this process begins, the status becomes <code>Updating</code>. After the update is complete, your endpoint becomes <code>InService</code>. This process takes approximately 10 minutes. </p>
+
+<h3>Delete the HostingDeployment<a name="delete-the-hostingdeployment"></a></h3>
+
+<ol>
+<li><p>Use <code>kubectl</code> to delete a HostingDeployment with the following command: </p>
+
+<p><code>
+kubectl delete hostingdeployments host-xgboost
+</code></p>
+
+<p>Your output should look like the following: </p>
+
+<p><code>
+hostingdeployment.sagemaker.aws.amazon.com "host-xgboost" deleted
+</code></p></li>
+<li><p>To verify that the hosting deployment has been deleted, use the following command: </p>
+
+<p><code>
+kubectl get hostingdeployments
+No resources found.
+</code></p></li>
+</ol>
+
+<p>Endpoints that have been deleted do not incur any charges for SageMaker resources. </p>
+
+<h2>ProcessingJob operator<a name="kubernetes-processing-job-operator"></a></h2>
+
+<p>ProcessingJob operators are used to launch Amazon SageMaker processing jobs. For more information on SageMaker processing jobs, see <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateProcessingJob.html">CreateProcessingJob</a>. </p>
+
+<p><strong>Topics</strong>
++ <a href="#kubernetes-processing-job-yaml">Create a ProcessingJob Using a YAML File</a>
++ <a href="#kubernetes-processing-job-list">List ProcessingJobs</a>
++ <a href="#kubernetes-processing-job-description">Describe a ProcessingJob</a>
++ <a href="#kubernetes-processing-job-delete">Delete a ProcessingJob</a></p>
+
+<h3>Create a ProcessingJob Using a YAML File<a name="kubernetes-processing-job-yaml"></a></h3>
+
+<p>Follow these steps to create an Amazon SageMaker processing job by using a YAML file:</p>
+
+<ol>
+<li><p>Download the <code>kmeans_preprocessing.py</code> pre-processing script.</p>
+
+<p><code>
+wget https://raw.githubusercontent.com/aws/amazon-sagemaker-operator-for-k8s/master/samples/kmeans_preprocessing.py
+</code></p></li>
+<li><p>In one of your Amazon Simple Storage Service (Amazon S3) buckets, create a <code>mnist_kmeans_example/processing_code</code> folder and upload the script to the folder.</p></li>
+<li><p>Download the <code>kmeans-mnist-processingjob.yaml</code> file.</p>
+
+<p><code>
+wget https://raw.githubusercontent.com/aws/amazon-sagemaker-operator-for-k8s/master/samples/kmeans-mnist-processingjob.yaml
+</code></p></li>
+<li><p>Edit the YAML file to specify your <code>sagemaker-execution-role</code> and replace all instances of <code>my-bucket</code> with your S3 bucket.</p>
+
+<p><code>
+...
+metadata:
+  name: kmeans-mnist-processing
+...
+  roleArn: arn:aws:iam::&lt;acct-id&gt;:role/service-role/&lt;sagemaker-execution-role&gt;
+  ...
+  processingOutputConfig:
+    outputs:
+      ...
+          s3Output:
+            s3Uri: s3://&lt;my-bucket&gt;/mnist_kmeans_example/output/
+  ...
+  processingInputs:
+    ...
+        s3Input:
+          s3Uri: s3://&lt;my-bucket&gt;/mnist_kmeans_example/processing_code/kmeans_preprocessing.py
+</code></p>
+
+<p>The <code>sagemaker-execution-role</code> must have permissions so that SageMaker can access your S3 bucket, Amazon CloudWatch, and other services on your behalf. For more information on creating an execution role, see <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/sagemaker-roles.html#sagemaker-roles-createtrainingjob-perms">SageMaker Roles</a>.</p></li>
+<li><p>Apply the YAML file using one of the following commands.</p>
+
+<p>For cluster-scoped installation:</p>
+
+<p><code>
+kubectl apply -f kmeans-mnist-processingjob.yaml
+</code></p>
+
+<p>For namespace-scoped installation:</p>
+
+<p><code>
+kubectl apply -f kmeans-mnist-processingjob.yaml -n &lt;NAMESPACE&gt;
+</code></p></li>
+</ol>
+
+<h3>List ProcessingJobs<a name="kubernetes-processing-job-list"></a></h3>
+
+<p>Use one of the following commands to list all the jobs created using the ProcessingJob operator. <code>SAGEMAKER-JOB-NAME</code> comes from the <code>metadata</code> section of the YAML file.</p>
+
+<p>For cluster-scoped installation:</p>
+
+<p><code>
+kubectl get ProcessingJob kmeans-mnist-processing
+</code></p>
+
+<p>For namespace-scoped installation:</p>
+
+<p><code>
+kubectl get ProcessingJob -n &lt;NAMESPACE&gt; kmeans-mnist-processing
+</code></p>
+
+<p>Your output should look similar to the following:</p>
+
+<p><code>
+NAME                    STATUS     CREATION-TIME        SAGEMAKER-JOB-NAME
+kmeans-mnist-processing InProgress 2020-09-22T21:13:25Z kmeans-mnist-processing-7410ed52fd1811eab19a165ae9f9e385
+</code></p>
+
+<p>The output lists all jobs regardless of their status. To remove a job from the list, see <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/kubernetes-processing-job-operator.html#kubernetes-processing-job-delete">Delete a Processing Job</a>.</p>
+
+<p><strong>ProcessingJob Status</strong>
++ <code>SynchronizingK8sJobWithSageMaker</code> – The job is first submitted to the cluster. The operator has received the request and is preparing to create the processing job.
++ <code>Reconciling</code> – The operator is initializing or recovering from transient errors, along with others. If the processing job remains in this state, use the <code>kubectl</code> <code>describe</code> command to see the reason in the <code>Additional</code> field.
++ <code>InProgress | Completed | Failed | Stopping | Stopped</code> – Status of the SageMaker processing job. For more information, see <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_DescribeProcessingJob.html#sagemaker-DescribeProcessingJob-response-ProcessingJobStatus">DescribeProcessingJob</a>.
++ <code>Error</code> – The operator cannot recover by reconciling.</p>
+
+<p>Jobs that have completed, stopped, or failed do not incur further charges for SageMaker resources.</p>
+
+<h3>Describe a ProcessingJob<a name="kubernetes-processing-job-description"></a></h3>
+
+<p>Use one of the following commands to get more details about a processing job. These commands are typically used for debugging a problem or checking the parameters of a processing job.</p>
+
+<p>For cluster-scoped installation:</p>
+
+<p><code>
+kubectl describe processingjob kmeans-mnist-processing
+</code></p>
+
+<p>For namespace-scoped installation:</p>
+
+<p><code>
+kubectl describe processingjob kmeans-mnist-processing -n &lt;NAMESPACE&gt;
+</code></p>
+
+<p>The output for your processing job should look similar to the following.</p>
+
+<p><code>
+$ kubectl describe ProcessingJob kmeans-mnist-processing
+Name:         kmeans-mnist-processing
+Namespace:    default
+Labels:       &lt;none&gt;
+Annotations:  kubectl.kubernetes.io/last-applied-configuration:
+                {"apiVersion":"sagemaker.aws.amazon.com/v1","kind":"ProcessingJob","metadata":{"annotations":{},"name":"kmeans-mnist-processing",...
+API Version:  sagemaker.aws.amazon.com/v1
+Kind:         ProcessingJob
+Metadata:
+  Creation Timestamp:  2020-09-22T21:13:25Z
+  Finalizers:
+    sagemaker-operator-finalizer
+  Generation:        2
+  Resource Version:  21746658
+  Self Link:         /apis/sagemaker.aws.amazon.com/v1/namespaces/default/processingjobs/kmeans-mnist-processing
+  UID:               7410ed52-fd18-11ea-b19a-165ae9f9e385
+Spec:
+  App Specification:
+    Container Entrypoint:
+      python
+      /opt/ml/processing/code/kmeans_preprocessing.py
+    Image Uri:  763104351884.dkr.ecr.us-west-2.amazonaws.com/pytorch-training:1.5.0-cpu-py36-ubuntu16.04
+  Environment:
+    Name:   MYVAR
+    Value:  my_value
+    Name:   MYVAR2
+    Value:  my_value2
+  Network Config:
+  Processing Inputs:
+    Input Name:  mnist_tar
+    s3Input:
+      Local Path:   /opt/ml/processing/input
+      s3DataType:   S3Prefix
+      s3InputMode:  File
+      s3Uri:        s3://&lt;s3bucket&gt;-us-west-2/algorithms/kmeans/mnist/mnist.pkl.gz
+    Input Name:     source_code
+    s3Input:
+      Local Path:   /opt/ml/processing/code
+      s3DataType:   S3Prefix
+      s3InputMode:  File
+      s3Uri:        s3://&lt;s3bucket&gt;/mnist_kmeans_example/processing_code/kmeans_preprocessing.py
+  Processing Output Config:
+    Outputs:
+      Output Name:  train_data
+      s3Output:
+        Local Path:    /opt/ml/processing/output_train/
+        s3UploadMode:  EndOfJob
+        s3Uri:         s3://&lt;s3bucket&gt;/mnist_kmeans_example/output/
+      Output Name:     test_data
+      s3Output:
+        Local Path:    /opt/ml/processing/output_test/
+        s3UploadMode:  EndOfJob
+        s3Uri:         s3://&lt;s3bucket&gt;/mnist_kmeans_example/output/
+      Output Name:     valid_data
+      s3Output:
+        Local Path:    /opt/ml/processing/output_valid/
+        s3UploadMode:  EndOfJob
+        s3Uri:         s3://&lt;s3bucket&gt;/mnist_kmeans_example/output/
+  Processing Resources:
+    Cluster Config:
+      Instance Count:     1
+      Instance Type:      ml.m5.xlarge
+      Volume Size In GB:  20
+  Region:                 us-west-2
+  Role Arn:               arn:aws:iam::&lt;acct-id&gt;:role/m-sagemaker-role
+  Stopping Condition:
+    Max Runtime In Seconds:  1800
+  Tags:
+    Key:    tagKey
+    Value:  tagValue
+Status:
+  Cloud Watch Log URL:             https://us-west-2.console.aws.amazon.com/cloudwatch/home?region=us-west-2#logStream:group=/aws/sagemaker/ProcessingJobs;prefix=kmeans-mnist-processing-7410ed52fd1811eab19a165ae9f9e385;streamFilter=typeLogStreamPrefix
+  Last Check Time:                 2020-09-22T21:14:29Z
+  Processing Job Status:           InProgress
+  Sage Maker Processing Job Name:  kmeans-mnist-processing-7410ed52fd1811eab19a165ae9f9e385
+Events:                            &lt;none&gt;
+</code></p>
+
+<h3>Delete a ProcessingJob<a name="kubernetes-processing-job-delete"></a></h3>
+
+<p>When you delete a processing job, the SageMaker processing job is removed from Kubernetes but the job isn't deleted from SageMaker. If the job status in SageMaker is <code>InProgress</code> the job is stopped. Processing jobs that are stopped do not incur any charges for SageMaker resources. Use one of the following commands to delete a processing job. </p>
+
+<p>For cluster-scoped installation:</p>
+
+<p><code>
+kubectl delete processingjob kmeans-mnist-processing
+</code></p>
+
+<p>For namespace-scoped installation:</p>
+
+<p><code>
+kubectl delete processingjob kmeans-mnist-processing -n &lt;NAMESPACE&gt;
+</code></p>
+
+<p>The output for your processing job should look similar to the following.</p>
+
+<p><code>
+processingjob.sagemaker.aws.amazon.com "kmeans-mnist-processing" deleted
+</code></p>
+
+<p><strong>Note</strong><br />
+SageMaker does not delete the processing job. Stopped jobs continue to show in the SageMaker console. The <code>delete</code> command takes a few minutes to clean up the resources from SageMaker.</p>
+
+<h2>HostingAutoscalingPolicy (HAP) Operator<a name="kubernetes-hap-operator"></a></h2>
+
+<p>The HostingAutoscalingPolicy (HAP) operator takes a list of resource IDs as input and applies the same policy to each of them. Each resource ID is a combination of an endpoint name and a variant name. The HAP operator performs two steps: it registers the resource IDs and then applies the scaling policy to each resource ID. <code>Delete</code> undoes both actions. You can apply the HAP to an existing SageMaker endpoint or you can create a new SageMaker endpoint using the <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/hosting-deployment-operator.html#create-a-hostingdeployment">HostingDeployment operator</a>. You can read more about SageMaker autoscaling in the <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/endpoint-auto-scaling.html"> Application Autoscaling Policy documentation</a>.</p>
+
+<p><strong>Note</strong><br />
+In your <code>kubectl</code> commands, you can use the short form, <code>hap</code>, in place of <code>hostingautoscalingpolicy</code>.</p>
+
+<p><strong>Topics</strong>
++ <a href="#kubernetes-hap-job-yaml">Create a HostingAutoscalingPolicy Using a YAML File</a>
++ <a href="#kubernetes-hap-list">List HostingAutoscalingPolicies</a>
++ <a href="#kubernetes-hap-describe">Describe a HostingAutoscalingPolicy</a>
++ <a href="#kubernetes-hap-update">Update a HostingAutoscalingPolicy</a>
++ <a href="#kubernetes-hap-delete">Delete a HostingAutoscalingPolicy</a>
++ <a href="#kubernetes-hap-update-delete-endpoint">Update or Delete an Endpoint with a HostingAutoscalingPolicy</a></p>
+
+<h3>Create a HostingAutoscalingPolicy Using a YAML File<a name="kubernetes-hap-job-yaml"></a></h3>
+
+<p>Use a YAML file to create a HostingAutoscalingPolicy (HAP) that applies a predefined or custom metric to one or multiple SageMaker endpoints.</p>
+
+<p>Amazon SageMaker requires specific values in order to apply autoscaling to your variant. If these values are not specified in the YAML spec, the HAP operator applies the following default values.</p>
+
+<p>```</p>
+
+<h1>Do not change</h1>
+
+<p>Namespace                    = "sagemaker"</p>
+
+<h1>Do not change</h1>
+
+<p>ScalableDimension            = "sagemaker:variant:DesiredInstanceCount"</p>
+
+<h1>Only one supported</h1>
+
+<p>PolicyType                   = "TargetTrackingScaling"</p>
+
+<h1>This is the default policy name but can be changed to apply a custom policy</h1>
+
+<p>DefaultAutoscalingPolicyName = "SageMakerEndpointInvocationScalingPolicy"
+```</p>
+
+<p>Use the following samples to create a HAP that applies a predefined or custom metric to one or multiple endpoints.</p>
+
+<h4>Sample 1: Apply a Predefined Metric to a Single Endpoint Variant<a name="kubernetes-hap-predefined-metric"></a></h4>
+
+<ol>
+<li><p>Download the sample YAML file for a predefined metric using the following command:</p>
+
+<p><code>
+wget https://raw.githubusercontent.com/aws/amazon-sagemaker-operator-for-k8s/master/samples/hap-predefined-metric.yaml
+</code></p></li>
+<li><p>Edit the YAML file to specify your <code>endpointName</code>, <code>variantName</code>, and <code>region</code>.</p></li>
+<li><p>Use one of the following commands to apply a predefined metric to a single resource ID (endpoint name and variant name combination).</p>
+
+<p>For cluster-scoped installation:</p>
+
+<p><code>
+kubectl apply -f hap-predefined-metric.yaml
+</code></p>
+
+<p>For namespace-scoped installation:</p>
+
+<p><code>
+kubectl apply -f hap-predefined-metric.yaml -n &lt;NAMESPACE&gt;
+</code></p></li>
+</ol>
+
+<h4>Sample 2: Apply a Custom Metric to a Single Endpoint Variant<a name="kubernetes-hap-custom-metric"></a></h4>
+
+<ol>
+<li><p>Download the sample YAML file for a custom metric using the following command:</p>
+
+<p><code>
+wget https://raw.githubusercontent.com/aws/amazon-sagemaker-operator-for-k8s/master/samples/hap-custom-metric.yaml
+</code></p></li>
+<li><p>Edit the YAML file to specify your <code>endpointName</code>, <code>variantName</code>, and <code>region</code>.</p></li>
+<li><p>Use one of the following commands to apply a custom metric to a single resource ID (endpoint name and variant name combination) in place of the recommended <code>SageMakerVariantInvocationsPerInstance</code>.
+<strong>Note</strong><br />
+Amazon SageMaker does not check the validity of your YAML spec.</p>
+
+<p>For cluster-scoped installation:</p>
+
+<p><code>
+kubectl apply -f hap-custom-metric.yaml
+</code></p>
+
+<p>For namespace-scoped installation:</p>
+
+<p><code>
+kubectl apply -f hap-custom-metric.yaml -n &lt;NAMESPACE&gt;
+</code></p></li>
+</ol>
+
+<h4>Sample 3: Apply a Scaling Policy to Multiple Endpoints and Variants<a name="kubernetes-hap-scaling-policy"></a></h4>
+
+<p>You can use the HAP operator to apply the same scaling policy to multiple resource IDs. A separate <code>scaling_policy</code> request is created for each resource ID (endpoint name and variant name combination).</p>
+
+<ol>
+<li><p>Download the sample YAML file for a predefined metric using the following command:</p>
+
+<p><code>
+wget https://raw.githubusercontent.com/aws/amazon-sagemaker-operator-for-k8s/master/samples/hap-predefined-metric.yaml
+</code></p></li>
+<li><p>Edit the YAML file to specify your <code>region</code> and multiple <code>endpointName</code> and <code>variantName</code> values.</p></li>
+<li><p>Use one of the following commands to apply a predefined metric to multiple resource IDs (endpoint name and variant name combinations).</p>
+
+<p>For cluster-scoped installation:</p>
+
+<p><code>
+kubectl apply -f hap-predefined-metric.yaml
+</code></p>
+
+<p>For namespace-scoped installation:</p>
+
+<p><code>
+kubectl apply -f hap-predefined-metric.yaml -n &lt;NAMESPACE&gt;
+</code></p></li>
+</ol>
+
+<h4>Considerations for HostingAutoscalingPolicies for Multiple Endpoints and Variants<a name="kubernetes-hap-scaling-considerations"></a></h4>
+
+<p>The following considerations apply when you use multiple resource IDs:
++ If you apply a single policy across multiple resource IDs, one PolicyARN is created per resource ID. Five endpoints have five PolicyARNs. When you run the <code>describe</code> command on the policy, the responses show up as one job and include a single job status.
++ If you apply a custom metric to multiple resource IDs, the same dimension or value is used for all the resource ID (variant) values. For example, if you apply a customer metric for instances 1-5, and the endpoint variant dimension is mapped to variant 1, when variant 1 exceeds the metrics, all endpoints are scaled up or down.
++ The HAP operator supports updating the list of resource IDs. If you modify, add, or delete resource IDs to the spec, the autoscaling policy is removed from the previous list of variants and applied to the newly specified resource ID combinations. Use the <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/kubernetes-hap-operator.html#kubernetes-hap-describe">https://docs.aws.amazon.com/sagemaker/latest/dg/kubernetes-hap-operator.html#kubernetes-hap-describe</a> command to list the resource IDs to which the policy is currently applied.</p>
+
+<h3>List HostingAutoscalingPolicies<a name="kubernetes-hap-list"></a></h3>
+
+<p>Use one of the following commands to list all HostingAutoscalingPolicies (HAPs) created using the HAP operator.</p>
+
+<p>For cluster-scoped installation:</p>
+
+<p><code>
+kubectl get hap
+</code></p>
+
+<p>For namespace-scoped installation:</p>
+
+<p><code>
+kubectl get hap -n &lt;NAMESPACE&gt;
+</code></p>
+
+<p>Your output should look similar to the following:</p>
+
+<p><code>
+NAME             STATUS   CREATION-TIME
+hap-predefined   Created  2021-07-13T21:32:21Z
+</code></p>
+
+<p>Use the following command to check the status of your HostingAutoscalingPolicy (HAP).</p>
+
+<p><code>
+kubectl get hap &lt;job-name&gt;
+</code></p>
+
+<p>One of the following values is returned:
++ <code>Reconciling</code> – Certain types of errors show the status as <code>Reconciling</code> instead of <code>Error</code>. Some examples are server-side errors and endpoints in the <code>Creating</code> or <code>Updating</code> state. Check the <code>Additional</code> field in status or operator logs for more details.
++ <code>Created</code>
++ <code>Error</code></p>
+
+<p><strong>To view the autoscaling endpoint to which you applied the policy</strong></p>
+
+<ol>
+<li><p>Open the Amazon SageMaker console at <a href="https://console.aws.amazon.com/sagemaker/">https://console.aws.amazon.com/sagemaker/</a>.</p></li>
+<li><p>In the left side panel, expand <strong>Inference</strong>.</p></li>
+<li><p>Choose <strong>Endpoints</strong>.</p></li>
+<li><p>Select the name of the endpoint of interest.</p></li>
+<li><p>Scroll to the <strong>Endpoint runtime settings</strong> section.</p></li>
+</ol>
+
+<h3>Describe a HostingAutoscalingPolicy<a name="kubernetes-hap-describe"></a></h3>
+
+<p>Use the following command to get more details about a HostingAutoscalingPolicy (HAP). These commands are typically used for debugging a problem or checking the resource IDs (endpoint name and variant name combinations) of a HAP.</p>
+
+<p><code>
+kubectl describe hap &lt;job-name&gt;
+</code></p>
+
+<h3>Update a HostingAutoscalingPolicy<a name="kubernetes-hap-update"></a></h3>
+
+<p>The HostingAutoscalingPolicy (HAP) operator supports updates. You can edit your YAML spec to change the values and then reapply the policy. The HAP operator deletes the existing policy and applies the new policy.</p>
+
+<h3>Delete a HostingAutoscalingPolicy<a name="kubernetes-hap-delete"></a></h3>
+
+<p>Use one of the following commands to delete a HostingAutoscalingPolicy (HAP) policy.</p>
+
+<p>For cluster-scoped installation:</p>
+
+<p><code>
+kubectl delete hap hap-predefined
+</code></p>
+
+<p>For namespace-scoped installation:</p>
+
+<p><code>
+kubectl delete hap hap-predefined -n &lt;NAMESPACE&gt;
+</code></p>
+
+<p>This command deletes the scaling policy and deregisters the scaling target from Kubernetes. This command returns the following output:</p>
+
+<p><code>
+hostingautoscalingpolicies.sagemaker.aws.amazon.com "hap-predefined" deleted
+</code></p>
+
+<h3>Update or Delete an Endpoint with a HostingAutoscalingPolicy<a name="kubernetes-hap-update-delete-endpoint"></a></h3>
+
+<p>To update an endpoint that has a HostingAutoscalingPolicy (HAP), use the <code>kubectl</code> <code>delete</code> command to remove the HAP, update the endpoint, and then reapply the HAP.</p>
+
+<p>To delete an endpoint that has a HAP, use the <code>kubectl</code> <code>delete</code> command to remove the HAP before you delete the endpoint.</p>

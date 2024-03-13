@@ -1,0 +1,50 @@
+<h1>AWS::SageMaker::InferenceExperiment ModelVariantConfig<a name="aws-properties-sagemaker-inferenceexperiment-modelvariantconfig"></a></h1>
+
+<p>Contains information about the deployment options of a model.</p>
+
+<h2>Syntax<a name="aws-properties-sagemaker-inferenceexperiment-modelvariantconfig-syntax"></a></h2>
+
+<p>To declare this entity in your AWS CloudFormation template, use the following syntax:</p>
+
+<h3>JSON<a name="aws-properties-sagemaker-inferenceexperiment-modelvariantconfig-syntax.json"></a></h3>
+
+<p><code>
+{
+  "[InfrastructureConfig](#cfn-sagemaker-inferenceexperiment-modelvariantconfig-infrastructureconfig)" : ModelInfrastructureConfig,
+  "[ModelName](#cfn-sagemaker-inferenceexperiment-modelvariantconfig-modelname)" : String,
+  "[VariantName](#cfn-sagemaker-inferenceexperiment-modelvariantconfig-variantname)" : String
+}
+</code></p>
+
+<h3>YAML<a name="aws-properties-sagemaker-inferenceexperiment-modelvariantconfig-syntax.yaml"></a></h3>
+
+<p><code>
+  [InfrastructureConfig](#cfn-sagemaker-inferenceexperiment-modelvariantconfig-infrastructureconfig): 
+    ModelInfrastructureConfig
+  [ModelName](#cfn-sagemaker-inferenceexperiment-modelvariantconfig-modelname): String
+  [VariantName](#cfn-sagemaker-inferenceexperiment-modelvariantconfig-variantname): String
+</code></p>
+
+<h2>Properties<a name="aws-properties-sagemaker-inferenceexperiment-modelvariantconfig-properties"></a></h2>
+
+<p><code>InfrastructureConfig</code>  <a name="cfn-sagemaker-inferenceexperiment-modelvariantconfig-infrastructureconfig"></a>
+The configuration for the infrastructure that the model will be deployed to.<br />
+<em>Required</em>: Yes<br />
+<em>Type</em>: <a href="aws-properties-sagemaker-inferenceexperiment-modelinfrastructureconfig.md">ModelInfrastructureConfig</a><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt">No interruption</a></p>
+
+<p><code>ModelName</code>  <a name="cfn-sagemaker-inferenceexperiment-modelvariantconfig-modelname"></a>
+The name of the Amazon SageMaker Model entity.<br />
+<em>Required</em>: Yes<br />
+<em>Type</em>: String<br />
+<em>Maximum</em>: <code>63</code><br />
+<em>Pattern</em>: <code>^[a-zA-Z0-9](-*[a-zA-Z0-9])*</code><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt">No interruption</a></p>
+
+<p><code>VariantName</code>  <a name="cfn-sagemaker-inferenceexperiment-modelvariantconfig-variantname"></a>
+The name of the variant.<br />
+<em>Required</em>: Yes<br />
+<em>Type</em>: String<br />
+<em>Maximum</em>: <code>63</code><br />
+<em>Pattern</em>: <code>^[a-zA-Z0-9]([\-a-zA-Z0-9]*[a-zA-Z0-9])?</code><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt">No interruption</a></p>

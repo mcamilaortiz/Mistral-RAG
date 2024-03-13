@@ -1,0 +1,28 @@
+<h1>Compile a Model (Amazon SageMaker SDK)<a name="neo-job-compilation-sagemaker-sdk"></a></h1>
+
+<p>You can use the <a href="https://sagemaker.readthedocs.io/en/stable/api/training/estimators.html?#sagemaker.estimator.Estimator.compile_model">https://sagemaker.readthedocs.io/en/stable/api/training/estimators.html?#sagemaker.estimator.Estimator.compile_model</a> API in the <a href="https://sagemaker.readthedocs.io/en/stable/">Amazon SageMaker SDK for Python</a> to compile a trained model and optimize it for specific target hardware. The API should be invoked on the estimator object used during model training. </p>
+
+<p><strong>Note</strong><br />
+You must set <code>MMS_DEFAULT_RESPONSE_TIMEOUT</code> environment variable to <code>500</code> when compiling the model with MXNet or PyTorch. The environment variable is not needed for TensorFlow. </p>
+
+<p>The following is an example of how you can compile a model using the <code>trained_model_estimator</code> object: </p>
+
+<p>```</p>
+
+<h1>Replace the value of expected<em>trained</em>model_input below and</h1>
+
+<h1>specify the name &amp; shape of the expected inputs for your trained model</h1>
+
+<h1>in json dictionary form</h1>
+
+<p>expected<em>trained</em>model_input = {'data':[1, 784]}</p>
+
+<h1>Replace the example target<em>instance</em>family below to your preferred target<em>instance</em>family</h1>
+
+<p>compiled<em>model = trained</em>model<em>estimator.compile</em>model(target<em>instance</em>family='ml<em>c5',
+        input</em>shape=expected<em>trained</em>model<em>input,
+        output</em>path='insert s3 output path',
+        env={'MMS<em>DEFAULT</em>RESPONSE_TIMEOUT': '500'})
+```</p>
+
+<p>The code compiles the model, saves the optimized model at <code>output_path</code>, and creates a SageMaker model that can be deployed to an endpoint. Sample notebooks of using the SDK for Python are provided in the <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/neo.html#neo-sample-notebooks">Neo Model Compilation Sample Notebooks</a> section. </p>

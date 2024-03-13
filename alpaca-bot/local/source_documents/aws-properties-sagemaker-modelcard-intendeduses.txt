@@ -1,0 +1,65 @@
+<h1>AWS::SageMaker::ModelCard IntendedUses<a name="aws-properties-sagemaker-modelcard-intendeduses"></a></h1>
+
+<p>The intended uses of a model.</p>
+
+<h2>Syntax<a name="aws-properties-sagemaker-modelcard-intendeduses-syntax"></a></h2>
+
+<p>To declare this entity in your AWS CloudFormation template, use the following syntax:</p>
+
+<h3>JSON<a name="aws-properties-sagemaker-modelcard-intendeduses-syntax.json"></a></h3>
+
+<p><code>
+{
+  "[ExplanationsForRiskRating](#cfn-sagemaker-modelcard-intendeduses-explanationsforriskrating)" : String,
+  "[FactorsAffectingModelEfficiency](#cfn-sagemaker-modelcard-intendeduses-factorsaffectingmodelefficiency)" : String,
+  "[IntendedUses](#cfn-sagemaker-modelcard-intendeduses-intendeduses)" : String,
+  "[PurposeOfModel](#cfn-sagemaker-modelcard-intendeduses-purposeofmodel)" : String,
+  "[RiskRating](#cfn-sagemaker-modelcard-intendeduses-riskrating)" : String
+}
+</code></p>
+
+<h3>YAML<a name="aws-properties-sagemaker-modelcard-intendeduses-syntax.yaml"></a></h3>
+
+<p><code>
+  [ExplanationsForRiskRating](#cfn-sagemaker-modelcard-intendeduses-explanationsforriskrating): String
+  [FactorsAffectingModelEfficiency](#cfn-sagemaker-modelcard-intendeduses-factorsaffectingmodelefficiency): String
+  [IntendedUses](#cfn-sagemaker-modelcard-intendeduses-intendeduses): String
+  [PurposeOfModel](#cfn-sagemaker-modelcard-intendeduses-purposeofmodel): String
+  [RiskRating](#cfn-sagemaker-modelcard-intendeduses-riskrating): String
+</code></p>
+
+<h2>Properties<a name="aws-properties-sagemaker-modelcard-intendeduses-properties"></a></h2>
+
+<p><code>ExplanationsForRiskRating</code>  <a name="cfn-sagemaker-modelcard-intendeduses-explanationsforriskrating"></a>
+An explanation of why your organization categorizes the model with its risk rating.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: String<br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt">No interruption</a></p>
+
+<p><code>FactorsAffectingModelEfficiency</code>  <a name="cfn-sagemaker-modelcard-intendeduses-factorsaffectingmodelefficiency"></a>
+Factors affecting model efficacy.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: String<br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt">No interruption</a></p>
+
+<p><code>IntendedUses</code>  <a name="cfn-sagemaker-modelcard-intendeduses-intendeduses"></a>
+The intended use cases for the model.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: <a href="#aws-properties-sagemaker-modelcard-intendeduses">String</a><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt">No interruption</a></p>
+
+<p><code>PurposeOfModel</code>  <a name="cfn-sagemaker-modelcard-intendeduses-purposeofmodel"></a>
+The general purpose of the model.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: String<br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt">No interruption</a></p>
+
+<p><code>RiskRating</code>  <a name="cfn-sagemaker-modelcard-intendeduses-riskrating"></a>
+Your organization's risk rating. You can specify one the following values as the risk rating:<br />
++ High
++ Medium
++ Low
++ Unknown
+<em>Required</em>: No<br />
+<em>Type</em>: String<br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt">No interruption</a></p>

@@ -1,0 +1,41 @@
+<h1>AWS::SageMaker::DeviceFleet EdgeOutputConfig<a name="aws-properties-sagemaker-devicefleet-edgeoutputconfig"></a></h1>
+
+<p>The output configuration for storing sample data collected by the fleet.</p>
+
+<h2>Syntax<a name="aws-properties-sagemaker-devicefleet-edgeoutputconfig-syntax"></a></h2>
+
+<p>To declare this entity in your AWS CloudFormation template, use the following syntax:</p>
+
+<h3>JSON<a name="aws-properties-sagemaker-devicefleet-edgeoutputconfig-syntax.json"></a></h3>
+
+<p><code>
+{
+  "[KmsKeyId](#cfn-sagemaker-devicefleet-edgeoutputconfig-kmskeyid)" : String,
+  "[S3OutputLocation](#cfn-sagemaker-devicefleet-edgeoutputconfig-s3outputlocation)" : String
+}
+</code></p>
+
+<h3>YAML<a name="aws-properties-sagemaker-devicefleet-edgeoutputconfig-syntax.yaml"></a></h3>
+
+<p><code>
+  [KmsKeyId](#cfn-sagemaker-devicefleet-edgeoutputconfig-kmskeyid): String
+  [S3OutputLocation](#cfn-sagemaker-devicefleet-edgeoutputconfig-s3outputlocation): String
+</code></p>
+
+<h2>Properties<a name="aws-properties-sagemaker-devicefleet-edgeoutputconfig-properties"></a></h2>
+
+<p><code>KmsKeyId</code>  <a name="cfn-sagemaker-devicefleet-edgeoutputconfig-kmskeyid"></a>
+The AWS Key Management Service (AWS KMS) key that Amazon SageMaker uses to encrypt data on the storage volume after compilation job. If you don't provide a KMS key ID, Amazon SageMaker uses the default KMS key for Amazon S3 for your role's account.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: String<br />
+<em>Maximum</em>: <code>2048</code><br />
+<em>Pattern</em>: <code>.*</code><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt">No interruption</a></p>
+
+<p><code>S3OutputLocation</code>  <a name="cfn-sagemaker-devicefleet-edgeoutputconfig-s3outputlocation"></a>
+The Amazon Simple Storage (S3) bucket URI.<br />
+<em>Required</em>: Yes<br />
+<em>Type</em>: String<br />
+<em>Maximum</em>: <code>1024</code><br />
+<em>Pattern</em>: <code>^(https|s3)://([^/]+)/?(.*)$</code><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt">No interruption</a></p>

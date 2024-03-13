@@ -1,0 +1,30 @@
+<h1>AWS::Pipes::Pipe PipeTargetSageMakerPipelineParameters<a name="aws-properties-pipes-pipe-pipetargetsagemakerpipelineparameters"></a></h1>
+
+<p>The parameters for using a SageMaker pipeline as a target.</p>
+
+<h2>Syntax<a name="aws-properties-pipes-pipe-pipetargetsagemakerpipelineparameters-syntax"></a></h2>
+
+<p>To declare this entity in your AWS CloudFormation template, use the following syntax:</p>
+
+<h3>JSON<a name="aws-properties-pipes-pipe-pipetargetsagemakerpipelineparameters-syntax.json"></a></h3>
+
+<p><code>
+{
+  "[PipelineParameterList](#cfn-pipes-pipe-pipetargetsagemakerpipelineparameters-pipelineparameterlist)" : [ SageMakerPipelineParameter, ... ]
+}
+</code></p>
+
+<h3>YAML<a name="aws-properties-pipes-pipe-pipetargetsagemakerpipelineparameters-syntax.yaml"></a></h3>
+
+<p><code>
+  [PipelineParameterList](#cfn-pipes-pipe-pipetargetsagemakerpipelineparameters-pipelineparameterlist): 
+    - SageMakerPipelineParameter
+</code></p>
+
+<h2>Properties<a name="aws-properties-pipes-pipe-pipetargetsagemakerpipelineparameters-properties"></a></h2>
+
+<p><code>PipelineParameterList</code>  <a name="cfn-pipes-pipe-pipetargetsagemakerpipelineparameters-pipelineparameterlist"></a>
+List of Parameter names and values for SageMaker Model Building Pipeline execution.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: List of <a href="aws-properties-pipes-pipe-sagemakerpipelineparameter.md">SageMakerPipelineParameter</a><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt">No interruption</a></p>

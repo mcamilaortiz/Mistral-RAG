@@ -1,0 +1,23 @@
+<h1>Automate MLOps with SageMaker Projects<a name="sagemaker-projects"></a></h1>
+
+<p>Create end-to-end ML solutions with CI/CD by using SageMaker projects. </p>
+
+<p>Use SageMaker projects to create an MLOps solution to orchestrate and manage:
++ Building custom images for processing, training, and inference
++ Data preparation and feature engineering
++ Training models
++ Evaluating models
++ Deploying models
++ Monitoring and updating models</p>
+
+<p><strong>Topics</strong>
++ <a href="sagemaker-projects-why.md">Why Should You Use MLOps?</a>
++ <a href="sagemaker-projects-whatis.md">What is a SageMaker Project?</a>
++ <a href="sagemaker-projects-studio-updates.md">SageMaker Studio Permissions Required to Use Projects</a>
++ <a href="sagemaker-projects-create.md">Create an MLOps Project using Amazon SageMaker Studio</a>
++ <a href="sagemaker-projects-templates.md">MLOps Project Templates</a>
++ <a href="sagemaker-projects-resources.md">View Project Resources</a>
++ <a href="sagemaker-projects-update.md">Update an MLOps Project in Amazon SageMaker Studio</a>
++ <a href="sagemaker-projects-delete.md">Delete an MLOps Project using Amazon SageMaker Studio</a>
++ <a href="sagemaker-projects-walkthrough.md">SageMaker MLOps Project Walkthrough</a>
++ <a href="sagemaker-projects-walkthrough-3rdgit.md">SageMaker MLOps Project Walkthrough Using Third-party Git Repos</a></p>

@@ -1,0 +1,308 @@
+<h1>AWS::SageMaker::Endpoint<a name="aws-resource-sagemaker-endpoint"></a></h1>
+
+<p>Use the <code>AWS::SageMaker::Endpoint</code> resource to create an endpoint using the specified configuration in the request. Amazon SageMaker uses the endpoint to provision resources and deploy models. You create the endpoint configuration with the <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sagemaker-endpointconfig.html">AWS::SageMaker::EndpointConfig</a> resource. For more information, see <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/how-it-works-hosting.html">Deploy a Model on Amazon SageMaker Hosting Services</a> in the <em>Amazon SageMaker Developer Guide</em>.</p>
+
+<h2>Syntax<a name="aws-resource-sagemaker-endpoint-syntax"></a></h2>
+
+<p>To declare this entity in your AWS CloudFormation template, use the following syntax:</p>
+
+<h3>JSON<a name="aws-resource-sagemaker-endpoint-syntax.json"></a></h3>
+
+<p><code>
+{
+  "Type" : "AWS::SageMaker::Endpoint",
+  "Properties" : {
+      "[DeploymentConfig](#cfn-sagemaker-endpoint-deploymentconfig)" : DeploymentConfig,
+      "[EndpointConfigName](#cfn-sagemaker-endpoint-endpointconfigname)" : String,
+      "[EndpointName](#cfn-sagemaker-endpoint-endpointname)" : String,
+      "[ExcludeRetainedVariantProperties](#cfn-sagemaker-endpoint-excluderetainedvariantproperties)" : [ VariantProperty, ... ],
+      "[RetainAllVariantProperties](#cfn-sagemaker-endpoint-retainallvariantproperties)" : Boolean,
+      "[RetainDeploymentConfig](#cfn-sagemaker-endpoint-retaindeploymentconfig)" : Boolean,
+      "[Tags](#cfn-sagemaker-endpoint-tags)" : [ [Tag](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-resource-tags.html), ... ]
+    }
+}
+</code></p>
+
+<h3>YAML<a name="aws-resource-sagemaker-endpoint-syntax.yaml"></a></h3>
+
+<p><code>
+Type: AWS::SageMaker::Endpoint
+Properties: 
+  [DeploymentConfig](#cfn-sagemaker-endpoint-deploymentconfig): 
+    DeploymentConfig
+  [EndpointConfigName](#cfn-sagemaker-endpoint-endpointconfigname): String
+  [EndpointName](#cfn-sagemaker-endpoint-endpointname): String
+  [ExcludeRetainedVariantProperties](#cfn-sagemaker-endpoint-excluderetainedvariantproperties): 
+    - VariantProperty
+  [RetainAllVariantProperties](#cfn-sagemaker-endpoint-retainallvariantproperties): Boolean
+  [RetainDeploymentConfig](#cfn-sagemaker-endpoint-retaindeploymentconfig): Boolean
+  [Tags](#cfn-sagemaker-endpoint-tags): 
+    - [Tag](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-resource-tags.html)
+</code></p>
+
+<h2>Properties<a name="aws-resource-sagemaker-endpoint-properties"></a></h2>
+
+<p><code>DeploymentConfig</code>  <a name="cfn-sagemaker-endpoint-deploymentconfig"></a>
+The deployment configuration for an endpoint, which contains the desired deployment strategy and rollback configurations.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: <a href="aws-properties-sagemaker-endpoint-deploymentconfig.md">DeploymentConfig</a><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt">No interruption</a></p>
+
+<p><code>EndpointConfigName</code>  <a name="cfn-sagemaker-endpoint-endpointconfigname"></a>
+The name of the <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-sagemaker-endpointconfig.html">AWS::SageMaker::EndpointConfig</a> resource that specifies the configuration for the endpoint. For more information, see <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/API_CreateEndpointConfig.html">CreateEndpointConfig</a>.<br />
+<em>Required</em>: Yes<br />
+<em>Type</em>: String<br />
+<em>Maximum</em>: <code>63</code><br />
+<em>Pattern</em>: <code>^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,62}</code><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt">No interruption</a></p>
+
+<p><code>EndpointName</code>  <a name="cfn-sagemaker-endpoint-endpointname"></a>
+The name of the endpoint.The name must be unique within an AWS Region in your AWS account. The name is case-insensitive in <code>CreateEndpoint</code>, but the case is preserved and must be matched in <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_runtime_InvokeEndpoint.html">https://docs.aws.amazon.com/sagemaker/latest/APIReference/API<em>runtime</em>InvokeEndpoint.html</a>.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: String<br />
+<em>Maximum</em>: <code>63</code><br />
+<em>Pattern</em>: <code>^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,62}</code><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement">Replacement</a></p>
+
+<p><code>ExcludeRetainedVariantProperties</code>  <a name="cfn-sagemaker-endpoint-excluderetainedvariantproperties"></a>
+When you are updating endpoint resources with <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/API_UpdateEndpoint.html#SageMaker-UpdateEndpoint-request-RetainAllVariantProperties">RetainAllVariantProperties</a> whose value is set to <code>true</code>, <code>ExcludeRetainedVariantProperties</code> specifies the list of type <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-sagemaker-endpoint-variantproperty.html">VariantProperty</a> to override with the values provided by <code>EndpointConfig</code>. If you don't specify a value for <code>ExcludeAllVariantProperties</code>, no variant properties are overridden. Don't use this property when creating new endpoint resources or when <code>RetainAllVariantProperties</code> is set to <code>false</code>.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: List of <a href="aws-properties-sagemaker-endpoint-variantproperty.md">VariantProperty</a><br />
+<em>Maximum</em>: <code>3</code><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt">No interruption</a></p>
+
+<p><code>RetainAllVariantProperties</code>  <a name="cfn-sagemaker-endpoint-retainallvariantproperties"></a>
+When updating endpoint resources, enables or disables the retention of variant properties, such as the instance count or the variant weight. To retain the variant properties of an endpoint when updating it, set <code>RetainAllVariantProperties</code> to <code>true</code>. To use the variant properties specified in a new <code>EndpointConfig</code> call when updating an endpoint, set <code>RetainAllVariantProperties</code> to <code>false</code>. Use this property only when updating endpoint resources, not when creating new endpoint resources.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: Boolean<br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt">No interruption</a></p>
+
+<p><code>RetainDeploymentConfig</code>  <a name="cfn-sagemaker-endpoint-retaindeploymentconfig"></a>
+Specifies whether to reuse the last deployment configuration. The default value is false (the configuration is not reused).<br />
+<em>Required</em>: No<br />
+<em>Type</em>: Boolean<br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt">No interruption</a></p>
+
+<p><code>Tags</code>  <a name="cfn-sagemaker-endpoint-tags"></a>
+A list of key-value pairs to apply to this resource.<br />
+For more information, see <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-resource-tags.html">Resource Tag</a> and <a href="https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html#allocation-what">Using Cost Allocation Tags</a> in the * AWS Billing and Cost Management User Guide<em>.<br />
+*Required</em>: No<br />
+<em>Type</em>: List of <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-resource-tags.html">Tag</a><br />
+<em>Maximum</em>: <code>50</code><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt">No interruption</a></p>
+
+<h2>Return values<a name="aws-resource-sagemaker-endpoint-return-values"></a></h2>
+
+<h3>Ref<a name="aws-resource-sagemaker-endpoint-return-values-ref"></a></h3>
+
+<p>When you pass the logical ID of this resource to the intrinsic <code>Ref</code> function, <code>Ref</code> returns the Amazon Resource Name (ARN) of the endpoint, such as <code>arn:aws:sagemaker:us-west-2:012345678901:endpoint/myendpoint</code>.</p>
+
+<p>For more information about using the <code>Ref</code> function, see <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference-ref.html">Ref</a>.</p>
+
+<h3>Fn::GetAtt<a name="aws-resource-sagemaker-endpoint-return-values-fn--getatt"></a></h3>
+
+<p>The <code>Fn::GetAtt</code> intrinsic function returns a value for a specified attribute of this type. The following are the available attributes and sample return values.</p>
+
+<p>For more information about using the <code>Fn::GetAtt</code> intrinsic function, see <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference-getatt.html">Fn::GetAtt</a>.</p>
+
+<p><code>Fn::GetAtt</code> returns a value for a specified attribute of this type. The following are the available attributes and sample return values. </p>
+
+<h4><a name="aws-resource-sagemaker-endpoint-return-values-fn--getatt-fn--getatt"></a></h4>
+
+<p><code>EndpointName</code>  <a name="EndpointName-fn::getatt"></a>
+The name of the endpoint, such as <code>MyEndpoint</code>. </p>
+
+<h2>Examples<a name="aws-resource-sagemaker-endpoint--examples"></a></h2>
+
+<h3>SageMaker Endpoint Example<a name="aws-resource-sagemaker-endpoint--examples--SageMaker_Endpoint_Example"></a></h3>
+
+<p>The following example creates an endpoint configuration from a trained model, and then creates an endpoint.</p>
+
+<h4>JSON<a name="aws-resource-sagemaker-endpoint--examples--SageMaker_Endpoint_Example--json"></a></h4>
+
+<p>```
+{
+  "Description": "Basic Hosting entities test.  We need models to create endpoint configs.",
+  "Mappings": {
+    "RegionMap": {
+      "us-west-2": {
+        "NullTransformer": "12345678901.dkr.ecr.us-west-2.amazonaws.com/mymodel:latest"
+      },
+      "us-east-2": {
+        "NullTransformer": "12345678901.dkr.ecr.us-east-2.amazonaws.com/mymodel:latest"
+      },
+      "us-east-1": {
+        "NullTransformer": "12345678901.dkr.ecr.us-east-1.amazonaws.com/mymodel:latest"
+      },
+      "eu-west-1": {
+        "NullTransformer": "12345678901.dkr.ecr.eu-west-1.amazonaws.com/mymodel:latest"
+      },
+      "ap-northeast-1": {
+        "NullTransformer": "12345678901.dkr.ecr.ap-northeast-1.amazonaws.com/mymodel:latest"
+      },
+      "ap-northeast-2": {
+        "NullTransformer": "12345678901.dkr.ecr.ap-northeast-2.amazonaws.com/mymodel:latest"
+      },
+      "ap-southeast-2": {
+        "NullTransformer": "12345678901.dkr.ecr.ap-southeast-2.amazonaws.com/mymodel:latest"
+      },
+      "eu-central-1": {
+        "NullTransformer": "12345678901.dkr.ecr.eu-central-1.amazonaws.com/mymodel:latest"
+      }
+    }
+  },
+  "Resources": {
+    "Endpoint": {
+      "Type": "AWS::SageMaker::Endpoint",
+      "Properties": {
+        "EndpointConfigName": { "Fn::GetAtt" : ["EndpointConfig", "EndpointConfigName" ] }
+      }
+    },
+    "EndpointConfig": {
+      "Type": "AWS::SageMaker::EndpointConfig",
+      "Properties": {
+        "ProductionVariants": [
+          {
+            "InitialInstanceCount": 1,
+            "InitialVariantWeight": 1,
+            "InstanceType": "ml.t2.large",
+            "ModelName": { "Fn::GetAtt" : ["Model", "ModelName" ] },
+            "VariantName": { "Fn::GetAtt" : ["Model", "ModelName" ] }
+          }
+        ]
+      }
+    },
+    "Model": {
+      "Type": "AWS::SageMaker::Model",
+      "Properties": {
+        "PrimaryContainer": {
+          "Image": { "Fn::FindInMap" : [ "AWS::Region", "NullTransformer"] }
+        },
+        "ExecutionRoleArn": { "Fn::GetAtt" : [ "ExecutionRole", "Arn" ] }
+      }
+    },
+    "ExecutionRole": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Principal": {
+                "Service": [
+                  "sagemaker.amazonaws.com"
+                ]
+              },
+              "Action": [
+                "sts:AssumeRole"
+              ]
+            }
+          ]
+        },
+        "Path": "/",
+        "Policies": [
+          {
+            "PolicyName": "root",
+            "PolicyDocument": {
+              "Version": "2012-10-17",
+              "Statement": [
+                {
+                  "Effect": "Allow",
+                  "Action": "<em>",
+                  "Resource": "</em>"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    }
+  },
+  "Outputs": {
+    "EndpointId": {
+      "Value": { "Ref" : "Endpoint" }
+    },
+    "EndpointName": {
+      "Value": { "Fn::GetAtt" : [ "Endpoint", "EndpointName" ] }
+    }</p>
+
+<p>}</p>
+
+<p>}
+```</p>
+
+<h4>YAML<a name="aws-resource-sagemaker-endpoint--examples--SageMaker_Endpoint_Example--yaml"></a></h4>
+
+<p>```
+Description: "Basic Hosting entities test.  We need models to create endpoint configs."
+Mappings: 
+  RegionMap: 
+    "us-west-2":
+      "NullTransformer": "123456789012.dkr.ecr.us-west-2.amazonaws.com/mymodel:latest"
+    "us-east-2":
+      "NullTransformer": "123456789012.dkr.ecr.us-east-2.amazonaws.com/mymodel:latest"
+    "us-east-1":
+      "NullTransformer": "123456789012.dkr.ecr.us-east-1.amazonaws.com/mymodel:latest"
+    "eu-west-1":
+      "NullTransformer": "123456789012.dkr.ecr.eu-west-1.amazonaws.com/mymodel:latest"
+    "ap-northeast-1":
+      "NullTransformer": "123456789012.dkr.ecr.ap-northeast-1.amazonaws.com/mymodel:latest"
+    "ap-northeast-2":
+      "NullTransformer": "123456789012.dkr.ecr.ap-northeast-2.amazonaws.com/mymodel:latest"
+    "ap-southeast-2":
+      "NullTransformer": "123456789012.dkr.ecr.ap-southeast-2.amazonaws.com/mymodel:latest"
+    "eu-central-1":
+      "NullTransformer": "123456789012.dkr.ecr.eu-central-1.amazonaws.com/mymodel:latest"
+Resources:
+  Endpoint:
+    Type: "AWS::SageMaker::Endpoint"
+    Properties:
+      EndpointConfigName:
+        !GetAtt EndpointConfig.EndpointConfigName
+  EndpointConfig:
+    Type: "AWS::SageMaker::EndpointConfig"
+    Properties:
+      ProductionVariants:
+        - InitialInstanceCount: 1
+          InitialVariantWeight: 1.0
+          InstanceType: ml.t2.large
+          ModelName: !GetAtt Model.ModelName
+          VariantName: !GetAtt Model.ModelName
+  Model:
+    Type: "AWS::SageMaker::Model"
+    Properties:
+      PrimaryContainer:
+        Image: !FindInMap [RegionMap, !Ref "AWS::Region", "NullTransformer"]
+      ExecutionRoleArn: !GetAtt ExecutionRole.Arn</p>
+
+<p>ExecutionRole: 
+    Type: "AWS::IAM::Role"
+    Properties: 
+      AssumeRolePolicyDocument: 
+        Version: "2012-10-17"
+        Statement: 
+          - 
+            Effect: "Allow"
+            Principal: 
+              Service: 
+                - "sagemaker.amazonaws.com"
+            Action: 
+              - "sts:AssumeRole"
+      Path: "/"
+      Policies: 
+        - 
+          PolicyName: "root"
+          PolicyDocument: 
+            Version: "2012-10-17"
+            Statement: 
+              - 
+                Effect: "Allow"
+                Action: "<em>"
+                Resource: "</em>"
+Outputs:
+  EndpointId:
+    Value: !Ref Endpoint
+  EndpointName:
+    Value: !GetAtt Endpoint.EndpointName
+```</p>

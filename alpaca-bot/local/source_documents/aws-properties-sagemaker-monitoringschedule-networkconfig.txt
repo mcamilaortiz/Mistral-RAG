@@ -1,0 +1,46 @@
+<h1>AWS::SageMaker::MonitoringSchedule NetworkConfig<a name="aws-properties-sagemaker-monitoringschedule-networkconfig"></a></h1>
+
+<p>Networking options for a job, such as network traffic encryption between containers, whether to allow inbound and outbound network calls to and from containers, and the VPC subnets and security groups to use for VPC-enabled jobs.</p>
+
+<h2>Syntax<a name="aws-properties-sagemaker-monitoringschedule-networkconfig-syntax"></a></h2>
+
+<p>To declare this entity in your AWS CloudFormation template, use the following syntax:</p>
+
+<h3>JSON<a name="aws-properties-sagemaker-monitoringschedule-networkconfig-syntax.json"></a></h3>
+
+<p><code>
+{
+  "[EnableInterContainerTrafficEncryption](#cfn-sagemaker-monitoringschedule-networkconfig-enableintercontainertrafficencryption)" : Boolean,
+  "[EnableNetworkIsolation](#cfn-sagemaker-monitoringschedule-networkconfig-enablenetworkisolation)" : Boolean,
+  "[VpcConfig](#cfn-sagemaker-monitoringschedule-networkconfig-vpcconfig)" : VpcConfig
+}
+</code></p>
+
+<h3>YAML<a name="aws-properties-sagemaker-monitoringschedule-networkconfig-syntax.yaml"></a></h3>
+
+<p><code>
+  [EnableInterContainerTrafficEncryption](#cfn-sagemaker-monitoringschedule-networkconfig-enableintercontainertrafficencryption): Boolean
+  [EnableNetworkIsolation](#cfn-sagemaker-monitoringschedule-networkconfig-enablenetworkisolation): Boolean
+  [VpcConfig](#cfn-sagemaker-monitoringschedule-networkconfig-vpcconfig): 
+    VpcConfig
+</code></p>
+
+<h2>Properties<a name="aws-properties-sagemaker-monitoringschedule-networkconfig-properties"></a></h2>
+
+<p><code>EnableInterContainerTrafficEncryption</code>  <a name="cfn-sagemaker-monitoringschedule-networkconfig-enableintercontainertrafficencryption"></a>
+Whether to encrypt all communications between distributed processing jobs. Choose <code>True</code> to encrypt communications. Encryption provides greater security for distributed processing jobs, but the processing might take longer.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: Boolean<br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt">No interruption</a></p>
+
+<p><code>EnableNetworkIsolation</code>  <a name="cfn-sagemaker-monitoringschedule-networkconfig-enablenetworkisolation"></a>
+Whether to allow inbound and outbound network calls to and from the containers used for the processing job.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: Boolean<br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt">No interruption</a></p>
+
+<p><code>VpcConfig</code>  <a name="cfn-sagemaker-monitoringschedule-networkconfig-vpcconfig"></a>
+Specifies a VPC that your training jobs and hosted models have access to. Control access to and from your training and model containers by configuring the VPC. For more information, see <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/host-vpc.html">Protect Endpoints by Using an Amazon Virtual Private Cloud</a> and <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/train-vpc.html">Protect Training Jobs by Using an Amazon Virtual Private Cloud</a>.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: <a href="aws-properties-sagemaker-monitoringschedule-vpcconfig.md">VpcConfig</a><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt">No interruption</a></p>

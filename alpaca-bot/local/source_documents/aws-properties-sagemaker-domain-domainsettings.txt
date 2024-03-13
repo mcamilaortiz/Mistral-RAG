@@ -1,0 +1,40 @@
+<h1>AWS::SageMaker::Domain DomainSettings<a name="aws-properties-sagemaker-domain-domainsettings"></a></h1>
+
+<p>A collection of settings that apply to the <code>SageMaker Domain</code>. These settings are specified through the <code>CreateDomain</code> API call.</p>
+
+<h2>Syntax<a name="aws-properties-sagemaker-domain-domainsettings-syntax"></a></h2>
+
+<p>To declare this entity in your AWS CloudFormation template, use the following syntax:</p>
+
+<h3>JSON<a name="aws-properties-sagemaker-domain-domainsettings-syntax.json"></a></h3>
+
+<p><code>
+{
+  "[RStudioServerProDomainSettings](#cfn-sagemaker-domain-domainsettings-rstudioserverprodomainsettings)" : RStudioServerProDomainSettings,
+  "[SecurityGroupIds](#cfn-sagemaker-domain-domainsettings-securitygroupids)" : [ String, ... ]
+}
+</code></p>
+
+<h3>YAML<a name="aws-properties-sagemaker-domain-domainsettings-syntax.yaml"></a></h3>
+
+<p><code>
+  [RStudioServerProDomainSettings](#cfn-sagemaker-domain-domainsettings-rstudioserverprodomainsettings): 
+    RStudioServerProDomainSettings
+  [SecurityGroupIds](#cfn-sagemaker-domain-domainsettings-securitygroupids): 
+    - String
+</code></p>
+
+<h2>Properties<a name="aws-properties-sagemaker-domain-domainsettings-properties"></a></h2>
+
+<p><code>RStudioServerProDomainSettings</code>  <a name="cfn-sagemaker-domain-domainsettings-rstudioserverprodomainsettings"></a>
+A collection of settings that configure the <code>RStudioServerPro</code> Domain-level app.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: <a href="aws-properties-sagemaker-domain-rstudioserverprodomainsettings.md">RStudioServerProDomainSettings</a><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt">No interruption</a></p>
+
+<p><code>SecurityGroupIds</code>  <a name="cfn-sagemaker-domain-domainsettings-securitygroupids"></a>
+The security groups for the Amazon Virtual Private Cloud that the <code>Domain</code> uses for communication between Domain-level apps and user apps.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: List of String<br />
+<em>Maximum</em>: <code>3</code><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt">No interruption</a></p>

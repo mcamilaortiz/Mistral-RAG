@@ -1,0 +1,155 @@
+<h1>Creating your Amazon SageMaker resource<a name="ml-creating-your-amazon-sagemaker-resource"></a></h1>
+
+<p>To publish a model package or algorithm product, you must create the respective <a href="https://docs.aws.amazon.com/marketplace/latest/userguide/ml-creating-your-amazon-sagemaker-resource.html#ml-creating-your-model-package-product"> model package resource</a> or <a href="https://docs.aws.amazon.com/marketplace/latest/userguide/ml-creating-your-amazon-sagemaker-resource.html#ml-creating-your-algorithm-product"> algorithm resource</a> in Amazon SageMaker. </p>
+
+<p>When you create your resource for an AWS Marketplace product, it must be certified through a validation step. The validation step requires that you provide data to test your model package or algorithm resource before it can be published. </p>
+
+<p><strong>Note</strong><br />
+If you haven't yet created the images for your product and uploaded them to Amazon Elastic Container Registry (Amazon ECR), see <a href="ml-packaging-your-code-into-images.md">Packaging your code into images</a> and <a href="ml-uploading-your-images.md">Uploading your images</a> for information about how to do so.</p>
+
+<h2>Creating your model package<a name="ml-creating-your-model-package-product"></a></h2>
+
+<p>The following are requirements for creating a model package for AWS Marketplace: 
++  An inference image stored in <a href="http://aws.amazon.com/ecr/">Amazon ECR</a> 
++  (Optional) Model artifacts, stored separately in <a href="http://aws.amazon.com/s3/">Amazon S3</a> 
++ Your test data used for inferences, stored in Amazon Simple Storage Service (Amazon S3) </p>
+
+<p><strong>Note</strong><br />
+ The following is about creating a model package product. For more information about model packages in SageMaker, see <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/sagemaker-mkt-create-model-package.html">Create a Model Package Resource</a>. </p>
+
+<h3>Creating the model package resources<a name="ml-create-model-package"></a></h3>
+
+<p>The following procedures step you through creating the model package resources.</p>
+
+<p><strong>Step 1: To create the model package resources</strong></p>
+
+<ol>
+<li><p>Open the <a href="https://us-east-2.console.aws.amazon.com/sagemaker/home"> Amazon SageMaker console</a>.</p></li>
+<li><p>Ensure that you are in the AWS Region that you want to publish from by looking at the top right of the page. For publishing, see the <a href="ml-service-restrictions-and-limits.md#ml-supported-aws-regions-for-publishing">Supported AWS Regions for publishing</a> section. The inference image you uploaded to Amazon ECR in previous steps must be in the same Region. </p></li>
+<li><p>In the left navigation menu, choose <strong>Model packages</strong>.</p></li>
+<li><p>Choose <strong>Create model package</strong>.</p></li>
+</ol>
+
+<p>After you create the package, you need to set the specifications of the inference package.</p>
+
+<p><strong>Step 2: To set inference specifications</strong></p>
+
+<ol>
+<li><p>Provide a <strong>Name</strong> for your model package (for example, <em>my-model-package</em>). </p></li>
+<li><p>For <strong>Location of inference image</strong>, enter the URI of your inference image that was uploaded to Amazon ECR. You can retrieve the URI by locating your image in the <a href="https://us-east-2.console.aws.amazon.com/ecr/repositories">Amazon ECR console</a>. </p></li>
+<li><p>If your model artifacts from training are bundled with your logic in your inference image, leave the <strong>Location of model data artifacts</strong> empty. Otherwise, specify the full Amazon S3 location of the compressed file (.tar.gz) of your model artifacts. </p></li>
+<li><p>Using the dropdown box, choose the supported instance types of your inference image for both real-time inference (also known as <em>endpoint</em>) and batch-transform jobs. </p></li>
+<li><p>Choose <strong>Next</strong>. </p>
+
+<p>Before your model package can be created and published, validation is necessary to ensure that it functions as expected. This requires that you run a batch transform job with test data for inference that you provide. The validation specifications tell SageMaker how to perform the validation. </p></li>
+</ol>
+
+<p><strong>Step 3: To set validation specifications</strong></p>
+
+<ol>
+<li><p>Set <strong>Publish this model package in AWS Marketplace</strong> to <strong>Yes</strong>. If you set this to <strong>No</strong>, you can't publish this model package later. Choosing <strong>Yes</strong> <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateModelPackage.html#sagemaker-CreateModelPackage-request-CertifyForMarketplace"> certifies</a> your model package for AWS Marketplace and requires the validation step. </p></li>
+<li><p>If this is the first time completing this process, choose <strong>Create a new role</strong> for the <strong>IAM role</strong>. Amazon SageMaker uses this role when it deploys your model package. This includes actions, such as pulling images from Amazon ECR and artifacts from Amazon S3. Review the settings, and choose <strong>Create role</strong>. Creating a role here grants permissions described by the <a href="https://console.aws.amazon.com/iam/home#/policies/arn:aws:iam::aws:policy/AmazonSageMakerFullAccess"> AmazonSageMakerFullAccess</a> IAM policy to the role that you create. </p></li>
+<li><p>Edit the <strong>JSON</strong> in the validation profile. For details about allowed values, see <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_TransformJobDefinition.html">TransformJobDefinition</a>. </p>
+
+<ol>
+<li><p><code>TransformInput.DataSource.S3Uri</code>: Set to where your test data for inference is stored. </p></li>
+<li><p><code>TransformInput.ContentType</code>: Specify your test data content type (for example, <code>application/json</code>, <code>text/plain</code>, <code>image/png</code>, or any other value). SageMaker does not validate the actual input data. This value is passed to your container HTTP endpoint in the <code>Content-type</code> header value. </p></li>
+<li><p><code>TransformInput.CompressionType</code>: Set to <code>None</code> if your test data for inference in Amazon S3 is not compressed. </p></li>
+<li><p><code>TransformInput.SplitType</code>: Set to <code>None</code> to pass each object in Amazon S3 as a whole for inference. </p></li>
+<li><p><code>TransformOutput.S3OutputPath</code>: Set to the location that the inference output is stored. </p></li>
+<li><p><code>TransformOutput.AssembleWith</code>: Set to <code>None</code> to output each inference as separate objects in Amazon S3. </p></li>
+</ol></li>
+<li><p>Choose <strong>Create model package</strong>. </p>
+
+<p>SageMaker pulls the inference image from Amazon ECR, copies any artifacts to the inference container, and runs a batch transform job using your test data for inference. After the validation succeeds, the status changes to <strong>Completed</strong>. </p></li>
+</ol>
+
+<p><strong>Note</strong><br />
+ The validation step does not evaluate the accuracy of the model with your test data. The validation step checks if the container runs and responds as expected. </p>
+
+<p>You have completed creating your model product resources. Continue to <a href="ml-publishing-your-product-in-aws-marketplace.md">Publishing your product in AWS Marketplace</a>. </p>
+
+<h2>Creating your algorithm<a name="ml-creating-your-algorithm-product"></a></h2>
+
+<p>The following are requirements for creating an algorithm for AWS Marketplace: 
++ An inference image, stored in Amazon ECR 
++ A training image, stored in Amazon ECR 
++  Your test data for training, stored in Amazon S3 
++ Your test data for inference, stored in Amazon S3 </p>
+
+<p><strong>Note</strong><br />
+ The following walkthrough creates an algorithm product. For more information, see <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/sagemaker-mkt-create-algo.html">Create an Algorithm Resource</a>. </p>
+
+<h3>Creating the algorithm resources<a name="ml-create-algorithm"></a></h3>
+
+<p>The following procedures step you through creating the resources in your algorithm package.</p>
+
+<p><strong>Step 1: To create the algorithm resources</strong></p>
+
+<ol>
+<li><p>Open the <a href="https://us-east-2.console.aws.amazon.com/sagemaker/home"> Amazon SageMaker console</a>. </p></li>
+<li><p>Ensure that you are in the AWS Region that you want to publish from by looking at the top right of the page (see <a href="ml-service-restrictions-and-limits.md#ml-supported-aws-regions-for-publishing">Supported AWS Regions for publishing</a>). The training and inference images you uploaded to Amazon ECR in previous steps must be in this same Region. </p></li>
+<li><p>In the left navigation menu, choose <strong>Algorithms</strong>. </p></li>
+<li><p>Choose <strong>Create algorithm</strong>. </p></li>
+</ol>
+
+<p>After you have created the algorithm package, you must set the specifications for the training and tuning of your model.</p>
+
+<p><strong>Step 2: To set the training and tuning specifications</strong></p>
+
+<ol>
+<li><p>Enter the <strong>Name</strong> for your algorithm (for example, <em>my-algorithm</em>). </p></li>
+<li><p>For <strong>Training image</strong>, paste the full URI location of your training image that was uploaded to Amazon ECR. You can retrieve the URI by locating your image in the <a href="https://us-east-2.console.aws.amazon.com/ecr/repositories">Amazon ECR console</a>. </p></li>
+<li><p>Using the dropdown box, choose the <strong>instance types for training</strong> that your training image supports. </p></li>
+<li><p>Under the <strong>Channel specification</strong> section, add a channel for each input dataset that your algorithm supports, up to 20 channels of input sources. For more information, see <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/your-algorithms-training-algo-running-container.html#your-algorithms-training-algo-running-container-inputdataconfig"> Input Data Configuration</a>. </p></li>
+<li><p>Choose <strong>Next</strong>. </p></li>
+<li><p>If your algorithm supports hyperparameters and hyperparameter tuning, you must specify the tuning parameters.</p></li>
+<li><p>Choose <strong>Next</strong>. </p></li>
+</ol>
+
+<p><strong>Note</strong><br />
+ We highly recommend that your algorithm supports hyperparameter tuning and makes appropriate parameters tunable. This allows data scientists to tune models to get the best results. </p>
+
+<p>After you have set the tuning parameters, if any, you must set the specifications for your inference image.</p>
+
+<p><strong>Step 3: To set inference image specification</strong></p>
+
+<ol>
+<li><p>For <strong>Location of inference image</strong>, paste the URI of the inference image that was uploaded to Amazon ECR. You can retrieve the URI by locating your image in the <a href="https://us-east-2.console.aws.amazon.com/ecr/repositories">Amazon ECR Console</a>. </p></li>
+<li><p>Using the dropdown box, choose the supported instance types for your inference image for both real-time inference (also known as <em>endpoint</em>) and batch-transform jobs. </p></li>
+<li><p>Choose <strong>Next</strong>. </p>
+
+<p>Before your algorithm can be created and published, validation is necessary to ensure that it functions as expected. This requires that you run both a training job with test data for training and a batch transform job with test data for inference that you provide. The validation specifications tell SageMaker how to perform the validation. </p></li>
+</ol>
+
+<p><strong>Step 4: To set validation specifications</strong></p>
+
+<ol>
+<li><p>Set <strong>Publish this algorithm in AWS Marketplace</strong> to <strong>Yes</strong>. If you set this to <strong>No</strong>, you can't publish this algorithm later. Choosing <strong>Yes</strong> <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateAlgorithm.html#sagemaker-CreateAlgorithm-request-CertifyForMarketplace"> certifies</a> your algorithm for AWS Marketplace and requires the validation specification.</p></li>
+<li><p>If this is your first time creating a machine learning package for AWS Marketplace, choose <strong>Create a new role</strong> for the <strong>IAM role</strong>. Amazon SageMaker uses this role when training your algorithm and deploying the subsequent model package. This includes actions such as pulling images from Amazon ECR, storing artifacts in Amazon S3, and copying training data from Amazon S3. Review the settings, and choose <strong>Create role</strong>. Creating a role here grants permissions described by the <a href="https://console.aws.amazon.com/iam/home#/policies/arn:aws:iam::aws:policy/AmazonSageMakerFullAccess"> AmazonSageMakerFullAccess</a> IAM policy to the role that you create. </p></li>
+<li><p>Edit the <strong>JSON</strong> file in the validation profile for <strong>Training job definition</strong>. For more information about allowed values, see <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_TrainingJobDefinition.html"> TrainingJobDefinition</a>. </p>
+
+<ol>
+<li><p><code>InputDataConfig</code>: In this JSON array, add a <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_Channel.html">Channel object</a> for each channel that you specified in the training-specification step. For each channel, specify where your test data for training is stored. </p></li>
+<li><p><code>OutputDataConfig</code>: After the training completes, the model artifacts in the training container directory path <code>/opt/ml/model/</code> are compressed and copied out to Amazon S3. Specify the Amazon S3 location of where the compressed file (.tar.gz) is stored. </p></li>
+</ol></li>
+<li><p>Edit the JSON file in the validation profile for <strong>Transform job definition</strong>. For more information about allowed values, see <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_TransformJobDefinition.html"> TransformJobDefinition</a>. </p>
+
+<ol>
+<li><p><code>TransformInput.DataSource.S3Uri</code>: Set to where your test data for inference is stored. </p></li>
+<li><p><code>TransformInput.ContentType</code>: Specify your test data content type. For example, <code>application/json</code>, <code>text/plain</code>, <code>image/png</code>, or any other value. Amazon SageMaker does not validate the actual input data. This value is passed to your container HTTP endpoint in the <code>Content-type</code> header value. </p></li>
+<li><p><code>TransformInput.CompressionType</code>: Set to <code>None</code> if your test data for inference in Amazon S3 is not compressed. </p></li>
+<li><p><code>TransformInput.SplitType</code>: Choose how you want objects in S3 split. For example, <code>None</code> passes each object in Amazon S3 as a whole for inference. For more details, see <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_TransformInput.html#sagemaker-Type-TransformInput-SplitType"> SplitType</a> in the Amazon SageMaker API Reference. </p></li>
+<li><p><code>TransformOutput.S3OutputPath</code>: Set to the location where the inference output is stored. </p></li>
+<li><p><code>TransformOutput.AssembleWith</code>: Set to <code>None</code> to output each inference as separate objects in Amazon S3. </p></li>
+</ol></li>
+<li><p>Choose <strong>Create algorithm package</strong>.</p>
+
+<p>SageMaker pulls the training image from Amazon ECR, runs a test-training job using your data, and stores the model artifacts in Amazon S3. It then pulls the inference image from Amazon ECR, copies the artifacts from Amazon S3 into the inference container, and runs a batch transform job using your test data for inference. After the validation succeeds, the status changes to <strong>Completed</strong>. </p></li>
+</ol>
+
+<p><strong>Note</strong><br />
+ The validation step does not evaluate the accuracy of the training or the model with your test data. The validation step checks if the containers run and respond as expected.<br />
+The validation step only validates batch processing. It is up to you to validate that real-time processing works with your product.</p>
+
+<p>You have completed creating your algorithm product resources. Continue to <a href="ml-publishing-your-product-in-aws-marketplace.md">Publishing your product in AWS Marketplace</a>. </p>

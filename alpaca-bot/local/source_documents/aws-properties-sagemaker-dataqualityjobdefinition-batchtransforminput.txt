@@ -1,0 +1,62 @@
+<h1>AWS::SageMaker::DataQualityJobDefinition BatchTransformInput<a name="aws-properties-sagemaker-dataqualityjobdefinition-batchtransforminput"></a></h1>
+
+<p><a name="aws-properties-sagemaker-dataqualityjobdefinition-batchtransforminput-description"></a>The <code>BatchTransformInput</code> property type specifies Property description not available. for an <a href="aws-resource-sagemaker-dataqualityjobdefinition.md">AWS::SageMaker::DataQualityJobDefinition</a>.</p>
+
+<h2>Syntax<a name="aws-properties-sagemaker-dataqualityjobdefinition-batchtransforminput-syntax"></a></h2>
+
+<p>To declare this entity in your AWS CloudFormation template, use the following syntax:</p>
+
+<h3>JSON<a name="aws-properties-sagemaker-dataqualityjobdefinition-batchtransforminput-syntax.json"></a></h3>
+
+<p><code>
+{
+  "[DataCapturedDestinationS3Uri](#cfn-sagemaker-dataqualityjobdefinition-batchtransforminput-datacaptureddestinations3uri)" : String,
+  "[DatasetFormat](#cfn-sagemaker-dataqualityjobdefinition-batchtransforminput-datasetformat)" : DatasetFormat,
+  "[LocalPath](#cfn-sagemaker-dataqualityjobdefinition-batchtransforminput-localpath)" : String,
+  "[S3DataDistributionType](#cfn-sagemaker-dataqualityjobdefinition-batchtransforminput-s3datadistributiontype)" : String,
+  "[S3InputMode](#cfn-sagemaker-dataqualityjobdefinition-batchtransforminput-s3inputmode)" : String
+}
+</code></p>
+
+<h3>YAML<a name="aws-properties-sagemaker-dataqualityjobdefinition-batchtransforminput-syntax.yaml"></a></h3>
+
+<p><code>
+  [DataCapturedDestinationS3Uri](#cfn-sagemaker-dataqualityjobdefinition-batchtransforminput-datacaptureddestinations3uri): String
+  [DatasetFormat](#cfn-sagemaker-dataqualityjobdefinition-batchtransforminput-datasetformat): 
+    DatasetFormat
+  [LocalPath](#cfn-sagemaker-dataqualityjobdefinition-batchtransforminput-localpath): String
+  [S3DataDistributionType](#cfn-sagemaker-dataqualityjobdefinition-batchtransforminput-s3datadistributiontype): String
+  [S3InputMode](#cfn-sagemaker-dataqualityjobdefinition-batchtransforminput-s3inputmode): String
+</code></p>
+
+<h2>Properties<a name="aws-properties-sagemaker-dataqualityjobdefinition-batchtransforminput-properties"></a></h2>
+
+<p><code>DataCapturedDestinationS3Uri</code>  <a name="cfn-sagemaker-dataqualityjobdefinition-batchtransforminput-datacaptureddestinations3uri"></a>
+Property description not available.<br />
+<em>Required</em>: Yes<br />
+<em>Type</em>: String<br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement">Replacement</a></p>
+
+<p><code>DatasetFormat</code>  <a name="cfn-sagemaker-dataqualityjobdefinition-batchtransforminput-datasetformat"></a>
+Property description not available.<br />
+<em>Required</em>: Yes<br />
+<em>Type</em>: <a href="aws-properties-sagemaker-dataqualityjobdefinition-datasetformat.md">DatasetFormat</a><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement">Replacement</a></p>
+
+<p><code>LocalPath</code>  <a name="cfn-sagemaker-dataqualityjobdefinition-batchtransforminput-localpath"></a>
+Property description not available.<br />
+<em>Required</em>: Yes<br />
+<em>Type</em>: String<br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement">Replacement</a></p>
+
+<p><code>S3DataDistributionType</code>  <a name="cfn-sagemaker-dataqualityjobdefinition-batchtransforminput-s3datadistributiontype"></a>
+Property description not available.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: String<br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement">Replacement</a></p>
+
+<p><code>S3InputMode</code>  <a name="cfn-sagemaker-dataqualityjobdefinition-batchtransforminput-s3inputmode"></a>
+Property description not available.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: String<br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement">Replacement</a></p>

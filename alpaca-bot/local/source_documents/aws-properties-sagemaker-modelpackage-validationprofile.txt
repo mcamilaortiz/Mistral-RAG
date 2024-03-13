@@ -1,0 +1,43 @@
+<h1>AWS::SageMaker::ModelPackage ValidationProfile<a name="aws-properties-sagemaker-modelpackage-validationprofile"></a></h1>
+
+<p>Contains data, such as the inputs and targeted instance types that are used in the process of validating the model package.</p>
+
+<p>The data provided in the validation profile is made available to your buyers on AWS Marketplace.</p>
+
+<h2>Syntax<a name="aws-properties-sagemaker-modelpackage-validationprofile-syntax"></a></h2>
+
+<p>To declare this entity in your AWS CloudFormation template, use the following syntax:</p>
+
+<h3>JSON<a name="aws-properties-sagemaker-modelpackage-validationprofile-syntax.json"></a></h3>
+
+<p><code>
+{
+  "[ProfileName](#cfn-sagemaker-modelpackage-validationprofile-profilename)" : String,
+  "[TransformJobDefinition](#cfn-sagemaker-modelpackage-validationprofile-transformjobdefinition)" : TransformJobDefinition
+}
+</code></p>
+
+<h3>YAML<a name="aws-properties-sagemaker-modelpackage-validationprofile-syntax.yaml"></a></h3>
+
+<p><code>
+  [ProfileName](#cfn-sagemaker-modelpackage-validationprofile-profilename): String
+  [TransformJobDefinition](#cfn-sagemaker-modelpackage-validationprofile-transformjobdefinition): 
+    TransformJobDefinition
+</code></p>
+
+<h2>Properties<a name="aws-properties-sagemaker-modelpackage-validationprofile-properties"></a></h2>
+
+<p><code>ProfileName</code>  <a name="cfn-sagemaker-modelpackage-validationprofile-profilename"></a>
+The name of the profile for the model package.<br />
+<em>Required</em>: Yes<br />
+<em>Type</em>: String<br />
+<em>Minimum</em>: <code>1</code><br />
+<em>Maximum</em>: <code>63</code><br />
+<em>Pattern</em>: <code>^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,62}$</code><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement">Replacement</a></p>
+
+<p><code>TransformJobDefinition</code>  <a name="cfn-sagemaker-modelpackage-validationprofile-transformjobdefinition"></a>
+The <code>TransformJobDefinition</code> object that describes the transform job used for the validation of the model package.<br />
+<em>Required</em>: Yes<br />
+<em>Type</em>: <a href="aws-properties-sagemaker-modelpackage-transformjobdefinition.md">TransformJobDefinition</a><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement">Replacement</a></p>

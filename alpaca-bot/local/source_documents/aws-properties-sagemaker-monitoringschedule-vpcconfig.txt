@@ -1,0 +1,41 @@
+<h1>AWS::SageMaker::MonitoringSchedule VpcConfig<a name="aws-properties-sagemaker-monitoringschedule-vpcconfig"></a></h1>
+
+<p>Specifies a VPC that your training jobs and hosted models have access to. Control access to and from your training and model containers by configuring the VPC. For more information, see <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/host-vpc.html">Protect Endpoints by Using an Amazon Virtual Private Cloud</a> and <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/train-vpc.html">Protect Training Jobs by Using an Amazon Virtual Private Cloud</a>. </p>
+
+<h2>Syntax<a name="aws-properties-sagemaker-monitoringschedule-vpcconfig-syntax"></a></h2>
+
+<p>To declare this entity in your AWS CloudFormation template, use the following syntax:</p>
+
+<h3>JSON<a name="aws-properties-sagemaker-monitoringschedule-vpcconfig-syntax.json"></a></h3>
+
+<p><code>
+{
+  "[SecurityGroupIds](#cfn-sagemaker-monitoringschedule-vpcconfig-securitygroupids)" : [ String, ... ],
+  "[Subnets](#cfn-sagemaker-monitoringschedule-vpcconfig-subnets)" : [ String, ... ]
+}
+</code></p>
+
+<h3>YAML<a name="aws-properties-sagemaker-monitoringschedule-vpcconfig-syntax.yaml"></a></h3>
+
+<p><code>
+  [SecurityGroupIds](#cfn-sagemaker-monitoringschedule-vpcconfig-securitygroupids): 
+    - String
+  [Subnets](#cfn-sagemaker-monitoringschedule-vpcconfig-subnets): 
+    - String
+</code></p>
+
+<h2>Properties<a name="aws-properties-sagemaker-monitoringschedule-vpcconfig-properties"></a></h2>
+
+<p><code>SecurityGroupIds</code>  <a name="cfn-sagemaker-monitoringschedule-vpcconfig-securitygroupids"></a>
+The VPC security group IDs, in the form sg-xxxxxxxx. Specify the security groups for the VPC that is specified in the <code>Subnets</code> field.<br />
+<em>Required</em>: Yes<br />
+<em>Type</em>: List of String<br />
+<em>Maximum</em>: <code>5</code><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt">No interruption</a></p>
+
+<p><code>Subnets</code>  <a name="cfn-sagemaker-monitoringschedule-vpcconfig-subnets"></a>
+The ID of the subnets in the VPC to which you want to connect your training job or model. For information about the availability of specific instance types, see <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/instance-types-az.html">Supported Instance Types and Availability Zones</a>.<br />
+<em>Required</em>: Yes<br />
+<em>Type</em>: List of String<br />
+<em>Maximum</em>: <code>16</code><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt">No interruption</a></p>

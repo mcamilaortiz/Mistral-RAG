@@ -1,0 +1,31 @@
+<h1>Create an MLOps Project using Amazon SageMaker Studio<a name="sagemaker-projects-create"></a></h1>
+
+<p>This procedure demonstrates how to create an MLOps project using Amazon SageMaker Studio.</p>
+
+<p><strong>Prerequisites</strong>
++ An IAM account or IAM Identity Center to sign in to Studio. For information, see <a href="gs-studio-onboard.md">Onboard to Amazon SageMaker Domain</a>.
++ Permission to use SageMaker-provided project templates. For information, see <a href="sagemaker-projects-studio-updates.md">SageMaker Studio Permissions Required to Use Projects</a>.
++ Basic familiarity with the Studio user interface. For information, see <a href="studio-ui.md">Amazon SageMaker Studio UI Overview</a>.</p>
+
+<p><strong>To create a project in Studio</strong></p>
+
+<ol>
+<li><p>Sign in to Studio. For more information, see <a href="gs-studio-onboard.md">Onboard to Amazon SageMaker Domain</a>.</p></li>
+<li><p>In the Studio sidebar, choose the <strong>Home</strong> icon ( <img src="http://docs.aws.amazon.com/sagemaker/latest/dg/images/studio/icons/house.png" alt="[Image NOT FOUND]" />).</p></li>
+<li><p>Select <strong>Deployments</strong> from the menu, and then select <strong>Projects</strong>.</p></li>
+<li><p>Choose <strong>Create project</strong>.</p>
+
+<p>The <strong>Create project</strong> tab opens displaying a list of available templates.</p></li>
+<li><p>If not selected already, choose <strong>SageMaker templates</strong>. For more information about project templates, see <a href="sagemaker-projects-templates.md">MLOps Project Templates</a>.</p></li>
+<li><p>Choose <strong>MLOps template for model building, training, and deployment</strong>.</p></li>
+<li><p>Choose <strong>Select project template</strong>.</p>
+
+<p>The <strong>Create project</strong> tab changes to display <strong>Project details</strong>.</p></li>
+<li><p>Enter the following information:</p>
+
+<ul>
+<li>For <strong>Project details</strong>, enter a name and description for your project.</li>
+<li>Optionally, add tags, which are key-value pairs that you can use to track your projects.</li>
+</ul></li>
+<li><p>Choose <strong>Create project</strong> and wait for the project to appear in the <strong>Projects</strong> list.</p></li>
+</ol>

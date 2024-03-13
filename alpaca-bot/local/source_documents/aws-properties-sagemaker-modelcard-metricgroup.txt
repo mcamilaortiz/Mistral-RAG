@@ -1,0 +1,43 @@
+<h1>AWS::SageMaker::ModelCard MetricGroup<a name="aws-properties-sagemaker-modelcard-metricgroup"></a></h1>
+
+<p>A group of metric data that you use to initialize a metric group object.</p>
+
+<h2>Syntax<a name="aws-properties-sagemaker-modelcard-metricgroup-syntax"></a></h2>
+
+<p>To declare this entity in your AWS CloudFormation template, use the following syntax:</p>
+
+<h3>JSON<a name="aws-properties-sagemaker-modelcard-metricgroup-syntax.json"></a></h3>
+
+<p><code>
+{
+  "[MetricData](#cfn-sagemaker-modelcard-metricgroup-metricdata)" : [ MetricDataItems, ... ],
+  "[Name](#cfn-sagemaker-modelcard-metricgroup-name)" : String
+}
+</code></p>
+
+<h3>YAML<a name="aws-properties-sagemaker-modelcard-metricgroup-syntax.yaml"></a></h3>
+
+<p><code>
+  [MetricData](#cfn-sagemaker-modelcard-metricgroup-metricdata): 
+    - MetricDataItems
+  [Name](#cfn-sagemaker-modelcard-metricgroup-name): String
+</code></p>
+
+<h2>Properties<a name="aws-properties-sagemaker-modelcard-metricgroup-properties"></a></h2>
+
+<p><code>MetricData</code>  <a name="cfn-sagemaker-modelcard-metricgroup-metricdata"></a>
+A list of metric objects. The <code>MetricDataItems</code> list can have one of the following values:<br />
++ <code>bar_chart_metric</code>
++ <code>matrix_metric</code>
++ <code>simple_metric</code>
++ <code>linear_graph_metric</code>
+For more information about the metric schema, see the definition section of the <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/model-cards.html#model-cards-json-schema">model card JSON schema</a>.<br />
+<em>Required</em>: Yes<br />
+<em>Type</em>: List of <a href="aws-properties-sagemaker-modelcard-metricdataitems.md">MetricDataItems</a><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt">No interruption</a></p>
+
+<p><code>Name</code>  <a name="cfn-sagemaker-modelcard-metricgroup-name"></a>
+The metric group name.<br />
+<em>Required</em>: Yes<br />
+<em>Type</em>: String<br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt">No interruption</a></p>

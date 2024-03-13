@@ -1,0 +1,140 @@
+<h1>AWS::SageMaker::Project<a name="aws-resource-sagemaker-project"></a></h1>
+
+<p>Creates a machine learning (ML) project that can contain one or more templates that set up an ML pipeline from training to deploying an approved model.</p>
+
+<h2>Syntax<a name="aws-resource-sagemaker-project-syntax"></a></h2>
+
+<p>To declare this entity in your AWS CloudFormation template, use the following syntax:</p>
+
+<h3>JSON<a name="aws-resource-sagemaker-project-syntax.json"></a></h3>
+
+<p><code>
+{
+  "Type" : "AWS::SageMaker::Project",
+  "Properties" : {
+      "[ProjectDescription](#cfn-sagemaker-project-projectdescription)" : String,
+      "[ProjectName](#cfn-sagemaker-project-projectname)" : String,
+      "[ServiceCatalogProvisioningDetails](#cfn-sagemaker-project-servicecatalogprovisioningdetails)" : ServiceCatalogProvisioningDetails,
+      "[Tags](#cfn-sagemaker-project-tags)" : [ [Tag](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-resource-tags.html), ... ]
+    }
+}
+</code></p>
+
+<h3>YAML<a name="aws-resource-sagemaker-project-syntax.yaml"></a></h3>
+
+<p><code>
+Type: AWS::SageMaker::Project
+Properties: 
+  [ProjectDescription](#cfn-sagemaker-project-projectdescription): String
+  [ProjectName](#cfn-sagemaker-project-projectname): String
+  [ServiceCatalogProvisioningDetails](#cfn-sagemaker-project-servicecatalogprovisioningdetails): 
+    ServiceCatalogProvisioningDetails
+  [Tags](#cfn-sagemaker-project-tags): 
+    - [Tag](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-resource-tags.html)
+</code></p>
+
+<h2>Properties<a name="aws-resource-sagemaker-project-properties"></a></h2>
+
+<p><code>ProjectDescription</code>  <a name="cfn-sagemaker-project-projectdescription"></a>
+The description of the project.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: String<br />
+<em>Maximum</em>: <code>1024</code><br />
+<em>Pattern</em>: <code>[\p{L}\p{M}\p{Z}\p{S}\p{N}\p{P}]*</code><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement">Replacement</a></p>
+
+<p><code>ProjectName</code>  <a name="cfn-sagemaker-project-projectname"></a>
+The name of the project.<br />
+<em>Required</em>: Yes<br />
+<em>Type</em>: String<br />
+<em>Minimum</em>: <code>1</code><br />
+<em>Maximum</em>: <code>32</code><br />
+<em>Pattern</em>: <code>^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,31}</code><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement">Replacement</a></p>
+
+<p><code>ServiceCatalogProvisioningDetails</code>  <a name="cfn-sagemaker-project-servicecatalogprovisioningdetails"></a>
+The product ID and provisioning artifact ID to provision a service catalog. For information, see <a href="https://docs.aws.amazon.com/servicecatalog/latest/adminguide/introduction.html">What is AWS Service Catalog</a>.<br />
+<em>Required</em>: Yes<br />
+<em>Type</em>: <a href="aws-properties-sagemaker-project-servicecatalogprovisioningdetails.md">ServiceCatalogProvisioningDetails</a><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement">Replacement</a></p>
+
+<p><code>Tags</code>  <a name="cfn-sagemaker-project-tags"></a>
+A list of key-value pairs to apply to this resource.<br />
+For more information, see <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-resource-tags.html">Resource Tag</a> and <a href="https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html#allocation-what">Using Cost Allocation Tags</a> in the * AWS Billing and Cost Management User Guide<em>.<br />
+*Required</em>: No<br />
+<em>Type</em>: List of <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-resource-tags.html">Tag</a><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement">Replacement</a></p>
+
+<h2>Return values<a name="aws-resource-sagemaker-project-return-values"></a></h2>
+
+<h3>Ref<a name="aws-resource-sagemaker-project-return-values-ref"></a></h3>
+
+<h3>Fn::GetAtt<a name="aws-resource-sagemaker-project-return-values-fn--getatt"></a></h3>
+
+<h4><a name="aws-resource-sagemaker-project-return-values-fn--getatt-fn--getatt"></a></h4>
+
+<p><code>CreationTime</code>  <a name="CreationTime-fn::getatt"></a>
+The time that the project was created.</p>
+
+<p><code>ProjectArn</code>  <a name="ProjectArn-fn::getatt"></a>
+The Amazon Resource Name (ARN) of the project.</p>
+
+<p><code>ProjectId</code>  <a name="ProjectId-fn::getatt"></a>
+The ID of the project. This ID is prepended to all entities associated with this project.</p>
+
+<p><code>ProjectStatus</code>  <a name="ProjectStatus-fn::getatt"></a>
+The status of the project.</p>
+
+<p><code>ServiceCatalogProvisionedProductDetails</code>  <a name="ServiceCatalogProvisionedProductDetails-fn::getatt"></a>
+The product ID and status message of the projet as a service catalog provisioned product. For information, see <a href="https://docs.aws.amazon.com/servicecatalog/latest/adminguide/introduction.html">What is AWS Service Catalog</a>.</p>
+
+<p><code>ServiceCatalogProvisionedProductDetails.ProvisionedProductId</code>  <a name="ServiceCatalogProvisionedProductDetails.ProvisionedProductId-fn::getatt"></a>
+Property description not available.</p>
+
+<p><code>ServiceCatalogProvisionedProductDetails.ProvisionedProductStatusMessage</code>  <a name="ServiceCatalogProvisionedProductDetails.ProvisionedProductStatusMessage-fn::getatt"></a>
+Property description not available.</p>
+
+<h2>Examples<a name="aws-resource-sagemaker-project--examples"></a></h2>
+
+<h3>SageMaker Project Example<a name="aws-resource-sagemaker-project--examples--SageMaker_Project_Example"></a></h3>
+
+<p>The following example creates a SageMaker Project.</p>
+
+<h4>JSON<a name="aws-resource-sagemaker-project--examples--SageMaker_Project_Example--json"></a></h4>
+
+<p><code>
+{
+   "Description": "AWS SageMaker Project basic template",
+   "Resources": {
+      "SampleProject": {
+         "Type": "AWS::SageMaker::Project",
+         "Properties": {
+            "ProjectName": "project1",
+            "ProjectDescription": "Project Description",
+            "ServiceCatalogProvisioningDetails": {
+               "ProductId": "prod-53ibyqbj2cgmo",
+               "ProvisioningArtifactId": "pa-sm4pjfuzictpe"
+            }
+         }
+      }
+   }
+}
+</code></p>
+
+<h4>YAML<a name="aws-resource-sagemaker-project--examples--SageMaker_Project_Example--yaml"></a></h4>
+
+<h2>```</h2>
+
+<p>Description: AWS SageMaker Project basic template</p>
+
+<p>Resources:</p>
+
+<p>SampleProject:
+    Type: AWS::SageMaker::Project
+    Properties:
+      ProjectName: "SampleProject"
+      ProjectDescription: "Project Description"
+      ServiceCatalogProvisioningDetails:
+        ProductId: "prod-53ibyqbj2cgmo"
+        ProvisioningArtifactId: "pa-sm4pjfuzictpe"
+```</p>

@@ -1,0 +1,39 @@
+<h1>AWS::SageMaker::ModelPackage ModelQuality<a name="aws-properties-sagemaker-modelpackage-modelquality"></a></h1>
+
+<p>Model quality statistics and constraints.</p>
+
+<h2>Syntax<a name="aws-properties-sagemaker-modelpackage-modelquality-syntax"></a></h2>
+
+<p>To declare this entity in your AWS CloudFormation template, use the following syntax:</p>
+
+<h3>JSON<a name="aws-properties-sagemaker-modelpackage-modelquality-syntax.json"></a></h3>
+
+<p><code>
+{
+  "[Constraints](#cfn-sagemaker-modelpackage-modelquality-constraints)" : MetricsSource,
+  "[Statistics](#cfn-sagemaker-modelpackage-modelquality-statistics)" : MetricsSource
+}
+</code></p>
+
+<h3>YAML<a name="aws-properties-sagemaker-modelpackage-modelquality-syntax.yaml"></a></h3>
+
+<p><code>
+  [Constraints](#cfn-sagemaker-modelpackage-modelquality-constraints): 
+    MetricsSource
+  [Statistics](#cfn-sagemaker-modelpackage-modelquality-statistics): 
+    MetricsSource
+</code></p>
+
+<h2>Properties<a name="aws-properties-sagemaker-modelpackage-modelquality-properties"></a></h2>
+
+<p><code>Constraints</code>  <a name="cfn-sagemaker-modelpackage-modelquality-constraints"></a>
+Model quality constraints.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: <a href="aws-properties-sagemaker-modelpackage-metricssource.md">MetricsSource</a><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement">Replacement</a></p>
+
+<p><code>Statistics</code>  <a name="cfn-sagemaker-modelpackage-modelquality-statistics"></a>
+Model quality statistics.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: <a href="aws-properties-sagemaker-modelpackage-metricssource.md">MetricsSource</a><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement">Replacement</a></p>

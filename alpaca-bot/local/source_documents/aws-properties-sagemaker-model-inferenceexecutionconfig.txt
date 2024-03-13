@@ -1,0 +1,31 @@
+<h1>AWS::SageMaker::Model InferenceExecutionConfig<a name="aws-properties-sagemaker-model-inferenceexecutionconfig"></a></h1>
+
+<p>Specifies details about how containers in a multi-container endpoint are run.</p>
+
+<h2>Syntax<a name="aws-properties-sagemaker-model-inferenceexecutionconfig-syntax"></a></h2>
+
+<p>To declare this entity in your AWS CloudFormation template, use the following syntax:</p>
+
+<h3>JSON<a name="aws-properties-sagemaker-model-inferenceexecutionconfig-syntax.json"></a></h3>
+
+<p><code>
+{
+  "[Mode](#cfn-sagemaker-model-inferenceexecutionconfig-mode)" : String
+}
+</code></p>
+
+<h3>YAML<a name="aws-properties-sagemaker-model-inferenceexecutionconfig-syntax.yaml"></a></h3>
+
+<p><code>
+  [Mode](#cfn-sagemaker-model-inferenceexecutionconfig-mode): String
+</code></p>
+
+<h2>Properties<a name="aws-properties-sagemaker-model-inferenceexecutionconfig-properties"></a></h2>
+
+<p><code>Mode</code>  <a name="cfn-sagemaker-model-inferenceexecutionconfig-mode"></a>
+How containers in a multi-container are run. The following values are valid.<br />
++ <code>Serial</code> - Containers run as a serial pipeline.
++ <code>Direct</code> - Only the individual container that you specify is run.
+<em>Required</em>: Yes<br />
+<em>Type</em>: String<br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement">Replacement</a></p>

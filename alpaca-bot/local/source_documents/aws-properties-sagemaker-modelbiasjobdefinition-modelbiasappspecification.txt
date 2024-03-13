@@ -1,0 +1,50 @@
+<h1>AWS::SageMaker::ModelBiasJobDefinition ModelBiasAppSpecification<a name="aws-properties-sagemaker-modelbiasjobdefinition-modelbiasappspecification"></a></h1>
+
+<p>Docker container image configuration object for the model bias job.</p>
+
+<h2>Syntax<a name="aws-properties-sagemaker-modelbiasjobdefinition-modelbiasappspecification-syntax"></a></h2>
+
+<p>To declare this entity in your AWS CloudFormation template, use the following syntax:</p>
+
+<h3>JSON<a name="aws-properties-sagemaker-modelbiasjobdefinition-modelbiasappspecification-syntax.json"></a></h3>
+
+<p><code>
+{
+  "[ConfigUri](#cfn-sagemaker-modelbiasjobdefinition-modelbiasappspecification-configuri)" : String,
+  "[Environment](#cfn-sagemaker-modelbiasjobdefinition-modelbiasappspecification-environment)" : {Key : Value, ...},
+  "[ImageUri](#cfn-sagemaker-modelbiasjobdefinition-modelbiasappspecification-imageuri)" : String
+}
+</code></p>
+
+<h3>YAML<a name="aws-properties-sagemaker-modelbiasjobdefinition-modelbiasappspecification-syntax.yaml"></a></h3>
+
+<p><code>
+  [ConfigUri](#cfn-sagemaker-modelbiasjobdefinition-modelbiasappspecification-configuri): String
+  [Environment](#cfn-sagemaker-modelbiasjobdefinition-modelbiasappspecification-environment): 
+    Key : Value
+  [ImageUri](#cfn-sagemaker-modelbiasjobdefinition-modelbiasappspecification-imageuri): String
+</code></p>
+
+<h2>Properties<a name="aws-properties-sagemaker-modelbiasjobdefinition-modelbiasappspecification-properties"></a></h2>
+
+<p><code>ConfigUri</code>  <a name="cfn-sagemaker-modelbiasjobdefinition-modelbiasappspecification-configuri"></a>
+JSON formatted S3 file that defines bias parameters. For more information on this JSON configuration file, see <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/clarify-config-json-monitor-bias-parameters.html">Configure bias parameters</a>.<br />
+<em>Required</em>: Yes<br />
+<em>Type</em>: String<br />
+<em>Maximum</em>: <code>1024</code><br />
+<em>Pattern</em>: <code>^(https|s3)://([^/]+)/?(.*)$</code><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement">Replacement</a></p>
+
+<p><code>Environment</code>  <a name="cfn-sagemaker-modelbiasjobdefinition-modelbiasappspecification-environment"></a>
+Sets the environment variables in the Docker container.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: Map of String<br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement">Replacement</a></p>
+
+<p><code>ImageUri</code>  <a name="cfn-sagemaker-modelbiasjobdefinition-modelbiasappspecification-imageuri"></a>
+The container image to be run by the model bias job.<br />
+<em>Required</em>: Yes<br />
+<em>Type</em>: String<br />
+<em>Maximum</em>: <code>255</code><br />
+<em>Pattern</em>: <code>.*</code><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement">Replacement</a></p>

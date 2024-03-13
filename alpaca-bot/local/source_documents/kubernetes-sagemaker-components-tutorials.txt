@@ -1,0 +1,272 @@
+<h1>Run Kubeflow Pipelines<a name="kubernetes-sagemaker-components-tutorials"></a></h1>
+
+<p>In this tutorial, you run a pipeline using SageMaker Components for Kubeflow Pipelines to train a classification model using Kmeans with the MNIST dataset on SageMaker. The workflow uses Kubeflow Pipelines as the orchestrator and SageMaker to execute each step of the workflow. The example was taken from an existing <a href="https://github.com/aws/amazon-sagemaker-examples/blob/8279abfcc78bad091608a4a7135e50a0bd0ec8bb/sagemaker-python-sdk/1P_kmeans_highlevel/kmeans_mnist.ipynb"> SageMaker example</a> and modified to work with SageMaker Components for Kubeflow Pipelines.</p>
+
+<p>You can define your pipeline in Python using AWS SDK for Python (Boto3) then use the KFP dashboard, KFP CLI, or Boto3 to compile, deploy, and run your workflows. The full code for the MNIST classification pipeline example is available in the <a href="https://github.com/kubeflow/pipelines/tree/master/samples/contrib/aws-samples/mnist-kmeans-sagemaker#mnist-classification-with-kmeans">Kubeflow Github repository</a>. To use it, clone the Python files to your gateway node.</p>
+
+<p>You can find additional <a href="https://github.com/kubeflow/pipelines/tree/master/samples/contrib/aws-samples"> SageMaker Kubeflow Pipelines examples</a> on GitHub. For information on the components used, see the <a href="https://github.com/kubeflow/pipelines/tree/master/components/aws/sagemaker">KubeFlow Pipelines GitHub repository</a>.</p>
+
+<p>To run the classification pipeline example, create a SageMaker IAM execution role granting your training job the permission to access AWS resources, then continue with the steps that correspond to your deployment option.</p>
+
+<h2>Create a SageMaker execution role<a name="create-an-amazonsagemaker-execution-role"></a></h2>
+
+<p>The <code>kfp-example-sagemaker-execution-role</code> IAM role is a runtime role assumed by SageMaker jobs to access AWS resources. In the following command, you create an IAM execution role named <code>kfp-example-sagemaker-execution-role</code>, attach two managed policies (AmazonSageMakerFullAccess, AmazonS3FullAccess), and create a trust relationship with SageMaker to grant SageMaker jobs access to those AWS resources.</p>
+
+<p>You provide this role as an input parameter when running the pipeline.</p>
+
+<p>Run the following command to create the role. Note the ARN that is returned in your output.</p>
+
+<p>```
+SAGEMAKER<em>EXECUTION</em>ROLE_NAME=kfp-example-sagemaker-execution-role</p>
+
+<p>TRUST="{ \"Version\": \"2012-10-17\", \"Statement\": [ { \"Effect\": \"Allow\", \"Principal\": { \"Service\": \"sagemaker.amazonaws.com\" }, \"Action\": \"sts:AssumeRole\" } ] }"
+aws iam create-role --role-name ${SAGEMAKER<em>EXECUTION</em>ROLE<em>NAME} --assume-role-policy-document "$TRUST"
+aws iam attach-role-policy --role-name ${SAGEMAKER</em>EXECUTION<em>ROLE</em>NAME} --policy-arn arn:aws:iam::aws:policy/AmazonSageMakerFullAccess
+aws iam attach-role-policy --role-name ${SAGEMAKER<em>EXECUTION</em>ROLE_NAME} --policy-arn arn:aws:iam::aws:policy/AmazonS3FullAccess</p>
+
+<p>aws iam get-role --role-name ${SAGEMAKER<em>EXECUTION</em>ROLE_NAME} --output text --query 'Role.Arn'
+```</p>
+
+<h2>Full Kubeflow on AWS Deployment<a name="run-pipelines-on-full-kubeflow-deployment"></a></h2>
+
+<p>Follow the instructions of the <a href="https://awslabs.github.io/kubeflow-manifests/docs/amazon-sagemaker-integration/sagemaker-components-for-kubeflow-pipelines/">SageMaker Training Pipeline tutorial for MNIST Classification with K-Means</a>.</p>
+
+<h2>Standalone Kubeflow Pipelines Deployment<a name="run-pipelines-on-standalone-kubeflow-pipelines-deployment"></a></h2>
+
+<h3>Prepare datasets<a name="prepare-datasets"></a></h3>
+
+<p>To run the pipelines, you need to upload the data extraction pre-processing script to an Amazon S3 bucket. This bucket and all resources for this example must be located in the <code>us-east-1</code> region. For information on creating a bucket, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/gsg/CreatingABucket.html">Creating a bucket</a>.</p>
+
+<p>From the <code>mnist-kmeans-sagemaker</code> folder of the Kubeflow repository you cloned on your gateway node, run the following command to upload the <code>kmeans_preprocessing.py</code> file to your Amazon S3 bucket. Change <code>&lt;bucket-name&gt;</code> to the name of your Amazon S3 bucket.</p>
+
+<p><code>
+aws s3 cp mnist-kmeans-sagemaker/kmeans_preprocessing.py s3://&lt;bucket-name&gt;/mnist_kmeans_example/processing_code/kmeans_preprocessing.py
+</code></p>
+
+<h3>Compile and deploy your pipeline<a name="compile-and-deploy-your-pipeline"></a></h3>
+
+<p>After defining the pipeline, you must compile it to an intermediate representation before you submit it to the Kubeflow Pipelines service on your cluster. The intermediate representation is a workflow specification in the form of a YAML file compressed into a tar.gz file. You need the KFP SDK to compile your pipeline.</p>
+
+<h4>Install KFP SDK<a name="install-kfp-sdk"></a></h4>
+
+<p>Run the following from the command line of your gateway node:</p>
+
+<ol>
+<li><p>Install the KFP SDK following the instructions in the <a href="https://www.kubeflow.org/docs/pipelines/sdk/install-sdk/">Kubeflow pipelines documentation</a>.</p></li>
+<li><p>Verify that the KFP SDK is installed with the following command:</p>
+
+<p><code>
+pip show kfp
+</code></p></li>
+<li><p>Verify that <code>dsl-compile</code> has been installed correctly as follows:</p>
+
+<p><code>
+which dsl-compile
+</code></p></li>
+</ol>
+
+<h4>Compile your pipeline<a name="compile-your-pipeline"></a></h4>
+
+<p>You have three options to interact with Kubeflow Pipelines: KFP UI, KFP CLI, or the KFP SDK. The following sections illustrate the workflow using the KFP UI and CLI.</p>
+
+<p>Complete the following steps from your gateway node.</p>
+
+<ol>
+<li><p>Modify your Python file with your Amazon S3 bucket name and IAM role ARN.</p></li>
+<li><p>Use the <code>dsl-compile</code> command from the command line to compile your pipeline as follows. Replace <code>&lt;path-to-python-file&gt;</code> with the path to your pipeline and <code>&lt;path-to-output&gt;</code> with the location where you want your tar.gz file to be.</p>
+
+<p><code>
+dsl-compile --py &lt;path-to-python-file&gt; --output &lt;path-to-output&gt;
+</code></p></li>
+</ol>
+
+<h4>Upload and run the pipeline using the KFP CLI<a name="upload-and-run-the-pipeline-using-the-kfp-cli"></a></h4>
+
+<p>Complete the following steps from the command line of your gateway node. KFP organizes runs of your pipeline as experiments. You have the option to specify an experiment name. If you do not specify one, the run will be listed under <strong>Default</strong> experiment.</p>
+
+<ol>
+<li><p>Upload your pipeline as follows:</p>
+
+<p><code>
+kfp pipeline upload --pipeline-name &lt;pipeline-name&gt; &lt;path-to-output-tar.gz&gt;
+</code></p>
+
+<p>Your output should look like the following. Take note of the pipeline <code>ID</code>.</p>
+
+<p>```
+Pipeline 29c3ff21-49f5-4dfe-94f6-618c0e2420fe has been submitted</p>
+
+<p>Pipeline Details</p></li>
+</ol>
+
+<hr />
+
+<p>ID           29c3ff21-49f5-4dfe-94f6-618c0e2420fe
+   Name         sm-pipeline
+   Description
+   Uploaded at  2020-04-30T20:22:39+00:00
+   ...
+   ...
+   ```</p>
+
+<ol>
+<li><p>Create a run using the following command. The KFP CLI run command currently does not support specifying input parameters while creating the run. You need to update your parameters in the Python pipeline file before compiling. Replace <code>&lt;experiment-name&gt;</code> and <code>&lt;job-name&gt;</code> with any names. Replace <code>&lt;pipeline-id&gt;</code> with the ID of your submitted pipeline. Replace <code>&lt;your-role-arn&gt;</code> with the ARN of <code>kfp-example-pod-role</code>. Replace <code>&lt;your-bucket-name&gt;</code> with the name of the Amazon S3 bucket you created. </p>
+
+<p><code>
+kfp run submit --experiment-name &lt;experiment-name&gt; --run-name &lt;job-name&gt; --pipeline-id &lt;pipeline-id&gt; role_arn="&lt;your-role-arn&gt;" bucket_name="&lt;your-bucket-name&gt;"
+</code></p>
+
+<p>You can also directly submit a run using the compiled pipeline package created as the output of the <code>dsl-compile</code> command.</p>
+
+<p><code>
+kfp run submit --experiment-name &lt;experiment-name&gt; --run-name &lt;job-name&gt; --package-file &lt;path-to-output&gt; role_arn="&lt;your-role-arn&gt;" bucket_name="&lt;your-bucket-name&gt;"
+</code></p>
+
+<p>Your output should look like the following:</p>
+
+<p><code>
+Creating experiment aws.
+Run 95084a2c-f18d-4b77-a9da-eba00bf01e63 is submitted
++--------------------------------------+--------+----------+---------------------------+
+| run id                               | name   | status   | created at                |
++======================================+========+==========+===========================+
+| 95084a2c-f18d-4b77-a9da-eba00bf01e63 | sm-job |          | 2020-04-30T20:36:41+00:00 |
++--------------------------------------+--------+----------+---------------------------+
+</code></p></li>
+<li><p>Navigate to the UI to check the progress of the job.</p></li>
+</ol>
+
+<h4>Upload and run the pipeline using the KFP UI<a name="upload-and-run-the-pipeline-using-the-kfp-ui"></a></h4>
+
+<ol>
+<li><p>On the left panel, choose the <strong>Pipelines</strong> tab. </p></li>
+<li><p>In the upper-right corner, choose <strong>+UploadPipeline</strong>. </p></li>
+<li><p>Enter the pipeline name and description. </p></li>
+<li><p>Choose <strong>Upload a file</strong> and enter the path to the tar.gz file you created using the CLI or with AWS SDK for Python (Boto3).</p></li>
+<li><p>On the left panel, choose the <strong>Pipelines</strong> tab.</p></li>
+<li><p>Find the pipeline you created.</p></li>
+<li><p>Choose <strong>+CreateRun</strong>.</p></li>
+<li><p>Enter your input parameters.</p></li>
+<li><p>Choose <strong>Run</strong>.</p></li>
+</ol>
+
+<h3>Run predictions<a name="running-predictions"></a></h3>
+
+<p>Once your classification pipeline is deployed, you can run classification predictions against the endpoint that was created by the Deploy component. Use the KFP UI to check the output artifacts for <code>sagemaker-deploy-model-endpoint_name</code>. Download the .tgz file to extract the endpoint name or check the SageMaker console in the region you used.</p>
+
+<h4>Configure permissions to run predictions<a name="configure-permissions-to-run-predictions"></a></h4>
+
+<p>If you want to run predictions from your gateway node, skip this section.</p>
+
+<p><strong>To use any other machine to run predictions, assign the <code>sagemaker:InvokeEndpoint</code> permission to the IAM role used by the client machine.</strong></p>
+
+<ol>
+<li><p>On your gateway node, run the following to create an IAM policy file:</p>
+
+<p><code>
+cat &lt;&lt;EoF &gt; ./sagemaker-invoke.json
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "sagemaker:InvokeEndpoint"
+            ],
+            "Resource": "*"
+        }
+    ]
+}
+EoF
+</code></p></li>
+<li><p>Attach the policy to the IAM role of the client node.</p>
+
+<p>Run the following command. Replace <code>&lt;your-instance-IAM-role&gt;</code> with the name of the IAM role. Replace <code>&lt;path-to-sagemaker-invoke-json&gt;</code> with the path to the policy file you created.</p>
+
+<p><code>
+aws iam put-role-policy --role-name &lt;your-instance-IAM-role&gt; --policy-name sagemaker-invoke-for-worker --policy-document file://&lt;path-to-sagemaker-invoke-json&gt;
+</code></p></li>
+</ol>
+
+<h4>Run predictions<a name="run-predictions"></a></h4>
+
+<ol>
+<li><p>Create a Python file from your client machine named <code>mnist-predictions.py</code> with the following content. Replace the <code>ENDPOINT_NAME</code> variable. The script loads the MNIST dataset, creates a CSV from those digits, then sends the CSV to the endpoint for prediction and prints the results.</p>
+
+<p>```
+import boto3
+import gzip
+import io
+import json
+import numpy
+import pickle</p>
+
+<p>ENDPOINT<em>NAME='<endpoint-name>'
+region = boto3.Session().region</em>name</p>
+
+<h1>S3 bucket where the original mnist data is downloaded and stored</h1>
+
+<p>downloaded<em>data</em>bucket = f"jumpstart-cache-prod-{region}"
+downloaded<em>data</em>prefix = "1p-notebooks-datasets/mnist"</p>
+
+<h1>Download the dataset</h1>
+
+<p>s3 = boto3.client("s3")
+s3.download<em>file(downloaded</em>data<em>bucket, f"{downloaded</em>data_prefix}/mnist.pkl.gz", "mnist.pkl.gz")</p>
+
+<h1>Load the dataset</h1>
+
+<p>with gzip.open('mnist.pkl.gz', 'rb') as f:
+    train<em>set, valid</em>set, test_set = pickle.load(f, encoding='latin1')</p>
+
+<h1>Simple function to create a csv from our numpy array</h1>
+
+<p>def np2csv(arr):
+    csv = io.BytesIO()
+    numpy.savetxt(csv, arr, delimiter=',', fmt='%g')
+    return csv.getvalue().decode().rstrip()</p>
+
+<p>runtime = boto3.Session(region).client('sagemaker-runtime')</p>
+
+<p>payload = np2csv(train_set[0][30:31])</p>
+
+<p>response = runtime.invoke<em>endpoint(EndpointName=ENDPOINT</em>NAME,
+                                   ContentType='text/csv',
+                                   Body=payload)
+result = json.loads(response['Body'].read().decode())
+print(result)
+```</p></li>
+<li><p>Run the Python file as follows: </p>
+
+<p><code>
+python mnist-predictions.py
+</code></p></li>
+</ol>
+
+<h3>View results and logs<a name="view-results-and-logs"></a></h3>
+
+<p>When the pipeline is running, you can choose any component to check execution details, such as inputs and outputs. This lists the names of created resources.</p>
+
+<p>If the KFP request is successfully processed and an SageMaker job is created, the component logs in the KFP UI provide a link to the job created in SageMaker. The CloudWatch logs are also provided if the job is successfully created. </p>
+
+<p>If you run too many pipeline jobs on the same cluster, you may see an error message that indicates that you do not have enough pods available. To fix this, log in to your gateway node and delete the pods created by the pipelines you are not using:</p>
+
+<p><code>
+kubectl get pods -n kubeflow
+kubectl delete pods -n kubeflow &lt;name-of-pipeline-pod&gt;
+</code></p>
+
+<h3>Cleanup<a name="cleanup"></a></h3>
+
+<p>When you’re finished with your pipeline, you need to clean up your resources.</p>
+
+<ol>
+<li><p>From the KFP dashboard, terminate your pipeline runs if they do not exit properly by choosing <strong>Terminate</strong>.</p></li>
+<li><p>If the <strong>Terminate</strong> option doesn’t work, log in to your gateway node and manually terminate all the pods created by your pipeline run as follows:</p>
+
+<p><code>
+kubectl get pods -n kubeflow
+kubectl delete pods -n kubeflow &lt;name-of-pipeline-pod&gt;
+</code></p></li>
+<li><p>Using your AWS account, log in to the SageMaker service. Manually stop all training, batch transform, and HPO jobs. Delete models, data buckets, and endpoints to avoid incurring any additional costs. Terminating the pipeline runs does not stop the jobs in SageMaker.</p></li>
+</ol>

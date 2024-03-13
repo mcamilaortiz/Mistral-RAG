@@ -1,0 +1,18 @@
+<h1>sagemaker-notebook-instance-kms-key-configured<a name="sagemaker-notebook-instance-kms-key-configured"></a></h1>
+
+<p>Check whether an AWS Key Management Service (KMS) key is configured for an Amazon SageMaker notebook instance. The rule is NON_COMPLIANT if 'KmsKeyId' is not specified for the Amazon SageMaker notebook instance. </p>
+
+<p><strong>Identifier:</strong> SAGEMAKER_NOTEBOOK_INSTANCE_KMS_KEY_CONFIGURED</p>
+
+<p><strong>Trigger type:</strong> Periodic</p>
+
+<p><strong>AWS Region:</strong> All supported AWS regions except China (Beijing), Asia Pacific (Jakarta), Africa (Cape Town), Middle East (UAE), Asia Pacific (Hyderabad), Asia Pacific (Osaka), Asia Pacific (Melbourne), Europe (Milan), AWS GovCloud (US-East), Europe (Spain), China (Ningxia), Europe (Zurich) Region</p>
+
+<p><strong>Parameters:</strong></p>
+
+<p>kmsKeyArns (Optional)Type: String<br />
+Comma-separated list of AWS KMS key ARNs allowed for an Amazon SageMaker notebook instance.</p>
+
+<h2>AWS CloudFormation template<a name="w2aac12c33c15b9d529c15"></a></h2>
+
+<p>To create AWS Config managed rules with AWS CloudFormation templates, see <a href="aws-config-managed-rules-cloudformation-templates.md">Creating AWS Config Managed Rules With AWS CloudFormation Templates</a>.</p>

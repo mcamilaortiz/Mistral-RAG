@@ -1,0 +1,45 @@
+<h1>AWS::SageMaker::Workteam CognitoMemberDefinition<a name="aws-properties-sagemaker-workteam-cognitomemberdefinition"></a></h1>
+
+<p>Identifies a Amazon Cognito user group. A user group can be used in on or more work teams.</p>
+
+<h2>Syntax<a name="aws-properties-sagemaker-workteam-cognitomemberdefinition-syntax"></a></h2>
+
+<p>To declare this entity in your AWS CloudFormation template, use the following syntax:</p>
+
+<h3>JSON<a name="aws-properties-sagemaker-workteam-cognitomemberdefinition-syntax.json"></a></h3>
+
+<p><code>
+{
+  "[CognitoClientId](#cfn-sagemaker-workteam-cognitomemberdefinition-cognitoclientid)" : String,
+  "[CognitoUserGroup](#cfn-sagemaker-workteam-cognitomemberdefinition-cognitousergroup)" : String,
+  "[CognitoUserPool](#cfn-sagemaker-workteam-cognitomemberdefinition-cognitouserpool)" : String
+}
+</code></p>
+
+<h3>YAML<a name="aws-properties-sagemaker-workteam-cognitomemberdefinition-syntax.yaml"></a></h3>
+
+<p><code>
+  [CognitoClientId](#cfn-sagemaker-workteam-cognitomemberdefinition-cognitoclientid): String
+  [CognitoUserGroup](#cfn-sagemaker-workteam-cognitomemberdefinition-cognitousergroup): String
+  [CognitoUserPool](#cfn-sagemaker-workteam-cognitomemberdefinition-cognitouserpool): String
+</code></p>
+
+<h2>Properties<a name="aws-properties-sagemaker-workteam-cognitomemberdefinition-properties"></a></h2>
+
+<p><code>CognitoClientId</code>  <a name="cfn-sagemaker-workteam-cognitomemberdefinition-cognitoclientid"></a>
+An identifier for an application client. You must create the app client ID using Amazon Cognito.<br />
+<em>Required</em>: Yes<br />
+<em>Type</em>: String<br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt">No interruption</a></p>
+
+<p><code>CognitoUserGroup</code>  <a name="cfn-sagemaker-workteam-cognitomemberdefinition-cognitousergroup"></a>
+An identifier for a user group.<br />
+<em>Required</em>: Yes<br />
+<em>Type</em>: String<br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt">No interruption</a></p>
+
+<p><code>CognitoUserPool</code>  <a name="cfn-sagemaker-workteam-cognitomemberdefinition-cognitouserpool"></a>
+An identifier for a user pool. The user pool must be in the same region as the service that you are calling.<br />
+<em>Required</em>: Yes<br />
+<em>Type</em>: String<br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement">Replacement</a></p>

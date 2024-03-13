@@ -1,0 +1,30 @@
+<h1>AWS::SageMaker::ModelCard TrainingEnvironment<a name="aws-properties-sagemaker-modelcard-trainingenvironment"></a></h1>
+
+<p>SageMaker training image.</p>
+
+<h2>Syntax<a name="aws-properties-sagemaker-modelcard-trainingenvironment-syntax"></a></h2>
+
+<p>To declare this entity in your AWS CloudFormation template, use the following syntax:</p>
+
+<h3>JSON<a name="aws-properties-sagemaker-modelcard-trainingenvironment-syntax.json"></a></h3>
+
+<p><code>
+{
+  "[ContainerImage](#cfn-sagemaker-modelcard-trainingenvironment-containerimage)" : [ String, ... ]
+}
+</code></p>
+
+<h3>YAML<a name="aws-properties-sagemaker-modelcard-trainingenvironment-syntax.yaml"></a></h3>
+
+<p><code>
+  [ContainerImage](#cfn-sagemaker-modelcard-trainingenvironment-containerimage): 
+    - String
+</code></p>
+
+<h2>Properties<a name="aws-properties-sagemaker-modelcard-trainingenvironment-properties"></a></h2>
+
+<p><code>ContainerImage</code>  <a name="cfn-sagemaker-modelcard-trainingenvironment-containerimage"></a>
+SageMaker inference image URI.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: List of String<br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt">No interruption</a></p>

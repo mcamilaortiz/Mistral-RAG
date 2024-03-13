@@ -1,0 +1,1062 @@
+<h1>SageMaker Roles<a name="sagemaker-roles"></a></h1>
+
+<p>As a managed service, Amazon SageMaker performs operations on your behalf on the AWS hardware that is managed by SageMaker. SageMaker can perform only operations that the user permits.</p>
+
+<p>A SageMaker user can grant these permissions with an IAM role (referred to as an execution role). </p>
+
+<p>To create and use a locally available execution role, you can use the following procedures.</p>
+
+<h2>Get execution role<a name="sagemaker-roles-get-execution-role"></a></h2>
+
+<p>You can find the IAM execution role in the following ways:</p>
+
+<p><strong>From the notebook</strong></p>
+
+<p>When you run a notebook within SageMaker (from the SageMaker console or SageMaker Studio) you can access the execution role with the following code:</p>
+
+<p><code>
+sagemaker_session = sagemaker.Session()
+role = sagemaker.get_execution_role()
+</code></p>
+
+<p><strong>Note</strong><br />
+The execution role is available only when running a notebook within SageMaker. If you run <code>get_execution_role</code> in a notebook not on SageMaker, expect a "region" error. </p>
+
+<p><strong>From the SageMaker console</strong></p>
+
+<p>Under <strong>Notebook &gt; Notebook instances</strong>, select the notebook. The ARN is given in the <strong>Permissions and encryption</strong> section.</p>
+
+<h2>Create execution role<a name="sagemaker-roles-create-execution-role"></a></h2>
+
+<p>Use the following procedure to create an execution role with the IAM managed policy, <code>AmazonSageMakerFullAccess</code>, attached. If your use case requires more granular permissions, use other sections on this page to create an execution role that meets your business needs.</p>
+
+<p><strong>Important</strong><br />
+The IAM managed policy, <code>AmazonSageMakerFullAccess</code>, used in the following procedure only grants the execution role permission to perform certain Amazon S3 actions on buckets or objects with <code>SageMaker</code>, <code>Sagemaker</code>, <code>sagemaker</code>, or <code>aws-glue</code> in the name. To learn how to add an additional policy to an execution role to grant it access to other Amazon S3 buckets and objects, see <a href="#sagemaker-roles-get-execution-role-s3">Add Additional Amazon S3 Permissions to a SageMaker Execution Role</a>.</p>
+
+<p><strong>To create a new role</strong></p>
+
+<ol>
+<li><p>Open the IAM console at <a href="https://console.aws.amazon.com/iam/">https://console.aws.amazon.com/iam/</a>.</p></li>
+<li><p>Select <strong>Roles</strong> and then select <strong>Create role</strong>.</p></li>
+<li><p>Select <strong>SageMaker</strong>.</p></li>
+<li><p>Select <strong>Next: Permissions</strong>.</p></li>
+<li><p>The IAM managed policy, <code>AmazonSageMakerFullAccess</code> is automatically attached to this role. To see the permissions included in this policy, select the sideways arrow next to the policy name. Select <strong>Next: Tags</strong>.</p></li>
+<li><p>(Optional) Add tags and select <strong>Next: Review</strong>.</p></li>
+<li><p>Give the role a name in the text field under <strong>Role name</strong> and select <strong>Create role</strong>.</p></li>
+<li><p>On the <strong>Roles</strong> section of the IAM console, select the role you just created. If needed, use the text box to search for the role using the role name you entered in step 7.</p></li>
+<li><p>On the role summary page, make note of the ARN.</p></li>
+</ol>
+
+<p>With a known ARN for your role, you can programmatically check the role when running the notebook locally or on SageMaker. Replace <code>RoleName</code> with your known ARN:</p>
+
+<p><code>
+try:
+    role = sagemaker.get_execution_role()
+except ValueError:
+    iam = boto3.client('iam')
+    role = iam.get_role(RoleName='AmazonSageMaker-ExecutionRole-20201200T100000')['Role']['Arn']
+</code></p>
+
+<h3>Add Additional Amazon S3 Permissions to a SageMaker Execution Role<a name="sagemaker-roles-get-execution-role-s3"></a></h3>
+
+<p>When you use a SageMaker feature with resources in Amazon S3, such as input data, the execution role you specify in your request (for example <code>CreateTrainingJob</code>) is used to access these resources.</p>
+
+<p>If you attach the IAM managed policy, <code>AmazonSageMakerFullAccess</code>, to an execution role, that role has permission to perform certain Amazon S3 actions on buckets or objects with <code>SageMaker</code>, <code>Sagemaker</code>, <code>sagemaker</code>, or <code>aws-glue</code> in the name. It also has permission to perform the following actions on any Amazon S3 resource:</p>
+
+<p><code>
+"s3:CreateBucket", 
+"s3:GetBucketLocation",
+"s3:ListBucket",
+"s3:ListAllMyBuckets",
+"s3:GetBucketCors",
+"s3:PutBucketCors"
+</code></p>
+
+<p>To give an execution role permissions to access one or more specific buckets in Amazon S3, you can attach a policy similar to the following to the role. This policy grants an IAM role permission to perform all actions that <code>AmazonSageMakerFullAccess</code> allows but restricts this access to the buckets <em>DOC-EXAMPLE-BUCKET1</em> and <em>DOC-EXAMPLE-BUCKET2</em>. Refer to the security documentation for the specific SageMaker feature you are using to learn more about the Amazon S3 permissions required for that feature.</p>
+
+<p><code>
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "s3:GetObject",
+                "s3:PutObject",
+                "s3:DeleteObject",
+                "s3:AbortMultipartUpload"
+            ],
+            "Resource": [
+                "arn:aws:s3:::DOC-EXAMPLE-BUCKET1/*",
+                "arn:aws:s3:::DOC-EXAMPLE-BUCKET2/*"
+            ]
+        }, 
+        {
+            "Effect": "Allow",
+            "Action": [
+                "s3:CreateBucket",
+                "s3:GetBucketLocation",
+                "s3:ListBucket",
+                "s3:ListAllMyBuckets",
+                "s3:GetBucketCors",
+                "s3:PutBucketCors"
+            ],
+            "Resource": "*"
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "s3:GetBucketAcl",
+                "s3:PutObjectAcl"
+            ],
+            "Resource": [
+                "arn:aws:s3:::DOC-EXAMPLE-BUCKET1",
+                "arn:aws:s3:::DOC-EXAMPLE-BUCKET2"
+            ]
+        }
+    ]
+}
+</code></p>
+
+<h2>Passing Roles<a name="sagemaker-roles-pass-role"></a></h2>
+
+<p>Actions like passing a role between services are a common function within SageMaker. You can find more details on <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/list_amazonsagemaker.html#amazonsagemaker-actions-as-permissions">Actions, Resources, and Condition Keys for SageMaker</a> in the <em>IAM User Guide</em>.</p>
+
+<p>You pass the role (<code>iam:PassRole</code>) when making these API calls: <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateAutoMLJob.html">https://docs.aws.amazon.com/sagemaker/latest/APIReference/API<em>CreateAutoMLJob.html</a>, <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateCompilationJob.html">https://docs.aws.amazon.com/sagemaker/latest/APIReference/API</em>CreateCompilationJob.html</a>, <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateDomain.html">https://docs.aws.amazon.com/sagemaker/latest/APIReference/API<em>CreateDomain.html</a>, <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateFlowDefinition.html">https://docs.aws.amazon.com/sagemaker/latest/APIReference/API</em>CreateFlowDefinition.html</a>, <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateHyperParameterTuningJob.html">https://docs.aws.amazon.com/sagemaker/latest/APIReference/API<em>CreateHyperParameterTuningJob.html</a>, <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateImage.html">https://docs.aws.amazon.com/sagemaker/latest/APIReference/API</em>CreateImage.html</a>, <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateLabelingJob.html">https://docs.aws.amazon.com/sagemaker/latest/APIReference/API<em>CreateLabelingJob.html</a>, <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateModel.html">https://docs.aws.amazon.com/sagemaker/latest/APIReference/API</em>CreateModel.html</a>, <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateMonitoringSchedule.html">https://docs.aws.amazon.com/sagemaker/latest/APIReference/API<em>CreateMonitoringSchedule.html</a>, <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateNotebookInstance.html">https://docs.aws.amazon.com/sagemaker/latest/APIReference/API</em>CreateNotebookInstance.html</a>, <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateProcessingJob.html">https://docs.aws.amazon.com/sagemaker/latest/APIReference/API<em>CreateProcessingJob.html</a>, <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateTrainingJob.html">https://docs.aws.amazon.com/sagemaker/latest/APIReference/API</em>CreateTrainingJob.html</a>, <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateUserProfile.html">https://docs.aws.amazon.com/sagemaker/latest/APIReference/API<em>CreateUserProfile.html</a>, <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_RenderUiTemplate.html">https://docs.aws.amazon.com/sagemaker/latest/APIReference/API</em>RenderUiTemplate.html</a>, and <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_UpdateImage.html">https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_UpdateImage.html</a>.</p>
+
+<p>You attach the following trust policy to the IAM role which grants SageMaker principal permissions to assume the role, and is the same for all of the execution roles: </p>
+
+<p><code>
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Principal": {
+                "Service": "sagemaker.amazonaws.com"
+            },
+            "Action": "sts:AssumeRole"
+        }
+    ]
+}
+</code></p>
+
+<p>The permissions that you need to grant to the role vary depending on the API that you call. The following sections explain these permissions.</p>
+
+<p><strong>Note</strong><br />
+Instead of managing permissions by crafting a permission policy, you can use the AWS-managed <code>AmazonSageMakerFullAccess</code> permission policy. The permissions in this policy are fairly broad, to allow for any actions you might want to perform in SageMaker. For a listing of the policy including information about the reasons for adding many of the permissions, see <a href="security-iam-awsmanpol.md#security-iam-awsmanpol-AmazonSageMakerFullAccess">AWS managed policy: AmazonSageMakerFullAccess</a>. If you prefer to create custom policies and manage permissions to scope the permissions only to the actions you need to perform with the execution role, see the following topics.</p>
+
+<p><strong>Important</strong><br />
+If you're running into issues, see <a href="security_iam_troubleshoot.md">Troubleshooting Amazon SageMaker Identity and Access</a>.</p>
+
+<p>For more information about IAM roles, see <a href="http://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html">IAM Roles</a> in the <em>IAM User Guide</em>.</p>
+
+<p><strong>Topics</strong>
++ <a href="#sagemaker-roles-get-execution-role">Get execution role</a>
++ <a href="#sagemaker-roles-create-execution-role">Create execution role</a>
++ <a href="#sagemaker-roles-pass-role">Passing Roles</a>
++ <a href="#sagemaker-roles-autopilot-perms">CreateAutoMLJob API: Execution Role Permissions</a>
++ <a href="#sagemaker-roles-createdomain-perms">CreateDomain API: Execution Role Permissions</a>
++ <a href="#sagemaker-roles-createimage-perms">CreateImage and UpdateImage APIs: Execution Role Permissions</a>
++ <a href="#sagemaker-roles-createnotebookinstance-perms">CreateNotebookInstance API: Execution Role Permissions</a>
++ <a href="#sagemaker-roles-createhyperparametertiningjob-perms">CreateHyperParameterTuningJob API: Execution Role Permissions</a>
++ <a href="#sagemaker-roles-createprocessingjob-perms">CreateProcessingJob API: Execution Role Permissions</a>
++ <a href="#sagemaker-roles-createtrainingjob-perms">CreateTrainingJob API: Execution Role Permissions</a>
++ <a href="#sagemaker-roles-createmodel-perms">CreateModel API: Execution Role Permissions</a>
++ <a href="sagemaker-geospatial-roles.md">SageMaker geospatial capabilities roles</a></p>
+
+<h2>CreateAutoMLJob API: Execution Role Permissions<a name="sagemaker-roles-autopilot-perms"></a></h2>
+
+<p>For an execution role that you can pass in a <code>CreateAutoMLJob</code> API request, you can attach the following minimum permission policy to the role:</p>
+
+<p><code>
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "iam:PassRole"
+            ],
+            "Resource": "*",
+            "Condition": {
+                "StringEquals": {
+                    "iam:PassedToService": "sagemaker.amazonaws.com"
+                }
+            }
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "sagemaker:DescribeEndpointConfig",
+                "sagemaker:DescribeModel",
+                "sagemaker:InvokeEndpoint",
+                "sagemaker:ListTags",
+                "sagemaker:DescribeEndpoint",
+                "sagemaker:CreateModel",
+                "sagemaker:CreateEndpointConfig",
+                "sagemaker:CreateEndpoint",
+                "sagemaker:DeleteModel",
+                "sagemaker:DeleteEndpointConfig",
+                "sagemaker:DeleteEndpoint",
+                "cloudwatch:PutMetricData",
+                "logs:CreateLogStream",
+                "logs:PutLogEvents",
+                "logs:CreateLogGroup",
+                "logs:DescribeLogStreams",
+                "s3:GetObject",
+                "s3:PutObject",
+                "s3:ListBucket",
+                "ecr:GetAuthorizationToken",
+                "ecr:BatchCheckLayerAvailability",
+                "ecr:GetDownloadUrlForLayer",
+                "ecr:BatchGetImage"
+            ],
+            "Resource": "*"
+        }
+    ]
+}
+</code></p>
+
+<p>If you specify a private VPC for your AutoML job, add the following permissions:</p>
+
+<p><code>
+{
+    "Effect": "Allow",
+    "Action": [
+        "ec2:CreateNetworkInterface",
+        "ec2:CreateNetworkInterfacePermission",
+        "ec2:DeleteNetworkInterface",
+        "ec2:DeleteNetworkInterfacePermission",
+        "ec2:DescribeNetworkInterfaces",
+        "ec2:DescribeVpcs",
+        "ec2:DescribeDhcpOptions",
+        "ec2:DescribeSubnets",
+        "ec2:DescribeSecurityGroups"
+    ]
+}
+</code></p>
+
+<p>If your input is encrypted using server-side encryption with an AWS KMS–managed key (SSE-KMS), add the following permissions:</p>
+
+<p><code>
+{
+    "Effect": "Allow",
+    "Action": [
+        "kms:Decrypt"
+    ]
+}
+</code></p>
+
+<p>If you specify a KMS key in the output configuration of your AutoML job, add the following permissions:</p>
+
+<p><code>
+{
+    "Effect": "Allow",
+    "Action": [
+    "kms:Encrypt"
+    ]
+}
+</code></p>
+
+<p>If you specify a volume KMS key in the resource configuration of your AutoML job, add the following permissions:</p>
+
+<p><code>
+{
+    "Effect": "Allow",
+    "Action": [
+    "kms:CreateGrant"
+    ]
+}
+</code></p>
+
+<h2>CreateDomain API: Execution Role Permissions<a name="sagemaker-roles-createdomain-perms"></a></h2>
+
+<p>The execution role for domains with IAM Identity Center and the user/execution role for IAM domains need the following permissions when you pass an AWS KMS customer managed key as the <code>KmsKeyId</code> in the <code>CreateDomain</code> API request. The permissions are enforced during the <code>CreateApp</code> API call.</p>
+
+<p>For an execution role that you can pass in the <code>CreateDomain</code> API request, you can attach the following permission policy to the role:</p>
+
+<p><code>
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "kms:CreateGrant",
+                "kms:DescribeKey"
+            ],
+            "Resource": "arn:aws:kms:region:account-id:key/kms-key-id"
+        }
+    ]
+}
+</code></p>
+
+<p>Alternatively, if the permissions are specified in a KMS policy, you can attach the following policy to the role:</p>
+
+<p><code>
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "Allow use of the key",
+            "Effect": "Allow",
+            "Principal": {
+                "AWS": [
+                    "arn:aws:iam::account-id:role/ExecutionRole"
+                ]
+            },
+            "Action": [
+                "kms:CreateGrant",
+                "kms:DescribeKey"
+            ],
+            "Resource": "*"
+        }
+    ]
+}
+</code></p>
+
+<h2>CreateImage and UpdateImage APIs: Execution Role Permissions<a name="sagemaker-roles-createimage-perms"></a></h2>
+
+<p>For an execution role that you can pass in a <code>CreateImage</code> or <code>UpdateImage</code> API request, you can attach the following permission policy to the role:</p>
+
+<p><code>
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "ecr:BatchGetImage",
+                "ecr:GetDownloadUrlForLayer"
+            ],
+            "Resource": "*"
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "iam:PassRole"
+            ],
+            "Resource": "*",
+            "Condition": {
+                "StringEquals": {
+                    "iam:PassedToService": "sagemaker.amazonaws.com"
+                }
+            }
+        }
+    ]
+}
+</code></p>
+
+<h2>CreateNotebookInstance API: Execution Role Permissions<a name="sagemaker-roles-createnotebookinstance-perms"></a></h2>
+
+<p>The permissions that you grant to the execution role for calling the <code>CreateNotebookInstance</code> API depend on what you plan to do with the notebook instance. If you plan to use it to invoke SageMaker APIs and pass the same role when calling the <code>CreateTrainingJob</code> and <code>CreateModel</code> APIs, attach the following permissions policy to the role:</p>
+
+<p><code>
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "sagemaker:*",
+                "ecr:GetAuthorizationToken",
+                "ecr:GetDownloadUrlForLayer",
+                "ecr:BatchGetImage",
+                "ecr:BatchCheckLayerAvailability",
+                "ecr:SetRepositoryPolicy",
+                "ecr:CompleteLayerUpload",
+                "ecr:BatchDeleteImage",
+                "ecr:UploadLayerPart",
+                "ecr:DeleteRepositoryPolicy",
+                "ecr:InitiateLayerUpload",
+                "ecr:DeleteRepository",
+                "ecr:PutImage",
+                "ecr:CreateRepository",
+                "cloudwatch:PutMetricData",
+                "cloudwatch:GetMetricData",
+                "cloudwatch:GetMetricStatistics",
+                "cloudwatch:ListMetrics",
+                "logs:CreateLogGroup",
+                "logs:CreateLogStream",
+                "logs:DescribeLogStreams",
+                "logs:PutLogEvents",
+                "logs:GetLogEvents",
+                "s3:CreateBucket",
+                "s3:ListBucket",
+                "s3:GetBucketLocation",
+                "s3:GetObject",
+                "s3:PutObject",
+                "s3:DeleteObject",
+                "robomaker:CreateSimulationApplication",
+                "robomaker:DescribeSimulationApplication",
+                "robomaker:DeleteSimulationApplication",
+                "robomaker:CreateSimulationJob",
+                "robomaker:DescribeSimulationJob",
+                "robomaker:CancelSimulationJob",
+                "ec2:CreateVpcEndpoint",
+                "ec2:DescribeRouteTables",
+                "elasticfilesystem:DescribeMountTargets"
+            ],
+            "Resource": "*"
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "codecommit:GitPull",
+                "codecommit:GitPush"
+            ],
+            "Resource": [
+                "arn:aws:codecommit:*:*:*sagemaker*",
+                "arn:aws:codecommit:*:*:*SageMaker*",
+                "arn:aws:codecommit:*:*:*Sagemaker*"
+            ]
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "iam:PassRole"
+            ],
+            "Resource": "*",
+            "Condition": {
+                "StringEquals": {
+                    "iam:PassedToService": "sagemaker.amazonaws.com"
+                }
+            }
+        }
+    ]
+}
+</code></p>
+
+<p>To tighten the permissions, limit them to specific Amazon S3 and Amazon ECR resources, by restricting <code>"Resource": "*"</code>, as follows:</p>
+
+<p><code>
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "sagemaker:*",
+                "ecr:GetAuthorizationToken",
+                "cloudwatch:PutMetricData",
+                "logs:CreateLogGroup",
+                "logs:CreateLogStream",
+                "logs:DescribeLogStreams",
+                "logs:PutLogEvents",
+                "logs:GetLogEvents"
+            ],
+            "Resource": "*"
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "iam:PassRole"
+            ],
+            "Resource": "*",
+            "Condition": {
+                "StringEquals": {
+                    "iam:PassedToService": "sagemaker.amazonaws.com"
+                }
+            }
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "s3:ListBucket"
+            ],
+            "Resource": [
+                "arn:aws:s3:::inputbucket"
+            ]
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "s3:GetObject",
+                "s3:PutObject",
+                "s3:DeleteObject"
+            ],
+            "Resource": [
+                "arn:aws:s3:::inputbucket/object1",
+                "arn:aws:s3:::outputbucket/path",
+                "arn:aws:s3:::inputbucket/object2",
+                "arn:aws:s3:::inputbucket/object3"
+            ]
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "ecr:BatchCheckLayerAvailability",
+                "ecr:GetDownloadUrlForLayer",
+                "ecr:BatchGetImage"
+            ],
+            "Resource": [
+                "arn:aws:ecr:region::repository/my-repo1",
+                "arn:aws:ecr:region::repository/my-repo2",
+                "arn:aws:ecr:region::repository/my-repo3"
+            ]
+        }
+    ]
+}
+</code></p>
+
+<p>If you plan to access other resources, such as Amazon DynamoDB or Amazon Relational Database Service, add the relevant permissions to this policy.</p>
+
+<p>In the preceding policy, you scope the policy as follows:
++ Scope the <code>s3:ListBucket</code> permission to the specific bucket that you specify as <code>InputDataConfig.DataSource.S3DataSource.S3Uri</code> in a <code>CreateTrainingJob</code> request.
++ Scope <code>s3:GetObject</code>, <code>s3:PutObject</code>, and <code>s3:DeleteObject</code> permissions as follows:
+  + Scope to the following values that you specify in a <code>CreateTrainingJob</code> request:</p>
+
+<pre><code>`InputDataConfig.DataSource.S3DataSource.S3Uri`
+
+`OutputDataConfig.S3OutputPath`
+</code></pre>
+
+<p>+ Scope to the following values that you specify in a <code>CreateModel</code> request:</p>
+
+<pre><code>`PrimaryContainer.ModelDataUrl`
+
+`SuplementalContainers.ModelDataUrl`
+</code></pre>
+
+<p>+ Scope <code>ecr</code> permissions as follows:
+  + Scope to the <code>AlgorithmSpecification.TrainingImage</code> value that you specify in a <code>CreateTrainingJob</code> request.
+  + Scope to the <code>PrimaryContainer.Image</code> value that you specify in a <code>CreateModel</code> request:</p>
+
+<p>The <code>cloudwatch</code> and <code>logs</code> actions are applicable for "*" resources. For more information, see <a href="http://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/iam-access-control-overview-cw.html#CloudWatch_ARN_Format">CloudWatch Resources and Operations</a> in the Amazon CloudWatch User Guide.</p>
+
+<h2>CreateHyperParameterTuningJob API: Execution Role Permissions<a name="sagemaker-roles-createhyperparametertiningjob-perms"></a></h2>
+
+<p>For an execution role that you can pass in a <code>CreateHyperParameterTuningJob</code> API request, you can attach the following permission policy to the role:</p>
+
+<p><code>
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "cloudwatch:PutMetricData",
+                "logs:CreateLogStream",
+                "logs:PutLogEvents",
+                "logs:CreateLogGroup",
+                "logs:DescribeLogStreams",
+                "s3:GetObject",
+                "s3:PutObject",
+                "s3:ListBucket",
+                "ecr:GetAuthorizationToken",
+                "ecr:BatchCheckLayerAvailability",
+                "ecr:GetDownloadUrlForLayer",
+                "ecr:BatchGetImage"
+            ],
+            "Resource": "*"
+        }
+    ]
+}
+</code></p>
+
+<p>Instead of the specifying <code>"Resource": "*"</code>, you could scope these permissions to specific Amazon S3 and Amazon ECR resources:</p>
+
+<p><code>
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "cloudwatch:PutMetricData",
+                "logs:CreateLogStream",
+                "logs:PutLogEvents",
+                "logs:CreateLogGroup",
+                "logs:DescribeLogStreams",
+                "ecr:GetAuthorizationToken"
+            ],
+            "Resource": "*"
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "s3:ListBucket"
+            ],
+            "Resource": [
+                "arn:aws:s3:::inputbucket"
+            ]
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "s3:GetObject",
+                "s3:PutObject"
+            ],
+            "Resource": [
+                "arn:aws:s3:::inputbucket/object",
+                "arn:aws:s3:::outputbucket/path"
+            ]
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "ecr:BatchCheckLayerAvailability",
+                "ecr:GetDownloadUrlForLayer",
+                "ecr:BatchGetImage"
+            ],
+            "Resource": "arn:aws:ecr:region::repository/my-repo"
+        }
+    ]
+}
+</code></p>
+
+<p>If the training container associated with the hyperparameter tuning job needs to access other data sources, such as DynamoDB or Amazon RDS resources, add relevant permissions to this policy.</p>
+
+<p>In the preceding policy, you scope the policy as follows:
++ Scope the <code>s3:ListBucket</code> permission to a specific bucket that you specify as the <code>InputDataConfig.DataSource.S3DataSource.S3Uri</code> in a <code>CreateTrainingJob</code> request.
++ Scope the <code>s3:GetObject</code>and <code>s3:PutObject</code> permissions to the following objects that you specify in the input and output data configuration in a <code>CreateHyperParameterTuningJob</code> request:</p>
+
+<p><code>InputDataConfig.DataSource.S3DataSource.S3Uri</code></p>
+
+<p><code>OutputDataConfig.S3OutputPath</code>
++ Scope Amazon ECR permissions to the registry path (<code>AlgorithmSpecification.TrainingImage</code>) that you specify in a <code>CreateHyperParameterTuningJob</code> request.</p>
+
+<p>The <code>cloudwatch</code> and <code>logs</code> actions are applicable for "*" resources. For more information, see <a href="http://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/iam-access-control-overview-cw.html#CloudWatch_ARN_Format">CloudWatch Resources and Operations</a> in the Amazon CloudWatch User Guide.</p>
+
+<p>If you specify a private VPC for your hyperparameter tuning job, add the following permissions:</p>
+
+<p><code>
+{
+    "Effect": "Allow",
+    "Action": [
+        "ec2:CreateNetworkInterface",
+        "ec2:CreateNetworkInterfacePermission",
+        "ec2:DeleteNetworkInterface",
+        "ec2:DeleteNetworkInterfacePermission",
+        "ec2:DescribeNetworkInterfaces",
+        "ec2:DescribeVpcs",
+        "ec2:DescribeDhcpOptions",
+        "ec2:DescribeSubnets",
+        "ec2:DescribeSecurityGroups"
+    ]
+}
+</code></p>
+
+<p>If your input is encrypted using server-side encryption with an AWS KMS–managed key (SSE-KMS), add the following permissions:</p>
+
+<p><code>
+{
+    "Effect": "Allow",
+    "Action": [
+        "kms:Decrypt"
+    ]
+}
+</code></p>
+
+<p>If you specify a KMS key in the output configuration of your hyperparameter tuning job, add the following permissions:</p>
+
+<p><code>
+{
+    "Effect": "Allow",
+    "Action": [
+    "kms:Encrypt"
+    ]
+}
+</code></p>
+
+<p>If you specify a volume KMS key in the resource configuration of your hyperparameter tuning job, add the following permissions:</p>
+
+<p><code>
+{
+    "Effect": "Allow",
+    "Action": [
+    "kms:CreateGrant"
+    ]
+}
+</code></p>
+
+<h2>CreateProcessingJob API: Execution Role Permissions<a name="sagemaker-roles-createprocessingjob-perms"></a></h2>
+
+<p>For an execution role that you can pass in a <code>CreateProcessingJob</code> API request, you can attach the following permission policy to the role:</p>
+
+<p><code>
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "cloudwatch:PutMetricData",
+                "logs:CreateLogStream",
+                "logs:PutLogEvents",
+                "logs:CreateLogGroup",
+                "logs:DescribeLogStreams",
+                "s3:GetObject",
+                "s3:PutObject",
+                "s3:ListBucket",
+                "ecr:GetAuthorizationToken",
+                "ecr:BatchCheckLayerAvailability",
+                "ecr:GetDownloadUrlForLayer",
+                "ecr:BatchGetImage"
+            ],
+            "Resource": "*"
+        }
+    ]
+}
+</code></p>
+
+<p>Instead of the specifying <code>"Resource": "*"</code>, you could scope these permissions to specific Amazon S3 and Amazon ECR resources:</p>
+
+<p><code>
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "cloudwatch:PutMetricData",
+                "logs:CreateLogStream",
+                "logs:PutLogEvents",
+                "logs:CreateLogGroup",
+                "logs:DescribeLogStreams",
+                "ecr:GetAuthorizationToken"
+            ],
+            "Resource": "*"
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "s3:ListBucket"
+            ],
+            "Resource": [
+                "arn:aws:s3:::inputbucket"
+            ]
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "s3:GetObject",
+                "s3:PutObject"
+            ],
+            "Resource": [
+                "arn:aws:s3:::inputbucket/object",
+                "arn:aws:s3:::outputbucket/path"
+            ]
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "ecr:BatchCheckLayerAvailability",
+                "ecr:GetDownloadUrlForLayer",
+                "ecr:BatchGetImage"
+            ],
+            "Resource": "arn:aws:ecr:region::repository/my-repo"
+        }
+    ]
+}
+</code></p>
+
+<p>If <code>CreateProcessingJob.AppSpecification.ImageUri</code> needs to access other data sources, such as DynamoDB or Amazon RDS resources, add relevant permissions to this policy.</p>
+
+<p>In the preceding policy, you scope the policy as follows:
++ Scope the <code>s3:ListBucket</code> permission to a specific bucket that you specify as the <code>ProcessingInputs</code> in a <code>CreateProcessingJob</code> request.
++ Scope the <code>s3:GetObject</code>and <code>s3:PutObject</code> permissions to the objects that will be downloaded or uploaded in the <code>ProcessingInputs</code> and <code>ProcessingOutputConfig</code> in a <code>CreateProcessingJob</code> request.
++ Scope Amazon ECR permissions to the registry path (<code>AppSpecification.ImageUri</code>) that you specify in a <code>CreateProcessingJob</code> request.</p>
+
+<p>The <code>cloudwatch</code> and <code>logs</code> actions are applicable for "*" resources. For more information, see <a href="http://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/iam-access-control-overview-cw.html#CloudWatch_ARN_Format">CloudWatch Resources and Operations</a> in the Amazon CloudWatch User Guide.</p>
+
+<p>If you specify a private VPC for your processing job, add the following permissions. Don't scope in the policy with any conditions or resource filters. Otherwise, the validation checks that occur during the creation of the processing job fail.</p>
+
+<p><code>
+{
+    "Effect": "Allow",
+    "Action": [
+        "ec2:CreateNetworkInterface",
+        "ec2:CreateNetworkInterfacePermission",
+        "ec2:DeleteNetworkInterface",
+        "ec2:DeleteNetworkInterfacePermission",
+        "ec2:DescribeNetworkInterfaces",
+        "ec2:DescribeVpcs",
+        "ec2:DescribeDhcpOptions",
+        "ec2:DescribeSubnets",
+        "ec2:DescribeSecurityGroups"
+    ]
+}
+</code></p>
+
+<p>If your input is encrypted using server-side encryption with an AWS KMS–managed key (SSE-KMS), add the following permissions:</p>
+
+<p><code>
+{
+    "Effect": "Allow",
+    "Action": [
+        "kms:Decrypt"
+    ]
+}
+</code></p>
+
+<p>If you specify a KMS key in the output configuration of your processing job, add the following permissions:</p>
+
+<p><code>
+{
+    "Effect": "Allow",
+    "Action": [
+    "kms:Encrypt"
+    ]
+}
+</code></p>
+
+<p>If you specify a volume KMS key in the resource configuration of your processing job, add the following permissions:</p>
+
+<p><code>
+{
+    "Effect": "Allow",
+    "Action": [
+    "kms:CreateGrant"
+    ]
+}
+</code></p>
+
+<h2>CreateTrainingJob API: Execution Role Permissions<a name="sagemaker-roles-createtrainingjob-perms"></a></h2>
+
+<p>For an execution role that you can pass in a <code>CreateTrainingJob</code> API request, you can attach the following permission policy to the role:</p>
+
+<p><code>
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "cloudwatch:PutMetricData",
+                "logs:CreateLogStream",
+                "logs:PutLogEvents",
+                "logs:CreateLogGroup",
+                "logs:DescribeLogStreams",
+                "s3:GetObject",
+                "s3:PutObject",
+                "s3:ListBucket",
+                "ecr:GetAuthorizationToken",
+                "ecr:BatchCheckLayerAvailability",
+                "ecr:GetDownloadUrlForLayer",
+                "ecr:BatchGetImage"
+            ],
+            "Resource": "*"
+        }
+    ]
+}
+</code></p>
+
+<p>Instead of the specifying <code>"Resource": "*"</code>, you could scope these permissions to specific Amazon S3 and Amazon ECR resources:</p>
+
+<p><code>
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "cloudwatch:PutMetricData",
+                "logs:CreateLogStream",
+                "logs:PutLogEvents",
+                "logs:CreateLogGroup",
+                "logs:DescribeLogStreams",
+                "ecr:GetAuthorizationToken"
+            ],
+            "Resource": "*"
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "s3:ListBucket"
+            ],
+            "Resource": [
+                "arn:aws:s3:::inputbucket"
+            ]
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "s3:GetObject",
+                "s3:PutObject"
+            ],
+            "Resource": [
+                "arn:aws:s3:::inputbucket/object",
+                "arn:aws:s3:::outputbucket/path"
+            ]
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "ecr:BatchCheckLayerAvailability",
+                "ecr:GetDownloadUrlForLayer",
+                "ecr:BatchGetImage"
+            ],
+            "Resource": "arn:aws:ecr:region::repository/my-repo"
+        }
+    ]
+}
+</code></p>
+
+<p>If <code>CreateTrainingJob.AlgorithSpecifications.TrainingImage</code> needs to access other data sources, such as DynamoDB or Amazon RDS resources, add relevant permissions to this policy.</p>
+
+<p>In the preceding policy, you scope the policy as follows:
++ Scope the <code>s3:ListBucket</code> permission to a specific bucket that you specify as the <code>InputDataConfig.DataSource.S3DataSource.S3Uri</code> in a <code>CreateTrainingJob</code> request.
++ Scope the <code>s3:GetObject</code>and <code>s3:PutObject</code> permissions to the following objects that you specify in the input and output data configuration in a <code>CreateTrainingJob</code> request:</p>
+
+<p><code>InputDataConfig.DataSource.S3DataSource.S3Uri</code></p>
+
+<p><code>OutputDataConfig.S3OutputPath</code>
++ Scope Amazon ECR permissions to the registry path (<code>AlgorithmSpecification.TrainingImage</code>) that you specify in a <code>CreateTrainingJob</code> request.</p>
+
+<p>The <code>cloudwatch</code> and <code>logs</code> actions are applicable for "*" resources. For more information, see <a href="http://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/iam-access-control-overview-cw.html#CloudWatch_ARN_Format">CloudWatch Resources and Operations</a> in the Amazon CloudWatch User Guide.</p>
+
+<p>If you specify a private VPC for your training job, add the following permissions:</p>
+
+<p><code>
+{
+    "Effect": "Allow",
+    "Action": [
+      "ec2:CreateNetworkInterface",
+      "ec2:CreateNetworkInterfacePermission",
+      "ec2:DeleteNetworkInterface",
+      "ec2:DeleteNetworkInterfacePermission",
+      "ec2:DescribeNetworkInterfaces",
+      "ec2:DescribeVpcs",
+      "ec2:DescribeDhcpOptions",
+      "ec2:DescribeSubnets",
+      "ec2:DescribeSecurityGroups"
+    ]
+}
+</code></p>
+
+<p>If your input is encrypted using server-side encryption with an AWS KMS–managed key (SSE-KMS), add the following permissions:</p>
+
+<p><code>
+{
+    "Effect": "Allow",
+    "Action": [
+        "kms:Decrypt"
+    ]
+}
+</code></p>
+
+<p>If you specify a KMS key in the output configuration of your training job, add the following permissions:</p>
+
+<p><code>
+{
+    "Effect": "Allow",
+    "Action": [
+    "kms:Encrypt"
+    ]
+}
+</code></p>
+
+<p>If you specify a volume KMS key in the resource configuration of your training job, add the following permissions:</p>
+
+<p><code>
+{
+    "Effect": "Allow",
+    "Action": [
+    "kms:CreateGrant"
+    ]
+}
+</code></p>
+
+<h2>CreateModel API: Execution Role Permissions<a name="sagemaker-roles-createmodel-perms"></a></h2>
+
+<p>For an execution role that you can pass in a <code>CreateModel</code> API request, you can attach the following permission policy to the role:</p>
+
+<p><code>
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "cloudwatch:PutMetricData",
+                "logs:CreateLogStream",
+                "logs:PutLogEvents",
+                "logs:CreateLogGroup",
+                "logs:DescribeLogStreams",
+                "s3:GetObject",
+                "s3:ListBucket",
+                "ecr:GetAuthorizationToken",
+                "ecr:BatchCheckLayerAvailability",
+                "ecr:GetDownloadUrlForLayer",
+                "ecr:BatchGetImage"
+            ],
+            "Resource": "*"
+        }
+    ]
+}
+</code></p>
+
+<p>Instead of the specifying <code>"Resource": "*"</code>, you can scope these permissions to specific Amazon S3 and Amazon ECR resources:</p>
+
+<p><code>
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "cloudwatch:PutMetricData",
+                "logs:CreateLogStream",
+                "logs:PutLogEvents",
+                "logs:CreateLogGroup",
+                "logs:DescribeLogStreams",
+                "ecr:GetAuthorizationToken"
+            ],
+            "Resource": "*"
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "s3:GetObject"
+            ],
+            "Resource": [
+                "arn:aws:s3:::inputbucket/object"
+            ]
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "ecr:BatchCheckLayerAvailability",
+                "ecr:GetDownloadUrlForLayer",
+                "ecr:BatchGetImage"
+            ],
+            "Resource": [
+                "arn:aws:ecr:region::repository/my-repo",
+                "arn:aws:ecr:region::repository/my-repo"
+             ]
+        }
+    ]
+}
+</code></p>
+
+<p>If <code>CreateModel.PrimaryContainer.Image</code> need to access other data sources, such as Amazon DynamoDB or Amazon RDS resources, add relevant permissions to this policy.</p>
+
+<p>In the preceding policy, you scope the policy as follows:
++ Scope S3 permissions to objects that you specify in the <code>PrimaryContainer.ModelDataUrl</code> in a <a href="https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateModel.html">https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateModel.html</a> request.
++ Scope Amazon ECR permissions to a specific registry path that you specify as the <code>PrimaryContainer.Image</code> and <code>SecondaryContainer.Image</code> in a <code>CreateModel</code> request.</p>
+
+<p>The <code>cloudwatch</code> and <code>logs</code> actions are applicable for "*" resources. For more information, see <a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/iam-access-control-overview-cw.html#CloudWatch_ARN_Format">CloudWatch Resources and Operations</a> in the Amazon CloudWatch User Guide.</p>
+
+<p><strong>Note</strong><br />
+If you plan to use the <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/deployment-guardrails.html">SageMaker deployment guardrails feature</a> for model deployment in production, ensure that your execution role has permission to perform the <code>cloudwatch:DescribeAlarms</code> action on your auto-rollback alarms.</p>
+
+<p>If you specify a private VPC for your model, add the following permissions:</p>
+
+<p><code>
+{
+    "Effect": "Allow",
+    "Action": [
+        "ec2:CreateNetworkInterface",
+        "ec2:CreateNetworkInterfacePermission",
+        "ec2:DeleteNetworkInterface",
+        "ec2:DeleteNetworkInterfacePermission",
+        "ec2:DescribeNetworkInterfaces",
+        "ec2:DescribeVpcs",
+        "ec2:DescribeDhcpOptions",
+        "ec2:DescribeSubnets",
+        "ec2:DescribeSecurityGroups"
+    ]
+}
+</code></p>

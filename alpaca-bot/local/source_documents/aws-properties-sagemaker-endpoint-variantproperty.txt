@@ -1,0 +1,34 @@
+<h1>AWS::SageMaker::Endpoint VariantProperty<a name="aws-properties-sagemaker-endpoint-variantproperty"></a></h1>
+
+<p>Specifies a production variant property type for an Endpoint.</p>
+
+<p>If you are updating an Endpoint with the <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/API_UpdateEndpoint.html#SageMaker-UpdateEndpoint-request-RetainAllVariantProperties">RetainAllVariantProperties</a> option set to <code>true</code>, the <code>VarientProperty</code> objects listed in <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/API_UpdateEndpoint.html#SageMaker-UpdateEndpoint-request-ExcludeRetainedVariantProperties">ExcludeRetainedVariantProperties</a> override the existing variant properties of the Endpoint.</p>
+
+<h2>Syntax<a name="aws-properties-sagemaker-endpoint-variantproperty-syntax"></a></h2>
+
+<p>To declare this entity in your AWS CloudFormation template, use the following syntax:</p>
+
+<h3>JSON<a name="aws-properties-sagemaker-endpoint-variantproperty-syntax.json"></a></h3>
+
+<p><code>
+{
+  "[VariantPropertyType](#cfn-sagemaker-endpoint-variantproperty-variantpropertytype)" : String
+}
+</code></p>
+
+<h3>YAML<a name="aws-properties-sagemaker-endpoint-variantproperty-syntax.yaml"></a></h3>
+
+<p><code>
+  [VariantPropertyType](#cfn-sagemaker-endpoint-variantproperty-variantpropertytype): String
+</code></p>
+
+<h2>Properties<a name="aws-properties-sagemaker-endpoint-variantproperty-properties"></a></h2>
+
+<p><code>VariantPropertyType</code>  <a name="cfn-sagemaker-endpoint-variantproperty-variantpropertytype"></a>
+The type of variant property. The supported values are:<br />
++ <code>DesiredInstanceCount</code>: Overrides the existing variant instance counts using the <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/API_ProductionVariant.html#SageMaker-Type-ProductionVariant-InitialInstanceCount">InitialInstanceCount</a> values in the <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/API_CreateEndpointConfig.html#SageMaker-CreateEndpointConfig-request-ProductionVariants">ProductionVariants</a>.
++ <code>DesiredWeight</code>: Overrides the existing variant weights using the <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/API_ProductionVariant.html#SageMaker-Type-ProductionVariant-InitialVariantWeight">InitialVariantWeight</a> values in the <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/API_CreateEndpointConfig.html#SageMaker-CreateEndpointConfig-request-ProductionVariants">ProductionVariants</a>.
++ <code>DataCaptureConfig</code>: (Not currently supported.)
+<em>Required</em>: No<br />
+<em>Type</em>: String<br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt">No interruption</a></p>

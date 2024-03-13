@@ -1,0 +1,133 @@
+AWSTemplateFormatVersion: 2010-09-09
+Metadata:
+  'AWS::CloudFormation::Designer':
+    c08b9c08-98e3-472f-9f6e-3c9ed3fa4ec5:
+      size:
+        width: 60
+        height: 60
+      position:
+        x: 50
+        'y': -10
+      z: 0
+    4b26f13b-c438-4c39-9756-c1d1a246ab9b:
+      size:
+        width: 60
+        height: 60
+      position:
+        x: 50
+        'y': 140
+      z: 1
+      parent: 7224f057-627e-4bde-9c7f-86f3bc9479f2
+    7224f057-627e-4bde-9c7f-86f3bc9479f2:
+      size:
+        width: 140
+        height: 140
+      position:
+        x: 10
+        'y': 80
+      z: 0
+      embeds:
+        - 4b26f13b-c438-4c39-9756-c1d1a246ab9b
+    5cf20d72-37a8-46c2-8530-bc44aba92b14:
+      size:
+        width: 60
+        height: 60
+      position:
+        x: 180
+        'y': 190
+      z: 0
+    bca6fe04-17bd-4930-9c92-bc019097147c:
+      size:
+        width: 60
+        height: 60
+      position:
+        x: 300
+        'y': 190
+      z: 0
+    2171483d-7443-4a8c-af86-1cae6ac11392:
+      size:
+        width: 60
+        height: 60
+      position:
+        x: 421.63961986832305
+        'y': 177.96774518291824
+      z: 0
+    2350090a-afc1-4e84-8a73-17dc350ce822:
+      size:
+        width: 60
+        height: 60
+      position:
+        x: 420
+        'y': 80
+      z: 0
+    30f896db-bb98-4adc-a8c3-eab6545e6f38:
+      size:
+        width: 60
+        height: 60
+      position:
+        x: 550
+        'y': 70
+      z: 0
+    f7616d63-ee50-4f33-959e-f6e64eae68d2:
+      size:
+        width: 140
+        height: 140
+      position:
+        x: 220
+        'y': 20
+      z: 0
+Resources:
+  EC2I2CVNX:
+    Type: 'AWS::EC2::Instance'
+    Properties: {}
+    Metadata:
+      'AWS::CloudFormation::Designer':
+        id: c08b9c08-98e3-472f-9f6e-3c9ed3fa4ec5
+  CUP52O9V:
+    Type: 'AWS::Cognito::UserPool'
+    Properties: {}
+    Metadata:
+      'AWS::CloudFormation::Designer':
+        id: 4b26f13b-c438-4c39-9756-c1d1a246ab9b
+  AGRA3P8W1:
+    Type: 'AWS::ApiGateway::RestApi'
+    Properties: {}
+    Metadata:
+      'AWS::CloudFormation::Designer':
+        id: 7224f057-627e-4bde-9c7f-86f3bc9479f2
+  LFBSX1:
+    Type: 'AWS::Lambda::Function'
+    Properties: {}
+    Metadata:
+      'AWS::CloudFormation::Designer':
+        id: 5cf20d72-37a8-46c2-8530-bc44aba92b14
+  S3B4DM4E:
+    Type: 'AWS::S3::Bucket'
+    Properties: {}
+    Metadata:
+      'AWS::CloudFormation::Designer':
+        id: bca6fe04-17bd-4930-9c92-bc019097147c
+  SMNI4L58L:
+    Type: 'AWS::SageMaker::NotebookInstance'
+    Properties: {}
+    Metadata:
+      'AWS::CloudFormation::Designer':
+        id: 2171483d-7443-4a8c-af86-1cae6ac11392
+  LF1FXWT:
+    Type: 'AWS::Lambda::Function'
+    Properties: {}
+    Metadata:
+      'AWS::CloudFormation::Designer':
+        id: 2350090a-afc1-4e84-8a73-17dc350ce822
+  SMNI49WVW:
+    Type: 'AWS::SageMaker::NotebookInstance'
+    Properties: {}
+    Metadata:
+      'AWS::CloudFormation::Designer':
+        id: 30f896db-bb98-4adc-a8c3-eab6545e6f38
+  AGRA3WB45:
+    Type: 'AWS::ApiGateway::RestApi'
+    Properties: {}
+    Metadata:
+      'AWS::CloudFormation::Designer':
+        id: f7616d63-ee50-4f33-959e-f6e64eae68d2

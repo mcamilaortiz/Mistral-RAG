@@ -1,0 +1,37 @@
+<h1>AWS::SageMaker::ModelCard TrainingHyperParameter<a name="aws-properties-sagemaker-modelcard-traininghyperparameter"></a></h1>
+
+<p>A hyper parameter that was configured in training the model.</p>
+
+<h2>Syntax<a name="aws-properties-sagemaker-modelcard-traininghyperparameter-syntax"></a></h2>
+
+<p>To declare this entity in your AWS CloudFormation template, use the following syntax:</p>
+
+<h3>JSON<a name="aws-properties-sagemaker-modelcard-traininghyperparameter-syntax.json"></a></h3>
+
+<p><code>
+{
+  "[Name](#cfn-sagemaker-modelcard-traininghyperparameter-name)" : String,
+  "[Value](#cfn-sagemaker-modelcard-traininghyperparameter-value)" : String
+}
+</code></p>
+
+<h3>YAML<a name="aws-properties-sagemaker-modelcard-traininghyperparameter-syntax.yaml"></a></h3>
+
+<p><code>
+  [Name](#cfn-sagemaker-modelcard-traininghyperparameter-name): String
+  [Value](#cfn-sagemaker-modelcard-traininghyperparameter-value): String
+</code></p>
+
+<h2>Properties<a name="aws-properties-sagemaker-modelcard-traininghyperparameter-properties"></a></h2>
+
+<p><code>Name</code>  <a name="cfn-sagemaker-modelcard-traininghyperparameter-name"></a>
+The name of the hyper parameter.<br />
+<em>Required</em>: Yes<br />
+<em>Type</em>: String<br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt">No interruption</a></p>
+
+<p><code>Value</code>  <a name="cfn-sagemaker-modelcard-traininghyperparameter-value"></a>
+The value specified for the hyper parameter.<br />
+<em>Required</em>: Yes<br />
+<em>Type</em>: String<br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt">No interruption</a></p>

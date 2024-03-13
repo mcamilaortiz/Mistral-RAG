@@ -1,0 +1,132 @@
+<h1>AWS::SageMaker::FeatureGroup<a name="aws-resource-sagemaker-featuregroup"></a></h1>
+
+<p>Create a new <code>FeatureGroup</code>. A <code>FeatureGroup</code> is a group of <code>Features</code> defined in the <code>FeatureStore</code> to describe a <code>Record</code>. </p>
+
+<p>The <code>FeatureGroup</code> defines the schema and features contained in the FeatureGroup. A <code>FeatureGroup</code> definition is composed of a list of <code>Features</code>, a <code>RecordIdentifierFeatureName</code>, an <code>EventTimeFeatureName</code> and configurations for its <code>OnlineStore</code> and <code>OfflineStore</code>. Check <a href="https://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html">AWS service quotas</a> to see the <code>FeatureGroup</code>s quota for your AWS account.</p>
+
+<p><strong>Important</strong><br />
+You must include at least one of <code>OnlineStoreConfig</code> and <code>OfflineStoreConfig</code> to create a <code>FeatureGroup</code>.</p>
+
+<h2>Syntax<a name="aws-resource-sagemaker-featuregroup-syntax"></a></h2>
+
+<p>To declare this entity in your AWS CloudFormation template, use the following syntax:</p>
+
+<h3>JSON<a name="aws-resource-sagemaker-featuregroup-syntax.json"></a></h3>
+
+<p><code>
+{
+  "Type" : "AWS::SageMaker::FeatureGroup",
+  "Properties" : {
+      "[Description](#cfn-sagemaker-featuregroup-description)" : String,
+      "[EventTimeFeatureName](#cfn-sagemaker-featuregroup-eventtimefeaturename)" : String,
+      "[FeatureDefinitions](#cfn-sagemaker-featuregroup-featuredefinitions)" : [ FeatureDefinition, ... ],
+      "[FeatureGroupName](#cfn-sagemaker-featuregroup-featuregroupname)" : String,
+      "[OfflineStoreConfig](#cfn-sagemaker-featuregroup-offlinestoreconfig)" : OfflineStoreConfig,
+      "[OnlineStoreConfig](#cfn-sagemaker-featuregroup-onlinestoreconfig)" : OnlineStoreConfig,
+      "[RecordIdentifierFeatureName](#cfn-sagemaker-featuregroup-recordidentifierfeaturename)" : String,
+      "[RoleArn](#cfn-sagemaker-featuregroup-rolearn)" : String,
+      "[Tags](#cfn-sagemaker-featuregroup-tags)" : [ [Tag](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-resource-tags.html), ... ]
+    }
+}
+</code></p>
+
+<h3>YAML<a name="aws-resource-sagemaker-featuregroup-syntax.yaml"></a></h3>
+
+<p><code>
+Type: AWS::SageMaker::FeatureGroup
+Properties: 
+  [Description](#cfn-sagemaker-featuregroup-description): String
+  [EventTimeFeatureName](#cfn-sagemaker-featuregroup-eventtimefeaturename): String
+  [FeatureDefinitions](#cfn-sagemaker-featuregroup-featuredefinitions): 
+    - FeatureDefinition
+  [FeatureGroupName](#cfn-sagemaker-featuregroup-featuregroupname): String
+  [OfflineStoreConfig](#cfn-sagemaker-featuregroup-offlinestoreconfig): 
+    OfflineStoreConfig
+  [OnlineStoreConfig](#cfn-sagemaker-featuregroup-onlinestoreconfig): 
+    OnlineStoreConfig
+  [RecordIdentifierFeatureName](#cfn-sagemaker-featuregroup-recordidentifierfeaturename): String
+  [RoleArn](#cfn-sagemaker-featuregroup-rolearn): String
+  [Tags](#cfn-sagemaker-featuregroup-tags): 
+    - [Tag](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-resource-tags.html)
+</code></p>
+
+<h2>Properties<a name="aws-resource-sagemaker-featuregroup-properties"></a></h2>
+
+<p><code>Description</code>  <a name="cfn-sagemaker-featuregroup-description"></a>
+A free form description of a <code>FeatureGroup</code>.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: String<br />
+<em>Maximum</em>: <code>128</code><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement">Replacement</a></p>
+
+<p><code>EventTimeFeatureName</code>  <a name="cfn-sagemaker-featuregroup-eventtimefeaturename"></a>
+The name of the feature that stores the <code>EventTime</code> of a Record in a <code>FeatureGroup</code>.<br />
+A <code>EventTime</code> is point in time when a new event occurs that corresponds to the creation or update of a <code>Record</code> in <code>FeatureGroup</code>. All <code>Records</code> in the <code>FeatureGroup</code> must have a corresponding <code>EventTime</code>.<br />
+<em>Required</em>: Yes<br />
+<em>Type</em>: String<br />
+<em>Minimum</em>: <code>1</code><br />
+<em>Maximum</em>: <code>64</code><br />
+<em>Pattern</em>: <code>^[a-zA-Z0-9]([-_]*[a-zA-Z0-9]){0,63}</code><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement">Replacement</a></p>
+
+<p><code>FeatureDefinitions</code>  <a name="cfn-sagemaker-featuregroup-featuredefinitions"></a>
+A list of <code>Feature</code>s. Each <code>Feature</code> must include a <code>FeatureName</code> and a <code>FeatureType</code>.<br />
+Valid <code>FeatureType</code>s are <code>Integral</code>, <code>Fractional</code> and <code>String</code>.<br />
+ <code>FeatureName</code>s cannot be any of the following: <code>is_deleted</code>, <code>write_time</code>, <code>api_invocation_time</code>.<br />
+You can create up to 2,500 <code>FeatureDefinition</code>s per <code>FeatureGroup</code>.<br />
+<em>Required</em>: Yes<br />
+<em>Type</em>: List of <a href="aws-properties-sagemaker-featuregroup-featuredefinition.md">FeatureDefinition</a><br />
+<em>Maximum</em>: <code>2500</code><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt">No interruption</a></p>
+
+<p><code>FeatureGroupName</code>  <a name="cfn-sagemaker-featuregroup-featuregroupname"></a>
+The name of the <code>FeatureGroup</code>.<br />
+<em>Required</em>: Yes<br />
+<em>Type</em>: String<br />
+<em>Minimum</em>: <code>1</code><br />
+<em>Maximum</em>: <code>64</code><br />
+<em>Pattern</em>: <code>^[a-zA-Z0-9]([_-]*[a-zA-Z0-9]){0,63}</code><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement">Replacement</a></p>
+
+<p><code>OfflineStoreConfig</code>  <a name="cfn-sagemaker-featuregroup-offlinestoreconfig"></a>
+The configuration of an <code>OfflineStore</code>.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: <a href="aws-properties-sagemaker-featuregroup-offlinestoreconfig.md">OfflineStoreConfig</a><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement">Replacement</a></p>
+
+<p><code>OnlineStoreConfig</code>  <a name="cfn-sagemaker-featuregroup-onlinestoreconfig"></a>
+The configuration of an <code>OnlineStore</code>.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: <a href="aws-properties-sagemaker-featuregroup-onlinestoreconfig.md">OnlineStoreConfig</a><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement">Replacement</a></p>
+
+<p><code>RecordIdentifierFeatureName</code>  <a name="cfn-sagemaker-featuregroup-recordidentifierfeaturename"></a>
+The name of the <code>Feature</code> whose value uniquely identifies a <code>Record</code> defined in the <code>FeatureGroup</code> <code>FeatureDefinitions</code>.<br />
+<em>Required</em>: Yes<br />
+<em>Type</em>: String<br />
+<em>Minimum</em>: <code>1</code><br />
+<em>Maximum</em>: <code>64</code><br />
+<em>Pattern</em>: <code>^[a-zA-Z0-9]([-_]*[a-zA-Z0-9]){0,63}</code><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement">Replacement</a></p>
+
+<p><code>RoleArn</code>  <a name="cfn-sagemaker-featuregroup-rolearn"></a>
+The Amazon Resource Name (ARN) of the IAM execution role used to create the feature group.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: String<br />
+<em>Minimum</em>: <code>20</code><br />
+<em>Maximum</em>: <code>2048</code><br />
+<em>Pattern</em>: <code>^arn:aws[a-z\-]*:iam::\d{12}:role/?[a-zA-Z_0-9+=,.@\-_/]+$</code><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement">Replacement</a></p>
+
+<p><code>Tags</code>  <a name="cfn-sagemaker-featuregroup-tags"></a>
+Tags used to define a <code>FeatureGroup</code>.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: List of <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-resource-tags.html">Tag</a><br />
+<em>Maximum</em>: <code>50</code><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement">Replacement</a></p>
+
+<h2>Return values<a name="aws-resource-sagemaker-featuregroup-return-values"></a></h2>
+
+<h3>Ref<a name="aws-resource-sagemaker-featuregroup-return-values-ref"></a></h3>
+
+<p>When you pass the logical ID of this resource to the intrinsic <code>Ref</code> function, <code>Ref</code> returns the <code>FeatureGroupName</code> of the feature group.</p>

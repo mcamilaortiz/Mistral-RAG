@@ -1,0 +1,30 @@
+<h1>AWS::SageMaker::Domain JupyterServerAppSettings<a name="aws-properties-sagemaker-domain-jupyterserverappsettings"></a></h1>
+
+<p>The JupyterServer app settings.</p>
+
+<h2>Syntax<a name="aws-properties-sagemaker-domain-jupyterserverappsettings-syntax"></a></h2>
+
+<p>To declare this entity in your AWS CloudFormation template, use the following syntax:</p>
+
+<h3>JSON<a name="aws-properties-sagemaker-domain-jupyterserverappsettings-syntax.json"></a></h3>
+
+<p><code>
+{
+  "[DefaultResourceSpec](#cfn-sagemaker-domain-jupyterserverappsettings-defaultresourcespec)" : ResourceSpec
+}
+</code></p>
+
+<h3>YAML<a name="aws-properties-sagemaker-domain-jupyterserverappsettings-syntax.yaml"></a></h3>
+
+<p><code>
+  [DefaultResourceSpec](#cfn-sagemaker-domain-jupyterserverappsettings-defaultresourcespec): 
+    ResourceSpec
+</code></p>
+
+<h2>Properties<a name="aws-properties-sagemaker-domain-jupyterserverappsettings-properties"></a></h2>
+
+<p><code>DefaultResourceSpec</code>  <a name="cfn-sagemaker-domain-jupyterserverappsettings-defaultresourcespec"></a>
+The default instance type and the Amazon Resource Name (ARN) of the default SageMaker image used by the JupyterServer app.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: <a href="aws-properties-sagemaker-domain-resourcespec.md">ResourceSpec</a><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt">No interruption</a></p>

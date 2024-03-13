@@ -1,0 +1,46 @@
+<h1>AWS::SageMaker::ModelCard AdditionalInformation<a name="aws-properties-sagemaker-modelcard-additionalinformation"></a></h1>
+
+<p>Additional information about the model.</p>
+
+<h2>Syntax<a name="aws-properties-sagemaker-modelcard-additionalinformation-syntax"></a></h2>
+
+<p>To declare this entity in your AWS CloudFormation template, use the following syntax:</p>
+
+<h3>JSON<a name="aws-properties-sagemaker-modelcard-additionalinformation-syntax.json"></a></h3>
+
+<p><code>
+{
+  "[CaveatsAndRecommendations](#cfn-sagemaker-modelcard-additionalinformation-caveatsandrecommendations)" : String,
+  "[CustomDetails](#cfn-sagemaker-modelcard-additionalinformation-customdetails)" : {Key : Value, ...},
+  "[EthicalConsiderations](#cfn-sagemaker-modelcard-additionalinformation-ethicalconsiderations)" : String
+}
+</code></p>
+
+<h3>YAML<a name="aws-properties-sagemaker-modelcard-additionalinformation-syntax.yaml"></a></h3>
+
+<p><code>
+  [CaveatsAndRecommendations](#cfn-sagemaker-modelcard-additionalinformation-caveatsandrecommendations): String
+  [CustomDetails](#cfn-sagemaker-modelcard-additionalinformation-customdetails): 
+    Key : Value
+  [EthicalConsiderations](#cfn-sagemaker-modelcard-additionalinformation-ethicalconsiderations): String
+</code></p>
+
+<h2>Properties<a name="aws-properties-sagemaker-modelcard-additionalinformation-properties"></a></h2>
+
+<p><code>CaveatsAndRecommendations</code>  <a name="cfn-sagemaker-modelcard-additionalinformation-caveatsandrecommendations"></a>
+Caveats and recommendations for those who might use this model in their applications.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: String<br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt">No interruption</a></p>
+
+<p><code>CustomDetails</code>  <a name="cfn-sagemaker-modelcard-additionalinformation-customdetails"></a>
+Any additional information to document about the model.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: Map of String<br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt">No interruption</a></p>
+
+<p><code>EthicalConsiderations</code>  <a name="cfn-sagemaker-modelcard-additionalinformation-ethicalconsiderations"></a>
+Any ethical considerations documented by the model card author.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: String<br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt">No interruption</a></p>

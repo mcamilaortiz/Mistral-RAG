@@ -1,0 +1,7 @@
+<h1>Common Data Formats for Built-in Algorithms<a name="sagemaker-algo-common-data-formats"></a></h1>
+
+<p>The following topics explain the data formats for the algorithms provided by Amazon SageMaker.</p>
+
+<p><strong>Topics</strong>
++ <a href="cdf-training.md">Common Data Formats for Training</a>
++ <a href="cdf-inference.md">Common Data Formats for Inference</a></p>

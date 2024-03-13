@@ -1,0 +1,234 @@
+<h1>Train and Evaluate AWS DeepRacer Models Using SageMaker Notebooks<a name="train-evaluate-models-using-sagemaker-notebook"></a></h1>
+
+<p>The AWS DeepRacer console provides you with an integrated experience to train and evaluate your AWS DeepRacer models. It's integrated because AWS DeepRacer uses SageMaker and AWS RoboMaker behind the scenes. The integration includes detailed reinforcement learning tasks and makes training more readily accessible to beginners. </p>
+
+<p>If you're an experienced user of SageMaker or if you're determined to learn how to use SageMaker and AWS RoboMaker to train and evaluate your AWS DeepRacer models, then you can manually create an SageMaker notebook. You can then clone a reinforcement learning sample notebook instance and use it as a template to perform the predefined tasks that train and evaluate an AWS DeepRacer model. </p>
+
+<p>After the training, you can copy the trained model artifacts to your AWS DeepRacer vehicle for test runs in a physical environment. </p>
+
+<p>The tutorial presents step-by-step instructions to walk you through these tasks. </p>
+
+<p><strong>Topics</strong>
++ <a href="#train-evaluate-models-using-sagemaker-notebook-create">Create an SageMaker Notebook</a>
++ <a href="#train-evaluate-models-using-sagemaker-notebook-initialize-instance">Initialize the SageMaker Notebook Instance</a>
++ <a href="#train-evaluate-models-using-sagemaker-notebook-set-up-environment">Set Up the Training Environment</a>
++ <a href="#train-evaluate-models-using-sagemaker-notebook-train-model">Train Your AWS DeepRacer Model</a></p>
+
+<h2>Create an SageMaker Notebook<a name="train-evaluate-models-using-sagemaker-notebook-create"></a></h2>
+
+<p>To train an AWS DeepRacer model directly on SageMaker, follow the steps below and create an SageMaker notebook instance. </p>
+
+<p><strong>To create an SageMaker notebook instance to train and evaluate your AWS DeepRacer models</strong></p>
+
+<ol>
+<li><p>Sign in to the SageMaker console at <a href="https://console.aws.amazon.com/sagemaker">https://console.aws.amazon.com/sagemaker</a>. Choose one of the supported regions. </p></li>
+<li><p>From the navigation pane, choose <strong>Notebook instances</strong> and then choose <strong>Create notebook instance</strong>. </p></li>
+<li><p>On the <strong>Create notebook instance</strong> page, do the following: </p>
+
+<ol>
+<li><p>Type a name. For example, <code>my-deepracer-model</code>) for the <strong>Notebook instance name</strong>.</p></li>
+<li><p>If the <strong>IAM role</strong> drop-down menu is not populated with an existing IAM role, choose <strong>Create a new role</strong>, <strong>Enter a custom IAM role ARN</strong>, or <strong>Use existing role</strong> and then follow the instructions.</p></li>
+<li><p>Leave the default choices for all other options and then choose <strong>Create notebook instance</strong>. </p>
+
+<p>For more information, see <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/gs-setup-working-env.html">creating an SageMaker notebook instance</a>. </p></li>
+</ol></li>
+<li><p>Wait for the notebook instance's <strong>Status</strong> to change from <code>Pending</code> to <code>InService</code>. Then choose <strong>Open Jupyter</strong>. </p></li>
+<li><p>On the <strong>Jupyter</strong> page (which is the home page of the newly created notebook), do the following:</p>
+
+<ol>
+<li><p>Choose the <strong>SageMaker Examples</strong> tab. </p></li>
+<li><p>Expand the <strong>Reinforcement Learning</strong> example group from the example collection. </p></li>
+<li><p>For this exercise, choose <strong>Use</strong> next to the <strong>deepracer_rl.ipynb</strong> item. </p></li>
+<li><p>On the <strong>Create a copy in your home directory</strong> dialog, choose <strong>Create copy</strong>. </p></li>
+</ol>
+
+<p>At this point, the notebook instance is running and you can begin to train the model.<br />
+<img src="http://docs.aws.amazon.com/deepracer/latest/developerguide/images/sagemaker-notebook-start-page.png" alt="[Image NOT FOUND]" /></p>
+
+<p>You are charged for a running instance according to the selected instance type. To avoid being charged for a running instance when you're not ready to use it, shut down the instance.</p></li>
+</ol>
+
+<h2>Initialize the SageMaker Notebook Instance<a name="train-evaluate-models-using-sagemaker-notebook-initialize-instance"></a></h2>
+
+<p>To use an SageMaker notebook instance to train your AWS DeepRacer model, first properly initialize the instance for the required job. The initialization includes the following. 
++ Import required libraries.
++ Set up training environment.
++ Grant access permissions for SageMaker and AWS RoboMaker.
++ Provision a docker container to host training and evaluation jobs.
++ Configure VPC for SageMaker and AWS RoboMaker to interact with each other.</p>
+
+<p>Follow the steps below for detailed instructions to initialize a notebook instance.</p>
+
+<p><strong>To initialize an SageMaker notebook instance</strong></p>
+
+<ol>
+<li><p>To import the required library to do training, choose the notebook instance's first code block. For example, choose the one under the <strong>Imports</strong> heading. Next, choose <strong>Run</strong> from the notebook's menu bar to execute the code block. You can use the <code>Shift-Enter</code> key-command shortcuts to start running the code block.<br />
+<img src="http://docs.aws.amazon.com/deepracer/latest/developerguide/images/sagemaker-notebook-initialize-import.png" alt="[]" /></p>
+
+<p>Before the code execution starts, the code block status shows <code>In [ ]</code>. When the execution is under way, the status becomes <code>In [*]</code>. After the code execution is complete, the status becomes <code>In [n]</code>, where <em><code>n</code></em> corresponds to the order of invocations. Because the importation code cell is the first, <code>n=1</code>. If you run the command again after the first run, the status becomes <code>In [2]</code>.</p>
+
+<p>For asynchronous execution, the code cell returns immediately to show the completed status. For synchronous executions, subsequent calls are blocked until the current code cell execution is completed when the status turns from <code>In [*]</code> to <code>In [n]</code>.</p></li>
+<li><p>To initialize the basic parameters, run the <strong>Initializing basic parameters</strong> code block as-is.<br />
+<img src="http://docs.aws.amazon.com/deepracer/latest/developerguide/images/sagemaker-notebook-initialize-basic-parameters.png" alt="[Image NOT FOUND]" /></p>
+
+<p>The example notebook instance sets the job duration for 1 hour by default. To speed up or extend the training, you can decrease or increase the <code>job_duration_in_seconds</code> value before running the code cell. </p></li>
+<li><p>To set up the training output storage, choose the code block under <strong>Setup S3 bucket</strong>, and then choose <strong>Run</strong> from the notebook instance menu or press the <code>Shift+Enter</code> keys.<br />
+<img src="http://docs.aws.amazon.com/deepracer/latest/developerguide/images/sagemaker-notebook-initialize-s3-bucket.png" alt="[]" /></p>
+
+<p>When the execution completes, you can verify this bucket in Amazon S3 console. </p>
+
+<p>To view the <code>s3_output_path</code> variable value, append <code>print(s3_output_path)</code> to the above code cell and rerun the code.</p></li>
+<li><p>To set up appropriate permissions for this notebook instance to access the S3 storage for output by SageMaker, run the code cell under <strong>Create an IAM role</strong>.<br />
+<img src="http://docs.aws.amazon.com/deepracer/latest/developerguide/images/sagemaker-notebook-initialize-create-iam-role.png" alt="[Image NOT FOUND]" /></p>
+
+<p>When executed, this code block creates a new IAM role containing the following IAM policy.</p>
+
+<p><code>
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "s3:GetObject",
+                "s3:PutObject",
+                "s3:DeleteObject",
+                "s3:ListBucket"
+            ],
+            "Resource": [
+                "arn:aws:s3:::*"
+            ]
+        }
+    ]
+}
+</code></p>
+
+<p>The created IAM role has SageMaker as its trusted entity. </p></li>
+<li><p>To set up appropriate permissions for this notebook instance to invoke AWS RoboMaker to simulate the training environment, run the code cell under <strong>Permission setup for invoking AWS RoboMaker from this notebook</strong> and follow the instructions thereafter to add <code>robomaker.amazonaws.com</code> as another trusted entity of the previously created IAM role.<br />
+<img src="http://docs.aws.amazon.com/deepracer/latest/developerguide/images/sagemaker-notebook-trust-robomaker-in-iam-role.png" alt="[Image NOT FOUND]" /></p></li>
+<li><p>To set up the required permissions for SageMaker to access the S3 storage, run the code cell under <strong>Permission setup for SageMaker to S3 bucket</strong> and folow the instructions thereafter to attach the <strong>AmazonS3FullAccess</strong> policy to the IAM role previously created.<br />
+<img src="http://docs.aws.amazon.com/deepracer/latest/developerguide/images/sagemaker-notebook-attach-s3fullaccess-to-iam-role.png" alt="[Image NOT FOUND]" /></p></li>
+<li><p>To provision a docker container for running our training and evalution jobs, run the code cell under <strong>Build and push docker image</strong>. </p></li>
+</ol>
+
+<p><img src="http://docs.aws.amazon.com/deepracer/latest/developerguide/images/sagemaker-notebook-provision-docker-container.png" alt="[Image NOT FOUND]" /></p>
+
+<p>Building and pushing the docker image takes some time to finish.</p>
+
+<ol>
+<li><p>To enable VPC mode for SageMaker and AWS RoboMaker to communicate with each other over network, run the code cell under <strong>Configure VPC</strong>. By default, the notebook instance uses your default VPC, security group, and subnets to configure the VPC mode. If you don't want open VPC for other traffic, make sure to set the <strong>Inbound Rules</strong> and <strong>Outbound Rules</strong> for the specified security group to allow incoming traffic from itself only.<br />
+<img src="http://docs.aws.amazon.com/deepracer/latest/developerguide/images/sagemaker-notebook-initialize-vpc-incoming-traffic.png" alt="[]" /></p></li>
+<li><p>To enable the SageMaker training job to access S3 resources, run the code cell under <strong>Create Route Table</strong> to create a VPC S3 endpoint.<br />
+<img src="http://docs.aws.amazon.com/deepracer/latest/developerguide/images/sagemaker-notebook-create-vpc-s3-endpoint.png" alt="[Image NOT FOUND]" /></p></li>
+</ol>
+
+<p>At this point, you're done with initializing the training and are ready to move on to <a href="#train-evaluate-models-using-sagemaker-notebook-set-up-environment">set up the training environment</a>.</p>
+
+<h2>Set Up the Training Environment<a name="train-evaluate-models-using-sagemaker-notebook-set-up-environment"></a></h2>
+
+<p>Setting up the environment for training your AWS DeepRacer model involves selecting a race track, a reward function and the associated action space, as well as hyperparameters used for training. </p>
+
+<p>The notebook uses the default settings for these. To view the default settings, uncomment relevant parts and then run the code cell under <strong>Configure the preset for RL algorithm</strong>. For example, to view the code listing of the reward function, run the code cell as follows:</p>
+
+<p><img src="http://docs.aws.amazon.com/deepracer/latest/developerguide/images/sagemaker-notebokk-view-edit-reward-function.png" alt="[Image NOT FOUND]" /></p>
+
+<p>If you decide to use the default settings, copy the files to the S3 bucket. To modify any of the files, follow the steps below, changing the file name and directory for anything other than the default reward function.</p>
+
+<p><strong>To modify the reward function in the <em>default.py</em> file:</strong></p>
+
+<ol>
+<li><p>Choose <strong>File</strong> menu on the top of the notebook instance page and then choose <strong>Open...</strong>.<br />
+<img src="http://docs.aws.amazon.com/deepracer/latest/developerguide/images/sagemaker-notebook-open-file-to-edit.png" alt="[Image NOT FOUND]" /></p></li>
+<li><p>Navigate to the <em>src/markov/rewards</em> folder and choose <em>default.py</em> to open the file.<br />
+<img src="http://docs.aws.amazon.com/deepracer/latest/developerguide/images/sagemaker-notebook-naviate-to-reward-function-file.png" alt="[Image NOT FOUND]" /></p></li>
+<li><p>Edit the file as you see fit. After finishing editing the file, choose <strong>File->Save</strong> to save the update.<br />
+<img src="http://docs.aws.amazon.com/deepracer/latest/developerguide/images/sagemaker-notebook-save-reward-function-edits.png" alt="[Image NOT FOUND]" /></p></li>
+</ol>
+
+<p>Notice that the environment file is shared by both SageMaker and AWS RoboMaker, also known as nodes. When it's used by SageMaker, the <code>node_type</code> is <code>SAGEMAKER_TRAINING_WORKER</code>. When it's used by AWS RoboMaker, the <code>node_type</code> is <code>SIMULATION_WORKER</code>.</p>
+
+<h2>Train Your AWS DeepRacer Model<a name="train-evaluate-models-using-sagemaker-notebook-train-model"></a></h2>
+
+<p>Training your model with SageMaker and AWS RoboMaker amounts to executing the code in the <em>training_worker.py</em> file under the notebook's <em>src</em> directory. The <em>training_worker.py</em> file is designated as the entry point of your training job. </p>
+
+<p>The training process involves using AWS RoboMaker to emulate driving experiences in the environment, relaying the experiences at fixed intervals to SageMaker as input to train the deep neural network, and updating the network weights to an S3 location. </p>
+
+<p>While the training is in progress, you can have specified training metrics logged to Amazon CloudWatch Logs or displayed to the AWS RoboMaker terminal.</p>
+
+<p><strong>To train your AWS DeepRacer model</strong></p>
+
+<ol>
+<li>Run the code cell under <strong>Copy custom files to S3 bucket so that sagemaker &amp; robomaker can pick it up</strong> copy the environment files to S3 . </li>
+</ol>
+
+<p><img src="http://docs.aws.amazon.com/deepracer/latest/developerguide/images/sagemaker-notebook-copy-environment-files-to-s3.png" alt="[]" /></p>
+
+<ol>
+<li><p>To start an SageMaker job to train your AWS DeepRacer model, do the following:</p>
+
+<ol>
+<li><p>Run the first code cell under <strong>Train the RL model using the Python SDK Script mode</strong> to define training metrics to watch in either CloudWatch Logs or in an AWS RoboMaker console window.<br />
+<img src="http://docs.aws.amazon.com/deepracer/latest/developerguide/images/sagemaker-notebook-train-set-up-metrics.png" alt="[]" /></p>
+
+<p>You can watch the specified metrics to monitor the training and to find out the effectiveness of your chosen reward function in CloudWatch Logs or using an AWS RoboMaker terminal.</p></li>
+<li><p>Run the second code cell under <strong>Train the RL model using the Python SDK Script mode</strong> to start an SageMaker training job for your model.<br />
+<img src="http://docs.aws.amazon.com/deepracer/latest/developerguide/images/sagemaker-notebook-train-create-job.png" alt="[]" /></p>
+
+<p>This SageMaker training job uses the TensorFlow framework and runs on a specified EC2 compute instance type. The output lists the job name. You can track the status of this training job in SageMaker.<br />
+<img src="http://docs.aws.amazon.com/deepracer/latest/developerguide/images/sagemaker-notebook-train-create-job-inprogress.png" alt="[]" /></p></li>
+</ol></li>
+
+<li><p>To create an environment simulation job in AWS RoboMaker, run the code cells under <strong>Start the RoboMaker job</strong> and <strong>Create Simulation Application</strong>.</p></li>
+<li><p>To start the simulation on AWS RoboMaker and share the simulated data, run the code cell under <strong>Launch the Simulation job on RoboMaker</strong>.<br />
+<img src="http://docs.aws.amazon.com/deepracer/latest/developerguide/images/sagemaker-notebook-train-launch-simulation-job.png" alt="[]" /></p></li>
+<li><p>To watch the simulations in AWS RoboMaker, run the code cell under <strong>Visualizing the simulations in RoboMaker</strong> and then choose the <strong>Simulation 1</strong> link from the output.<br />
+<img src="http://docs.aws.amazon.com/deepracer/latest/developerguide/images/sagemaker-notebook-train-watch-simulation.png" alt="[]" /></p>
+
+<p>Alternatively, you can go to the AWS RoboMaker console directly to open the simulation job. </p>
+
+<p>After the simulation job is initialized, the AWS RoboMaker console makes available the following visualization utilities:</p>
+
+<ul>
+<li><strong>Gazebo</strong>: an emulation of 3D worlds for simulating autonomous vehicle in the chosen track.</li>
+<li><strong>rqt</strong>: Qt-based framework and plugins for ROS GUI development.</li>
+<li><strong>ivis</strong>: ROS visualizer for displaying the field of vision as captured by the vehicle's front-facing camera.</li>
+<li><strong>Terminal</strong>: A terminal application to provide command line access on the simulation job host.</li>
+</ul>
+
+<ol>
+<li><p>To view your vehicle learning in the 3D simulation, double-click or tap <strong>Gazebo</strong>.<br />
+<img src="http://docs.aws.amazon.com/deepracer/latest/developerguide/images/sagemaker-notebook-simulation-job-gazebo.png" alt="[]" /></p>
+
+<p>You watch the simulated vehicle navigate along the track in repeated trials starting from the starting point and ending at going off-track or reaching the finishing line. In the beginning, the vehicle can stay on the track briefly. As time goes on, it learns to stay on the track longer.</p></li>
+<li><p>To access <strong>rqt</strong> utilities, double-click or tap <strong>rqt</strong> and choose a plugin.<br />
+<img src="http://docs.aws.amazon.com/deepracer/latest/developerguide/images/sagemaker-notebook-simulation-job-rqt.png" alt="[]" /></p>
+
+<p>For more information about the plugins, see AWS RoboMaker plugins.</p></li>
+<li><p>To view the front-facing vision of the vehicle, double-click or tap <strong>rvis</strong>. Choose <strong>Add</strong> to create a visualization. And then choose the <strong>By topic</strong> tab, scroll down to choose <strong>/camera/zed/rgb/image_rec_color/Image</strong>, choose OK.<br />
+<img src="http://docs.aws.amazon.com/deepracer/latest/developerguide/images/sagemaker-notebook-simulation-job-rvis.png" alt="[]" /></p></li>
+<li><p>To use the terminal, double-click or tap <strong>Terminal</strong> to open a terminal window on the simulation job host and type appropriate shell command.<br />
+<img src="http://docs.aws.amazon.com/deepracer/latest/developerguide/images/sagemaker-notebook-simulation-job-terminal.png" alt="[]" /></p>
+
+<p>With the simulation job host terminal opened, you can call Linux shell commands to view (<code>more</code> or <code>tail</code>) the logs or performing other operations. </p>
+
+<p>To view the reward of the last 10 steps in the simulation logs, you can type the following shell command in the terminal:</p>
+
+<p><code>
+tail /tmp/simulation-logs/stdout_and_stderr
+</code></p></li>
+</ol></li>
+<li><p>To visualize the training performance, run the two code cells under <strong>Plot metrics for training job</strong>. When all is done successfully, you see a plot of <strong>Training reward</strong> vs <strong>Episode #</strong> similar to the following.<br />
+<img src="http://docs.aws.amazon.com/deepracer/latest/developerguide/images/sagemaker-notebook-train-plot-metrics.png" alt="[]" /></p>
+
+<p>In this particular example, the training reward appears to start to plateau. Perhaps more data are needed to verify if it's true. If the training job is running, you can run the code cell under <strong>Plot metrics for training job</strong> again to include more recent data into the plot. If they persist, the onset of large fluctuations can indicate certain deficiency in the reward function. Thus, you might update the reward function definition. In any case, you need to collect more data with more training.</p>
+
+<p>After training has elapsed the specified amount of time, you can locate the trained model artifacts in the training job's S3 bucket, e.g., <em>s3://</em><bucket><em>/</em><sagemaker\-training\-job\-name><em>/output/model.tar.gz</em>. Download the model artifacts file, copy it to a USB drive and then transfer the file to your AWS DeepRacer vehicle's compute module. </p>
+
+<ul>
+<li>To clean up when you're done with training and no longer need the AWS RoboMaker and SageMaker resources, run the two code cells under <strong>Clean Up</strong>.</li>
+<li><p>To evaluate the model that has been trained thus far, run the code cell under <strong>Evaluation</strong>. </p>
+
+<p>If successful, a simulation job is created for the task in AWS RoboMaker. Make note of the job name in the output below the code cell. You may need it to open the simulation job in the AWS RoboMaker console. This simulation job is similar to the simulation job for training. It provides the same utilities for you view the evaluation in progress in the AWS RoboMaker console. In particular, you can watch the evaluation trials in <strong>Gazebo</strong>.</p></li>
+<li>When you're done with evaluating the model and want to terminate the simulation application, run the code cell under <strong>Clean Up Simulation Application Resource</strong>.</li>
+</ul></li>
+</ol>

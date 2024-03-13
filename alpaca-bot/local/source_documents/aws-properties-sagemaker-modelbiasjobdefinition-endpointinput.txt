@@ -1,0 +1,113 @@
+<h1>AWS::SageMaker::ModelBiasJobDefinition EndpointInput<a name="aws-properties-sagemaker-modelbiasjobdefinition-endpointinput"></a></h1>
+
+<p>Input object for the endpoint</p>
+
+<h2>Syntax<a name="aws-properties-sagemaker-modelbiasjobdefinition-endpointinput-syntax"></a></h2>
+
+<p>To declare this entity in your AWS CloudFormation template, use the following syntax:</p>
+
+<h3>JSON<a name="aws-properties-sagemaker-modelbiasjobdefinition-endpointinput-syntax.json"></a></h3>
+
+<p><code>
+{
+  "[EndpointName](#cfn-sagemaker-modelbiasjobdefinition-endpointinput-endpointname)" : String,
+  "[EndTimeOffset](#cfn-sagemaker-modelbiasjobdefinition-endpointinput-endtimeoffset)" : String,
+  "[FeaturesAttribute](#cfn-sagemaker-modelbiasjobdefinition-endpointinput-featuresattribute)" : String,
+  "[InferenceAttribute](#cfn-sagemaker-modelbiasjobdefinition-endpointinput-inferenceattribute)" : String,
+  "[LocalPath](#cfn-sagemaker-modelbiasjobdefinition-endpointinput-localpath)" : String,
+  "[ProbabilityAttribute](#cfn-sagemaker-modelbiasjobdefinition-endpointinput-probabilityattribute)" : String,
+  "[ProbabilityThresholdAttribute](#cfn-sagemaker-modelbiasjobdefinition-endpointinput-probabilitythresholdattribute)" : Double,
+  "[S3DataDistributionType](#cfn-sagemaker-modelbiasjobdefinition-endpointinput-s3datadistributiontype)" : String,
+  "[S3InputMode](#cfn-sagemaker-modelbiasjobdefinition-endpointinput-s3inputmode)" : String,
+  "[StartTimeOffset](#cfn-sagemaker-modelbiasjobdefinition-endpointinput-starttimeoffset)" : String
+}
+</code></p>
+
+<h3>YAML<a name="aws-properties-sagemaker-modelbiasjobdefinition-endpointinput-syntax.yaml"></a></h3>
+
+<p><code>
+  [EndpointName](#cfn-sagemaker-modelbiasjobdefinition-endpointinput-endpointname): String
+  [EndTimeOffset](#cfn-sagemaker-modelbiasjobdefinition-endpointinput-endtimeoffset): String
+  [FeaturesAttribute](#cfn-sagemaker-modelbiasjobdefinition-endpointinput-featuresattribute): String
+  [InferenceAttribute](#cfn-sagemaker-modelbiasjobdefinition-endpointinput-inferenceattribute): String
+  [LocalPath](#cfn-sagemaker-modelbiasjobdefinition-endpointinput-localpath): String
+  [ProbabilityAttribute](#cfn-sagemaker-modelbiasjobdefinition-endpointinput-probabilityattribute): String
+  [ProbabilityThresholdAttribute](#cfn-sagemaker-modelbiasjobdefinition-endpointinput-probabilitythresholdattribute): Double
+  [S3DataDistributionType](#cfn-sagemaker-modelbiasjobdefinition-endpointinput-s3datadistributiontype): String
+  [S3InputMode](#cfn-sagemaker-modelbiasjobdefinition-endpointinput-s3inputmode): String
+  [StartTimeOffset](#cfn-sagemaker-modelbiasjobdefinition-endpointinput-starttimeoffset): String
+</code></p>
+
+<h2>Properties<a name="aws-properties-sagemaker-modelbiasjobdefinition-endpointinput-properties"></a></h2>
+
+<p><code>EndpointName</code>  <a name="cfn-sagemaker-modelbiasjobdefinition-endpointinput-endpointname"></a>
+An endpoint in customer's account which has enabled <code>DataCaptureConfig</code> enabled.<br />
+<em>Required</em>: Yes<br />
+<em>Type</em>: String<br />
+<em>Maximum</em>: <code>63</code><br />
+<em>Pattern</em>: <code>^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,62}</code><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement">Replacement</a></p>
+
+<p><code>EndTimeOffset</code>  <a name="cfn-sagemaker-modelbiasjobdefinition-endpointinput-endtimeoffset"></a>
+If specified, monitoring jobs substract this time from the end time. For information about using offsets for scheduling monitoring jobs, see <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/model-monitor-model-quality-schedule.html">Schedule Model Quality Monitoring Jobs</a>.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: String<br />
+<em>Minimum</em>: <code>1</code><br />
+<em>Maximum</em>: <code>15</code><br />
+<em>Pattern</em>: <code>^.?P.*</code><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement">Replacement</a></p>
+
+<p><code>FeaturesAttribute</code>  <a name="cfn-sagemaker-modelbiasjobdefinition-endpointinput-featuresattribute"></a>
+The attributes of the input data that are the input features.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: String<br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement">Replacement</a></p>
+
+<p><code>InferenceAttribute</code>  <a name="cfn-sagemaker-modelbiasjobdefinition-endpointinput-inferenceattribute"></a>
+The attribute of the input data that represents the ground truth label.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: String<br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement">Replacement</a></p>
+
+<p><code>LocalPath</code>  <a name="cfn-sagemaker-modelbiasjobdefinition-endpointinput-localpath"></a>
+Path to the filesystem where the endpoint data is available to the container.<br />
+<em>Required</em>: Yes<br />
+<em>Type</em>: String<br />
+<em>Maximum</em>: <code>256</code><br />
+<em>Pattern</em>: <code>.*</code><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement">Replacement</a></p>
+
+<p><code>ProbabilityAttribute</code>  <a name="cfn-sagemaker-modelbiasjobdefinition-endpointinput-probabilityattribute"></a>
+In a classification problem, the attribute that represents the class probability.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: String<br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement">Replacement</a></p>
+
+<p><code>ProbabilityThresholdAttribute</code>  <a name="cfn-sagemaker-modelbiasjobdefinition-endpointinput-probabilitythresholdattribute"></a>
+The threshold for the class probability to be evaluated as a positive result.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: Double<br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement">Replacement</a></p>
+
+<p><code>S3DataDistributionType</code>  <a name="cfn-sagemaker-modelbiasjobdefinition-endpointinput-s3datadistributiontype"></a>
+Whether input data distributed in Amazon S3 is fully replicated or sharded by an S3 key. Defaults to <code>FullyReplicated</code><br />
+<em>Required</em>: No<br />
+<em>Type</em>: String<br />
+<em>Allowed values</em>: <code>FullyReplicated | ShardedByS3Key</code><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement">Replacement</a></p>
+
+<p><code>S3InputMode</code>  <a name="cfn-sagemaker-modelbiasjobdefinition-endpointinput-s3inputmode"></a>
+Whether the <code>Pipe</code> or <code>File</code> is used as the input mode for transferring data for the monitoring job. <code>Pipe</code> mode is recommended for large datasets. <code>File</code> mode is useful for small files that fit in memory. Defaults to <code>File</code>.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: String<br />
+<em>Allowed values</em>: <code>File | Pipe</code><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement">Replacement</a></p>
+
+<p><code>StartTimeOffset</code>  <a name="cfn-sagemaker-modelbiasjobdefinition-endpointinput-starttimeoffset"></a>
+If specified, monitoring jobs substract this time from the start time. For information about using offsets for scheduling monitoring jobs, see <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/model-monitor-model-quality-schedule.html">Schedule Model Quality Monitoring Jobs</a>.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: String<br />
+<em>Minimum</em>: <code>1</code><br />
+<em>Maximum</em>: <code>15</code><br />
+<em>Pattern</em>: <code>^.?P.*</code><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement">Replacement</a></p>

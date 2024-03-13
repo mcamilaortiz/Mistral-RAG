@@ -1,0 +1,44 @@
+<h1>AWS::SageMaker::FeatureGroup S3StorageConfig<a name="aws-properties-sagemaker-featuregroup-s3storageconfig"></a></h1>
+
+<p>The Amazon Simple Storage (Amazon S3) location and and security configuration for <code>OfflineStore</code>.</p>
+
+<h2>Syntax<a name="aws-properties-sagemaker-featuregroup-s3storageconfig-syntax"></a></h2>
+
+<p>To declare this entity in your AWS CloudFormation template, use the following syntax:</p>
+
+<h3>JSON<a name="aws-properties-sagemaker-featuregroup-s3storageconfig-syntax.json"></a></h3>
+
+<p><code>
+{
+  "[KmsKeyId](#cfn-sagemaker-featuregroup-s3storageconfig-kmskeyid)" : String,
+  "[S3Uri](#cfn-sagemaker-featuregroup-s3storageconfig-s3uri)" : String
+}
+</code></p>
+
+<h3>YAML<a name="aws-properties-sagemaker-featuregroup-s3storageconfig-syntax.yaml"></a></h3>
+
+<p><code>
+  [KmsKeyId](#cfn-sagemaker-featuregroup-s3storageconfig-kmskeyid): String
+  [S3Uri](#cfn-sagemaker-featuregroup-s3storageconfig-s3uri): String
+</code></p>
+
+<h2>Properties<a name="aws-properties-sagemaker-featuregroup-s3storageconfig-properties"></a></h2>
+
+<p><code>KmsKeyId</code>  <a name="cfn-sagemaker-featuregroup-s3storageconfig-kmskeyid"></a>
+The AWS Key Management Service (KMS) key ARN of the key used to encrypt any objects written into the <code>OfflineStore</code> S3 location.<br />
+The IAM <code>roleARN</code> that is passed as a parameter to <code>CreateFeatureGroup</code> must have below permissions to the <code>KmsKeyId</code>:<br />
++  <code>"kms:GenerateDataKey"</code> 
+<em>Required</em>: No<br />
+<em>Type</em>: String<br />
+<em>Maximum</em>: <code>2048</code><br />
+<em>Pattern</em>: <code>.*</code><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement">Replacement</a></p>
+
+<p><code>S3Uri</code>  <a name="cfn-sagemaker-featuregroup-s3storageconfig-s3uri"></a>
+The S3 URI, or location in Amazon S3, of <code>OfflineStore</code>.<br />
+S3 URIs have a format similar to the following: <code>s3://example-bucket/prefix/</code>.<br />
+<em>Required</em>: Yes<br />
+<em>Type</em>: String<br />
+<em>Maximum</em>: <code>1024</code><br />
+<em>Pattern</em>: <code>^(https|s3)://([^/]+)/?(.*)$</code><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement">Replacement</a></p>

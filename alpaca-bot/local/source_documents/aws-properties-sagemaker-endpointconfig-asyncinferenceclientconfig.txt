@@ -1,0 +1,29 @@
+<h1>AWS::SageMaker::EndpointConfig AsyncInferenceClientConfig<a name="aws-properties-sagemaker-endpointconfig-asyncinferenceclientconfig"></a></h1>
+
+<p>Configures the behavior of the client used by SageMaker to interact with the model container during asynchronous inference.</p>
+
+<h2>Syntax<a name="aws-properties-sagemaker-endpointconfig-asyncinferenceclientconfig-syntax"></a></h2>
+
+<p>To declare this entity in your AWS CloudFormation template, use the following syntax:</p>
+
+<h3>JSON<a name="aws-properties-sagemaker-endpointconfig-asyncinferenceclientconfig-syntax.json"></a></h3>
+
+<p><code>
+{
+  "[MaxConcurrentInvocationsPerInstance](#cfn-sagemaker-endpointconfig-asyncinferenceclientconfig-maxconcurrentinvocationsperinstance)" : Integer
+}
+</code></p>
+
+<h3>YAML<a name="aws-properties-sagemaker-endpointconfig-asyncinferenceclientconfig-syntax.yaml"></a></h3>
+
+<p><code>
+  [MaxConcurrentInvocationsPerInstance](#cfn-sagemaker-endpointconfig-asyncinferenceclientconfig-maxconcurrentinvocationsperinstance): Integer
+</code></p>
+
+<h2>Properties<a name="aws-properties-sagemaker-endpointconfig-asyncinferenceclientconfig-properties"></a></h2>
+
+<p><code>MaxConcurrentInvocationsPerInstance</code>  <a name="cfn-sagemaker-endpointconfig-asyncinferenceclientconfig-maxconcurrentinvocationsperinstance"></a>
+The maximum number of concurrent requests sent by the SageMaker client to the model container. If no value is provided, SageMaker will choose an optimal value for you.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: Integer<br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement">Replacement</a></p>

@@ -1,0 +1,69 @@
+<h1>AWS::SageMaker::ModelPackage InferenceSpecification<a name="aws-properties-sagemaker-modelpackage-inferencespecification"></a></h1>
+
+<p>Defines how to perform inference generation after a training job is run.</p>
+
+<h2>Syntax<a name="aws-properties-sagemaker-modelpackage-inferencespecification-syntax"></a></h2>
+
+<p>To declare this entity in your AWS CloudFormation template, use the following syntax:</p>
+
+<h3>JSON<a name="aws-properties-sagemaker-modelpackage-inferencespecification-syntax.json"></a></h3>
+
+<p><code>
+{
+  "[Containers](#cfn-sagemaker-modelpackage-inferencespecification-containers)" : [ ModelPackageContainerDefinition, ... ],
+  "[SupportedContentTypes](#cfn-sagemaker-modelpackage-inferencespecification-supportedcontenttypes)" : [ String, ... ],
+  "[SupportedRealtimeInferenceInstanceTypes](#cfn-sagemaker-modelpackage-inferencespecification-supportedrealtimeinferenceinstancetypes)" : [ String, ... ],
+  "[SupportedResponseMIMETypes](#cfn-sagemaker-modelpackage-inferencespecification-supportedresponsemimetypes)" : [ String, ... ],
+  "[SupportedTransformInstanceTypes](#cfn-sagemaker-modelpackage-inferencespecification-supportedtransforminstancetypes)" : [ String, ... ]
+}
+</code></p>
+
+<h3>YAML<a name="aws-properties-sagemaker-modelpackage-inferencespecification-syntax.yaml"></a></h3>
+
+<p><code>
+  [Containers](#cfn-sagemaker-modelpackage-inferencespecification-containers): 
+    - ModelPackageContainerDefinition
+  [SupportedContentTypes](#cfn-sagemaker-modelpackage-inferencespecification-supportedcontenttypes): 
+    - String
+  [SupportedRealtimeInferenceInstanceTypes](#cfn-sagemaker-modelpackage-inferencespecification-supportedrealtimeinferenceinstancetypes): 
+    - String
+  [SupportedResponseMIMETypes](#cfn-sagemaker-modelpackage-inferencespecification-supportedresponsemimetypes): 
+    - String
+  [SupportedTransformInstanceTypes](#cfn-sagemaker-modelpackage-inferencespecification-supportedtransforminstancetypes): 
+    - String
+</code></p>
+
+<h2>Properties<a name="aws-properties-sagemaker-modelpackage-inferencespecification-properties"></a></h2>
+
+<p><code>Containers</code>  <a name="cfn-sagemaker-modelpackage-inferencespecification-containers"></a>
+The Amazon ECR registry path of the Docker image that contains the inference code.<br />
+<em>Required</em>: Yes<br />
+<em>Type</em>: List of <a href="aws-properties-sagemaker-modelpackage-modelpackagecontainerdefinition.md">ModelPackageContainerDefinition</a><br />
+<em>Maximum</em>: <code>15</code><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement">Replacement</a></p>
+
+<p><code>SupportedContentTypes</code>  <a name="cfn-sagemaker-modelpackage-inferencespecification-supportedcontenttypes"></a>
+The supported MIME types for the input data.<br />
+<em>Required</em>: Yes<br />
+<em>Type</em>: List of String<br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement">Replacement</a></p>
+
+<p><code>SupportedRealtimeInferenceInstanceTypes</code>  <a name="cfn-sagemaker-modelpackage-inferencespecification-supportedrealtimeinferenceinstancetypes"></a>
+A list of the instance types that are used to generate inferences in real-time.<br />
+This parameter is required for unversioned models, and optional for versioned models.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: List of String<br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement">Replacement</a></p>
+
+<p><code>SupportedResponseMIMETypes</code>  <a name="cfn-sagemaker-modelpackage-inferencespecification-supportedresponsemimetypes"></a>
+The supported MIME types for the output data.<br />
+<em>Required</em>: Yes<br />
+<em>Type</em>: List of String<br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement">Replacement</a></p>
+
+<p><code>SupportedTransformInstanceTypes</code>  <a name="cfn-sagemaker-modelpackage-inferencespecification-supportedtransforminstancetypes"></a>
+A list of the instance types on which a transformation job can be run or on which an endpoint can be deployed.<br />
+This parameter is required for unversioned models, and optional for versioned models.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: List of String<br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement">Replacement</a></p>

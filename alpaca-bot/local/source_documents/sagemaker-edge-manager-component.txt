@@ -1,0 +1,369 @@
+<h1>SageMaker Edge Manager<a name="sagemaker-edge-manager-component"></a></h1>
+
+<p>The Amazon SageMaker Edge Manager component (<code>aws.greengrass.SageMakerEdgeManager</code>) installs the SageMaker Edge Manager agent binary. </p>
+
+<p>SageMaker Edge Manager provides model management for edge devices so you can optimize, secure, monitor, and maintain machine learning models on fleets of edge devices. The SageMaker Edge Manager component installs and manages the lifecycle of the SageMaker Edge Manager agent on your core device. You can also use SageMaker Edge Manager to package and use SageMaker Neo-compiled models as model components on Greengrass core devices. For more information about using SageMaker Edge Manager agent on your core device, see <a href="use-sagemaker-edge-manager.md">Use Amazon SageMaker Edge Manager on Greengrass core devices</a>.</p>
+
+<p>SageMaker Edge Manager component v1.3.x installs Edge Manager agent binary v1.20220822.836f3023. For more information about Edge Manager agent binary versions, see <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/edge-device-fleet-about">Edge Manager Agent</a>.</p>
+
+<p><strong>Note</strong><br />
+The SageMaker Edge Manager component is available only in the following AWS Regions:<br />
+US East (Ohio)
+US East (N. Virginia)
+US West (Oregon)
+EU (Frankfurt)
+EU (Ireland)
+Asia Pacific (Tokyo)</p>
+
+<p><strong>Topics</strong>
++ <a href="#sagemaker-edge-manager-component-versions">Versions</a>
++ <a href="#sagemaker-edge-manager-component-type">Type</a>
++ <a href="#sagemaker-edge-manager-component-os-support">Operating system</a>
++ <a href="#sagemaker-edge-manager-component-requirements">Requirements</a>
++ <a href="#sagemaker-edge-manager-component-dependencies">Dependencies</a>
++ <a href="#sagemaker-edge-manager-component-configuration">Configuration</a>
++ <a href="#sagemaker-edge-manager-component-log-file">Local log file</a>
++ <a href="#sagemaker-edge-manager-component-changelog">Changelog</a></p>
+
+<h2>Versions<a name="sagemaker-edge-manager-component-versions"></a></h2>
+
+<p>This component has the following versions:
++ 1.3.x
++ 1.2.x
++ 1.1.x
++ 1.0.x</p>
+
+<h2>Type<a name="sagemaker-edge-manager-component-type"></a></h2>
+
+<p><a name="public-component-type-generic"></a>This <a name="public-component-type-generic-phrase"></a>component is a generic component (<code>aws.greengrass.generic</code>). The <a href="greengrass-nucleus-component.md">Greengrass nucleus</a> runs the component's lifecycle scripts.</p>
+
+<p><a name="public-component-type-more-information"></a>For more information, see <a href="develop-greengrass-components.md#component-types">Component types</a>.</p>
+
+<h2>Operating system<a name="sagemaker-edge-manager-component-os-support"></a></h2>
+
+<p>This component can be installed on core devices that run the following operating systems:
++ Linux
++ Windows</p>
+
+<h2>Requirements<a name="sagemaker-edge-manager-component-requirements"></a></h2>
+
+<p>This component has the following requirements:<a name="sm-edge-manager-component-reqs"></a>
++ <a name="sm-req-core-device"></a>A Greengrass core device running on Amazon Linux 2, a Debian-based Linux platform (x86_64 or Armv8), or Windows (x86_64). If you don't have one, see <a href="getting-started.md">Tutorial: Getting started with AWS IoT Greengrass V2</a>.
++ <a name="sm-req-python"></a><a href="https://www.python.org/downloads/">Python</a> 3.6 or later, including <code>pip</code> for your version of Python, installed on your core device.
++ The <a href="device-service-role.md">Greengrass device role</a> configured with the following: 
+  + <a name="sm-req-iam-trust-relationship"></a>A trust relationship that allows <code>credentials.iot.amazonaws.com</code> and <code>sagemaker.amazonaws.com</code> to assume the role, as shown in the following IAM policy example.</p>
+
+<pre><code>```
+{ 
+  "Version": "2012-10-17",
+  "Statement": [ 
+    { 
+      "Effect": "Allow", 
+      "Principal": {
+        "Service": "credentials.iot.amazonaws.com"
+       }, 
+      "Action": "sts:AssumeRole" 
+    },
+    { 
+      "Effect": "Allow", 
+      "Principal": {
+        "Service": "sagemaker.amazonaws.com"
+      }, 
+      "Action": "sts:AssumeRole" 
+    } 
+  ] 
+}
+```
+</code></pre>
+
+<p>+ <a name="sm-req-iam-sagemanakeredgedevicefleetpolicy"></a>The <a href="https://console.aws.amazon.com/iam/home#/policies/arn:aws:iam::aws:policy/service-role/AmazonSageMakerEdgeDeviceFleetPolicy">AmazonSageMakerEdgeDeviceFleetPolicy</a> IAM managed policy.
+  + <a name="sm-req-iam-s3-putobject"></a>The <code>s3:PutObject</code> action, as shown in the following IAM policy example.</p>
+
+<pre><code>```
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Action": [
+        "s3:PutObject"
+      ],
+      "Resource": [
+        "*"
+      ],
+      "Effect": "Allow"
+    }
+  ]
+}
+```
+</code></pre>
+
+<p>+ <a name="sm-req-s3-bucket"></a>An Amazon S3 bucket created in the same AWS account and AWS Region as your Greengrass core device. SageMaker Edge Manager requires an S3 bucket to create an edge device fleet, and to store sample data from running inference on your device. For information about creating S3 buckets, see <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/GetStartedWithS3.html">Getting started with Amazon S3</a>.
++ <a name="sm-req-edge-device-fleet"></a>A SageMaker edge device fleet that uses the same AWS IoT role alias as your Greengrass core device. For more information, see <a href="get-started-with-edge-manager-on-greengrass.md#create-edge-device-fleet-for-greengrass">Create an edge device fleet</a>.
++ <a name="sm-req-edge-device"></a>Your Greengrass core device registered as an edge device in your SageMaker Edge device fleet. The edge device name must match the AWS IoT thing name for your core device. For more information, see <a href="get-started-with-edge-manager-on-greengrass.md#register-greengrass-core-device-in-sme">Register your Greengrass core device</a>.</p>
+
+<h3>Endpoints and ports<a name="sagemaker-edge-manager-component-endpoints"></a></h3>
+
+<p>This component must be able to perform outbound requests to the following endpoints and ports, in addition to endpoints and ports required for basic operation. For more information, see <a href="allow-device-traffic.md">Allow device traffic through a proxy or firewall</a>.</p>
+
+<p>| Endpoint | Port | Required | Description | 
+| --- | --- | --- | --- | 
+|  <code>edge.sagemaker.region.amazonaws.com</code>  | 443 | Yes |  Check device registration status and send metrics to SageMaker.  | 
+|  <code>*.s3.amazonaws.com</code>  | 443 | Yes |  Upload capture data to the S3 bucket that you specify. You can replace <code>*</code> with the name of each bucket where you upload data.  | </p>
+
+<h2>Dependencies<a name="sagemaker-edge-manager-component-dependencies"></a></h2>
+
+<p>When you deploy a component, AWS IoT Greengrass also deploys compatible versions of its dependencies. This means that you must meet the requirements for the component and all of its dependencies to successfully deploy the component. This section lists the dependencies for the <a href="#sagemaker-edge-manager-component-changelog">released versions</a> of this component and the semantic version constraints that define the component versions for each dependency. You can also view the dependencies for each version of the component in the <a href="https://console.aws.amazon.com/greengrass">AWS IoT Greengrass console</a>. On the component details page, look for the <strong>Dependencies</strong> list.</p>
+
+<hr />
+
+<h4>[ 1.3.2 ]</h4>
+
+<p>The following table lists the dependencies for version 1.3.2 of this component.</p>
+
+<p>| Dependency | Compatible versions | Dependency type | 
+| --- | --- | --- | 
+| <a href="greengrass-nucleus-component.md">Greengrass nucleus</a> | &gt;=2.0.0 &lt;3.0.0 | Soft | 
+| <a href="token-exchange-service-component.md">Token exchange service</a> | &gt;=0.0.0 | Hard | </p>
+
+<hr />
+
+<h4>[ 1.3.1 ]</h4>
+
+<p>The following table lists the dependencies for version 1.3.1 of this component.</p>
+
+<p>| Dependency | Compatible versions | Dependency type | 
+| --- | --- | --- | 
+| <a href="greengrass-nucleus-component.md">Greengrass nucleus</a> | &gt;=2.0.0 &lt;2.9.0 | Soft | 
+| <a href="token-exchange-service-component.md">Token exchange service</a> | &gt;=0.0.0 | Hard | </p>
+
+<hr />
+
+<h4>[ 1.1.1 - 1.3.0 ]</h4>
+
+<p>The following table lists the dependencies for versions 1.1.1 - 1.3.0 of this component.</p>
+
+<p>| Dependency | Compatible versions | Dependency type | 
+| --- | --- | --- | 
+| <a href="greengrass-nucleus-component.md">Greengrass nucleus</a> | &gt;=2.0.0 &lt;2.8.0 | Soft | 
+| <a href="token-exchange-service-component.md">Token exchange service</a> | &gt;=0.0.0 | Hard | </p>
+
+<hr />
+
+<h4>[ 1.1.0 ]</h4>
+
+<p>The following table lists the dependencies for version 1.1.0 of this component.</p>
+
+<p>| Dependency | Compatible versions | Dependency type | 
+| --- | --- | --- | 
+| <a href="greengrass-nucleus-component.md">Greengrass nucleus</a> | &gt;=2.0.0 &lt;2.6.0 | Soft | 
+| <a href="token-exchange-service-component.md">Token exchange service</a> | &gt;=0.0.0 | Hard | </p>
+
+<hr />
+
+<h4>[ 1.0.3 ]</h4>
+
+<p>The following table lists the dependencies for version 1.0.3 of this component.</p>
+
+<p>| Dependency | Compatible versions | Dependency type | 
+| --- | --- | --- | 
+| <a href="greengrass-nucleus-component.md">Greengrass nucleus</a> | &gt;=2.0.0 &lt;2.5.0 | Soft | 
+| <a href="token-exchange-service-component.md">Token exchange service</a> | &gt;=0.0.0 | Hard | </p>
+
+<hr />
+
+<h4>[ 1.0.1 and 1.0.2 ]</h4>
+
+<p>The following table lists the dependencies for versions 1.0.1 and 1.0.2 of this component.</p>
+
+<p>| Dependency | Compatible versions | Dependency type | 
+| --- | --- | --- | 
+| <a href="greengrass-nucleus-component.md">Greengrass nucleus</a> | &gt;=2.0.0 &lt;2.4.0 | Soft | 
+| <a href="token-exchange-service-component.md">Token exchange service</a> | &gt;=0.0.0 | Hard | </p>
+
+<hr />
+
+<h4>[ 1.0.0 ]</h4>
+
+<p>The following table lists the dependencies for version 1.0.0 of this component.</p>
+
+<p>| Dependency | Compatible versions | Dependency type | 
+| --- | --- | --- | 
+| <a href="greengrass-nucleus-component.md">Greengrass nucleus</a> | &gt;=2.0.0 &lt;2.3.0 | Soft | 
+| <a href="token-exchange-service-component.md">Token exchange service</a> | &gt;=0.0.0 | Hard | </p>
+
+<hr />
+
+<p>For more information about component dependencies, see the <a href="component-recipe-reference.md#recipe-reference-component-dependencies">component recipe reference</a>.</p>
+
+<h2>Configuration<a name="sagemaker-edge-manager-component-configuration"></a></h2>
+
+<p>This component provides the following configuration parameters that you can customize when you deploy the component.</p>
+
+<p><strong>Note</strong><br />
+This section describes the configuration parameters that you set in the component. For more information about the corresponding SageMaker Edge Manager configuration, see <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/edge-device-fleet-about.html#edge-device-fleet-running-agent">Edge Manager Agent</a> in the <em>Amazon SageMaker Developer Guide</em>.</p>
+
+<p><code>DeviceFleetName</code><br />
+The name of the SageMaker Edge Manager device fleet that contains your Greengrass core device.<br />
+You must specify a value for this parameter in the configuration update when you deploy this component.</p>
+
+<p><code>BucketName</code><br />
+The name of the S3 bucket to which you upload captured inference data. The bucket name must contain the string <code>sagemaker</code>.<br />
+If you set <code>CaptureDataDestination</code> to <code>Cloud</code>, or if you set <code>CaptureDataPeriodicUpload</code> to <code>true</code>, then you must specify a value for this parameter in the configuration update when you deploy this component.<br />
+Capture data is an SageMaker feature that you use to upload inference input, inference results, and additional inference data to an S3 bucket or a local directory for future analysis. For more information about using capture data with SageMaker Edge Manager, see <a href="https://docs.aws.amazon.com/sagemaker/latest/dg/edge-manage-model.html#edge-manage-model-capturedata">Manage Model</a> in the <em>Amazon SageMaker Developer Guide</em>.</p>
+
+<p><code>CaptureDataBatchSize</code><br />
+(Optional) The size of a batch of capture data requests that the agent handles. This value must be less than the buffer size that you specify in <code>CaptureDataBufferSize</code>. We recommend that you don't exceed half the buffer size.<br />
+The agent handles a request batch when the number of requests in the buffer meets the <code>CaptureDataBatchSize</code> number, or when the <code>CaptureDataPushPeriodSeconds</code> interval elapses, whichever occurs first.<br />
+Default: <code>10</code></p>
+
+<p><code>CaptureDataBufferSize</code><br />
+(Optional) The maximum number of capture data requests stored in the buffer.<br />
+Default: <code>30</code></p>
+
+<p><code>CaptureDataDestination</code><br />
+(Optional) The destination where you store captured data. This parameter can have the following values:<br />
++ <code>Cloud</code>—Uploads captured data to the S3 bucket that you specify in <code>BucketName</code>.
++ <code>Disk</code>—Writes captured data to the component's work directory. 
+If you specify <code>Disk</code>, you can also choose to periodically upload the captured data to your S3 bucket by setting <code>CaptureDataPeriodicUpload</code> to <code>true</code>.<br />
+Default: <code>Cloud</code></p>
+
+<p><code>CaptureDataPeriodicUpload</code><br />
+(Optional) String value that specifies whether to periodically upload captured data. Supported values are <code>true</code> and <code>false</code>.<br />
+Set this parameter to <code>true</code> if you set <code>CaptureDataDestination</code> to <code>Disk</code>, and you also want the agent to periodically upload the captured data your S3 bucket.<br />
+Default: <code>false</code></p>
+
+<p><code>CaptureDataPeriodicUploadPeriodSeconds</code><br />
+(Optional) The interval in seconds at which SageMaker Edge Manager agent uploads captured data to the S3 bucket. Use this parameter if you set <code>CaptureDataPeriodicUpload</code> to <code>true</code>.<br />
+Default: <code>8</code></p>
+
+<p><code>CaptureDataPushPeriodSeconds</code><br />
+(Optional) The interval in seconds at which SageMaker Edge Manager agent handles a batch of capture data requests from the buffer.<br />
+The agent handles a request batch when the number of requests in the buffer meets the <code>CaptureDataBatchSize</code> number, or when the <code>CaptureDataPushPeriodSeconds</code> interval elapses, whichever occurs first.<br />
+Default: <code>4</code></p>
+
+<p><code>CaptureDataBase64EmbedLimit</code><br />
+(Optional) The maximum size in bytes of captured data that SageMaker Edge Manager agent uploads.<br />
+Default: <code>3072</code></p>
+
+<p><code>FolderPrefix</code><br />
+(Optional) The name of the folder to which the agent writes the captured data. If you set <code>CaptureDataDestination</code> to <code>Disk</code>, the agent creates the folder in the directory that is specified by <code>CaptureDataDiskPath</code>. If you set <code>CaptureDataDestination</code> to <code>Cloud</code>, or if you set <code>CaptureDataPeriodicUpload</code> to <code>true</code>, the agent creates the folder in your S3 bucket.<br />
+Default: <code>sme-capture</code></p>
+
+<p><code>CaptureDataDiskPath</code><br />
+This feature is available in v1.1.0 and later versions of the SageMaker Edge Manager component.<br />
+(Optional) The path to the folder to which the agent creates the captured data folder. If you set <code>CaptureDataDestination</code> to <code>Disk</code>, the agent creates the captured data folder in this directory. If you don't specify this value, the agent creates the captured data folder in the component's work directory. Use the <code>FolderPrefix</code> parameter to specify the name of the captured data folder.<br />
+Default: <code>/greengrass/v2/work/aws.greengrass.SageMakerEdgeManager/capture</code></p>
+
+<p><code>LocalDataRootPath</code><br />
+This feature is available in v1.2.0 and later versions of the SageMaker Edge Manager component.<br />
+(Optional) The path where this component stores the following data on the core device:<br />
++ The local database for runtime data when you set <code>DbEnable</code> to <code>true</code>.
++ SageMaker Neo-compiled models that this component automatically downloads when you set <code>DeploymentEnable</code> to <code>true</code>.
+Default: <code>/greengrass/v2/work/aws.greengrass.SageMakerEdgeManager</code></p>
+
+<p><code>DbEnable</code><br />
+(Optional) You can enable this component to store runtime data in a local database to preserve the data, in case the component fails or the device loses power.<br />
+This database requires 5 MB of storage on the core device's file system.<br />
+Default: <code>false</code></p>
+
+<p><code>DeploymentEnable</code><br />
+This feature is available in v1.2.0 and later versions of the SageMaker Edge Manager component.<br />
+(Optional) You can enable this component to automatically retrieve SageMaker Neo-compiled models from that you upload to Amazon S3. After you upload a new model to Amazon S3, use SageMaker Studio or the SageMaker API to deploy the new model to this core device. When you enable this feature, you can deploy new models to core devices without needing to create a AWS IoT Greengrass deployment.<br />
+To use this feature, you must set <code>DbEnable</code> to <code>true</code>. This feature uses the local database to track models that it retrieves from the AWS Cloud.
+Default: <code>false</code></p>
+
+<p><code>DeploymentPollInterval</code><br />
+This feature is available in v1.2.0 and later versions of the SageMaker Edge Manager component.<br />
+(Optional) The amount of time (in minutes) between which this component checks for new models to download. This option applies when you set <code>DeploymentEnable</code> to <code>true</code>.<br />
+Default: <code>1440</code> (1 day)</p>
+
+<p><code>DLRBackendOptions</code><br />
+This feature is available in v1.2.0 and later versions of the SageMaker Edge Manager component.<br />
+(Optional) The DLR runtime flags to set in the DLR runtime that this component uses. You can set the following flag:<br />
++ <code>TVM_TENSORRT_CACHE_DIR</code> – Enable TensorRT model caching. Specify an absolute path to an existing folder that has read/write permissions.
++ <code>TVM_TENSORRT_CACHE_DISK_SIZE_MB</code> – Assigns the upper limit of the TensorRT model cache folder. When the directory size grows beyond this limit the cached engines that are used the least are deleted. The default value is 512 MB.
+For example, you can set this parameter to the following value to enable TensorRT model caching and limit the cache size to 800 MB.  </p>
+
+<p><code>
+TVM_TENSORRT_CACHE_DIR=/data/secured_folder/trt/cache; TVM_TENSORRT_CACHE_DISK_SIZE_MB=800
+</code></p>
+
+<p><code>SagemakerEdgeLogVerbose</code><br />
+(Optional) String value that specifies whether to enable debug logging. Supported values are <code>true</code> and <code>false</code>.<br />
+Default: <code>false</code></p>
+
+<p><code>UnixSocketName</code><br />
+(Optional) The location of the SageMaker Edge Manager socket file descriptor on the core device.<br />
+Default: <code>/tmp/aws.greengrass.SageMakerEdgeManager.sock</code></p>
+
+<p><strong>Example: Configuration merge update</strong><br />
+The following example configuration specifies that the core device is part of the <em>MyEdgeDeviceFleet</em> and that the agent writes capture data both to the device and to an S3 bucket. This configuration also enables debug logging.  </p>
+
+<p><code>
+{
+    "DeviceFleetName": "MyEdgeDeviceFleet",
+    "BucketName": "DOC-EXAMPLE-BUCKET",
+    "CaptureDataDestination": "Disk",
+    "CaptureDataPeriodicUpload": "true",
+    "SagemakerEdgeLogVerbose": "true"    
+}
+</code></p>
+
+<h2>Local log file<a name="sagemaker-edge-manager-component-log-file"></a></h2>
+
+<p>This component uses the following log file.</p>
+
+<hr />
+
+<h4>[ Linux ]</h4>
+
+<p><code>
+/greengrass/v2/logs/aws.greengrass.SageMakerEdgeManager.log
+</code></p>
+
+<hr />
+
+<h4>[ Windows ]</h4>
+
+<p><code>
+C:\greengrass\v2\logs\aws.greengrass.SageMakerEdgeManager.log
+</code></p>
+
+<hr />
+
+<p><strong>To view this component's logs</strong>
++ Run the following command on the core device to view this component's log file in real time. Replace <em>/greengrass/v2</em> or <em>C:\greengrass\v2</em> with the path to the AWS IoT Greengrass root folder.</p>
+
+<hr />
+
+<h4>[ Linux ]</h4>
+
+<p><code>
+  sudo tail -f /greengrass/v2/logs/aws.greengrass.SageMakerEdgeManager.log
+</code></p>
+
+<hr />
+
+<h4>[ Windows (PowerShell) ]</h4>
+
+<p><code>
+  Get-Content C:\greengrass\v2\logs\aws.greengrass.SageMakerEdgeManager.log -Tail 10 -Wait
+</code></p>
+
+<hr />
+
+<h2>Changelog<a name="sagemaker-edge-manager-component-changelog"></a></h2>
+
+<p>The following table describes the changes in each version of the component.</p>
+
+<p>|  <strong>Version</strong>  |  <strong>Changes</strong>  | 
+| --- | --- | 
+|  1.3.1  | Version updated for Greengrass nucleus version 2.8.0 release. | 
+|  1.3.0  |  <a href="http://docs.aws.amazon.com/greengrass/v2/developerguide/sagemaker-edge-manager-component.html">[See the AWS documentation website for more details]</a>  | 
+|  1.2.0  |  <a href="http://docs.aws.amazon.com/greengrass/v2/developerguide/sagemaker-edge-manager-component.html">[See the AWS documentation website for more details]</a>  | 
+|  1.1.1  |  Version updated for Greengrass nucleus version 2.7.0 release.  | 
+|  1.1.0  |  <a href="http://docs.aws.amazon.com/greengrass/v2/developerguide/sagemaker-edge-manager-component.html">[See the AWS documentation website for more details]</a>  | 
+|  1.0.3  |  Version updated for Greengrass nucleus version 2.4.0 release.  | 
+|  1.0.2  |  <a href="http://docs.aws.amazon.com/greengrass/v2/developerguide/sagemaker-edge-manager-component.html">[See the AWS documentation website for more details]</a>  | 
+|  1.0.1  |  Version updated for Greengrass nucleus version 2.3.0 release.  | 
+|  1.0.0  |  Initial version.  | </p>

@@ -1,0 +1,41 @@
+<h1>AWS::SageMaker::Model ImageConfig<a name="aws-properties-sagemaker-model-containerdefinition-imageconfig"></a></h1>
+
+<p>Specifies whether the model container is in Amazon ECR or a private Docker registry accessible from your Amazon Virtual Private Cloud (VPC).</p>
+
+<h2>Syntax<a name="aws-properties-sagemaker-model-containerdefinition-imageconfig-syntax"></a></h2>
+
+<p>To declare this entity in your AWS CloudFormation template, use the following syntax:</p>
+
+<h3>JSON<a name="aws-properties-sagemaker-model-containerdefinition-imageconfig-syntax.json"></a></h3>
+
+<p><code>
+{
+  "[RepositoryAccessMode](#cfn-sagemaker-model-containerdefinition-imageconfig-repositoryaccessmode)" : String,
+  "[RepositoryAuthConfig](#cfn-sagemaker-model-containerdefinition-imageconfig-repositoryauthconfig)" : RepositoryAuthConfig
+}
+</code></p>
+
+<h3>YAML<a name="aws-properties-sagemaker-model-containerdefinition-imageconfig-syntax.yaml"></a></h3>
+
+<p><code>
+  [RepositoryAccessMode](#cfn-sagemaker-model-containerdefinition-imageconfig-repositoryaccessmode): String
+  [RepositoryAuthConfig](#cfn-sagemaker-model-containerdefinition-imageconfig-repositoryauthconfig): 
+    RepositoryAuthConfig
+</code></p>
+
+<h2>Properties<a name="aws-properties-sagemaker-model-containerdefinition-imageconfig-properties"></a></h2>
+
+<p><code>RepositoryAccessMode</code>  <a name="cfn-sagemaker-model-containerdefinition-imageconfig-repositoryaccessmode"></a>
+Set this to one of the following values:<br />
++  <code>Platform</code> - The model image is hosted in Amazon ECR.
++  <code>Vpc</code> - The model image is hosted in a private Docker registry in your VPC.
+<em>Required</em>: Yes<br />
+<em>Type</em>: String<br />
+<em>Allowed values</em>: <code>Platform | Vpc</code><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement">Replacement</a></p>
+
+<p><code>RepositoryAuthConfig</code>  <a name="cfn-sagemaker-model-containerdefinition-imageconfig-repositoryauthconfig"></a>
+(Optional) Specifies an authentication configuration for the private docker registry where your model image is hosted. Specify a value for this property only if you specified <code>Vpc</code> as the value for the <code>RepositoryAccessMode</code> field, and the private Docker registry where the model image is hosted requires authentication.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: <a href="aws-properties-sagemaker-model-containerdefinition-imageconfig-repositoryauthconfig.md">RepositoryAuthConfig</a><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement">Replacement</a></p>

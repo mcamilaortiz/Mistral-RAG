@@ -1,0 +1,83 @@
+<h1>AWS::SageMaker::DeviceFleet<a name="aws-resource-sagemaker-devicefleet"></a></h1>
+
+<p>The <code>AWS::SageMaker::DeviceFleet</code> resource is an Amazon SageMaker resource type that allows you to create a DeviceFleet that manages your SageMaker Edge Manager Devices. You must register your devices against the <code>DeviceFleet</code> separately.</p>
+
+<h2>Syntax<a name="aws-resource-sagemaker-devicefleet-syntax"></a></h2>
+
+<p>To declare this entity in your AWS CloudFormation template, use the following syntax:</p>
+
+<h3>JSON<a name="aws-resource-sagemaker-devicefleet-syntax.json"></a></h3>
+
+<p><code>
+{
+  "Type" : "AWS::SageMaker::DeviceFleet",
+  "Properties" : {
+      "[Description](#cfn-sagemaker-devicefleet-description)" : String,
+      "[DeviceFleetName](#cfn-sagemaker-devicefleet-devicefleetname)" : String,
+      "[OutputConfig](#cfn-sagemaker-devicefleet-outputconfig)" : EdgeOutputConfig,
+      "[RoleArn](#cfn-sagemaker-devicefleet-rolearn)" : String,
+      "[Tags](#cfn-sagemaker-devicefleet-tags)" : [ [Tag](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-resource-tags.html), ... ]
+    }
+}
+</code></p>
+
+<h3>YAML<a name="aws-resource-sagemaker-devicefleet-syntax.yaml"></a></h3>
+
+<p><code>
+Type: AWS::SageMaker::DeviceFleet
+Properties: 
+  [Description](#cfn-sagemaker-devicefleet-description): String
+  [DeviceFleetName](#cfn-sagemaker-devicefleet-devicefleetname): String
+  [OutputConfig](#cfn-sagemaker-devicefleet-outputconfig): 
+    EdgeOutputConfig
+  [RoleArn](#cfn-sagemaker-devicefleet-rolearn): String
+  [Tags](#cfn-sagemaker-devicefleet-tags): 
+    - [Tag](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-resource-tags.html)
+</code></p>
+
+<h2>Properties<a name="aws-resource-sagemaker-devicefleet-properties"></a></h2>
+
+<p><code>Description</code>  <a name="cfn-sagemaker-devicefleet-description"></a>
+A description of the fleet.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: String<br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt">No interruption</a></p>
+
+<p><code>DeviceFleetName</code>  <a name="cfn-sagemaker-devicefleet-devicefleetname"></a>
+Name of the device fleet.<br />
+<em>Required</em>: Yes<br />
+<em>Type</em>: String<br />
+<em>Minimum</em>: <code>1</code><br />
+<em>Maximum</em>: <code>63</code><br />
+<em>Pattern</em>: <code>^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,62}$</code><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement">Replacement</a></p>
+
+<p><code>OutputConfig</code>  <a name="cfn-sagemaker-devicefleet-outputconfig"></a>
+The output configuration for storing sample data collected by the fleet.<br />
+<em>Required</em>: Yes<br />
+<em>Type</em>: <a href="aws-properties-sagemaker-devicefleet-edgeoutputconfig.md">EdgeOutputConfig</a><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt">No interruption</a></p>
+
+<p><code>RoleArn</code>  <a name="cfn-sagemaker-devicefleet-rolearn"></a>
+The Amazon Resource Name (ARN) that has access to AWS Internet of Things (IoT).<br />
+<em>Required</em>: Yes<br />
+<em>Type</em>: String<br />
+<em>Minimum</em>: <code>20</code><br />
+<em>Maximum</em>: <code>2048</code><br />
+<em>Pattern</em>: <code>^arn:aws[a-z\-]*:iam::\d{12}:role/?[a-zA-Z_0-9+=,.@\-_/]+$</code><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt">No interruption</a></p>
+
+<p><code>Tags</code>  <a name="cfn-sagemaker-devicefleet-tags"></a>
+An array of key-value pairs that contain metadata to help you categorize and organize your device fleets. Each tag consists of a key and a value, both of which you define.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: List of <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-resource-tags.html">Tag</a><br />
+<em>Maximum</em>: <code>50</code><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt">No interruption</a></p>
+
+<h2>Return values<a name="aws-resource-sagemaker-devicefleet-return-values"></a></h2>
+
+<h3>Ref<a name="aws-resource-sagemaker-devicefleet-return-values-ref"></a></h3>
+
+<p>When you pass the logical ID of this resource to the intrinsic <code>Ref</code> function, <code>Ref</code> returns the DeviceFleetName.</p>
+
+<p>For more information about using the <code>Ref</code> function, see <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference-ref.html">Ref</a>.</p>

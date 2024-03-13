@@ -1,0 +1,37 @@
+<h1>AWS::SageMaker::EndpointConfig ClarifyTextConfig<a name="aws-properties-sagemaker-endpointconfig-clarifytextconfig"></a></h1>
+
+<p><a name="aws-properties-sagemaker-endpointconfig-clarifytextconfig-description"></a>The <code>ClarifyTextConfig</code> property type specifies Property description not available. for an <a href="aws-resource-sagemaker-endpointconfig.md">AWS::SageMaker::EndpointConfig</a>.</p>
+
+<h2>Syntax<a name="aws-properties-sagemaker-endpointconfig-clarifytextconfig-syntax"></a></h2>
+
+<p>To declare this entity in your AWS CloudFormation template, use the following syntax:</p>
+
+<h3>JSON<a name="aws-properties-sagemaker-endpointconfig-clarifytextconfig-syntax.json"></a></h3>
+
+<p><code>
+{
+  "[Granularity](#cfn-sagemaker-endpointconfig-clarifytextconfig-granularity)" : String,
+  "[Language](#cfn-sagemaker-endpointconfig-clarifytextconfig-language)" : String
+}
+</code></p>
+
+<h3>YAML<a name="aws-properties-sagemaker-endpointconfig-clarifytextconfig-syntax.yaml"></a></h3>
+
+<p><code>
+  [Granularity](#cfn-sagemaker-endpointconfig-clarifytextconfig-granularity): String
+  [Language](#cfn-sagemaker-endpointconfig-clarifytextconfig-language): String
+</code></p>
+
+<h2>Properties<a name="aws-properties-sagemaker-endpointconfig-clarifytextconfig-properties"></a></h2>
+
+<p><code>Granularity</code>  <a name="cfn-sagemaker-endpointconfig-clarifytextconfig-granularity"></a>
+Property description not available.<br />
+<em>Required</em>: Yes<br />
+<em>Type</em>: String<br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement">Replacement</a></p>
+
+<p><code>Language</code>  <a name="cfn-sagemaker-endpointconfig-clarifytextconfig-language"></a>
+Property description not available.<br />
+<em>Required</em>: Yes<br />
+<em>Type</em>: String<br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement">Replacement</a></p>

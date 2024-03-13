@@ -1,0 +1,69 @@
+<h1>Train a Model in Amazon SageMaker<a name="deeplens-getting-started-launch-sagemaker"></a></h1>
+
+<p>To begin creating your custom image classification model using your registered AWS DeepLens device you need to launch an Amazon SageMaker instance and request a service limit increase. </p>
+
+<h2>Getting Started with an Amazon SageMaker Instance<a name="getting-started-sagemaker-instance"></a></h2>
+
+<p>SageMaker is a fully managed machine learning service that enables data scientists and developers to build and train machine learning models using a Jupyter notebook instance. </p>
+
+<p>To create a custom image classification model, we need to use a graphics processing unit (GPU) enabled training job instance. GPUs are excellent at parallelizing the computations required to train a neural network for this project. </p>
+
+<p>In order to access a GPU-enabled training job instance, you must submit a request for a service limit increase to the <a href="https://console.aws.amazon.com/support/home?#/case/create"> AWS Support Center</a>. </p>
+
+<p><strong>Note</strong><br />
+Jupyter notebooks are open source web applications that you can use to create and share documents that contain live code, equations, visualizations, and narrative text. The AWS DeepLens Jupyter notebook in this repo contains code that demonstrates how to create machine learning solutions with Amazon SageMaker and AWS DeepLens. </p>
+
+<h2>Request a GPU-enabled Amazon SageMaker Training Instance<a name="request-gpu-enabled-sagemaker-instance"></a></h2>
+
+<ol>
+<li><p>Open the <a href="https://console.aws.amazon.com/support/home#/case/create">AWS Support Center console</a>.</p></li>
+<li><p>On the <strong>AWS Support Center</strong> page, choose <strong>Create Case</strong> and then choose <em>* Service limit increase</em>*.</p></li>
+<li><p>In the <strong>Case classification</strong> panel under <strong>Limit type</strong>, search for Amazon SageMaker.</p></li>
+<li><p>In the <strong>Request</strong> panel, choose the <strong>Region</strong> that you are working in. For <strong>Resource Type</strong>, choose <strong>SageMaker Training</strong>. </p></li>
+<li><p>For <strong>Limit</strong> choose <strong>ml.p2.xlarge instances</strong>.</p></li>
+<li><p>For <strong>New Limit Value</strong>, verify that the value is <strong>1</strong>.</p></li>
+<li><p>In <strong>Case description</strong>, provide a brief explanation of why you need the <strong>Service limit increase</strong>. For example, I need to use this GPU-enabled training job instance to train a deep learning model using TensorFlow. I'll use this model on an AWS DeepLens device. </p></li>
+<li><p>In <strong>Contact options</strong>, provide some details about how you would like to be contacted by the AWS service support team on the status of your <strong>Service limit increase</strong> request. </p></li>
+<li><p>Choose <strong>Submit</strong>.</p></li>
+</ol>
+
+<h2>Create an SageMaker Notebook Instance<a name="create-sagemaker-instance"></a></h2>
+
+<ol>
+<li><p>Sign in to the <a href="https://console.aws.amazon.com/sagemaker/home?region=us-east-1#/dashboard">SageMaker console</a></p></li>
+<li><p>In the navigation pane, choose <strong>Notebook instances</strong>.</p></li>
+<li><p>On the <strong>Notebook instances</strong> page, choose <strong>Create notebook instance</strong>.<br />
+<img src="http://docs.aws.amazon.com/deeplens/latest/dg/images/get-started-5-notebook-create.png" alt="[]" /></p></li>
+<li><p>On the <strong>Create notebook instance</strong> page, enter your name in <strong>Notebook instance name</strong>, and then choose <strong>ml.p2.xlarge</strong>.<br />
+<img src="http://docs.aws.amazon.com/deeplens/latest/dg/images/get-started-6-notebook-name.png" alt="[]" /></p></li>
+<li><p>Choose your <strong>IAM Role</strong> to set up the correct permissions and encryption as follows: </p>
+
+<ul>
+<li>If you have an existing Amazon SageMaker IAM role, select that IAM role from the list.</li>
+<li>If you are new to <strong>Amazon SageMaker</strong>, create an IAM role by choosing <strong>Create a new role</strong>. On the <strong>Create an IAM role</strong> page, choose <strong>Any S3 bucket</strong> to give your new IAM role access to your S3 bucket. Choose <strong>Create Role</strong>.<br />
+<img src="http://docs.aws.amazon.com/deeplens/latest/dg/images/get-started-7-notebook-iam.png" alt="[]" /></li>
+</ul></li>
+<li><p>On the <strong>Create a notebook instance</strong> page, choose <strong>IAM Role</strong>, and then choose your IAM role from the list. </p></li>
+<li><p>Open the <strong>Git repositories</strong> panel. and then, under the <strong>Default repository</strong> drop down, choose <strong>clone a public gitHub repository</strong>. </p></li>
+<li><p>Copy <code>https://github.com/aws-samples/aws-deeplens-recipes/</code> and paste it into the field. It contains the Jupyter notebook required for this custom project.<br />
+<img src="http://docs.aws.amazon.com/deeplens/latest/dg/images/sagemaker-create-notebook.png" alt="[Image NOT FOUND]" /></p></li>
+<li><p>Choose <strong>Create notebook instance</strong>.</p>
+
+<p>In a few minutes, Amazon SageMaker will launch the notebook instance. When ready the status will change from <strong>Pending</strong> to <strong>In service</strong>. </p></li>
+<li><p>On the <em>* Notebook instances</em>* page, choose <strong>Open Jupyter</strong> to launch your newly created Jupyter notebook. </p></li>
+<li><p>Navigate to the <code>static/code/trash-sorter/</code> directory and open the <code>aws-deeplens-custom-trash-detector.ipynb</code>.<br />
+<img src="http://docs.aws.amazon.com/deeplens/latest/dg/images/jupyter-launch-page.png" alt="[alt_text]" /></p></li>
+<li><p>Follow the prompts in the Jupyter notebook to train your model.
+<strong>Note</strong><br />
+Jupyter notebook contain a mixture of code and markdown cells. In a notebook, each cell can be run and modified. To modify a cell, double-click it and make your change. To run a cell, press ShiftEnter.<br />
+While the cell is running, an <strong>asterisk (*)</strong> appears in brackets to the left of the cell that you selected. When the cell has finished running, the asterisk is replaced by an output number, and a new output cell is generated beneath the original cell.<br />
+Alternatively, you can also run a cell by selecting it and then choosing <strong>Run</strong> on the toolbar.</p></li>
+</ol>
+
+<p><strong>Next steps</strong>
++ At this point in the tutorial, you should have now successfully completed the following:
+  + Registering . your AWS DeepLens device
+  + Created an Amazon S3 bucket
+  +  Trained an image classification model SageMaker</p>
+
+<p>Next, you will learn how to deploy this model to run on AWS DeepLens</p>

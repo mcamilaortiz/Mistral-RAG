@@ -1,0 +1,31 @@
+<h1>AWS::SageMaker::Endpoint AutoRollbackConfig<a name="aws-properties-sagemaker-endpoint-autorollbackconfig"></a></h1>
+
+<p>Automatic rollback configuration for handling endpoint deployment failures and recovery.</p>
+
+<h2>Syntax<a name="aws-properties-sagemaker-endpoint-autorollbackconfig-syntax"></a></h2>
+
+<p>To declare this entity in your AWS CloudFormation template, use the following syntax:</p>
+
+<h3>JSON<a name="aws-properties-sagemaker-endpoint-autorollbackconfig-syntax.json"></a></h3>
+
+<p><code>
+{
+  "[Alarms](#cfn-sagemaker-endpoint-autorollbackconfig-alarms)" : [ Alarm, ... ]
+}
+</code></p>
+
+<h3>YAML<a name="aws-properties-sagemaker-endpoint-autorollbackconfig-syntax.yaml"></a></h3>
+
+<p><code>
+  [Alarms](#cfn-sagemaker-endpoint-autorollbackconfig-alarms): 
+    - Alarm
+</code></p>
+
+<h2>Properties<a name="aws-properties-sagemaker-endpoint-autorollbackconfig-properties"></a></h2>
+
+<p><code>Alarms</code>  <a name="cfn-sagemaker-endpoint-autorollbackconfig-alarms"></a>
+List of CloudWatch alarms in your account that are configured to monitor metrics on an endpoint. If any alarms are tripped during a deployment, SageMaker rolls back the deployment.<br />
+<em>Required</em>: Yes<br />
+<em>Type</em>: List of <a href="aws-properties-sagemaker-endpoint-alarm.md">Alarm</a><br />
+<em>Maximum</em>: <code>10</code><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt">No interruption</a></p>

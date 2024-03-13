@@ -1,0 +1,57 @@
+<h1>AWS::SageMaker::Domain RStudioServerProDomainSettings<a name="aws-properties-sagemaker-domain-rstudioserverprodomainsettings"></a></h1>
+
+<p>A collection of settings that configure the <code>RStudioServerPro</code> Domain-level app.</p>
+
+<h2>Syntax<a name="aws-properties-sagemaker-domain-rstudioserverprodomainsettings-syntax"></a></h2>
+
+<p>To declare this entity in your AWS CloudFormation template, use the following syntax:</p>
+
+<h3>JSON<a name="aws-properties-sagemaker-domain-rstudioserverprodomainsettings-syntax.json"></a></h3>
+
+<p><code>
+{
+  "[DefaultResourceSpec](#cfn-sagemaker-domain-rstudioserverprodomainsettings-defaultresourcespec)" : ResourceSpec,
+  "[DomainExecutionRoleArn](#cfn-sagemaker-domain-rstudioserverprodomainsettings-domainexecutionrolearn)" : String,
+  "[RStudioConnectUrl](#cfn-sagemaker-domain-rstudioserverprodomainsettings-rstudioconnecturl)" : String,
+  "[RStudioPackageManagerUrl](#cfn-sagemaker-domain-rstudioserverprodomainsettings-rstudiopackagemanagerurl)" : String
+}
+</code></p>
+
+<h3>YAML<a name="aws-properties-sagemaker-domain-rstudioserverprodomainsettings-syntax.yaml"></a></h3>
+
+<p><code>
+  [DefaultResourceSpec](#cfn-sagemaker-domain-rstudioserverprodomainsettings-defaultresourcespec): 
+    ResourceSpec
+  [DomainExecutionRoleArn](#cfn-sagemaker-domain-rstudioserverprodomainsettings-domainexecutionrolearn): String
+  [RStudioConnectUrl](#cfn-sagemaker-domain-rstudioserverprodomainsettings-rstudioconnecturl): String
+  [RStudioPackageManagerUrl](#cfn-sagemaker-domain-rstudioserverprodomainsettings-rstudiopackagemanagerurl): String
+</code></p>
+
+<h2>Properties<a name="aws-properties-sagemaker-domain-rstudioserverprodomainsettings-properties"></a></h2>
+
+<p><code>DefaultResourceSpec</code>  <a name="cfn-sagemaker-domain-rstudioserverprodomainsettings-defaultresourcespec"></a>
+A collection that defines the default <code>InstanceType</code>, <code>SageMakerImageArn</code>, and <code>SageMakerImageVersionArn</code> for the Domain.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: <a href="aws-properties-sagemaker-domain-resourcespec.md">ResourceSpec</a><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement">Replacement</a></p>
+
+<p><code>DomainExecutionRoleArn</code>  <a name="cfn-sagemaker-domain-rstudioserverprodomainsettings-domainexecutionrolearn"></a>
+The ARN of the execution role for the <code>RStudioServerPro</code> Domain-level app.<br />
+<em>Required</em>: Yes<br />
+<em>Type</em>: String<br />
+<em>Minimum</em>: <code>20</code><br />
+<em>Maximum</em>: <code>2048</code><br />
+<em>Pattern</em>: <code>^arn:aws[a-z\-]*:iam::\d{12}:role/?[a-zA-Z_0-9+=,.@\-_/]+$</code><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt">No interruption</a></p>
+
+<p><code>RStudioConnectUrl</code>  <a name="cfn-sagemaker-domain-rstudioserverprodomainsettings-rstudioconnecturl"></a>
+A URL pointing to an RStudio Connect server.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: String<br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt">No interruption</a></p>
+
+<p><code>RStudioPackageManagerUrl</code>  <a name="cfn-sagemaker-domain-rstudioserverprodomainsettings-rstudiopackagemanagerurl"></a>
+A URL pointing to an RStudio Package Manager server.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: String<br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt">No interruption</a></p>

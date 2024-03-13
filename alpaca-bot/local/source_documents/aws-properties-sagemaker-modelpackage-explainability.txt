@@ -1,0 +1,30 @@
+<h1>AWS::SageMaker::ModelPackage Explainability<a name="aws-properties-sagemaker-modelpackage-explainability"></a></h1>
+
+<p>Contains explainability metrics for a model.</p>
+
+<h2>Syntax<a name="aws-properties-sagemaker-modelpackage-explainability-syntax"></a></h2>
+
+<p>To declare this entity in your AWS CloudFormation template, use the following syntax:</p>
+
+<h3>JSON<a name="aws-properties-sagemaker-modelpackage-explainability-syntax.json"></a></h3>
+
+<p><code>
+{
+  "[Report](#cfn-sagemaker-modelpackage-explainability-report)" : MetricsSource
+}
+</code></p>
+
+<h3>YAML<a name="aws-properties-sagemaker-modelpackage-explainability-syntax.yaml"></a></h3>
+
+<p><code>
+  [Report](#cfn-sagemaker-modelpackage-explainability-report): 
+    MetricsSource
+</code></p>
+
+<h2>Properties<a name="aws-properties-sagemaker-modelpackage-explainability-properties"></a></h2>
+
+<p><code>Report</code>  <a name="cfn-sagemaker-modelpackage-explainability-report"></a>
+The explainability report for a model.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: <a href="aws-properties-sagemaker-modelpackage-metricssource.md">MetricsSource</a><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement">Replacement</a></p>

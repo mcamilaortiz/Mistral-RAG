@@ -1,0 +1,51 @@
+<h1>AWS::SageMaker::ModelPackage MetricsSource<a name="aws-properties-sagemaker-modelpackage-metricssource"></a></h1>
+
+<p>Details about the metrics source.</p>
+
+<h2>Syntax<a name="aws-properties-sagemaker-modelpackage-metricssource-syntax"></a></h2>
+
+<p>To declare this entity in your AWS CloudFormation template, use the following syntax:</p>
+
+<h3>JSON<a name="aws-properties-sagemaker-modelpackage-metricssource-syntax.json"></a></h3>
+
+<p><code>
+{
+  "[ContentDigest](#cfn-sagemaker-modelpackage-metricssource-contentdigest)" : String,
+  "[ContentType](#cfn-sagemaker-modelpackage-metricssource-contenttype)" : String,
+  "[S3Uri](#cfn-sagemaker-modelpackage-metricssource-s3uri)" : String
+}
+</code></p>
+
+<h3>YAML<a name="aws-properties-sagemaker-modelpackage-metricssource-syntax.yaml"></a></h3>
+
+<p><code>
+  [ContentDigest](#cfn-sagemaker-modelpackage-metricssource-contentdigest): String
+  [ContentType](#cfn-sagemaker-modelpackage-metricssource-contenttype): String
+  [S3Uri](#cfn-sagemaker-modelpackage-metricssource-s3uri): String
+</code></p>
+
+<h2>Properties<a name="aws-properties-sagemaker-modelpackage-metricssource-properties"></a></h2>
+
+<p><code>ContentDigest</code>  <a name="cfn-sagemaker-modelpackage-metricssource-contentdigest"></a>
+The hash key used for the metrics source.<br />
+<em>Required</em>: No<br />
+<em>Type</em>: String<br />
+<em>Maximum</em>: <code>72</code><br />
+<em>Pattern</em>: <code>^[Ss][Hh][Aa]256:[0-9a-fA-F]{64}$</code><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement">Replacement</a></p>
+
+<p><code>ContentType</code>  <a name="cfn-sagemaker-modelpackage-metricssource-contenttype"></a>
+The metric source content type.<br />
+<em>Required</em>: Yes<br />
+<em>Type</em>: String<br />
+<em>Maximum</em>: <code>256</code><br />
+<em>Pattern</em>: <code>.*</code><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement">Replacement</a></p>
+
+<p><code>S3Uri</code>  <a name="cfn-sagemaker-modelpackage-metricssource-s3uri"></a>
+The S3 URI for the metrics source.<br />
+<em>Required</em>: Yes<br />
+<em>Type</em>: String<br />
+<em>Maximum</em>: <code>1024</code><br />
+<em>Pattern</em>: <code>^(https|s3)://([^/]+)/?(.*)$</code><br />
+<em>Update requires</em>: <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement">Replacement</a></p>
